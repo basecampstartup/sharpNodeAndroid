@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">SharpNode</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="nav_menu_home">Home</string>
+    <string name="nav_menu_settings">Settings</string>
+    <string name="nav_menu_insights">Insights</string>
+    <string name="nav_menu_ifttt_config">IFTTT Config</string>
+    <string name="nav_menu_appliances">Appliances</string>
+    <string name="nav_menu_live_camera">Live Camera</string>
+    <string name="nav_menu_user_manuals">User Manual</string>
+    <string name="nav_menu_contact_us">Contact Us</string>
+    <string name="nav_menu_logout">Logout</string>
+</resources>
