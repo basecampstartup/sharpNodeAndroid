@@ -1,243 +1,271 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorAppWhite"
-    android:orientation="vertical"
-    >
-
-    <include
-        layout="@layout/nav_header_home"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/drawer_header"/>
+    android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/llHomePanel"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:elevation="5dp"
+        android:layout_height="match_parent"
+        android:background="@color/colorAppWhite"
+        android:orientation="vertical"
         >
 
-        <ImageView
-            android:id="@+id/ivHome"
-            android:layout_width="wrap_content"
+        <include
+            layout="@layout/nav_header_home"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/ic_launcher"
-            android:visibility="gone"></ImageView>
+            android:id="@+id/drawer_header"
+            />
 
-        <TextView
-            android:id="@+id/tvHome"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/llHomePanel"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:padding="@dimen/dim_padding_10dp"
-            android:text="@string/nav_menu_home"
-            android:textColor="@android:color/holo_orange_dark"
-            android:textSize="@dimen/dim_font_size_16"></TextView>
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/dim_padding_15dp">
+
+            <ImageView
+                android:id="@+id/ivHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/ic_launcher"
+                android:visibility="gone"></ImageView>
+
+            <TextView
+                android:id="@+id/tvHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/dim_padding_10dp"
+                android:text="@string/nav_menu_home"
+                android:textColor="@android:color/holo_orange_dark"
+                android:textSize="@dimen/dim_font_size_16"></TextView>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/md_grey_200">
+        </View>
+
+        <LinearLayout
+            android:id="@+id/llSettingsPanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dim_padding_5dp"
+            android:layout_marginLeft="@dimen/dim_padding_15dp">
+
+            <ImageView
+                android:id="@+id/ivSettings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/ic_launcher"></ImageView>
+
+            <TextView
+                android:id="@+id/tvSettings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/dim_padding_10dp"
+                android:text="@string/nav_menu_settings"
+                android:textColor="@color/colorAppBlack"
+                android:textSize="@dimen/dim_font_size_16"></TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llInsightsPanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dim_padding_5dp"
+            android:layout_marginLeft="@dimen/dim_padding_15dp">
+
+            <ImageView
+                android:id="@+id/ivInsights"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/ic_launcher"></ImageView>
+
+            <TextView
+                android:id="@+id/tvInsights"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/dim_padding_10dp"
+                android:text="@string/nav_menu_insights"
+                android:textColor="@color/colorAppBlack"
+                android:textSize="@dimen/dim_font_size_16"></TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llIftttConfigPanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dim_padding_5dp"
+            android:layout_marginLeft="@dimen/dim_padding_15dp">
+
+            <ImageView
+                android:id="@+id/ivIftttConfig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/ic_launcher"></ImageView>
+
+            <TextView
+                android:id="@+id/tvIftttConfig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/dim_padding_10dp"
+                android:text="@string/nav_menu_ifttt_config"
+                android:textColor="@color/colorAppBlack"
+                android:textSize="@dimen/dim_font_size_16"></TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llAppliancePanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dim_padding_5dp"
+            android:layout_marginLeft="@dimen/dim_padding_15dp">
+
+            <ImageView
+                android:id="@+id/ivAppliances"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/ic_launcher"></ImageView>
+
+            <TextView
+                android:id="@+id/tvAppliances"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/dim_padding_10dp"
+                android:text="@string/nav_menu_appliances"
+                android:textColor="@color/colorAppBlack"
+                android:textSize="@dimen/dim_font_size_16"></TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llLiveCameraPanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dim_padding_5dp"
+            android:layout_marginLeft="@dimen/dim_padding_15dp">
+
+            <ImageView
+                android:id="@+id/ivLiveCamera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/ic_launcher"></ImageView>
+
+            <TextView
+                android:id="@+id/tvLiveCamera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/dim_padding_10dp"
+                android:text="@string/nav_menu_live_camera"
+                android:textColor="@color/colorAppBlack"
+                android:textSize="@dimen/dim_font_size_16"></TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llUserManualPanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dim_padding_5dp"
+            android:layout_marginLeft="@dimen/dim_padding_15dp">
+
+            <ImageView
+                android:id="@+id/ivUserManual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/ic_launcher"></ImageView>
+
+            <TextView
+                android:id="@+id/tvUserManual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/dim_padding_10dp"
+                android:text="@string/nav_menu_user_manuals"
+                android:textColor="@color/colorAppBlack"
+                android:textSize="@dimen/dim_font_size_16"></TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llContactUsPanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dim_padding_5dp"
+            android:layout_marginLeft="@dimen/dim_padding_15dp">
+
+            <ImageView
+                android:id="@+id/ivContactUs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/ic_launcher"></ImageView>
+
+            <TextView
+                android:id="@+id/tvContactUs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/dim_padding_10dp"
+                android:text="@string/nav_menu_contact_us"
+                android:textColor="@color/colorAppBlack"
+                android:textSize="@dimen/dim_font_size_16"></TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llLogoutPanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dim_padding_5dp"
+            android:layout_marginLeft="@dimen/dim_padding_15dp">
+
+            <ImageView
+                android:id="@+id/ivLogout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/ic_launcher"
+                android:visibility="gone"></ImageView>
+
+            <TextView
+                android:id="@+id/tvLogout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/dim_padding_10dp"
+                android:text="@string/nav_menu_logout"
+                android:textColor="@color/colorAppBlack"
+                android:textSize="@dimen/dim_font_size_16"></TextView>
+        </LinearLayout>
     </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llSettingsPanel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/ivSettings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/ic_launcher"></ImageView>
-
-        <TextView
-            android:id="@+id/tvSettings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:padding="@dimen/dim_padding_10dp"
-            android:text="@string/nav_menu_settings"
-            android:textColor="@color/colorAppBlack"
-            android:textSize="@dimen/dim_font_size_16"></TextView>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llInsightsPanel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/ivInsights"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/ic_launcher"></ImageView>
-
-        <TextView
-            android:id="@+id/tvInsights"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:padding="@dimen/dim_padding_10dp"
-            android:text="@string/nav_menu_insights"
-            android:textColor="@color/colorAppBlack"
-            android:textSize="@dimen/dim_font_size_16"></TextView>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llIftttConfigPanel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/ivIftttConfig"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/ic_launcher"></ImageView>
-
-        <TextView
-            android:id="@+id/tvIftttConfig"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:padding="@dimen/dim_padding_10dp"
-            android:text="@string/nav_menu_ifttt_config"
-            android:textColor="@color/colorAppBlack"
-            android:textSize="@dimen/dim_font_size_16"></TextView>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llAppliancePanel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/ivAppliances"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/ic_launcher"></ImageView>
-
-        <TextView
-            android:id="@+id/tvAppliances"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:padding="@dimen/dim_padding_10dp"
-            android:text="@string/nav_menu_appliances"
-            android:textColor="@color/colorAppBlack"
-            android:textSize="@dimen/dim_font_size_16"></TextView>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llLiveCameraPanel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/ivLiveCamera"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/ic_launcher"></ImageView>
-
-        <TextView
-            android:id="@+id/tvLiveCamera"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:padding="@dimen/dim_padding_10dp"
-            android:text="@string/nav_menu_live_camera"
-            android:textColor="@color/colorAppBlack"
-            android:textSize="@dimen/dim_font_size_16"></TextView>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llUserManualPanel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/ivUserManual"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/ic_launcher"></ImageView>
-
-        <TextView
-            android:id="@+id/tvUserManual"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:padding="@dimen/dim_padding_10dp"
-            android:text="@string/nav_menu_user_manuals"
-            android:textColor="@color/colorAppBlack"
-            android:textSize="@dimen/dim_font_size_16"></TextView>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llContactUsPanel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/ivContactUs"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/ic_launcher"></ImageView>
-
-        <TextView
-            android:id="@+id/tvContactUs"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:padding="@dimen/dim_padding_10dp"
-            android:text="@string/nav_menu_contact_us"
-            android:textColor="@color/colorAppBlack"
-            android:textSize="@dimen/dim_font_size_16"></TextView>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llLogoutPanel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/ivLogout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/ic_launcher"
-            android:visibility="gone"></ImageView>
-
-        <TextView
-            android:id="@+id/tvLogout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:padding="@dimen/dim_padding_10dp"
-            android:text="@string/nav_menu_logout"
-            android:textColor="@color/colorAppBlack"
-            android:textSize="@dimen/dim_font_size_16"></TextView>
-    </LinearLayout>
-</LinearLayout>
+</ScrollView>

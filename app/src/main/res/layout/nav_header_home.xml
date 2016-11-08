@@ -39,6 +39,7 @@
             android:id="@+id/tvUserRole"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dim_padding_5dp"
             android:text="User Role" />
     </LinearLayout>
 
