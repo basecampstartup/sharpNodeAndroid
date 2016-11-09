@@ -22,6 +22,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.sharpnode.R;
+import com.sharpnode.SNApplication;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
