@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -59,6 +59,38 @@
         <item name="android:layout_centerVertical">true</item>
         <item name="android:textCursorDrawable">@drawable/cursor_color_login</item>
         <item name="android:textColor">@color/color_black</item>
+    </style>
+
+    <style name="Crop.DoneCancelBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/crop_bar_height</item>
+        <item name="android:orientation">horizontal</item>
+       <!-- <item name="android:divider">@drawable/crop__divider</item>-->
+        <item name="android:showDividers" tools:ignore="NewApi">middle</item>
+        <item name="android:dividerPadding" tools:ignore="NewApi">12dp</item>
+        <item name="android:background">@color/color_black</item>
+    </style>
+
+    <style name="Crop"></style>
+
+    <style name="Crop.ActionButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/crop__selectable_background</item>
+    </style>
+
+    <style name="Crop.ActionButtonText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingRight">20dp</item>
+        <!-- Offsets left drawable -->
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:textColor">@color/colorAppBlack</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">13sp</item>
     </style>
 
 </resources>

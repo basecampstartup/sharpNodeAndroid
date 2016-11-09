@@ -31,4 +31,7 @@
     <dimen name="margin_15dp">15dp</dimen>
     <dimen name="landing_page_logo_margin_top">90dp</dimen>
     <dimen name="tagline_margin_top">70dp</dimen>
+
+    <!--image cropper-->
+    <dimen name="crop_bar_height">56dp</dimen>
 </resources>

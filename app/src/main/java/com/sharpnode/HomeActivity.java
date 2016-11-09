@@ -72,6 +72,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.llHomePanel:
                 break;
             case R.id.llSettingsPanel:
+                startActivity(new Intent(mContext, AccountSettingsActivity.class));
                 break;
             case R.id.llInsightsPanel:
                 break;

@@ -2,7 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sharpnode">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
+        android:name=".SNApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -20,11 +28,11 @@
         <activity
             android:name=".SignInActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Base"/>
+            android:theme="@style/AppTheme.Base" />
         <activity
             android:name=".LandingPageActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Base"/>
+            android:theme="@style/AppTheme.Base" />
         <activity
             android:name=".SignUpActivity"
             android:screenOrientation="portrait"
@@ -32,9 +40,15 @@
         <activity
             android:name=".HomeActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AppliancesActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".AccountSettingsActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".image.crop.CropImageActivity"
             android:screenOrientation="portrait"></activity>
     </application>
 
