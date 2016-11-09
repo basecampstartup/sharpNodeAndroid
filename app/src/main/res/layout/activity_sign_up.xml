@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_sign_up"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app_bg"
+    android:padding="@dimen/padding_8dp"
+    tools:context="com.sharpnode.SignUpActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:isScrollContainer="false"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/layout_fields_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_logo"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/logo_margin_top"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+
+                >
+
+                <TextView
+                    android:id="@+id/tvLable"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:inputType="textEmailAddress"
+                    android:text="@string/create_account"
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/default_textsize_large">
+
+                </TextView>
+
+                <EditText
+                    android:id="@+id/edtName"
+                    style="@style/login_edit_text_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:gravity="center_vertical"
+                    android:hint="@string/name"
+                    android:inputType="text">
+
+                    <requestFocus />
+                </EditText>
+
+                <EditText
+                    android:id="@+id/edtEmailID"
+                    style="@style/login_edit_text_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/edtName"
+                    android:hint="@string/emailID"
+                    android:inputType="textEmailAddress"></EditText>
+
+                <EditText
+                    android:id="@+id/edtPhone"
+                    style="@style/login_edit_text_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/edtEmailID"
+                    android:hint="@string/phone"
+                    android:inputType="phone"></EditText>
+
+
+                <EditText
+                    android:id="@+id/edtPassword"
+                    style="@style/login_edit_text_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/edEmail"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"></EditText>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_10dp"
+                    android:layout_marginRight="@dimen/margin_10dp"
+                    android:layout_marginTop="@dimen/dim_padding_15dp"
+                    android:background="@android:color/transparent"
+                    android:paddingLeft="@dimen/dim_padding_5dp"
+                    android:paddingRight="@dimen/dim_padding_5dp"
+                    android:paddingTop="@dimen/dim_padding_5dp">
+
+                    <CheckBox
+                        android:id="@+id/chkTerms"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/iAgree"
+                        android:textColor="@color/color_white" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnSignUp"
+                    style="@style/login_button_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/edtPassword"
+                    android:hint="@string/signUp"></Button>
+
+                <TextView
+                    android:id="@+id/txtAlreadyHaveAccount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/edOldPassword"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignRight="@+id/edOldPassword"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/margin_15dp"
+                    android:gravity="center"
+                    android:text="@string/alreadyHaveAccountSignIn"
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/default_textsize_medium" />
+
+            </LinearLayout>
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

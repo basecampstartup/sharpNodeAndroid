@@ -15,4 +15,22 @@
     <string name="nav_menu_user_manuals">User Manual</string>
     <string name="nav_menu_contact_us">Contact Us</string>
     <string name="nav_menu_logout">Logout</string>
+
+    <string name="login">Login</string>
+    <string name="titleHome">Home</string>
+    <string name="emailID">Email ID</string>
+    <string name="password">Password</string>
+    <string name="name">Name</string>
+    <string name="phone">Phone</string>
+    <string name="signUp">Sign Up</string>
+    <string name="signIn">Sign In</string>
+    <string name="accountSignInLable">Account Sign In</string>
+    <string name="forgetPassword">Forgot your Password? Reset Password.</string>
+    <string name="dontHaveAccount">Don\'t have account? Create new account.</string>
+    <string name="simple_landing_page">Simple Landing Page</string>
+    <string name="create_account">Create an Account</string>
+    <string name="alreadyHaveAccountSignIn">Already have account? Sign in</string>
+    <string name="iAgree">I agree that, I have a device and I follow the terms.</string>
+
+    <string name="tagLine">SharpNode Makes it Easier to Manage your home appliances with the help of your Smartphone.</string>
 </resources>

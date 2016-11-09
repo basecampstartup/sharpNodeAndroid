@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@drawable/app_bg"
+    tools:context="com.sharpnode.LandingPageActivity">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:isScrollContainer="false"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:padding="@dimen/dim_font_size_16"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/layout_logo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                android:layout_marginTop="@dimen/landing_page_logo_margin_top"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:id="@+id/tvLable"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:inputType="textEmailAddress"
+                    android:text="@string/simple_landing_page"
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/default_textsize_large">
+
+                </TextView>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/logo_height"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:src="@drawable/ic_launcher" />
+                <TextView
+                    android:id="@+id/txtAppName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:inputType="textEmailAddress"
+                    android:text="@string/app_name"
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/default_textsize_large"></TextView>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtTagLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/tagline_margin_top"
+                android:layout_below="@+id/layout_logo"
+                android:text="@string/tagLine"
+                android:gravity="center"
+                android:maxLines="3"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/default_textsize_large"></TextView>
+
+            <LinearLayout
+                android:id="@+id/layout_buttons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="@dimen/landing_page_logo_margin_top"
+                android:gravity="center_horizontal">
+                <Button
+                    android:id="@+id/btnSignUp"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dim_padding_5dp"
+                    android:layout_centerHorizontal="true"
+                    android:text="SignUp"
+                    android:gravity="center"
+                    android:textColor="@color/color_white"
+                    android:layout_marginRight="@dimen/dim_padding_2dp"
+                    android:background="@color/landing_page_btn_bg"
+                     />
+                <Button
+                    android:id="@+id/btnLogin"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dim_padding_5dp"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="Login"
+                    android:textColor="@color/color_white"
+                    android:layout_marginLeft="@dimen/dim_padding_2dp"
+                    android:background="@color/landing_page_btn_bg"
+                 />
+                </LinearLayout>
+
+</RelativeLayout>
+    </ScrollView>
+
+
+</RelativeLayout>
