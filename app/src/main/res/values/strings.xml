@@ -46,10 +46,14 @@
     <string name="LoginForgetPassword">Forgot your Password? Reset Password.</string>
     <string name="LoginDontHaveAccount">Don\'t have account? Create new account.</string>
 
-    <string name="done">Done</string>
-    <string name="crop_image">Crop Image</string>
-    <string name="choose_photo">Choose Photo</string>
-    <string name="choose_photo_gallery">From Gallery</string>
-    <string name="choose_photo_capture">Take Photo</string>
-    <string name="choose_photo_reset">Reset Photo</string>
+    //Account Settings
+    <string name="AccountSettings">Account Settings</string>
+
+    //Crop Screen
+    <string name="Done">Done</string>
+    <string name="CropImage">Crop Image</string>
+    <string name="ChoosePhoto">Choose Photo</string>
+    <string name="ChoosePhotoGallery">From Gallery</string>
+    <string name="ChoosePhotoCapture">Take Photo</string>
+    <string name="ChoosePhotoReset">Reset Photo</string>
 </resources>

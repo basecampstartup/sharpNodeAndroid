@@ -1,9 +1,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.eworkplaceapps.ed.OtherEmployeeActivity">
+    tools:context=".AccountSettingsActivity">
     <item android:id="@+id/action_other_update"
-        android:title="@string/done"
+        android:title="@string/Done"
         android:icon="@drawable/ic_launcher"
         android:orderInCategory="100"
         app:showAsAction="always" />

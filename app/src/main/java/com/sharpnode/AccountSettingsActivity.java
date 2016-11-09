@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.view.View;
@@ -51,12 +52,18 @@ public class AccountSettingsActivity extends AppCompatActivity implements View.O
     private String prevThumbnail = null;
     private boolean resetToDefaultClicked = false;
     private String pictureByteArray = "";
+    private ActionBar actionBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_settings);
         mContext = this;
+
+        actionBar = getSupportActionBar();
+        actionBar.setTitle(getString(R.string.AccountSettings));
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         ivProfilePicture = (ImageView) findViewById(R.id.ivProfilePicture);
         ivProfilePicture.setOnClickListener(this);
         pictureOption = new ArrayList<>();
@@ -71,18 +78,18 @@ public class AccountSettingsActivity extends AppCompatActivity implements View.O
                     if (pictureOption != null) {
                         pictureOption.clear();
 
-                        pictureOption.add(getResources().getString(R.string.choose_photo_capture));
-                        pictureOption.add(getResources().getString(R.string.choose_photo_gallery));
+                        pictureOption.add(getResources().getString(R.string.ChoosePhotoCapture));
+                        pictureOption.add(getResources().getString(R.string.ChoosePhotoGallery));
                         if (!resetToDefaultClicked) {
-                            pictureOption.add(getResources().getString(R.string.choose_photo_reset));
+                            pictureOption.add(getResources().getString(R.string.ChoosePhotoReset));
                         }
                         resetToDefaultClicked = false;
                     }
                 } else {
                     if (pictureOption != null) {
                         pictureOption.clear();
-                        pictureOption.add(getResources().getString(R.string.choose_photo_capture));
-                        pictureOption.add(getResources().getString(R.string.choose_photo_gallery));
+                        pictureOption.add(getResources().getString(R.string.ChoosePhotoCapture));
+                        pictureOption.add(getResources().getString(R.string.ChoosePhotoGallery));
 
                     }
                 }
@@ -205,22 +212,22 @@ public class AccountSettingsActivity extends AppCompatActivity implements View.O
     private void selectOption(String clickedAppName) {
         //Checking read external storage permission
         if (PermissionManager.checkPermission(mContext, android.Manifest.permission.READ_EXTERNAL_STORAGE)) {
-            if (clickedAppName.equalsIgnoreCase(getResources().getString(R.string.choose_photo_capture))) {
+            if (clickedAppName.equalsIgnoreCase(getResources().getString(R.string.ChoosePhotoCapture))) {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 //uri to store capture image in storage
                 Uri fileUri = Utils.getOutputMediaFileUri();
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
                 startActivityForResult(intent, Constants.REQUEST_CAMERA_RESULT_CODE);
-            } else if (clickedAppName.equalsIgnoreCase(getResources().getString(R.string.choose_photo_gallery))) {
+            } else if (clickedAppName.equalsIgnoreCase(getResources().getString(R.string.ChoosePhotoGallery))) {
                 Intent intent = new Intent(
                         Intent.ACTION_PICK,
                         MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 intent.setType("image/*");
                 startActivityForResult(
-                        Intent.createChooser(intent, getResources().getString(R.string.choose_photo)),
+                        Intent.createChooser(intent, getResources().getString(R.string.ChoosePhoto)),
                         Constants.REQUEST_FILE_RESULT_CODE);
 
-            } else if (clickedAppName.equalsIgnoreCase(getResources().getString(R.string.choose_photo_reset))) {
+            } else if (clickedAppName.equalsIgnoreCase(getResources().getString(R.string.ChoosePhotoReset))) {
                 pictureByteArray = "";
                 resetToDefaultClicked = true;
                 /*TextDrawable.builder().beginConfig();
