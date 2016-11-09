@@ -24,7 +24,7 @@ public class AppliancesActivity extends AppCompatActivity {
         mContext = this;
 
         actionBar = getSupportActionBar();
-        actionBar.setTitle(getString(R.string.nav_menu_appliances));
+        actionBar.setTitle(getString(R.string.LeftPanelAppliances));
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 

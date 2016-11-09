@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:padding="@dimen/dim_padding_10dp"
-                android:text="@string/nav_menu_home"
+                android:text="@string/LeftPanelHome"
                 android:textColor="@android:color/holo_orange_dark"
                 android:textSize="@dimen/dim_font_size_16"></TextView>
         </LinearLayout>
@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:padding="@dimen/dim_padding_10dp"
-                android:text="@string/nav_menu_settings"
+                android:text="@string/LeftPanelSettings"
                 android:textColor="@color/colorAppBlack"
                 android:textSize="@dimen/dim_font_size_16"></TextView>
         </LinearLayout>
@@ -100,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:padding="@dimen/dim_padding_10dp"
-                android:text="@string/nav_menu_insights"
+                android:text="@string/LeftPanelInsights"
                 android:textColor="@color/colorAppBlack"
                 android:textSize="@dimen/dim_font_size_16"></TextView>
         </LinearLayout>
@@ -127,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:padding="@dimen/dim_padding_10dp"
-                android:text="@string/nav_menu_ifttt_config"
+                android:text="@string/LeftPanelIftttConfig"
                 android:textColor="@color/colorAppBlack"
                 android:textSize="@dimen/dim_font_size_16"></TextView>
         </LinearLayout>
@@ -154,7 +154,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:padding="@dimen/dim_padding_10dp"
-                android:text="@string/nav_menu_appliances"
+                android:text="@string/LeftPanelAppliances"
                 android:textColor="@color/colorAppBlack"
                 android:textSize="@dimen/dim_font_size_16"></TextView>
         </LinearLayout>
@@ -181,7 +181,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:padding="@dimen/dim_padding_10dp"
-                android:text="@string/nav_menu_live_camera"
+                android:text="@string/LeftPanelLiveCamera"
                 android:textColor="@color/colorAppBlack"
                 android:textSize="@dimen/dim_font_size_16"></TextView>
         </LinearLayout>
@@ -208,7 +208,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:padding="@dimen/dim_padding_10dp"
-                android:text="@string/nav_menu_user_manuals"
+                android:text="@string/LeftPanelUserManuals"
                 android:textColor="@color/colorAppBlack"
                 android:textSize="@dimen/dim_font_size_16"></TextView>
         </LinearLayout>
@@ -235,7 +235,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:padding="@dimen/dim_padding_10dp"
-                android:text="@string/nav_menu_contact_us"
+                android:text="@string/LeftPanelContactUs"
                 android:textColor="@color/colorAppBlack"
                 android:textSize="@dimen/dim_font_size_16"></TextView>
         </LinearLayout>
@@ -263,7 +263,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:padding="@dimen/dim_padding_10dp"
-                android:text="@string/nav_menu_logout"
+                android:text="@string/LeftPanelLogout"
                 android:textColor="@color/colorAppBlack"
                 android:textSize="@dimen/dim_font_size_16"></TextView>
         </LinearLayout>

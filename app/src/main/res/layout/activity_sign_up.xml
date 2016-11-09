@@ -37,10 +37,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="@dimen/margin_15dp"
                     android:gravity="center_vertical|center_horizontal"
                     android:inputType="textEmailAddress"
-                    android:text="@string/create_account"
+                    android:text="@string/SignUpCreateAccount"
                     android:textColor="@color/color_white"
                     android:textSize="@dimen/default_textsize_large">
 
@@ -53,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:gravity="center_vertical"
-                    android:hint="@string/name"
+                    android:hint="@string/CommonName"
                     android:inputType="text">
 
                     <requestFocus />
@@ -65,7 +65,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/edtName"
-                    android:hint="@string/emailID"
+                    android:hint="@string/CommonEmailID"
                     android:inputType="textEmailAddress"></EditText>
 
                 <EditText
@@ -74,7 +74,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/edtEmailID"
-                    android:hint="@string/phone"
+                    android:hint="@string/CommonPhone"
                     android:inputType="phone"></EditText>
 
 
@@ -84,7 +84,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/edEmail"
-                    android:hint="@string/password"
+                    android:hint="@string/CommonPassword"
                     android:inputType="textPassword"></EditText>
 
                 <LinearLayout
@@ -103,7 +103,8 @@
                         android:id="@+id/chkTerms"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/iAgree"
+                        android:text="@string/SignUpIAgree"
+                        android:textSize="@dimen/default_textsize_medium"
                         android:textColor="@color/color_white" />
                 </LinearLayout>
 
@@ -113,7 +114,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/edtPassword"
-                    android:hint="@string/signUp"></Button>
+                    android:hint="@string/SingUpSignUpBtn"></Button>
 
                 <TextView
                     android:id="@+id/txtAlreadyHaveAccount"
@@ -125,7 +126,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/margin_15dp"
                     android:gravity="center"
-                    android:text="@string/alreadyHaveAccountSignIn"
+                    android:text="@string/SignUpAlreadyHaveAccountSignIn"
                     android:textColor="@color/color_white"
                     android:textSize="@dimen/default_textsize_medium" />
 

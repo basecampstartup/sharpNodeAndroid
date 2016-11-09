@@ -27,7 +27,7 @@
             android:layout_marginLeft="@dimen/dim_padding_10dp"
             android:layout_toRightOf="@+id/ivFan"
             android:padding="@dimen/dim_padding_10dp"
-            android:text="@string/appliance_fan"
+            android:text="@string/ApplianceFan"
             android:textColor="@color/colorAppBlack"
             android:textSize="@dimen/dim_font_size_16"></TextView>
 
@@ -64,7 +64,7 @@
             android:layout_marginLeft="@dimen/dim_padding_10dp"
             android:layout_toRightOf="@+id/ivCFL"
             android:padding="@dimen/dim_padding_10dp"
-            android:text="@string/appliance_cfl"
+            android:text="@string/ApplianceCfl"
             android:textColor="@color/colorAppBlack"
             android:textSize="@dimen/dim_font_size_16"></TextView>
 
@@ -101,7 +101,7 @@
             android:layout_marginLeft="@dimen/dim_padding_10dp"
             android:layout_toRightOf="@+id/ivLamp"
             android:padding="@dimen/dim_padding_10dp"
-            android:text="@string/appliance_lamp"
+            android:text="@string/ApplianceLamp"
             android:textColor="@color/colorAppBlack"
             android:textSize="@dimen/dim_font_size_16"></TextView>
 
@@ -138,7 +138,7 @@
             android:layout_marginLeft="@dimen/dim_padding_10dp"
             android:layout_toRightOf="@+id/ivMusic"
             android:padding="@dimen/dim_padding_10dp"
-            android:text="@string/appliance_music"
+            android:text="@string/ApplianceMusic"
             android:textColor="@color/colorAppBlack"
             android:textSize="@dimen/dim_font_size_16"></TextView>
 
@@ -175,7 +175,7 @@
             android:layout_marginLeft="@dimen/dim_padding_10dp"
             android:layout_toRightOf="@+id/ivXyz1"
             android:padding="@dimen/dim_padding_10dp"
-            android:text="@string/appliance_xyz1"
+            android:text="@string/ApplianceXyz1"
             android:textColor="@color/colorAppBlack"
             android:textSize="@dimen/dim_font_size_16"></TextView>
 
@@ -212,7 +212,7 @@
             android:layout_marginLeft="@dimen/dim_padding_10dp"
             android:layout_toRightOf="@+id/ivXyz2"
             android:padding="@dimen/dim_padding_10dp"
-            android:text="@string/appliance_xyz2"
+            android:text="@string/Appliance_xyz2"
             android:textColor="@color/colorAppBlack"
             android:textSize="@dimen/dim_font_size_16"></TextView>
 

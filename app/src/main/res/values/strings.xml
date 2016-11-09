@@ -1,43 +1,51 @@
 <resources>
     <string name="app_name">SharpNode</string>
 
+    //Constant Strings======
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
+    //Left Panel Strings
+    <string name="LeftPanelHome">Home</string>
+    <string name="LeftPanelSettings">Settings</string>
+    <string name="LeftPanelInsights">Insights</string>
+    <string name="LeftPanelIftttConfig">IFTTT Config</string>
+    <string name="LeftPanelAppliances">Appliances</string>
+    <string name="LeftPanelLiveCamera">Live Camera</string>
+    <string name="LeftPanelUserManuals">User Manual</string>
+    <string name="LeftPanelContactUs">Contact Us</string>
+    <string name="LeftPanelLogout">Logout</string>
 
-    <string name="nav_menu_home">Home</string>
-    <string name="nav_menu_settings">Settings</string>
-    <string name="nav_menu_insights">Insights</string>
-    <string name="nav_menu_ifttt_config">IFTTT Config</string>
-    <string name="nav_menu_appliances">Appliances</string>
-    <string name="nav_menu_live_camera">Live Camera</string>
-    <string name="nav_menu_user_manuals">User Manual</string>
-    <string name="nav_menu_contact_us">Contact Us</string>
-    <string name="nav_menu_logout">Logout</string>
+    //Appliances Screen Strings
+    <string name="ApplianceFan">Fan</string>
+    <string name="ApplianceCfl">CFL</string>
+    <string name="ApplianceLamp">Lamp</string>
+    <string name="ApplianceMusic">Music</string>
+    <string name="ApplianceXyz1">Xyz1</string>
+    <string name="Appliance_xyz2">Xyz2</string>
 
-    <string name="appliance_fan">Fan</string>
-    <string name="appliance_cfl">CFL</string>
-    <string name="appliance_lamp">Lamp</string>
-    <string name="appliance_music">Music</string>
-    <string name="appliance_xyz1">Xyz1</string>
-    <string name="appliance_xyz2">Xyz2</string>
+    // Landing Screen strings
+    <string name="CommonLogin">Login</string>
+    <string name="SingUpSignUpBtn">Sign Up</string>
+    <string name="LandingPageTagLine">SharpNode Makes it Easier to Manage your home appliances with the help of your Smart phone.</string>
+    <string name="LandingSimpleLandingPage">Simple Landing Page</string>
+    <string name="LandingSignUpBtn">SignUp</string>
 
-    <string name="login">Login</string>
-    <string name="titleHome">Home</string>
-    <string name="emailID">Email ID</string>
-    <string name="password">Password</string>
-    <string name="name">Name</string>
-    <string name="phone">Phone</string>
-    <string name="signUp">Sign Up</string>
-    <string name="signIn">Sign In</string>
-    <string name="accountSignInLable">Account Sign In</string>
-    <string name="forgetPassword">Forgot your Password? Reset Password.</string>
-    <string name="dontHaveAccount">Don\'t have account? Create new account.</string>
-    <string name="simple_landing_page">Simple Landing Page</string>
-    <string name="create_account">Create an Account</string>
-    <string name="alreadyHaveAccountSignIn">Already have account? Sign in</string>
-    <string name="iAgree">I agree that, I have a device and I follow the terms.</string>
+    // SignUp Screen strings
+    <string name="SignUpCreateAccount">Create an Account</string>
+    <string name="CommonName">Name</string>
+    <string name="CommonEmailID">Email ID</string>
+    <string name="CommonPhone">Phone</string>
+    <string name="CommonPassword">Password</string>
+    <string name="SignUpAlreadyHaveAccountSignIn">Already have account? Sign in</string>
+    <string name="SignUpIAgree">I agree that, I have a device and I follow the terms.</string>
 
-    <string name="tagLine">SharpNode Makes it Easier to Manage your home appliances with the help of your Smart phone.</string>
+    //Login Screen strings
+    <string name="LoginAccountSignInLable">Account Sign In</string>
+    <string name="SignInBtn">Sign In</string>
+    <string name="LoginForgetPassword">Forgot your Password? Reset Password.</string>
+    <string name="LoginDontHaveAccount">Don\'t have account? Create new account.</string>
+
+
+
 </resources>

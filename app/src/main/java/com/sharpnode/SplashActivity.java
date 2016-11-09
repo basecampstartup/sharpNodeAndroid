@@ -1,3 +1,8 @@
+//===============================================================================
+// (c) 2016 Basecamp Startups Pvt. Ltd.  All rights reserved.
+// Original Author: Ankur Sharma
+// Original Date: 09/11/2016
+//===============================================================================
 package com.sharpnode;
 
 import android.content.Context;
@@ -19,18 +24,21 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     /**
-     * Method  to Finish Splash screen after some time
+     * Method  to Finish Splash screen after some time.
      */
     private void goToNextScreen() {
         final int splashTime = 1000;
         new Handler().postDelayed(new Runnable() {
             public void run() {
-                goToHomeScreen();
+                goToLandingPage();
             }
         }, splashTime);
     }
 
-    private void goToHomeScreen() {
+    /**
+     * Method  to redirect to Landing Page.
+     */
+    private void goToLandingPage() {
         startActivity(new Intent(SplashActivity.this, LandingPageActivity.class));
         finish();
     }

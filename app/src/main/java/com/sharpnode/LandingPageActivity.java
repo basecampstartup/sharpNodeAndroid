@@ -1,3 +1,8 @@
+//===============================================================================
+// (c) 2016 Basecamp Startups Pvt. Ltd.  All rights reserved.
+// Original Author: Ankur Sharma
+// Original Date: 09/11/2016
+//===============================================================================
 package com.sharpnode;
 
 import android.content.Context;
@@ -24,7 +29,7 @@ public class LandingPageActivity extends AppCompatActivity implements View.OnCli
     }
 
     /**
-     * Initialize the UI component.
+     * Initialize the UI Components.
      */
     public void initializeComponents() {
         btnLogin = (Button) findViewById(R.id.btnLogin);
@@ -37,11 +42,11 @@ public class LandingPageActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnLogin:
-                //...
+                //Navigate to Sign In screen
                 startActivity(new Intent(LandingPageActivity.this, SignInActivity.class));
                 break;
             case R.id.btnSignUp:
-                //...
+                //Navigate to Sign Up screen
                 startActivity(new Intent(LandingPageActivity.this, SignUpActivity.class));
                 break;
         }

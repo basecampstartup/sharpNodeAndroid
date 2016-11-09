@@ -1,3 +1,8 @@
+//===============================================================================
+// (c) 2016 Basecamp Startups Pvt. Ltd.  All rights reserved.
+// Original Author: Ankur Sharma
+// Original Date: 09/11/2016
+//===============================================================================
 package com.sharpnode;
 
 import android.content.Context;
@@ -20,7 +25,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         initializeComponents();
     }
 
-    //Initialize the UI Components
+    //Initialize the UI Components.
     public void initializeComponents() {
         btnSignUp = (Button) findViewById(R.id.btnSignUp);
         btnSignUp.setOnClickListener(this);

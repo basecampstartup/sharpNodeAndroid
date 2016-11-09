@@ -51,10 +51,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="@dimen/margin_15dp"
                     android:gravity="center_vertical|center_horizontal"
                     android:inputType="textEmailAddress"
-                    android:text="@string/accountSignInLable"
+                    android:text="@string/LoginAccountSignInLable"
                     android:textColor="@color/color_white"
                     android:textSize="@dimen/default_textsize_large">
 
@@ -67,7 +67,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:gravity="center_vertical"
-                    android:hint="@string/emailID"
+                    android:hint="@string/CommonEmailID"
                     android:inputType="textEmailAddress">
 
                     <requestFocus />
@@ -79,7 +79,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/edEmail"
-                    android:hint="@string/password"
+                    android:hint="@string/CommonPassword"
                     android:inputType="textPassword"></EditText>
 
                 <Button
@@ -88,7 +88,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/edEmail"
-                    android:hint="@string/signIn"
+                    android:hint="@string/SignInBtn"
                     android:inputType="textPassword"
                     android:visibility="visible"></Button>
 
@@ -111,7 +111,7 @@
                     android:layout_alignRight="@+id/edOldPassword"
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
-                    android:text="@string/forgetPassword"
+                    android:text="@string/LoginForgetPassword"
                     android:textColor="@color/color_white"
                     android:layout_marginTop="@dimen/margin_15dp"
                     android:textSize="@dimen/default_textsize_medium" />
@@ -126,7 +126,7 @@
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
                     android:layout_marginTop="@dimen/margin_15dp"
-                    android:text="@string/dontHaveAccount"
+                    android:text="@string/LoginDontHaveAccount"
                     android:textColor="@color/color_white"
                     android:textSize="@dimen/default_textsize_medium" />
             </LinearLayout>
