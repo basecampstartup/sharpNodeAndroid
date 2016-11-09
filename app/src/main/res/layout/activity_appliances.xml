@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rlFan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/dim_padding_10dp">
+
+        <ImageView
+            android:id="@+id/ivFan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_launcher"
+            android:visibility="visible"></ImageView>
+
+        <TextView
+            android:id="@+id/tvFan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dim_padding_10dp"
+            android:layout_toRightOf="@+id/ivFan"
+            android:padding="@dimen/dim_padding_10dp"
+            android:text="@string/appliance_fan"
+            android:textColor="@color/colorAppBlack"
+            android:textSize="@dimen/dim_font_size_16"></TextView>
+
+        <ImageView
+            android:id="@+id/ivFanSwitchBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_launcher"
+            android:visibility="visible"></ImageView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlCFL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/dim_padding_10dp">
+
+        <ImageView
+            android:id="@+id/ivCFL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_launcher"
+            android:visibility="visible"></ImageView>
+
+        <TextView
+            android:id="@+id/tvCFL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dim_padding_10dp"
+            android:layout_toRightOf="@+id/ivCFL"
+            android:padding="@dimen/dim_padding_10dp"
+            android:text="@string/appliance_cfl"
+            android:textColor="@color/colorAppBlack"
+            android:textSize="@dimen/dim_font_size_16"></TextView>
+
+        <ImageView
+            android:id="@+id/ivCFLSwitchBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_launcher"
+            android:visibility="visible"></ImageView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlLamp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/dim_padding_10dp">
+
+        <ImageView
+            android:id="@+id/ivLamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_launcher"
+            android:visibility="visible"></ImageView>
+
+        <TextView
+            android:id="@+id/tvLamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dim_padding_10dp"
+            android:layout_toRightOf="@+id/ivLamp"
+            android:padding="@dimen/dim_padding_10dp"
+            android:text="@string/appliance_lamp"
+            android:textColor="@color/colorAppBlack"
+            android:textSize="@dimen/dim_font_size_16"></TextView>
+
+        <ImageView
+            android:id="@+id/ivLampSwitchBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_launcher"
+            android:visibility="visible"></ImageView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlMusic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/dim_padding_10dp">
+
+        <ImageView
+            android:id="@+id/ivMusic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_launcher"
+            android:visibility="visible"></ImageView>
+
+        <TextView
+            android:id="@+id/tvMusic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dim_padding_10dp"
+            android:layout_toRightOf="@+id/ivMusic"
+            android:padding="@dimen/dim_padding_10dp"
+            android:text="@string/appliance_music"
+            android:textColor="@color/colorAppBlack"
+            android:textSize="@dimen/dim_font_size_16"></TextView>
+
+        <ImageView
+            android:id="@+id/ivMusicSwitchBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_launcher"
+            android:visibility="visible"></ImageView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlXyz"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/dim_padding_10dp">
+
+        <ImageView
+            android:id="@+id/ivXyz1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_launcher"
+            android:visibility="visible"></ImageView>
+
+        <TextView
+            android:id="@+id/tvZyz1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dim_padding_10dp"
+            android:layout_toRightOf="@+id/ivXyz1"
+            android:padding="@dimen/dim_padding_10dp"
+            android:text="@string/appliance_xyz1"
+            android:textColor="@color/colorAppBlack"
+            android:textSize="@dimen/dim_font_size_16"></TextView>
+
+        <ImageView
+            android:id="@+id/ivXyz1SwitchBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_launcher"
+            android:visibility="visible"></ImageView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlZyz2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/dim_padding_10dp">
+
+        <ImageView
+            android:id="@+id/ivXyz2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_launcher"
+            android:visibility="visible"></ImageView>
+
+        <TextView
+            android:id="@+id/tvXyz2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dim_padding_10dp"
+            android:layout_toRightOf="@+id/ivXyz2"
+            android:padding="@dimen/dim_padding_10dp"
+            android:text="@string/appliance_xyz2"
+            android:textColor="@color/colorAppBlack"
+            android:textSize="@dimen/dim_font_size_16"></TextView>
+
+        <ImageView
+            android:id="@+id/ivSwitchBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_launcher"
+            android:visibility="visible"></ImageView>
+    </RelativeLayout>
+
+
+</LinearLayout>

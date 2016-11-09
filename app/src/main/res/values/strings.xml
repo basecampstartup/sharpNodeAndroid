@@ -16,6 +16,13 @@
     <string name="nav_menu_contact_us">Contact Us</string>
     <string name="nav_menu_logout">Logout</string>
 
+    <string name="appliance_fan">Fan</string>
+    <string name="appliance_cfl">CFL</string>
+    <string name="appliance_lamp">Lamp</string>
+    <string name="appliance_music">Music</string>
+    <string name="appliance_xyz1">Xyz1</string>
+    <string name="appliance_xyz2">Xyz2</string>
+
     <string name="login">Login</string>
     <string name="titleHome">Home</string>
     <string name="emailID">Email ID</string>
@@ -32,5 +39,5 @@
     <string name="alreadyHaveAccountSignIn">Already have account? Sign in</string>
     <string name="iAgree">I agree that, I have a device and I follow the terms.</string>
 
-    <string name="tagLine">SharpNode Makes it Easier to Manage your home appliances with the help of your Smartphone.</string>
+    <string name="tagLine">SharpNode Makes it Easier to Manage your home appliances with the help of your Smart phone.</string>
 </resources>

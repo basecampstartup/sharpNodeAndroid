@@ -1,6 +1,7 @@
 package com.sharpnode;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
@@ -13,6 +14,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+/**
+ * class: HomeActivity it is dashboard screen of application from where can access all features of
+ * application.
+ */
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Context mContext;
@@ -55,8 +60,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         toggle.syncState();
         toggle.onConfigurationChanged(new Configuration());
 
-        init();
-        initHeaderItems();
+        initializeComponents();
+        initHeaderComponents();
     }
 
     @Override
@@ -73,6 +78,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.llIftttConfigPanel:
                 break;
             case R.id.llAppliancePanel:
+                startActivity(new Intent(mContext, AppliancesActivity.class));
                 break;
             case R.id.llLiveCameraPanel:
                 break;
@@ -93,29 +99,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.home, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }*/
-
-    private void init(){
+    /**
+     * Method for initialize component of screen.
+     */
+    private void initializeComponents(){
         llHomePanel = (LinearLayout)findViewById(R.id.llHomePanel);
         llSettingsPanel = (LinearLayout)findViewById(R.id.llSettingsPanel);
         llInsightsPanel = (LinearLayout)findViewById(R.id.llInsightsPanel);
@@ -135,9 +122,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         llLogoutPanel.setOnClickListener(this);
     }
     /**
-     * Method to initialize heaer options of side panel
+     * Method to initialize header options of side panel
      */
-    private void initHeaderItems() {
+    private void initHeaderComponents() {
         ivProfilePicture = (ImageView) findViewById(R.id.ivProfilePicture);
         tvUserName = (TextView) findViewById(R.id.tvUserName);
         tvUserRole = (TextView) findViewById(R.id.tvUserRole);

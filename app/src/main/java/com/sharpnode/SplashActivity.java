@@ -1,18 +1,20 @@
 package com.sharpnode;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.view.WindowManager;
 
-public class SplashScreenActivity extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity {
+    private final String TAG = getClass().getSimpleName();
+    private Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_splash_screen);
+        setContentView(R.layout.activity_splash);
+        mContext = this;
         goToNextScreen();
     }
 
@@ -27,10 +29,9 @@ public class SplashScreenActivity extends AppCompatActivity {
             }
         }, splashTime);
     }
-    private void goToHomeScreen() {
-        Intent intent = new Intent(SplashScreenActivity.this, LandingPageActivity.class);
-        startActivity(intent);
-        finish();
 
+    private void goToHomeScreen() {
+        startActivity(new Intent(SplashActivity.this, LandingPageActivity.class));
+        finish();
     }
 }
