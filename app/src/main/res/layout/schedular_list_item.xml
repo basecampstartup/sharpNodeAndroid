@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dim_padding_10dp">
+
+        <RelativeLayout
+            android:id="@+id/rl1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/dim_padding_5dp"
+            android:paddingRight="@dimen/dim_padding_5dp">
+
+            <TextView
+                android:id="@+id/tvItemLable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/txtCreateAccount"
+                android:gravity="left"
+                android:text="A.C. at night turn off"
+                android:textColor="@color/color_orange"
+                android:textSize="@dimen/default_textsize_medium"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="03:00 am"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/default_textsize_medium" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl1"
+            android:layout_marginTop="@dimen/margin_10dp"
+            android:paddingLeft="@dimen/dim_padding_5dp"
+            android:paddingRight="@dimen/dim_padding_5dp">
+
+            <TextView
+                android:id="@+id/tvTurnOnOff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/dim_padding_5dp"
+                android:text="Turn ON "
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/default_textsize_medium"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvTurnOnOffStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/tvTurnOnOff"
+                android:text="EveryDay"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/default_textsize_medium" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvDevider"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="@dimen/dim_padding_5dp"
+        android:background="@color/color_edittext_hint"
+
+        />
+</LinearLayout>

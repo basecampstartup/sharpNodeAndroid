@@ -2,9 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/padding_8dp"
     android:background="@drawable/app_bg"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="@dimen/padding_8dp">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -42,9 +42,7 @@
                 android:gravity="center"
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-
-                >
+                android:paddingRight="@dimen/activity_horizontal_margin">
 
                 <TextView
                     android:id="@+id/tvLable"
@@ -110,10 +108,10 @@
                     android:layout_alignParentBottom="true"
                     android:layout_alignRight="@+id/edOldPassword"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/margin_15dp"
                     android:gravity="center"
                     android:text="@string/LoginForgetPassword"
                     android:textColor="@color/color_white"
-                    android:layout_marginTop="@dimen/margin_15dp"
                     android:textSize="@dimen/default_textsize_medium" />
 
                 <TextView
@@ -124,8 +122,8 @@
                     android:layout_alignParentBottom="true"
                     android:layout_alignRight="@+id/edOldPassword"
                     android:layout_centerHorizontal="true"
-                    android:gravity="center"
                     android:layout_marginTop="@dimen/margin_15dp"
+                    android:gravity="center"
                     android:text="@string/LoginDontHaveAccount"
                     android:textColor="@color/color_white"
                     android:textSize="@dimen/default_textsize_medium" />

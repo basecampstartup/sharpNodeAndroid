@@ -84,6 +84,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.llLiveCameraPanel:
                 break;
             case R.id.llUserManualPanel:
+                startActivity(new Intent(mContext, SchedulerActivity.class));
                 break;
             case R.id.llLogoutPanel:
                 break;

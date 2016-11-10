@@ -43,10 +43,16 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AppliancesActivity"
-            android:screenOrientation="portrait" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".AccountSettingsActivity"
-            android:screenOrientation="portrait" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".SchedulerActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".image.crop.CropImageActivity"
             android:screenOrientation="portrait" />
