@@ -20,4 +20,9 @@
     <color name="color_crop_selector_pressed">#1a000000</color>
     <color name="color_crop_selector_focused">#77000000</color>
 
+    <color name="color_teal">#72dbce</color>
+    <color name="color_teal_light">#50d2c2</color>
+    <color name="color_gray">#b6b6b8</color>
+    <color name="color_black1">#1d1d26</color>
+
 </resources>

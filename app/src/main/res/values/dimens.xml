@@ -9,6 +9,7 @@
 
     <dimen name="nav_header_height">180dp</dimen>
     <dimen name="nav_drawer_width">300dp</dimen>
+    <dimen name="bottom_tab_height">50dp</dimen>
 
     <dimen name="divider_height_1dp">1dp</dimen>
     <dimen name="profile_picture_size">70dp</dimen>

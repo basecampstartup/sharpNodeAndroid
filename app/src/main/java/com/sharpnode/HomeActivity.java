@@ -27,6 +27,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView ivProfilePicture;
     private LinearLayout llHomePanel, llSettingsPanel, llInsightsPanel, llIftttConfigPanel,
             llAppliancePanel, llLiveCameraPanel, llUserManualPanel, llLogoutPanel;
+    private LinearLayout llShortcutAppliance, llShortcutScheduler, llShortcutSettings, llShortcutTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +87,16 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.llUserManualPanel:
                 startActivity(new Intent(mContext, SchedulerActivity.class));
                 break;
-            case R.id.llLogoutPanel:
+            case R.id.llShortcutAppliance:
+                startActivity(new Intent(mContext, AppliancesActivity.class));
+                break;
+            case R.id.llShortcutScheduler:
+                startActivity(new Intent(mContext, SchedulerActivity.class));
+                break;
+            case R.id.llShortcutSettings:
+                startActivity(new Intent(mContext, AccountSettingsActivity.class));
+                break;
+            case R.id.llShortcutTimer:
                 break;
         }
     }
@@ -113,6 +123,16 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         llLiveCameraPanel = (LinearLayout)findViewById(R.id.llLiveCameraPanel);
         llUserManualPanel = (LinearLayout)findViewById(R.id.llUserManualPanel);
         llLogoutPanel = (LinearLayout)findViewById(R.id.llLogoutPanel);
+
+        llShortcutAppliance = (LinearLayout)findViewById(R.id.llShortcutAppliance);
+        llShortcutScheduler = (LinearLayout)findViewById(R.id.llShortcutScheduler);
+        llShortcutSettings = (LinearLayout)findViewById(R.id.llShortcutSettings);
+        llShortcutTimer = (LinearLayout)findViewById(R.id.llShortcutTimer);
+
+        llShortcutAppliance.setOnClickListener(this);
+        llShortcutScheduler.setOnClickListener(this);
+        llShortcutSettings.setOnClickListener(this);
+        llShortcutTimer.setOnClickListener(this);
 
         llHomePanel.setOnClickListener(this);
         llSettingsPanel.setOnClickListener(this);
