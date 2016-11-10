@@ -36,20 +36,30 @@
         <activity
             android:name=".SignUpActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Base"></activity>
+            android:theme="@style/AppTheme.Base" />
         <activity
             android:name=".HomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AppliancesActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".AccountSettingsActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".image.crop.CropImageActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+
+        <receiver android:name=".widget.SharpNodeAppWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/sharp_node_app_widget_info" />
+        </receiver>
     </application>
 
 </manifest>

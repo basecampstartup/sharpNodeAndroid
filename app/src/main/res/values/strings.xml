@@ -56,4 +56,6 @@
     <string name="ChoosePhotoGallery">From Gallery</string>
     <string name="ChoosePhotoCapture">Take Photo</string>
     <string name="ChoosePhotoReset">Reset Photo</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 </resources>

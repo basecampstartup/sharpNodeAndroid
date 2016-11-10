@@ -34,4 +34,12 @@
 
     <!--image cropper-->
     <dimen name="crop_bar_height">56dp</dimen>
+
+    <!--
+Refer to App Widget Documentation for margin information
+http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
+    -->
+    <dimen name="widget_margin">8dp</dimen>
+    <dimen name="widget_height">70dp</dimen>
+    <dimen name="widget_width">480dp</dimen>
 </resources>

@@ -1,0 +1,62 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/widget_height"
+    android:background="@android:color/holo_orange_light"
+    android:orientation="horizontal"
+    android:padding="0.5dp">
+
+    <Button
+        android:id="@+id/btnFanSwitch"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:textAllCaps="false"
+        android:text="@string/ApplianceFan"
+        android:textColor="@color/colorAppBlack"
+        android:textSize="@dimen/dim_font_size_18"
+        android:background="@color/colorAppWhite"
+        android:elevation="2dp"/>
+
+    <Button
+        android:id="@+id/btnLampSwitch"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="0.5dp"
+        android:textAllCaps="false"
+        android:text="@string/ApplianceCfl"
+        android:textColor="@color/colorAppBlack"
+        android:textSize="@dimen/dim_font_size_18"
+        android:background="@color/colorAppWhite"
+        android:elevation="2dp" />
+
+    <Button
+        android:id="@+id/btnCFLSwitch"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_weight="1"
+        android:layout_marginLeft="0.5dp"
+        android:layout_marginRight="1dp"
+        android:textAllCaps="false"
+        android:text="@string/ApplianceLamp"
+        android:textColor="@color/colorAppBlack"
+        android:textSize="@dimen/dim_font_size_18"
+        android:background="@color/colorAppWhite"
+        android:elevation="2dp" />
+
+    <Button
+        android:id="@+id/btnMusicSwitch"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:textAllCaps="false"
+        android:text="@string/ApplianceMusic"
+        android:textColor="@color/colorAppBlack"
+        android:textSize="@dimen/dim_font_size_18"
+        android:background="@color/colorAppWhite"
+        android:elevation="2dp"/>
+
+</LinearLayout>
