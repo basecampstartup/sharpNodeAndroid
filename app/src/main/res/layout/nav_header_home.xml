@@ -33,6 +33,7 @@
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/nav_header_vertical_spacing"
             android:text="User Name"
+            android:textSize="@dimen/dim_font_size_18"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
         <TextView
@@ -40,6 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dim_padding_5dp"
+            android:textSize="@dimen/dim_font_size_16"
             android:text="User Role" />
     </LinearLayout>
 
