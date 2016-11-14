@@ -24,7 +24,7 @@
                 android:layout_toLeftOf="@+id/txtCreateAccount"
                 android:gravity="left"
                 android:text="A.C. at night turn off"
-                android:textColor="@color/color_orange"
+                android:textColor="@color/color_teal"
                 android:textSize="@dimen/default_textsize_medium"
                 android:textStyle="bold" />
 
@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:text="03:00 am"
-                android:textColor="@color/color_black"
+                android:textColor="@color/color_black1"
                 android:textSize="@dimen/default_textsize_medium" />
         </RelativeLayout>
 
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:paddingRight="@dimen/dim_padding_5dp"
                 android:text="Turn ON "
-                android:textColor="@color/color_black"
+                android:textColor="@color/color_black1"
                 android:textSize="@dimen/default_textsize_medium"
                 android:textStyle="bold" />
 
@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/tvTurnOnOff"
                 android:text="EveryDay"
-                android:textColor="@color/color_black"
+                android:textColor="@color/color_gray"
                 android:textSize="@dimen/default_textsize_medium" />
         </RelativeLayout>
     </RelativeLayout>
@@ -70,9 +70,8 @@
     <TextView
         android:id="@+id/tvDevider"
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
         android:layout_marginTop="@dimen/dim_padding_5dp"
-        android:background="@color/color_edittext_hint"
-
+        android:background="@color/color_gray"
         />
 </LinearLayout>

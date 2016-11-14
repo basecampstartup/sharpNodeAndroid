@@ -22,14 +22,14 @@
     <dimen name="dim_font_size_18">18dp</dimen>
 
     <dimen name="logo_height">65dp</dimen>
-    <dimen name="logo_margin_top">36dp</dimen>
+    <dimen name="logo_margin_top">32dp</dimen>
     <dimen name="margin_top_50dp">50dp</dimen>
     <dimen name="margin_top_30dp">30dp</dimen>
     <dimen name="margin_10dp">10dp</dimen>
     <dimen name="default_textsize_large">17dp</dimen>
     <dimen name="default_textsize_medium">15dp</dimen>
     <dimen name="margin_15dp">13dp</dimen>
-    <dimen name="landing_page_logo_margin_top">90dp</dimen>
+    <dimen name="landing_page_logo_margin_top">85dp</dimen>
     <dimen name="tagline_margin_top">70dp</dimen>
 
     <!--
@@ -39,4 +39,6 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
     <dimen name="widget_margin">8dp</dimen>
     <dimen name="widget_height">70dp</dimen>
     <dimen name="widget_width">480dp</dimen>
+
+    <dimen name="left_panel_icon_hight">30dp</dimen>
 </resources>

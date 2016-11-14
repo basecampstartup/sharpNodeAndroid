@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * class: HomeActivity it is dashboard screen of application from where can access all features of
@@ -24,10 +25,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;  //toggle to open and close drawer
     private TextView tvUserName, tvUserRole;
-    private ImageView ivProfilePicture;
+    private ImageView ivProfilePicture,imgSecurity;
     private LinearLayout llHomePanel, llSettingsPanel, llInsightsPanel, llIftttConfigPanel,
             llAppliancePanel, llLiveCameraPanel, llUserManualPanel, llLogoutPanel;
-    private LinearLayout llShortcutAppliance, llShortcutScheduler, llShortcutSettings, llShortcutTimer;
+    private LinearLayout llShortcutAppliance, llShortcutScheduler, llShortcutSettings, llShortcutTimer,llContactUsPanel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,16 +77,19 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(mContext, AccountSettingsActivity.class));
                 break;
             case R.id.llInsightsPanel:
+                startActivity(new Intent(mContext, InsightsActivity.class));
                 break;
             case R.id.llIftttConfigPanel:
+                startActivity(new Intent(mContext, IFTTTConfigActivity.class));
                 break;
             case R.id.llAppliancePanel:
                 startActivity(new Intent(mContext, AppliancesActivity.class));
                 break;
             case R.id.llLiveCameraPanel:
+                startActivity(new Intent(mContext, LiveCameraActivity.class));
                 break;
             case R.id.llUserManualPanel:
-                startActivity(new Intent(mContext, SchedulerActivity.class));
+                startActivity(new Intent(mContext, UserMannualActivity.class));
                 break;
             case R.id.llShortcutAppliance:
                 startActivity(new Intent(mContext, AppliancesActivity.class));
@@ -97,6 +101,16 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(mContext, AccountSettingsActivity.class));
                 break;
             case R.id.llShortcutTimer:
+                startActivity(new Intent(mContext, TimerListActivity.class));
+                break;
+            case R.id.llLogoutPanel:
+                startActivity(new Intent(mContext, ContactUsActivity.class));
+                break;
+            case R.id.llContactUsPanel:
+                finish();
+                break;
+            case R.id.ivSecurity:
+                Toast.makeText(mContext,"Security click",Toast.LENGTH_LONG).show();
                 break;
         }
     }
@@ -123,12 +137,12 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         llLiveCameraPanel = (LinearLayout)findViewById(R.id.llLiveCameraPanel);
         llUserManualPanel = (LinearLayout)findViewById(R.id.llUserManualPanel);
         llLogoutPanel = (LinearLayout)findViewById(R.id.llLogoutPanel);
-
+        llContactUsPanel = (LinearLayout)findViewById(R.id.llContactUsPanel);
         llShortcutAppliance = (LinearLayout)findViewById(R.id.llShortcutAppliance);
         llShortcutScheduler = (LinearLayout)findViewById(R.id.llShortcutScheduler);
         llShortcutSettings = (LinearLayout)findViewById(R.id.llShortcutSettings);
         llShortcutTimer = (LinearLayout)findViewById(R.id.llShortcutTimer);
-
+        imgSecurity=(ImageView)findViewById(R.id.ivSecurity);
         llShortcutAppliance.setOnClickListener(this);
         llShortcutScheduler.setOnClickListener(this);
         llShortcutSettings.setOnClickListener(this);
@@ -142,6 +156,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         llLiveCameraPanel.setOnClickListener(this);
         llUserManualPanel.setOnClickListener(this);
         llLogoutPanel.setOnClickListener(this);
+        imgSecurity.setOnClickListener(this);
     }
     /**
      * Method to initialize header options of side panel

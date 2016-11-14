@@ -39,11 +39,15 @@
     <string name="CommonPassword">Password</string>
     <string name="SignUpAlreadyHaveAccountSignIn">Already have account? Sign in</string>
     <string name="SignUpIAgree">I agree that, I have a device and I follow the terms.</string>
+    <string name="SignUpNameRequired">Name required.</string>
+    <string name="SignUpPasswordRequired">Password between 4 and 10 alphanumeric characters</string>
+    <string name="SignUpEmailRequired">Enter a valid email address.</string>
+    <string name="SignUpPhoneRequired">Phone number required.</string>
 
     //Login Screen strings
     <string name="LoginAccountSignInLable">Account Sign In</string>
     <string name="SignInBtn">Sign In</string>
-    <string name="LoginForgetPassword">Forgot your Password? Reset Password.</string>
+    <string name="LoginForgetPassword">Forgot your Password?</string>
     <string name="LoginDontHaveAccount">Don\'t have account? Create new account.</string>
 
     //Account Settings
@@ -52,6 +56,7 @@
 
     //Scheduler Settings
     <string name="SchedulerList">Scheduler List</string>
+    <string name="SchedulerAddNew">ADD NEW</string>
     //Crop Screen
     <string name="Done">Done</string>
     <string name="CropImage">Crop Image</string>
@@ -61,4 +66,14 @@
     <string name="ChoosePhotoReset">Reset Photo</string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
+
+    //Forget Password
+    <string name="ForgotPassword">Forgot your password?</string>
+    <string name="PFForgotPasswordText">Please enter your email address to reset password. We will send you a link shortly.</string>
+    <string name="SendLink">Send me a link</string>
+
+    //Home Screen Items
+
+    <string name="HomeTimer">Timer</string>
+    <string name="HomeScheduler">Scheduler</string>
 </resources>

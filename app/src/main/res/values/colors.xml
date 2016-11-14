@@ -14,6 +14,11 @@
     <color name="landing_page_btn_bg">#FF8C00</color>
     <color name="color_orange">#FF8C00</color>
 
+    <!--<color name="color_teal">#72dbce</color>
+    <color name="color_teal_lite">#50d2c2</color>
+    <color name="color_gray">#b6b6b8</color>
+    <color name="color_black1">#1d1d26</color>-->
+
     <!--image cropper-->
     <color name="color_crop_button_bar">#f3f3f3</color>
     <color name="color_crop_button_text">#666666</color>

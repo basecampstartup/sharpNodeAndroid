@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -13,11 +14,13 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -183,5 +186,66 @@ public class Utils {
             return Uri.parse(path);
         }
         return null;
+    }
+
+    /**
+     * @param context context
+     * @param fontId  fontid
+     * @return Typeface
+     * This method will return the font which apply on application text.
+     */
+    public static Typeface getTypeface(Context context, int fontId) {
+        Typeface typeface = null;
+        switch (fontId) {
+        /*    case 1:
+                typeface = Typeface.createFromAsset(context.getAssets(), "JosefinSans-Bold.ttf");
+                break;
+            case 2:
+                typeface = Typeface.createFromAsset(context.getAssets(), "micross.ttf");
+                break;
+            case 3:
+                typeface = Typeface.createFromAsset(context.getAssets(), "HelveticaNeue-Regular.ttf");
+                break;*/
+            default:
+             //   typeface = Typeface.createFromAsset(context.getAssets(), "JosefinSans-Bold.ttf");
+                break;
+        }
+        return typeface;
+    }
+
+
+    /*
+     * Sets the font on all TextViews in the ViewGroup. Searches
+     * recursively for all inner ViewGroups as well. Just add a
+     * check for any other views you want to set as well (EditText,
+     * etc.)
+     */
+    public void setFont(ViewGroup group, Typeface font) {
+        int count = group.getChildCount();
+        View v;
+        for(int i = 0; i < count; i++) {
+            v = group.getChildAt(i);
+            if(v instanceof TextView || v instanceof Button /*etc.*/)
+                ((TextView)v).setTypeface(font);
+            else if(v instanceof ViewGroup)
+                setFont((ViewGroup)v, font);
+        }
+    }
+
+    /**
+     * This method is to hide android soft keyboard.
+     * @param context
+     * @param view
+     */
+    public static void hideSoftKeyboardWithoutReq(Context context, View view) {
+        try {
+            if (view != null) {
+                final InputMethodManager inputMethodManager =
+                        (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
+        } catch (Exception e) {
+
+        }
     }
 }

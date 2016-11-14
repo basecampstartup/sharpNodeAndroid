@@ -42,7 +42,7 @@
                 android:padding="@dimen/dim_padding_10dp"
                 android:text="@string/LeftPanelHome"
                 android:textColor="@android:color/holo_orange_dark"
-                android:textSize="@dimen/dim_font_size_16"></TextView>
+                android:textSize="@dimen/default_textsize_medium"></TextView>
         </LinearLayout>
 
         <View
@@ -62,8 +62,8 @@
 
             <ImageView
                 android:id="@+id/ivSettings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/left_panel_icon_hight"
+                android:layout_height="@dimen/left_panel_icon_hight"
                 android:layout_centerVertical="true"
                 android:src="@mipmap/ic_launcher"></ImageView>
 
@@ -75,7 +75,7 @@
                 android:padding="@dimen/dim_padding_10dp"
                 android:text="@string/LeftPanelSettings"
                 android:textColor="@color/colorAppBlack"
-                android:textSize="@dimen/dim_font_size_16"></TextView>
+                android:textSize="@dimen/default_textsize_medium"></TextView>
         </LinearLayout>
 
         <LinearLayout
@@ -89,8 +89,8 @@
 
             <ImageView
                 android:id="@+id/ivInsights"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/left_panel_icon_hight"
+                android:layout_height="@dimen/left_panel_icon_hight"
                 android:layout_centerVertical="true"
                 android:src="@mipmap/ic_launcher"></ImageView>
 
@@ -102,7 +102,7 @@
                 android:padding="@dimen/dim_padding_10dp"
                 android:text="@string/LeftPanelInsights"
                 android:textColor="@color/colorAppBlack"
-                android:textSize="@dimen/dim_font_size_16"></TextView>
+                android:textSize="@dimen/default_textsize_medium"></TextView>
         </LinearLayout>
 
         <LinearLayout
@@ -116,8 +116,8 @@
 
             <ImageView
                 android:id="@+id/ivIftttConfig"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/left_panel_icon_hight"
+                android:layout_height="@dimen/left_panel_icon_hight"
                 android:layout_centerVertical="true"
                 android:src="@mipmap/ic_launcher"></ImageView>
 
@@ -129,7 +129,7 @@
                 android:padding="@dimen/dim_padding_10dp"
                 android:text="@string/LeftPanelIftttConfig"
                 android:textColor="@color/colorAppBlack"
-                android:textSize="@dimen/dim_font_size_16"></TextView>
+                android:textSize="@dimen/default_textsize_medium"></TextView>
         </LinearLayout>
 
         <LinearLayout
@@ -143,8 +143,8 @@
 
             <ImageView
                 android:id="@+id/ivAppliances"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/left_panel_icon_hight"
+                android:layout_height="@dimen/left_panel_icon_hight"
                 android:layout_centerVertical="true"
                 android:src="@mipmap/ic_launcher"></ImageView>
 
@@ -156,7 +156,7 @@
                 android:padding="@dimen/dim_padding_10dp"
                 android:text="@string/LeftPanelAppliances"
                 android:textColor="@color/colorAppBlack"
-                android:textSize="@dimen/dim_font_size_16"></TextView>
+                android:textSize="@dimen/default_textsize_medium"></TextView>
         </LinearLayout>
 
         <LinearLayout
@@ -170,8 +170,8 @@
 
             <ImageView
                 android:id="@+id/ivLiveCamera"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/left_panel_icon_hight"
+                android:layout_height="@dimen/left_panel_icon_hight"
                 android:layout_centerVertical="true"
                 android:src="@mipmap/ic_launcher"></ImageView>
 
@@ -183,7 +183,7 @@
                 android:padding="@dimen/dim_padding_10dp"
                 android:text="@string/LeftPanelLiveCamera"
                 android:textColor="@color/colorAppBlack"
-                android:textSize="@dimen/dim_font_size_16"></TextView>
+                android:textSize="@dimen/default_textsize_medium"></TextView>
         </LinearLayout>
 
         <LinearLayout
@@ -197,8 +197,8 @@
 
             <ImageView
                 android:id="@+id/ivUserManual"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/left_panel_icon_hight"
+                android:layout_height="@dimen/left_panel_icon_hight"
                 android:layout_centerVertical="true"
                 android:src="@mipmap/ic_launcher"></ImageView>
 
@@ -210,7 +210,7 @@
                 android:padding="@dimen/dim_padding_10dp"
                 android:text="@string/LeftPanelUserManuals"
                 android:textColor="@color/colorAppBlack"
-                android:textSize="@dimen/dim_font_size_16"></TextView>
+                android:textSize="@dimen/default_textsize_medium"></TextView>
         </LinearLayout>
 
         <LinearLayout
@@ -224,8 +224,8 @@
 
             <ImageView
                 android:id="@+id/ivContactUs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/left_panel_icon_hight"
+                android:layout_height="@dimen/left_panel_icon_hight"
                 android:layout_centerVertical="true"
                 android:src="@mipmap/ic_launcher"></ImageView>
 
@@ -237,7 +237,7 @@
                 android:padding="@dimen/dim_padding_10dp"
                 android:text="@string/LeftPanelContactUs"
                 android:textColor="@color/colorAppBlack"
-                android:textSize="@dimen/dim_font_size_16"></TextView>
+                android:textSize="@dimen/default_textsize_medium"></TextView>
         </LinearLayout>
 
         <LinearLayout
@@ -251,8 +251,8 @@
 
             <ImageView
                 android:id="@+id/ivLogout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/left_panel_icon_hight"
+                android:layout_height="@dimen/left_panel_icon_hight"
                 android:layout_centerVertical="true"
                 android:src="@mipmap/ic_launcher"
                 android:visibility="gone"></ImageView>
@@ -265,7 +265,7 @@
                 android:padding="@dimen/dim_padding_10dp"
                 android:text="@string/LeftPanelLogout"
                 android:textColor="@color/colorAppBlack"
-                android:textSize="@dimen/dim_font_size_16"></TextView>
+                android:textSize="@dimen/default_textsize_large"></TextView>
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

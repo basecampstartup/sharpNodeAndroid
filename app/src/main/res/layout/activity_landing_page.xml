@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@drawable/app_bg"
     tools:context="com.sharpnode.LandingPageActivity">
 
 
@@ -38,7 +37,7 @@
                     android:gravity="center_vertical|center_horizontal"
                     android:inputType="textEmailAddress"
                     android:text="@string/LandingSimpleLandingPage"
-                    android:textColor="@color/color_white"
+                    android:textColor="@color/color_black1"
                     android:textSize="@dimen/default_textsize_large">
 
                 </TextView>
@@ -58,7 +57,7 @@
                     android:gravity="center_vertical|center_horizontal"
                     android:inputType="textEmailAddress"
                     android:text="@string/app_name"
-                    android:textColor="@color/color_white"
+                    android:textColor="@color/color_black1"
                     android:textSize="@dimen/default_textsize_large"></TextView>
             </LinearLayout>
 
@@ -71,8 +70,8 @@
                 android:text="@string/LandingPageTagLine"
                 android:gravity="center"
                 android:maxLines="3"
-                android:textColor="@color/color_white"
-                android:textSize="@dimen/default_textsize_large"></TextView>
+                android:textColor="@color/color_black1"
+                android:textSize="@dimen/default_textsize_medium"></TextView>
 
             <LinearLayout
                 android:id="@+id/layout_buttons"
@@ -93,7 +92,7 @@
                     android:gravity="center"
                     android:textColor="@color/color_white"
                     android:layout_marginRight="@dimen/dim_padding_2dp"
-                    android:background="@color/landing_page_btn_bg"
+                    android:background="@color/color_teal"
                      />
                 <Button
                     android:id="@+id/btnLogin"
@@ -106,7 +105,7 @@
                     android:text="@string/CommonLogin"
                     android:textColor="@color/color_white"
                     android:layout_marginLeft="@dimen/dim_padding_2dp"
-                    android:background="@color/landing_page_btn_bg"
+                    android:background="@color/color_teal"
                  />
                 </LinearLayout>
 

@@ -4,7 +4,6 @@
     android:id="@+id/activity_sign_up"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/app_bg"
     android:padding="@dimen/padding_8dp"
     tools:context="com.sharpnode.SignUpActivity">
 
@@ -41,7 +40,7 @@
                     android:gravity="center_vertical|center_horizontal"
                     android:inputType="textEmailAddress"
                     android:text="@string/SignUpCreateAccount"
-                    android:textColor="@color/color_white"
+                    android:textColor="@color/color_black1"
                     android:textSize="@dimen/default_textsize_large">
 
                 </TextView>
@@ -54,6 +53,7 @@
                     android:layout_alignParentTop="true"
                     android:gravity="center_vertical"
                     android:hint="@string/CommonName"
+
                     android:inputType="text">
 
                     <requestFocus />
@@ -105,7 +105,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/SignUpIAgree"
                         android:textSize="@dimen/default_textsize_medium"
-                        android:textColor="@color/color_white" />
+                        android:textColor="@color/color_black1" />
                 </LinearLayout>
 
                 <Button
@@ -127,7 +127,7 @@
                     android:layout_marginTop="@dimen/margin_15dp"
                     android:gravity="center"
                     android:text="@string/SignUpAlreadyHaveAccountSignIn"
-                    android:textColor="@color/color_white"
+                    android:textColor="@color/color_black1"
                     android:textSize="@dimen/default_textsize_medium" />
 
             </LinearLayout>

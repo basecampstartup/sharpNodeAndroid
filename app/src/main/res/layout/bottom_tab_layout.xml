@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/bottom_tab_height"
+    android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:gravity="center"
+    android:layout_marginBottom="@dimen/dim_padding_10dp"
     android:background="@android:color/transparent">
 
     <LinearLayout
@@ -11,12 +12,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:orientation="vertical"
         android:gravity="center">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_dialog_info" />
+            android:src="@drawable/ic_add_black_24dp" />
+        <TextView
+            android:id="@+id/tvTimer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dim_padding_5dp"
+            android:textSize="@dimen/default_textsize_medium"
+            android:text="@string/LeftPanelAppliances" />
     </LinearLayout>
 
     <LinearLayout
@@ -24,12 +34,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
+        android:orientation="vertical"
         android:layout_weight="1">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_dialog_info" />
+            android:src="@drawable/ic_add_black_24dp" />
+        <TextView
+            android:id="@+id/tvScheduler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxLines="2"
+            android:layout_marginTop="@dimen/dim_padding_5dp"
+            android:textSize="@dimen/default_textsize_medium"
+            android:text="@string/HomeScheduler" />
     </LinearLayout>
 
     <LinearLayout
@@ -37,12 +57,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
+        android:orientation="vertical"
         android:layout_weight="1">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_dialog_info"/>
+            android:src="@drawable/ic_add_black_24dp"/>
+        <TextView
+            android:id="@+id/tvSettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dim_padding_5dp"
+            android:textSize="@dimen/default_textsize_medium"
+            android:text="@string/LeftPanelSettings" />
     </LinearLayout>
 
     <LinearLayout
@@ -50,11 +79,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
+        android:orientation="vertical"
         android:layout_weight="1">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_dialog_info" />
+            android:src="@drawable/ic_add_black_24dp" />
+        <TextView
+            android:id="@+id/tvDevider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dim_padding_5dp"
+            android:textSize="@dimen/default_textsize_medium"
+            android:text="@string/HomeTimer" />
     </LinearLayout>
 </LinearLayout>
