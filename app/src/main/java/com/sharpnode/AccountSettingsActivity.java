@@ -27,7 +27,7 @@ import com.sharpnode.adapter.DialogAdapter;
 import com.sharpnode.image.crop.Crop;
 import com.sharpnode.utils.Constants;
 import com.sharpnode.utils.Logger;
-import com.sharpnode.utils.PermissionManager;
+import com.sharpnode.permissions.PermissionManager;
 import com.sharpnode.utils.Utils;
 
 import java.io.BufferedInputStream;

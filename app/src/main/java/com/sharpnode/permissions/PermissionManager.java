@@ -3,7 +3,7 @@
 // Original Author: Jogendra Gouda
 // Original Date: 25 April 2016
 //===============================================================================
-package com.sharpnode.utils;
+package com.sharpnode.permissions;
 
 import android.Manifest;
 import android.app.Activity;
