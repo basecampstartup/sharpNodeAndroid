@@ -48,7 +48,7 @@
 
     //Account Settings
     <string name="AccountSettings">Account Settings</string>
-
+    <string name="Submit">Submit</string>
 
     //Scheduler Settings
     <string name="SchedulerList">Scheduler List</string>
