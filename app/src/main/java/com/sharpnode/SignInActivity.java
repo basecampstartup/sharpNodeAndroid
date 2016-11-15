@@ -22,9 +22,10 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     private final String TAG = getClass().getSimpleName();
     private Button btnSignIn;
     private Context mContext;
-    EditText edtEmail,edtPassword;
-    TextView txtResetPassword,txtCreateAccount;
+    private EditText edtEmail,edtPassword;
+    private TextView txtResetPassword,txtCreateAccount;
     private long mLastClickTime = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +48,11 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         txtResetPassword.setOnClickListener(this);
         txtCreateAccount.setOnClickListener(this);
 
+        btnSignIn.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        edtEmail.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        edtPassword.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        txtResetPassword.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        txtCreateAccount.setTypeface(SNApplication.APP_FONT_TYPEFACE);
     }
 
     @Override

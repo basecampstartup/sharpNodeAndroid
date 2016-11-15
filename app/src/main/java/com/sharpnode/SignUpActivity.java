@@ -37,13 +37,19 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     public void initializeComponents() {
         btnSignUp = (Button) findViewById(R.id.btnSignUp);
         btnSignUp.setOnClickListener(this);
-        btnSignUp.setOnClickListener(this);
         edtName=(EditText)findViewById(R.id.edtName);
         edtEmail=(EditText)findViewById(R.id.edtEmailID);
         edtPhone=(EditText)findViewById(R.id.edtPhone);
         edtPassword=(EditText)findViewById(R.id.edtPassword);
         txtAlreadyHaveAccount=(TextView)findViewById(R.id.txtAlreadyHaveAccount);
         txtAlreadyHaveAccount.setOnClickListener(this);
+
+        btnSignUp.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        edtName.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        edtEmail.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        edtPhone.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        edtPassword.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        txtAlreadyHaveAccount.setTypeface(SNApplication.APP_FONT_TYPEFACE);
     }
 
     @Override

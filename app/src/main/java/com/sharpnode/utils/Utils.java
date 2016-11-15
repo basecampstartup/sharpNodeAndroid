@@ -197,17 +197,8 @@ public class Utils {
     public static Typeface getTypeface(Context context, int fontId) {
         Typeface typeface = null;
         switch (fontId) {
-        /*    case 1:
-                typeface = Typeface.createFromAsset(context.getAssets(), "JosefinSans-Bold.ttf");
-                break;
-            case 2:
-                typeface = Typeface.createFromAsset(context.getAssets(), "micross.ttf");
-                break;
-            case 3:
-                typeface = Typeface.createFromAsset(context.getAssets(), "HelveticaNeue-Regular.ttf");
-                break;*/
-            default:
-             //   typeface = Typeface.createFromAsset(context.getAssets(), "JosefinSans-Bold.ttf");
+            case 1:
+                typeface = Typeface.createFromAsset(context.getAssets(), "avenir-roman.otf");
                 break;
         }
         return typeface;
