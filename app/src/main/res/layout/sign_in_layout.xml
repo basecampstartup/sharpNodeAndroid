@@ -2,9 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:background="@drawable/background"
     android:orientation="vertical"
-    android:padding="@dimen/padding_8dp">
+    android:padding="@dimen/dim_padding_10dp">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -13,57 +13,49 @@
         android:isScrollContainer="false"
         android:scrollbars="none">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin">
 
-            <LinearLayout
-                android:id="@+id/layout_logo"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/logo_height"
-                android:layout_marginTop="@dimen/logo_margin_top"
-                android:gravity="center_horizontal">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:gravity="center"
-                    android:src="@drawable/ic_launcher" />
-            </LinearLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/margin_top_30dp"
+                android:src="@drawable/ic_launcher" />
 
             <LinearLayout
                 android:id="@+id/layout_fields_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/layout_logo"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/logo_margin_top"
+                android:layout_marginTop="@dimen/margin_top_30dp"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/tvLable"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginTop="@dimen/margin_15dp"
                     android:gravity="center_vertical|center_horizontal"
                     android:inputType="textEmailAddress"
                     android:text="@string/LoginAccountSignInLable"
-                    android:textColor="@color/color_black1"
+                    android:textColor="@color/colorAppWhite"
                     android:textSize="@dimen/default_textsize_large">
 
                 </TextView>
 
                 <EditText
                     android:id="@+id/edtEmailID"
-                    style="@style/login_edit_text_style"
+                    style="@style/edit_text_style"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="@dimen/margin_top_30dp"
+                    android:drawableLeft="@drawable/ic_email"
+                    android:drawablePadding="@dimen/dim_padding_20dp"
                     android:gravity="center_vertical"
                     android:hint="@string/CommonEmailID"
                     android:inputType="textEmailAddress">
@@ -71,24 +63,28 @@
                     <requestFocus />
                 </EditText>
 
+                <include layout="@layout/divider" />
+
                 <EditText
                     android:id="@+id/edtPassword"
-                    style="@style/login_edit_text_style"
+                    style="@style/edit_text_style"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/edEmail"
+                    android:layout_marginTop="@dimen/dim_padding_20dp"
+                    android:drawableLeft="@drawable/ic_password"
+                    android:drawablePadding="@dimen/dim_padding_20dp"
                     android:hint="@string/CommonPassword"
                     android:inputType="textPassword"></EditText>
 
+                <include layout="@layout/divider" />
+
                 <Button
                     android:id="@+id/btnSignIn"
-                    style="@style/login_button_style"
+                    style="@style/button_style"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/edEmail"
-                    android:hint="@string/SignInBtn"
-                    android:inputType="textPassword"
-                    android:visibility="visible"></Button>
+                    android:layout_marginTop="@dimen/dim_padding_20dp"
+                    android:text="@string/SignInBtn"></Button>
 
             </LinearLayout>
 
@@ -111,7 +107,7 @@
                     android:layout_marginTop="@dimen/margin_15dp"
                     android:gravity="center"
                     android:text="@string/LoginForgetPassword"
-                    android:textColor="@color/color_black1"
+                    android:textColor="@color/colorAppWhite"
                     android:textSize="@dimen/default_textsize_medium" />
 
                 <TextView
@@ -125,9 +121,9 @@
                     android:layout_marginTop="30dp"
                     android:gravity="center"
                     android:text="@string/LoginDontHaveAccount"
-                    android:textColor="@color/color_black1"
+                    android:textColor="@color/colorAppWhite"
                     android:textSize="@dimen/default_textsize_medium" />
             </LinearLayout>
-        </RelativeLayout>
+        </LinearLayout>
     </ScrollView>
 </RelativeLayout>

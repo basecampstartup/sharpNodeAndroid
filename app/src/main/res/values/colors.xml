@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#8C88FF</color>
+    <color name="colorPrimaryDark">#8C88FF</color>
     <color name="colorAccent">#FF4081</color>
 
     <color name="colorAppWhite">#FFFFFF</color>
@@ -9,7 +9,7 @@
 
     <color name="color_white">#FFFFFF</color>
     <color name="color_black">#000000</color>
-    <color name="color_edittext_hint">#FAF2F1</color>
+    <color name="color_edittext_hint">#FFFFFF</color>
     <color name="color_button">#EA3982</color>
     <color name="landing_page_btn_bg">#FF8C00</color>
     <color name="color_orange">#FF8C00</color>

@@ -4,19 +4,37 @@
     android:id="@+id/activity_sign_up"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/padding_8dp"
-    tools:context="com.sharpnode.SignUpActivity">
+    android:background="@drawable/background"
+    android:padding="@dimen/dim_padding_10dp">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:fillViewport="true"
         android:isScrollContainer="false"
         android:scrollbars="none">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvLable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="@dimen/margin_15dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:inputType="textEmailAddress"
+                android:text="@string/SignUpCreateAccount"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/default_textsize_large">
+
+            </TextView>
 
             <LinearLayout
                 android:id="@+id/layout_fields_container"
@@ -28,64 +46,65 @@
                 android:gravity="center"
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                >
-
-                <TextView
-                    android:id="@+id/tvLable"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginTop="@dimen/margin_15dp"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:inputType="textEmailAddress"
-                    android:text="@string/SignUpCreateAccount"
-                    android:textColor="@color/color_black1"
-                    android:textSize="@dimen/default_textsize_large">
-
-                </TextView>
+                android:paddingRight="@dimen/activity_horizontal_margin">
 
                 <EditText
                     android:id="@+id/edtName"
-                    style="@style/login_edit_text_style"
+                    style="@style/edit_text_style"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
+                    android:drawableLeft="@drawable/ic_username"
+                    android:drawablePadding="@dimen/dim_padding_20dp"
                     android:gravity="center_vertical"
                     android:hint="@string/CommonName"
-
                     android:inputType="text">
 
                     <requestFocus />
                 </EditText>
 
+                <include layout="@layout/divider" />
+
                 <EditText
                     android:id="@+id/edtEmailID"
-                    style="@style/login_edit_text_style"
+                    style="@style/edit_text_style"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/edtName"
+                    android:layout_marginTop="@dimen/margin_top_30dp"
+                    android:drawableLeft="@drawable/ic_email"
+                    android:drawablePadding="@dimen/dim_padding_20dp"
                     android:hint="@string/CommonEmailID"
                     android:inputType="textEmailAddress"></EditText>
 
+                <include layout="@layout/divider" />
+
                 <EditText
                     android:id="@+id/edtPhone"
-                    style="@style/login_edit_text_style"
+                    style="@style/edit_text_style"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/edtEmailID"
+                    android:layout_marginTop="@dimen/margin_top_30dp"
+                    android:drawableLeft="@drawable/ic_phone"
+                    android:drawablePadding="@dimen/dim_padding_20dp"
                     android:hint="@string/CommonPhone"
                     android:inputType="phone"></EditText>
 
+                <include layout="@layout/divider" />
 
                 <EditText
                     android:id="@+id/edtPassword"
-                    style="@style/login_edit_text_style"
+                    style="@style/edit_text_style"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/edEmail"
+                    android:layout_marginTop="@dimen/margin_top_30dp"
+                    android:drawableLeft="@drawable/ic_password"
+                    android:drawablePadding="@dimen/dim_padding_20dp"
                     android:hint="@string/CommonPassword"
                     android:inputType="textPassword"></EditText>
+
+                <include layout="@layout/divider" />
 
                 <LinearLayout
                     android:id="@+id/linearLayout1"
@@ -104,17 +123,17 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/SignUpIAgree"
-                        android:textSize="@dimen/default_textsize_medium"
-                        android:textColor="@color/color_black1" />
+                        android:textColor="@color/color_white"
+                        android:textSize="@dimen/default_textsize_medium" />
                 </LinearLayout>
 
                 <Button
                     android:id="@+id/btnSignUp"
-                    style="@style/login_button_style"
+                    style="@style/button_style"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/edtPassword"
-                    android:hint="@string/SingUpSignUpBtn"></Button>
+                    android:layout_marginTop="@dimen/dim_padding_20dp"
+                    android:text="@string/SingUpSignUpBtn"></Button>
 
                 <TextView
                     android:id="@+id/txtAlreadyHaveAccount"
@@ -127,11 +146,11 @@
                     android:layout_marginTop="@dimen/margin_15dp"
                     android:gravity="center"
                     android:text="@string/SignUpAlreadyHaveAccountSignIn"
-                    android:textColor="@color/color_black1"
+                    android:textColor="@color/color_white"
                     android:textSize="@dimen/default_textsize_medium" />
 
             </LinearLayout>
-        </RelativeLayout>
+        </LinearLayout>
 
     </ScrollView>
 
