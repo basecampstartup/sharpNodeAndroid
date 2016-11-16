@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:background="@drawable/background"
     tools:context="com.sharpnode.LandingPageActivity">
 
 
@@ -25,29 +26,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-
                 android:layout_marginTop="@dimen/landing_page_logo_margin_top"
                 android:gravity="center_horizontal">
-                <TextView
-                    android:id="@+id/tvLable"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginTop="15dp"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:inputType="textEmailAddress"
-                    android:text="@string/LandingSimpleLandingPage"
-                    android:textColor="@color/color_black1"
-                    android:textSize="@dimen/default_textsize_large">
-
-                </TextView>
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/logo_height"
+                    android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
                     android:layout_marginTop="@dimen/margin_10dp"
-                    android:src="@drawable/ic_launcher" />
+                    android:src="@drawable/logo" />
                 <TextView
                     android:id="@+id/txtAppName"
                     android:layout_width="match_parent"
@@ -57,7 +44,7 @@
                     android:gravity="center_vertical|center_horizontal"
                     android:inputType="textEmailAddress"
                     android:text="@string/app_name"
-                    android:textColor="@color/color_black1"
+                    android:textColor="@color/color_text"
                     android:textSize="@dimen/default_textsize_large"></TextView>
             </LinearLayout>
 
@@ -70,7 +57,7 @@
                 android:text="@string/LandingPageTagLine"
                 android:gravity="center"
                 android:maxLines="3"
-                android:textColor="@color/color_black1"
+                android:textColor="@color/color_text"
                 android:textSize="@dimen/default_textsize_medium"></TextView>
 
             <LinearLayout
@@ -90,9 +77,9 @@
                     android:layout_centerHorizontal="true"
                     android:text="@string/LandingSignUpBtn"
                     android:gravity="center"
-                    android:textColor="@color/color_white"
+                    android:textColor="@color/colorAppWhite"
                     android:layout_marginRight="@dimen/dim_padding_2dp"
-                    android:background="@color/color_teal"
+                    android:background="@color/colorPrimary"
                      />
                 <Button
                     android:id="@+id/btnLogin"
@@ -103,9 +90,9 @@
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
                     android:text="@string/CommonLogin"
-                    android:textColor="@color/color_white"
+                    android:textColor="@color/colorAppWhite"
                     android:layout_marginLeft="@dimen/dim_padding_2dp"
-                    android:background="@color/color_teal"
+                    android:background="@color/colorPrimary"
                  />
                 </LinearLayout>
 

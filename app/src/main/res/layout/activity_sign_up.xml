@@ -27,11 +27,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="@dimen/margin_15dp"
+                android:layout_marginTop="@dimen/margin_top_30dp"
                 android:gravity="center_vertical|center_horizontal"
                 android:inputType="textEmailAddress"
                 android:text="@string/SignUpCreateAccount"
-                android:textColor="@color/color_white"
+                android:textColor="@color/colorAppWhite"
                 android:textSize="@dimen/default_textsize_large">
 
             </TextView>
@@ -115,7 +115,7 @@
                     android:padding="5dp"
                     android:layout_marginLeft="-5dp"
                     android:layout_marginTop="@dimen/dim_padding_15dp"
-                    android:textColor="@color/color_white"
+                    android:textColor="@color/colorAppWhite"
                     android:textSize="@dimen/default_textsize_medium"
                     />
 
@@ -138,7 +138,7 @@
                     android:layout_marginTop="@dimen/margin_15dp"
                     android:gravity="center"
                     android:text="@string/SignUpAlreadyHaveAccountSignIn"
-                    android:textColor="@color/color_white"
+                    android:textColor="@color/colorAppWhite"
                     android:textSize="@dimen/default_textsize_medium" />
 
             </LinearLayout>

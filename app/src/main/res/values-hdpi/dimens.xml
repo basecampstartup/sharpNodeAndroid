@@ -7,7 +7,7 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="padding_8dp">8dp</dimen>
 
-    <dimen name="nav_header_height">180dp</dimen>
+    <dimen name="nav_header_height">210dp</dimen>
     <dimen name="nav_drawer_width">300dp</dimen>
 
     <dimen name="divider_height_1dp">1dp</dimen>
@@ -24,10 +24,11 @@
     <dimen name="logo_height">62dp</dimen>
     <dimen name="logo_margin_top">30dp</dimen>
     <dimen name="margin_top_50dp">50dp</dimen>
-    <dimen name="margin_top_30dp">30dp</dimen>
+    <dimen name="margin_top_30dp">35dp</dimen>
     <dimen name="margin_10dp">10dp</dimen>
     <dimen name="default_textsize_large">20sp</dimen>
-    <dimen name="default_textsize_medium">15sp</dimen>
+    <dimen name="default_textsize_medium">16sp</dimen>
+    <dimen name="default_textsize_btn">18sp</dimen>
     <dimen name="margin_15dp">11dp</dimen>
     <dimen name="landing_page_logo_margin_top">94dp</dimen>
     <dimen name="tagline_margin_top">70dp</dimen>

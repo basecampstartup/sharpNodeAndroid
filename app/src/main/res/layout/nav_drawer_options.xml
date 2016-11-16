@@ -40,7 +40,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="0.5dp"
                 android:background="@color/md_grey_200"></View>
 
             <LinearLayout
@@ -54,8 +54,8 @@
 
                 <ImageView
                     android:id="@+id/ivSettings"
-                    android:layout_width="@dimen/left_panel_icon_hight"
-                    android:layout_height="@dimen/left_panel_icon_hight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:src="@drawable/ic_settings"></ImageView>
 
@@ -80,8 +80,8 @@
 
                 <ImageView
                     android:id="@+id/ivInsights"
-                    android:layout_width="@dimen/left_panel_icon_hight"
-                    android:layout_height="@dimen/left_panel_icon_hight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:src="@drawable/ic_insight"></ImageView>
 
@@ -107,8 +107,8 @@
 
                 <ImageView
                     android:id="@+id/ivIftttConfig"
-                    android:layout_width="@dimen/left_panel_icon_hight"
-                    android:layout_height="@dimen/left_panel_icon_hight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:src="@drawable/ic_ifttt_config"></ImageView>
 
@@ -134,8 +134,8 @@
 
                 <ImageView
                     android:id="@+id/ivAppliances"
-                    android:layout_width="@dimen/left_panel_icon_hight"
-                    android:layout_height="@dimen/left_panel_icon_hight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:src="@drawable/ic_appliances"></ImageView>
 
@@ -188,8 +188,8 @@
 
                 <ImageView
                     android:id="@+id/ivUserManual"
-                    android:layout_width="@dimen/left_panel_icon_hight"
-                    android:layout_height="@dimen/left_panel_icon_hight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:src="@drawable/ic_username"></ImageView>
 
@@ -215,8 +215,8 @@
 
                 <ImageView
                     android:id="@+id/ivContactUs"
-                    android:layout_width="@dimen/left_panel_icon_hight"
-                    android:layout_height="@dimen/left_panel_icon_hight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:src="@drawable/ic_contactus"></ImageView>
 
@@ -242,8 +242,8 @@
 
                 <ImageView
                     android:id="@+id/ivLogout"
-                    android:layout_width="@dimen/left_panel_icon_hight"
-                    android:layout_height="@dimen/left_panel_icon_hight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:src="@mipmap/ic_launcher"
                     android:visibility="gone"></ImageView>
