@@ -25,7 +25,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;  //toggle to open and close drawer
     private TextView tvUserName, tvUserRole, tvHome, tvSettings, tvInsights, tvIftttConfig, tvAppliances,
-            tvUserManual, tvContactUs, tvLogout;
+            tvUserManual, tvContactUs, tvLogout, tvTemperature, tvHumidity, tvSecurityFeature;
     private ImageView ivProfilePicture,imgSecurity;
     private LinearLayout llHomePanel, llSettingsPanel, llInsightsPanel, llIftttConfigPanel,
             llAppliancePanel, llLiveCameraPanel, llUserManualPanel, llLogoutPanel;
@@ -110,9 +110,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.llContactUsPanel:
                 startActivity(new Intent(mContext, ContactUsActivity.class));
                 break;
-            case R.id.ivSecurity:
-                Toast.makeText(mContext,"Security click",Toast.LENGTH_LONG).show();
-                break;
         }
     }
 
@@ -143,12 +140,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         llShortcutScheduler = (LinearLayout)findViewById(R.id.llShortcutScheduler);
         llShortcutSettings = (LinearLayout)findViewById(R.id.llShortcutSettings);
         llShortcutTimer = (LinearLayout)findViewById(R.id.llShortcutTimer);
-        imgSecurity=(ImageView)findViewById(R.id.ivSecurity);
-        llShortcutAppliance.setOnClickListener(this);
+        /*llShortcutAppliance.setOnClickListener(this);
         llShortcutScheduler.setOnClickListener(this);
         llShortcutSettings.setOnClickListener(this);
         llShortcutTimer.setOnClickListener(this);
-
+*/
         llHomePanel.setOnClickListener(this);
         llSettingsPanel.setOnClickListener(this);
         llInsightsPanel.setOnClickListener(this);
@@ -157,7 +153,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
        // llLiveCameraPanel.setOnClickListener(this);
         llUserManualPanel.setOnClickListener(this);
         llLogoutPanel.setOnClickListener(this);
-        imgSecurity.setOnClickListener(this);
         llContactUsPanel.setOnClickListener(this);
 
         tvHome = (TextView)findViewById(R.id.tvHome);
@@ -168,6 +163,12 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         tvUserManual = (TextView)findViewById(R.id.tvUserManual);
         tvContactUs = (TextView)findViewById(R.id.tvContactUs);
         tvLogout = (TextView)findViewById(R.id.tvLogout);
+        tvTemperature = (TextView)findViewById(R.id.tvTemperature);
+        tvHumidity = (TextView)findViewById(R.id.tvHumidity);
+
+        ((TextView)findViewById(R.id.tvSecurityFeature)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        tvTemperature.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        tvHumidity.setTypeface(SNApplication.APP_FONT_TYPEFACE);
 
         tvHome.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         tvSettings.setTypeface(SNApplication.APP_FONT_TYPEFACE);

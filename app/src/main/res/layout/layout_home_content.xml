@@ -1,50 +1,238 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:layout_weight="1"
-    android:layout_marginBottom="@dimen/dim_padding_5dp"
-    android:background="@android:color/transparent">
+    android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/llSecurityOnOff"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentRight="true"
-        android:orientation="vertical"
-        android:paddingRight="@dimen/dim_padding_10dp"
+        android:layout_weight="0.75"
         android:gravity="center_vertical"
-        android:layout_weight="1">
-        <TextView
-            android:id="@+id/tvTemp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/dim_padding_5dp"
-            android:text="Cold | 21 °C" />
-        <TextView
-            android:id="@+id/tvDevider"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="@dimen/dim_padding_5dp"
-            android:background="@color/color_gray"
+        android:orientation="horizontal">
 
-            />
-        <TextView
-            android:id="@+id/tvHumidity"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_margin="@dimen/dim_padding_10dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/ivSecurityFeature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_security_off" />
+
+            <TextView
+                android:id="@+id/tvSecurityFeature"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ivSecurityFeature"
+                android:layout_marginTop="@dimen/dim_padding_10dp"
+                android:gravity="center"
+                android:text="@string/SecurityFeature"
+                android:textColor="@color/colorAppWhite"
+                android:textSize="@dimen/default_textsize_medium" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dashboard_vertical_line"></View>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/ivTemperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_margin="@dimen/dim_padding_10dp"
+                android:src="@drawable/ic_shortcut_temp">
+
+            </ImageView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/ivTemperature"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvTemperature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cold | 21 °C"
+                    android:textColor="@color/colorAppWhite"
+                    android:textSize="@dimen/dim_font_size_16" />
+
+                <View
+                    android:id="@+id/tvDivider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0.5dp"
+                    android:layout_marginBottom="@dimen/dim_padding_2dp"
+                    android:layout_marginRight="@dimen/dim_padding_10dp"
+                    android:layout_marginTop="@dimen/dim_padding_2dp"
+                    android:background="@drawable/dashboard_horizontal_line" />
+
+                <TextView
+                    android:id="@+id/tvHumidity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Humidity 48%"
+                    android:textColor="@color/colorAppWhite"
+                    android:textSize="@dimen/dim_font_size_16" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@drawable/dashboard_horizontal_line"></View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.25"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="@dimen/dim_padding_10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_marginBottom="@dimen/dim_padding_5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/dim_padding_5dp"
+                android:layout_weight="1"
+                android:background="@drawable/square_box_bg"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/ivAppliancesShortcut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_shortcut_appliances" />
+
+                <TextView
+                    android:id="@+id/tvAppliancesShortcut"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ivAppliancesShortcut"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/dim_padding_10dp"
+                    android:gravity="center"
+                    android:text="@string/LeftPanelAppliances"
+                    android:textColor="@color/colorAppWhite"
+                    android:textSize="@dimen/default_textsize_medium" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dim_padding_5dp"
+                android:layout_weight="1"
+                android:background="@drawable/square_box_bg"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/ivSchedulerShortcut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_shortcut_scheduler" />
+
+                <TextView
+                    android:id="@+id/tvSchedulerShortcut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ivSchedulerShortcut"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/dim_padding_10dp"
+                    android:gravity="center"
+                    android:text="@string/HomeScheduler"
+                    android:textColor="@color/colorAppWhite"
+                    android:textSize="@dimen/default_textsize_medium" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginTop="@dimen/dim_padding_5dp"
-            android:text="Humidity 48%" />
-        <ImageView
-            android:id="@+id/ivSecurity"
-            android:layout_marginTop="@dimen/margin_10dp"
-            android:layout_width="@dimen/left_panel_icon_hight"
-            android:layout_height="@dimen/left_panel_icon_hight"
-            android:layout_gravity="right"
-            android:src="@drawable/ic_launcher" />
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dim_padding_5dp"
+                android:layout_weight="1"
+                android:background="@drawable/square_box_bg"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/ivLiveCameraShortcut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_shortcut_live_camera" />
+
+                <TextView
+                    android:id="@+id/tvLiveCameraShortcut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ivLiveCameraShortcut"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/dim_padding_10dp"
+                    android:gravity="center"
+                    android:text="@string/LeftPanelLiveCamera"
+                    android:textColor="@color/colorAppWhite"
+                    android:textSize="@dimen/default_textsize_medium" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dim_padding_5dp"
+                android:layout_weight="1"
+                android:background="@drawable/square_box_bg"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/ivTimerShortcut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_shortcut_timer" />
+
+                <TextView
+                    android:id="@+id/tvTimerShortcut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ivTimerShortcut"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/dim_padding_10dp"
+                    android:gravity="center"
+                    android:text="@string/HomeTimer"
+                    android:textColor="@color/colorAppWhite"
+                    android:textSize="@dimen/default_textsize_medium" />
+            </RelativeLayout>
+        </LinearLayout>
 
     </LinearLayout>
-</RelativeLayout>
+
+</LinearLayout>

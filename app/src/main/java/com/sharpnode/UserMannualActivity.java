@@ -10,10 +10,11 @@ public class UserMannualActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
     private Context mContext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_mannual2);
+        setContentView(R.layout.activity_user_mannual);
         mContext=this;
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);

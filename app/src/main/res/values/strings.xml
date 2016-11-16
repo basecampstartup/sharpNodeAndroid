@@ -74,6 +74,7 @@
 
     //Home Screen Items
 
+    <string name="SecurityFeature">Security Feature</string>
     <string name="HomeTimer">Timer</string>
     <string name="HomeScheduler">Scheduler</string>
 
