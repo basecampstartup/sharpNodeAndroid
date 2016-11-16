@@ -38,6 +38,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
         //toolbar.setBackgroundResource(android.R.color.transparent);
         mContext = this;
 
@@ -92,15 +93,19 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.rlShortcutAppliance:
                 startActivity(new Intent(mContext, AppliancesActivity.class));
+                overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
                 break;
             case R.id.rlShortcutScheduler:
                 startActivity(new Intent(mContext, SchedulerActivity.class));
+                overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
                 break;
             case R.id.rlShortcutLiveCamera:
-                startActivity(new Intent(mContext, AccountSettingsActivity.class));
+                startActivity(new Intent(mContext, LiveCameraActivity.class));
+                overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
                 break;
             case R.id.rlShortcutTimer:
                 startActivity(new Intent(mContext, TimerListActivity.class));
+                overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
                 break;
             case R.id.llContactUsPanel:
                 startActivity(new Intent(mContext, ContactUsActivity.class));

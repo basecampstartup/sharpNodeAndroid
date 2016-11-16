@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     android:orientation="vertical">
+
     <LinearLayout
         android:id="@+id/container_toolbar"
         android:layout_width="match_parent"
@@ -15,6 +16,7 @@
             android:id="@+id/toolbar"
             layout="@layout/toolbar" />
     </LinearLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -47,34 +49,50 @@
 
                 <EditText
                     android:id="@+id/edtName"
-                    style="@style/login_edit_text_style"
+                    style="@style/edit_text_style"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
+                    android:layout_marginBottom="@dimen/margin_10dp"
+                    android:drawableLeft="@drawable/ic_username"
+                    android:drawablePadding="@dimen/dim_padding_20dp"
                     android:gravity="center_vertical"
                     android:hint="@string/CommonName"
-                    android:inputType="text"></EditText>
+                    android:inputType="text" />
+
+                <include layout="@layout/divider" />
 
                 <EditText
                     android:id="@+id/edtEmailID"
-                    style="@style/login_edit_text_style"
+                    style="@style/edit_text_style"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/edtName"
+                    android:layout_marginBottom="@dimen/margin_10dp"
+                    android:layout_marginTop="@dimen/margin_top_30dp"
+                    android:drawableLeft="@drawable/ic_email"
+                    android:drawablePadding="@dimen/dim_padding_20dp"
                     android:hint="@string/CommonEmailID"
-                    android:enabled="false"
                     android:inputType="textEmailAddress"></EditText>
+
+                <include layout="@layout/divider" />
 
                 <EditText
                     android:id="@+id/edtPhone"
-                    style="@style/login_edit_text_style"
+                    style="@style/edit_text_style"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/edtEmailID"
+                    android:layout_marginBottom="@dimen/margin_10dp"
+                    android:layout_marginTop="@dimen/margin_top_30dp"
+                    android:drawableLeft="@drawable/ic_phone"
+                    android:drawablePadding="@dimen/dim_padding_20dp"
                     android:hint="@string/CommonPhone"
                     android:inputType="phone"></EditText>
 
+                <include layout="@layout/divider" />
+
                 <Button
                     android:id="@+id/btnSignUp"
-
                     style="@style/login_button_style"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -85,7 +103,6 @@
         </LinearLayout>
 
     </ScrollView>
-
 
 
 </LinearLayout>

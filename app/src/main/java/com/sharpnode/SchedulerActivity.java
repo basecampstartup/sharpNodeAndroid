@@ -18,6 +18,7 @@ public class SchedulerActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scheduler);
         mContext=this;
+
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -34,7 +35,7 @@ public class SchedulerActivity extends AppCompatActivity implements View.OnClick
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                this.finish();
+                onBackPressed();
                 break;
             default:
                 return super.onOptionsItemSelected(item);
@@ -51,5 +52,12 @@ public class SchedulerActivity extends AppCompatActivity implements View.OnClick
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+        this.finish();
     }
 }

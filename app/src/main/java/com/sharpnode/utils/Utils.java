@@ -211,7 +211,7 @@ public class Utils {
      * check for any other views you want to set as well (EditText,
      * etc.)
      */
-    public void setFont(ViewGroup group, Typeface font) {
+    public static void setFont(ViewGroup group, Typeface font) {
         int count = group.getChildCount();
         View v;
         for(int i = 0; i < count; i++) {

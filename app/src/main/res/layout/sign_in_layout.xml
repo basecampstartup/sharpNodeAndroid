@@ -62,7 +62,8 @@
                     android:gravity="center_vertical"
                     android:hint="@string/CommonEmailID"
                     android:text="rupeshpatilk@gmail.com"
-                    android:inputType="textEmailAddress">
+                    android:inputType="textEmailAddress"
+                    android:layout_marginBottom="@dimen/margin_10dp">
 
                     <requestFocus />
                 </EditText>
@@ -79,7 +80,8 @@
                     android:drawablePadding="@dimen/dim_padding_20dp"
                     android:hint="@string/CommonPassword"
                     android:text="rupeshtonit"
-                    android:inputType="textPassword"></EditText>
+                    android:inputType="textPassword"
+                    android:layout_marginBottom="@dimen/margin_10dp"></EditText>
 
                 <include layout="@layout/divider" />
 

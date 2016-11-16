@@ -31,11 +31,12 @@ public class AppliancesActivity extends AppCompatActivity implements View.OnClic
     private ActionBar actionBar;
     private Toolbar mToolbar;
     ImageView ivFanSwitchBtn, ivCFLSwitchBtn, ivLampSwitchBtn, ivTVSwitchBtn, ivMusicSwitchBtn, ivWashingMachineSwitchBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appliances);
-        overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+
         mContext = this;
 
         //Initialize toolbar
@@ -94,8 +95,13 @@ public class AppliancesActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ivFanSwitchBtn:
-            //    ivFanSwitchBtn.playSoundEffect(SoundEffectConstants.CLICK);
-                //ivFanSwitchBtn.setImageDrawable(R.drawable.o);
+                if ((boolean)ivFanSwitchBtn.getTag()){
+                    ivFanSwitchBtn.setImageResource(R.drawable.on_btn);
+                    ivFanSwitchBtn.setTag(false);
+                } else {
+                    ivFanSwitchBtn.setImageResource(R.drawable.off_btn);
+                    ivFanSwitchBtn.setTag(true);
+                }
                 Toast.makeText(mContext,"click",Toast.LENGTH_LONG).show();
                 break;
             case R.id.ivCFLSwitchBtn:

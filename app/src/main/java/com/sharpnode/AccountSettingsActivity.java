@@ -116,11 +116,18 @@ public class AccountSettingsActivity extends AppCompatActivity implements View.O
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                this.finish();
+               onBackPressed();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+        this.finish();
     }
 
     @Override

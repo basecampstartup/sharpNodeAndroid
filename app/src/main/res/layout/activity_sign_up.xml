@@ -57,7 +57,8 @@
                     android:drawablePadding="@dimen/dim_padding_20dp"
                     android:gravity="center_vertical"
                     android:hint="@string/CommonName"
-                    android:inputType="text">
+                    android:inputType="text"
+                    android:layout_marginBottom="@dimen/margin_10dp">
 
                     <requestFocus />
                 </EditText>
@@ -74,7 +75,8 @@
                     android:drawableLeft="@drawable/ic_email"
                     android:drawablePadding="@dimen/dim_padding_20dp"
                     android:hint="@string/CommonEmailID"
-                    android:inputType="textEmailAddress"></EditText>
+                    android:inputType="textEmailAddress"
+                    android:layout_marginBottom="@dimen/margin_10dp"></EditText>
 
                 <include layout="@layout/divider" />
 
@@ -88,7 +90,8 @@
                     android:drawableLeft="@drawable/ic_phone"
                     android:drawablePadding="@dimen/dim_padding_20dp"
                     android:hint="@string/CommonPhone"
-                    android:inputType="phone"></EditText>
+                    android:inputType="phone"
+                    android:layout_marginBottom="@dimen/margin_10dp"></EditText>
 
                 <include layout="@layout/divider" />
 
@@ -102,7 +105,8 @@
                     android:drawableLeft="@drawable/ic_password"
                     android:drawablePadding="@dimen/dim_padding_20dp"
                     android:hint="@string/CommonPassword"
-                    android:inputType="textPassword"></EditText>
+                    android:inputType="textPassword"
+                    android:layout_marginBottom="@dimen/margin_10dp"></EditText>
 
                 <include layout="@layout/divider" />
 
