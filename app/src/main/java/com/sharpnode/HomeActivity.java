@@ -10,6 +10,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -27,10 +29,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private ActionBarDrawerToggle toggle;  //toggle to open and close drawer
     private TextView tvUserName, tvUserRole, tvHome, tvSettings, tvInsights, tvIftttConfig, tvAppliances,
             tvUserManual, tvContactUs, tvLogout, tvTemperature, tvHumidity, tvSecurityFeature;
-    private ImageView ivProfilePicture,ivSecurityFeature;
+    private ImageView ivProfilePicture,ivSecurityFeature, ivAppliancesShortcut, ivSchedulerShortcut, ivLiveCameraShortcut, ivTimerShortcut;
     private LinearLayout llHomePanel, llSettingsPanel, llInsightsPanel, llIftttConfigPanel,
             llAppliancePanel, llLiveCameraPanel, llUserManualPanel, llLogoutPanel, llContactUsPanel;
     private RelativeLayout rlShortcutAppliance, rlShortcutScheduler, rlShortcutLiveCamera, rlShortcutTimer, rlSecurityFeature;
+    private Animation animationEnlarge, animationShrink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,18 +109,20 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(mContext, ContactUsActivity.class));
                 break;
             case R.id.rlSecurityFeature:
-                if ((boolean)ivSecurityFeature.getTag()){
-                    ivSecurityFeature.setImageResource(R.drawable.ic_security_off);
-                    ivSecurityFeature.setTag(false);
-                } else {
-                    ivSecurityFeature.setImageResource(R.drawable.ic_security_on);
-                    ivSecurityFeature.setTag(true);
-                }
+                enLargeShrinkAnimation();
                 break;
             case R.id.llLogoutPanel:
                 finish();
                 break;
         }
+    }
+
+    private void enLargeShrinkAnimation(){
+        animationEnlarge = AnimationUtils.loadAnimation(this, R.anim.enlarge);
+        animationShrink = AnimationUtils.loadAnimation(this, R.anim.shrink);
+        animationEnlarge.setAnimationListener(animationEnlargeListener);
+        animationShrink.setAnimationListener(animationShrinkListener);
+        ivSecurityFeature.startAnimation(animationEnlarge);
     }
 
     @Override
@@ -179,6 +184,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         tvTemperature = (TextView)findViewById(R.id.tvTemperature);
         tvHumidity = (TextView)findViewById(R.id.tvHumidity);
 
+        ivAppliancesShortcut = (ImageView)findViewById(R.id.ivAppliancesShortcut);
+        ivSchedulerShortcut = (ImageView)findViewById(R.id.ivSchedulerShortcut);
+        ivLiveCameraShortcut = (ImageView)findViewById(R.id.ivLiveCameraShortcut);
+        ivTimerShortcut = (ImageView)findViewById(R.id.ivTimerShortcut);
+
         ((TextView)findViewById(R.id.tvSecurityFeature)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
         tvTemperature.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         tvHumidity.setTypeface(SNApplication.APP_FONT_TYPEFACE);
@@ -212,4 +222,41 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             drawer.closeDrawer(GravityCompat.START);
         }
     }
+
+    Animation.AnimationListener animationEnlargeListener = new Animation.AnimationListener() {
+
+        @Override
+        public void onAnimationEnd(Animation animation) {
+            ivSecurityFeature.startAnimation(animationShrink);
+        }
+
+        @Override
+        public void onAnimationRepeat(Animation animation) {
+        }
+
+        @Override
+        public void onAnimationStart(Animation animation) {
+        }
+    };
+
+    Animation.AnimationListener animationShrinkListener = new Animation.AnimationListener() {
+        @Override
+        public void onAnimationEnd(Animation animation) {
+            if ((boolean)ivSecurityFeature.getTag()){
+                ivSecurityFeature.setImageResource(R.drawable.ic_security_off);
+                ivSecurityFeature.setTag(false);
+            } else {
+                ivSecurityFeature.setImageResource(R.drawable.ic_security_on);
+                ivSecurityFeature.setTag(true);
+            }
+        }
+
+        @Override
+        public void onAnimationRepeat(Animation animation) {
+        }
+
+        @Override
+        public void onAnimationStart(Animation animation) {
+        }
+    };
 }
