@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
 public class SplashActivity extends AppCompatActivity {
     private final String TAG = getClass().getSimpleName();
@@ -20,6 +21,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         mContext = this;
+        ((TextView)findViewById(R.id.txtAppName)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
         goToNextScreen();
     }
 

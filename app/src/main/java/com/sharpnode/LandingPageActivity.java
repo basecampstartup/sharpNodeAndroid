@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class LandingPageActivity extends AppCompatActivity implements View.OnClickListener{
     private final String TAG = getClass().getSimpleName();
@@ -36,6 +37,10 @@ public class LandingPageActivity extends AppCompatActivity implements View.OnCli
         btnSignUp = (Button) findViewById(R.id.btnSignUp);
         btnLogin.setOnClickListener(this);
         btnSignUp.setOnClickListener(this);
+        btnLogin.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        btnSignUp.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        ((TextView)findViewById(R.id.txtAppName)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        ((TextView)findViewById(R.id.txtTagLine)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
     }
 
     @Override

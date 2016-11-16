@@ -75,11 +75,12 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/dim_padding_5dp"
                     android:layout_centerHorizontal="true"
-                    android:text="@string/LandingSignUpBtn"
+                    android:text="@string/SingUpSignUpBtn"
                     android:gravity="center"
                     android:textColor="@color/colorAppWhite"
                     android:layout_marginRight="@dimen/dim_padding_2dp"
                     android:background="@color/colorPrimary"
+                    android:textAllCaps="false"
                      />
                 <Button
                     android:id="@+id/btnLogin"
@@ -89,9 +90,10 @@
                     android:padding="@dimen/dim_padding_5dp"
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
-                    android:text="@string/CommonLogin"
+                    android:text="@string/SignInBtn"
                     android:textColor="@color/colorAppWhite"
                     android:layout_marginLeft="@dimen/dim_padding_2dp"
+                    android:textAllCaps="false"
                     android:background="@color/colorPrimary"
                  />
                 </LinearLayout>
