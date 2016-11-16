@@ -28,5 +28,6 @@ dependencies {
     compile 'com.android.support:design:24.2.1'
     compile 'com.android.support:multidex:1.0.0'
     compile('com.mikepenz.materialdrawer:library:2.6.0@aar')
+    compile 'me.neavo:volley:2014.12.09'
 }
 apply plugin: 'com.getkeepsafe.dexcount'

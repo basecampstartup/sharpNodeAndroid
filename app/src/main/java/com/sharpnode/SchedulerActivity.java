@@ -1,10 +1,8 @@
 package com.sharpnode;
 
 import android.content.Context;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,6 +24,7 @@ public class SchedulerActivity extends AppCompatActivity implements View.OnClick
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.SchedulerList));
         containerAddNew=(LinearLayout)findViewById(R.id.containerAddNew);
+        containerAddNew.setOnClickListener(this);
         /*actionBar = getSupportActionBar();
         actionBar.setTitle(getString(R.string.SchedulerList));
         actionBar.setDisplayHomeAsUpEnabled(true);*/
@@ -47,7 +46,7 @@ public class SchedulerActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.containerAddNew:
-
+                //Toast.makeText(mContext,"Add New Task",Toast.LENGTH_LONG).show();
                 break;
             default:
                 break;

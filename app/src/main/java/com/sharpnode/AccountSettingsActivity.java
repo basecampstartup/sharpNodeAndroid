@@ -26,6 +26,7 @@ import android.widget.TextView;
 import com.sharpnode.adapter.DialogAdapter;
 import com.sharpnode.image.crop.Crop;
 import com.sharpnode.utils.Constants;
+import com.sharpnode.utils.EmailSyntaxChecker;
 import com.sharpnode.utils.Logger;
 import com.sharpnode.permissions.PermissionManager;
 import com.sharpnode.utils.Utils;
@@ -304,4 +305,47 @@ public class AccountSettingsActivity extends AppCompatActivity implements View.O
             super.onPostExecute(uri);
         }
     }
+
+
+
+    /**
+     * This method validate all the required fields.
+     * @return
+     */
+   /* public boolean validate() {
+        boolean valid = true;
+        String name = edtName.getText().toString();
+        String email = edtEmail.getText().toString();
+        String password = edtPassword.getText().toString();
+        String phone = edtPhone.getText().toString();
+
+        if (name.isEmpty()) {
+            edtName.setError(getString(R.string.SignUpNameRequired));
+            valid = false;
+        } else {
+            edtName.setError(null);
+        }
+
+        if (email.isEmpty() || !EmailSyntaxChecker.check(email)) {
+            edtEmail.setError(getString(R.string.SignUpEmailRequired));
+            valid = false;
+        } else {
+            edtEmail.setError(null);
+        }
+
+        if (phone.isEmpty()) {
+            edtPhone.setError("Phone number is required");
+            valid = false;
+        } else {
+            edtName.setError(null);
+        }
+        if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
+            edtPassword.setError(getString(R.string.SignUpPasswordRequired));
+            valid = false;
+        } else {
+            edtPassword.setError(null);
+        }
+
+        return valid;
+    }*/
 }

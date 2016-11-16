@@ -6,4 +6,20 @@ package com.sharpnode.commons;
 
 public class Commons {
     public static final float THRESHOLD_TIME_POST_SCREEN = 1500;
+
+    //Login Parameters
+    public static final String CMD = "cmd";
+    public static final String USER_ID = "userid";
+    public static final String PASSWORD = "password";
+    public static final String NOTIFICATION = "notification";
+
+
+    public static final String EMAIL = "email";
+    public static final String PHONE = "phone";
+    public static final String NAME = "name";
+    public static final String DEVICE_ID = "device-id";
+
+
+
+
 }

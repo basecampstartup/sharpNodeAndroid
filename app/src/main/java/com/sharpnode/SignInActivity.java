@@ -14,16 +14,24 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.sharpnode.callback.APIRequestCallbacak;
 import com.sharpnode.commons.Commons;
+import com.sharpnode.servercommunication.APIUtils;
+import com.sharpnode.servercommunication.Communicator;
 import com.sharpnode.utils.EmailSyntaxChecker;
 
-public class SignInActivity extends AppCompatActivity implements View.OnClickListener{
+
+import java.util.HashMap;
+
+public class SignInActivity extends AppCompatActivity implements View.OnClickListener, APIRequestCallbacak {
     private final String TAG = getClass().getSimpleName();
     private Button btnSignIn;
     private Context mContext;
-    private EditText edtEmail,edtPassword;
-    private TextView txtResetPassword,txtCreateAccount;
+    EditText edtEmail, edtPassword;
+    TextView txtResetPassword, txtCreateAccount;
+    String strEmail,strPassword;
     private long mLastClickTime = 0;
 
     @Override
@@ -63,12 +71,16 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 if (SystemClock.elapsedRealtime() - mLastClickTime < Commons.THRESHOLD_TIME_POST_SCREEN) {
                     return;
                 }
-              /*  if (!validate()) {
-                    return;
-                }*/
-                //Navigate to home screen
-                startActivity(new Intent(SignInActivity.this, HomeActivity.class));
-               finish();
+                strEmail=edtEmail.getText().toString().trim();
+                strPassword=edtPassword.getText().toString().trim();
+
+                //Call API Request after check internet connection
+                new Communicator(mContext, APIUtils.CMD_SIGN_IN,
+                        getLoginRequestMap(APIUtils.CMD_SIGN_IN,
+                                strEmail, strPassword));
+
+                //startActivity(new Intent(SignInActivity.this, HomeActivity.class));
+                //finish();
                 break;
             case R.id.txtCreateAccount:
                 startActivity(new Intent(SignInActivity.this, SignUpActivity.class));
@@ -82,6 +94,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
     /**
      * This method validate all the required fields.
+     *
      * @return
      */
     public boolean validate() {
@@ -103,8 +116,39 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             edtPassword.setError(null);
         }
         return valid;
-      }
     }
+
+    /**
+     *
+     * @param method
+     * @param userId
+     * @param password
+     * @return
+     */
+    public HashMap<String, String> getLoginRequestMap(String method, String userId, String password) {
+        HashMap<String, String> map = new HashMap<>();
+        map.put(Commons.CMD, method);
+        map.put(Commons.USER_ID, userId);
+        map.put(Commons.PASSWORD, password);
+        return map;
+    }
+
+    @Override
+    public void onSuccess(String name, Object object) {
+        if(APIUtils.CMD_SIGN_IN.equalsIgnoreCase(name))
+        {
+
+        }
+        Toast.makeText(mContext,"Login response Success",Toast.LENGTH_LONG).show();
+        startActivity(new Intent(SignInActivity.this, HomeActivity.class));
+        finish();
+    }
+
+    @Override
+    public void onFailure(String name, Object object) {
+        Toast.makeText(mContext,"Login response Failure",Toast.LENGTH_LONG).show();
+    }
+}
 
 
 

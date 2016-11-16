@@ -76,4 +76,8 @@
 
     <string name="HomeTimer">Timer</string>
     <string name="HomeScheduler">Scheduler</string>
+
+    <string name="untrusted_cert_dialog_action_ok">Untrusted Certificate</string>
+    <string name="untrusted_cert_dialog_action_cancel">Cancel</string>
+
 </resources>

@@ -31,6 +31,15 @@
             android:layout_marginTop="@dimen/dim_padding_5dp"
             android:text="Contact Us Screen"
             />
+        <TextView
+            android:id="@+id/tvText"
+            android:layout_below="@id/tvDevider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dim_padding_5dp"
+            android:text="Your Text Here"
+            />
     </RelativeLayout>
 
 </RelativeLayout>

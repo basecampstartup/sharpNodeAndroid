@@ -58,6 +58,7 @@
                     android:drawablePadding="@dimen/dim_padding_20dp"
                     android:gravity="center_vertical"
                     android:hint="@string/CommonEmailID"
+                    android:text="rupeshpatilk@gmail.com"
                     android:inputType="textEmailAddress">
 
                     <requestFocus />
@@ -74,6 +75,7 @@
                     android:drawableLeft="@drawable/ic_password"
                     android:drawablePadding="@dimen/dim_padding_20dp"
                     android:hint="@string/CommonPassword"
+                    android:text="rupeshtonit"
                     android:inputType="textPassword"></EditText>
 
                 <include layout="@layout/divider" />

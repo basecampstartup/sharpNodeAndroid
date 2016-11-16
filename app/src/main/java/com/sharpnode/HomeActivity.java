@@ -104,10 +104,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(mContext, TimerListActivity.class));
                 break;
             case R.id.llLogoutPanel:
-                startActivity(new Intent(mContext, ContactUsActivity.class));
+                finish();
                 break;
             case R.id.llContactUsPanel:
-                finish();
+                startActivity(new Intent(mContext, ContactUsActivity.class));
                 break;
             case R.id.ivSecurity:
                 Toast.makeText(mContext,"Security click",Toast.LENGTH_LONG).show();
@@ -157,6 +157,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         llUserManualPanel.setOnClickListener(this);
         llLogoutPanel.setOnClickListener(this);
         imgSecurity.setOnClickListener(this);
+        llContactUsPanel.setOnClickListener(this);
     }
     /**
      * Method to initialize header options of side panel

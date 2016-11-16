@@ -7,6 +7,7 @@ package com.sharpnode;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,15 +15,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.sharpnode.callback.APIRequestCallbacak;
+import com.sharpnode.commons.Commons;
+import com.sharpnode.servercommunication.APIUtils;
+import com.sharpnode.servercommunication.Communicator;
 import com.sharpnode.utils.EmailSyntaxChecker;
 
-public class SignUpActivity extends AppCompatActivity implements View.OnClickListener{
+import java.util.HashMap;
+
+public class SignUpActivity extends AppCompatActivity implements View.OnClickListener, APIRequestCallbacak{
     private final String TAG = getClass().getSimpleName();
     private Button btnSignUp;
     private Context mContext;
 
     EditText edtName,edtEmail,edtPhone,edtPassword;
     TextView txtAlreadyHaveAccount;
+    String strName,strEmail,strPhone,strPassword;
+    private long mLastClickTime = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,14 +65,25 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnSignUp:
-
+                //This will check if your click on button successively.
+                if (SystemClock.elapsedRealtime() - mLastClickTime < Commons.THRESHOLD_TIME_POST_SCREEN) {
+                    return;
+                }
                /* if (!validate()) {
                     return;
                 }*/
                 //Code for further process Signup.
                 //Navigating to home screen
-                startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
-                this.finish();
+                //Call API Request after check internet connection
+                strEmail=edtEmail.getText().toString().trim();
+                strName=edtName.getText().toString().trim();
+                strPassword=edtPassword.getText().toString().trim();
+                strPhone=edtPhone.getText().toString().trim();
+
+                new Communicator(mContext, APIUtils.CMD_SIGN_IN,
+                        getSignUpRequestMap(APIUtils.CMD_SIGN_UP,
+                                strEmail, strName, strPassword, strPhone));
+
                 break;
             case R.id.txtAlreadyHaveAccount:
                 startActivity(new Intent(SignUpActivity.this, SignInActivity.class));
@@ -111,5 +131,28 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         }
 
         return valid;
+    }
+
+
+    public HashMap<String, String> getSignUpRequestMap(String method, String email,String name,String password, String phone) {
+        HashMap<String, String> map = new HashMap<>();
+        map.put(Commons.CMD, method);
+        map.put(Commons.EMAIL, email);
+        map.put(Commons.PHONE, phone);
+        map.put(Commons.NAME, name);
+        map.put(Commons.PASSWORD, password);
+        return map;
+    }
+
+    @Override
+    public void onSuccess(String name, Object object) {
+        // Toast.makeText(mContext,"SignUp response Success",Toast.LENGTH_LONG).show();
+        startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
+        this.finish();
+    }
+
+    @Override
+    public void onFailure(String name, Object object) {
+        //Toast.makeText(mContext,"Signup response Success",Toast.LENGTH_LONG).show();
     }
 }
