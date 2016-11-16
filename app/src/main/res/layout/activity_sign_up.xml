@@ -108,14 +108,16 @@
 
                 <CheckBox
                     android:id="@+id/chkTerms"
-                    android:layout_width="match_parent"
+                    android:theme="@style/check_box_style"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/SignUpIAgree"
                     android:padding="5dp"
-                    android:layout_marginLeft="-4dp"
+                    android:layout_marginLeft="-5dp"
                     android:layout_marginTop="@dimen/dim_padding_15dp"
                     android:textColor="@color/color_white"
-                    android:textSize="@dimen/default_textsize_medium" />
+                    android:textSize="@dimen/default_textsize_medium"
+                    />
 
                 <Button
                     android:id="@+id/btnSignUp"
