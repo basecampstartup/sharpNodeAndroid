@@ -12,6 +12,7 @@
         android:orientation="horizontal">
 
         <RelativeLayout
+            android:id="@+id/rlSecurityFeature"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dim_padding_10dp"
@@ -113,20 +114,19 @@
             android:layout_marginBottom="@dimen/dim_padding_5dp">
 
             <RelativeLayout
+                android:id="@+id/rlShortcutAppliance"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginRight="@dimen/dim_padding_5dp"
                 android:layout_weight="1"
                 android:background="@drawable/square_box_bg"
                 android:gravity="center">
-
                 <ImageView
                     android:id="@+id/ivAppliancesShortcut"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/ic_shortcut_appliances" />
-
                 <TextView
                     android:id="@+id/tvAppliancesShortcut"
                     android:layout_width="match_parent"
@@ -141,20 +141,19 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rlShortcutScheduler"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/dim_padding_5dp"
                 android:layout_weight="1"
                 android:background="@drawable/square_box_bg"
                 android:gravity="center">
-
                 <ImageView
                     android:id="@+id/ivSchedulerShortcut"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/ic_shortcut_scheduler" />
-
                 <TextView
                     android:id="@+id/tvSchedulerShortcut"
                     android:layout_width="wrap_content"
@@ -177,20 +176,19 @@
             android:layout_weight="1">
 
             <RelativeLayout
+                android:id="@+id/rlShortcutLiveCamera"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginRight="@dimen/dim_padding_5dp"
                 android:layout_weight="1"
                 android:background="@drawable/square_box_bg"
                 android:gravity="center">
-
                 <ImageView
                     android:id="@+id/ivLiveCameraShortcut"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/ic_shortcut_live_camera" />
-
                 <TextView
                     android:id="@+id/tvLiveCameraShortcut"
                     android:layout_width="wrap_content"
@@ -205,8 +203,9 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rlShortcutTimer"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/dim_padding_5dp"
                 android:layout_weight="1"
                 android:background="@drawable/square_box_bg"
@@ -218,7 +217,6 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/ic_shortcut_timer" />
-
                 <TextView
                     android:id="@+id/tvTimerShortcut"
                     android:layout_width="wrap_content"

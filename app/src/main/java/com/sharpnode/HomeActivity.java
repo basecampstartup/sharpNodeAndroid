@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,10 +27,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private ActionBarDrawerToggle toggle;  //toggle to open and close drawer
     private TextView tvUserName, tvUserRole, tvHome, tvSettings, tvInsights, tvIftttConfig, tvAppliances,
             tvUserManual, tvContactUs, tvLogout, tvTemperature, tvHumidity, tvSecurityFeature;
-    private ImageView ivProfilePicture,imgSecurity;
+    private ImageView ivProfilePicture,ivSecurityFeature;
     private LinearLayout llHomePanel, llSettingsPanel, llInsightsPanel, llIftttConfigPanel,
-            llAppliancePanel, llLiveCameraPanel, llUserManualPanel, llLogoutPanel;
-    private LinearLayout llShortcutAppliance, llShortcutScheduler, llShortcutSettings, llShortcutTimer,llContactUsPanel;
+            llAppliancePanel, llLiveCameraPanel, llUserManualPanel, llLogoutPanel, llContactUsPanel;
+    private RelativeLayout rlShortcutAppliance, rlShortcutScheduler, rlShortcutLiveCamera, rlShortcutTimer, rlSecurityFeature;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setBackgroundResource(android.R.color.transparent);
+        //toolbar.setBackgroundResource(android.R.color.transparent);
         mContext = this;
 
         //initialize drawer items
@@ -86,29 +87,35 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.llAppliancePanel:
                 startActivity(new Intent(mContext, AppliancesActivity.class));
                 break;
-            /*case R.id.llLiveCameraPanel:
-                startActivity(new Intent(mContext, LiveCameraActivity.class));
-                break;*/
             case R.id.llUserManualPanel:
                 startActivity(new Intent(mContext, UserMannualActivity.class));
                 break;
-            case R.id.llShortcutAppliance:
+            case R.id.rlShortcutAppliance:
                 startActivity(new Intent(mContext, AppliancesActivity.class));
                 break;
-            case R.id.llShortcutScheduler:
+            case R.id.rlShortcutScheduler:
                 startActivity(new Intent(mContext, SchedulerActivity.class));
                 break;
-            case R.id.llShortcutSettings:
+            case R.id.rlShortcutLiveCamera:
                 startActivity(new Intent(mContext, AccountSettingsActivity.class));
                 break;
-            case R.id.llShortcutTimer:
+            case R.id.rlShortcutTimer:
                 startActivity(new Intent(mContext, TimerListActivity.class));
-                break;
-            case R.id.llLogoutPanel:
-                finish();
                 break;
             case R.id.llContactUsPanel:
                 startActivity(new Intent(mContext, ContactUsActivity.class));
+                break;
+            case R.id.rlSecurityFeature:
+                if ((boolean)ivSecurityFeature.getTag()){
+                    ivSecurityFeature.setImageResource(R.drawable.ic_security_off);
+                    ivSecurityFeature.setTag(false);
+                } else {
+                    ivSecurityFeature.setImageResource(R.drawable.ic_security_on);
+                    ivSecurityFeature.setTag(true);
+                }
+                break;
+            case R.id.llLogoutPanel:
+                finish();
                 break;
         }
     }
@@ -132,28 +139,34 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         llInsightsPanel = (LinearLayout)findViewById(R.id.llInsightsPanel);
         llIftttConfigPanel = (LinearLayout)findViewById(R.id.llIftttConfigPanel);
         llAppliancePanel = (LinearLayout)findViewById(R.id.llAppliancePanel);
-       // llLiveCameraPanel = (LinearLayout)findViewById(R.id.llLiveCameraPanel);
         llUserManualPanel = (LinearLayout)findViewById(R.id.llUserManualPanel);
         llLogoutPanel = (LinearLayout)findViewById(R.id.llLogoutPanel);
         llContactUsPanel = (LinearLayout)findViewById(R.id.llContactUsPanel);
-        llShortcutAppliance = (LinearLayout)findViewById(R.id.llShortcutAppliance);
-        llShortcutScheduler = (LinearLayout)findViewById(R.id.llShortcutScheduler);
-        llShortcutSettings = (LinearLayout)findViewById(R.id.llShortcutSettings);
-        llShortcutTimer = (LinearLayout)findViewById(R.id.llShortcutTimer);
-        /*llShortcutAppliance.setOnClickListener(this);
-        llShortcutScheduler.setOnClickListener(this);
-        llShortcutSettings.setOnClickListener(this);
-        llShortcutTimer.setOnClickListener(this);
-*/
+
+        rlSecurityFeature = (RelativeLayout) findViewById(R.id.rlSecurityFeature);
+        rlShortcutAppliance = (RelativeLayout) findViewById(R.id.rlShortcutAppliance);
+        rlShortcutScheduler = (RelativeLayout)findViewById(R.id.rlShortcutScheduler);
+        rlShortcutLiveCamera = (RelativeLayout)findViewById(R.id.rlShortcutLiveCamera);
+        rlShortcutTimer = (RelativeLayout)findViewById(R.id.rlShortcutTimer);
+
+        rlSecurityFeature.setOnClickListener(this);
+        rlShortcutAppliance.setOnClickListener(this);
+        rlShortcutScheduler.setOnClickListener(this);
+        rlShortcutLiveCamera.setOnClickListener(this);
+        rlShortcutTimer.setOnClickListener(this);
+
         llHomePanel.setOnClickListener(this);
         llSettingsPanel.setOnClickListener(this);
         llInsightsPanel.setOnClickListener(this);
         llIftttConfigPanel.setOnClickListener(this);
         llAppliancePanel.setOnClickListener(this);
-       // llLiveCameraPanel.setOnClickListener(this);
         llUserManualPanel.setOnClickListener(this);
         llLogoutPanel.setOnClickListener(this);
         llContactUsPanel.setOnClickListener(this);
+
+        ivSecurityFeature = (ImageView)findViewById(R.id.ivSecurityFeature);
+        ivSecurityFeature.setImageResource(R.drawable.ic_security_off);
+        ivSecurityFeature.setTag(false);
 
         tvHome = (TextView)findViewById(R.id.tvHome);
         tvSettings = (TextView)findViewById(R.id.tvSettings);

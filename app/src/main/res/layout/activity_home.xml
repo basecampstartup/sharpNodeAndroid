@@ -18,9 +18,10 @@
 
         <include
             android:id="@+id/toolbar"
-            layout="@layout/toolbar" />
+            layout="@layout/toolbar"
+            android:visibility="visible"/>
 
-        <include layout="@layout/layout_home_content" />
+        <include layout="@layout/layout_home_content"/>
     </LinearLayout>
 
     <LinearLayout
