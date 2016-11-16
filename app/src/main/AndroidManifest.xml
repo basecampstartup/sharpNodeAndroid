@@ -44,15 +44,15 @@
         <activity
             android:name=".AppliancesActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.Base" />
         <activity
             android:name=".AccountSettingsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.Base" />
         <activity
             android:name=".SchedulerActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.Base" />
         <activity
             android:name=".image.crop.CropImageActivity"
             android:screenOrientation="portrait" />
@@ -76,40 +76,44 @@
         <activity
             android:name=".ForgotPasswordActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.Base" />
         <activity
             android:name=".AddNewTimerTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.Base" />
         <activity
             android:name=".InsightsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.Base" />
         <activity
             android:name=".IFTTTConfigActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.Base" />
         <activity
             android:name=".LiveCameraActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.Base" />
+        <activity
+            android:name=".UserMannual"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Base" />
         <activity
             android:name=".ContactUsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.Base" />
         <activity
             android:name=".UserMannualActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.Base" />
         <activity
             android:name=".TimerListActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.Base"></activity>
         <activity
             android:name=".DeviceSetupActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.Base"></activity>
+
 
     </application>
 

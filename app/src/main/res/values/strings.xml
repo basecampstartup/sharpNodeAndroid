@@ -20,8 +20,9 @@
     <string name="ApplianceFan">Fan</string>
     <string name="ApplianceCfl">CFL</string>
     <string name="ApplianceLamp">Lamp</string>
+    <string name="ApplianceTV">TV</string>
     <string name="ApplianceMusic">Music</string>
-    <string name="ApplianceXyz1">Xyz1</string>
+    <string name="ApplianceWashingMachine">Washing Machine</string>
     <string name="Appliance_xyz2">Xyz2</string>
 
     // Landing Screen strings

@@ -2,7 +2,5 @@
 <View xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="1dp"
-    android:layout_marginTop="@dimen/dim_padding_10dp"
     android:background="@drawable/edittext_bottom_line">
-
 </View>

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/background"
     tools:context="com.sharpnode.SchedulerActivity">
     <LinearLayout
         android:id="@+id/container_toolbar"
@@ -30,6 +31,7 @@
         android:gravity="center"
         android:drawableLeft="@drawable/ic_add_black_24dp"
         android:text="@string/SchedulerAddNew"
+        android:textColor="@color/color_text"
         android:layout_marginTop="@dimen/dim_padding_5dp"
         />
         </LinearLayout>

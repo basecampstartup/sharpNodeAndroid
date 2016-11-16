@@ -24,7 +24,7 @@
                 android:layout_toLeftOf="@+id/txtCreateAccount"
                 android:gravity="left"
                 android:text="A.C. at night turn off"
-                android:textColor="@color/color_teal"
+                android:textColor="@color/colorButtonBg"
                 android:textSize="@dimen/default_textsize_medium"
                 android:textStyle="bold" />
 
@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:text="03:00 am"
-                android:textColor="@color/color_black1"
+                android:textColor="@color/color_text"
                 android:textSize="@dimen/default_textsize_medium" />
         </RelativeLayout>
 
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:paddingRight="@dimen/dim_padding_5dp"
                 android:text="Turn ON "
-                android:textColor="@color/color_black1"
+                android:textColor="@color/color_text"
                 android:textSize="@dimen/default_textsize_medium"
                 android:textStyle="bold" />
 

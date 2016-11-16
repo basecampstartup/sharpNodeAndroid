@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     android:orientation="vertical">
-
     <LinearLayout
         android:id="@+id/container_toolbar"
         android:layout_width="match_parent"
@@ -15,7 +15,6 @@
             android:id="@+id/toolbar"
             layout="@layout/toolbar" />
     </LinearLayout>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -38,7 +37,7 @@
                 android:layout_margin="@dimen/dim_padding_20dp"
                 android:clickable="true"
                 android:scaleType="fitXY"
-                android:src="@mipmap/ic_launcher"
+                android:src="@drawable/default_profile"
                 app:biv_maskDrawable="@drawable/circle_mask" />
 
             <LinearLayout
@@ -62,6 +61,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/CommonEmailID"
+                    android:enabled="false"
                     android:inputType="textEmailAddress"></EditText>
 
                 <EditText
@@ -85,5 +85,7 @@
         </LinearLayout>
 
     </ScrollView>
+
+
 
 </LinearLayout>
