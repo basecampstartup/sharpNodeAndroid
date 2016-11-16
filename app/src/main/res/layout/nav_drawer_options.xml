@@ -1,271 +1,263 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorAppWhite"
-        android:orientation="vertical"
-        >
-
-        <include
-            layout="@layout/nav_header_home"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/drawer_header"
-            />
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/llHomePanel"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_marginLeft="@dimen/dim_padding_15dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/ivHome"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:src="@mipmap/ic_launcher"
-                android:visibility="gone"></ImageView>
+            <include
+                android:id="@+id/drawer_header"
+                layout="@layout/nav_header_home"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-            <TextView
-                android:id="@+id/tvHome"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/llHomePanel"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:padding="@dimen/dim_padding_10dp"
-                android:text="@string/LeftPanelHome"
-                android:textColor="@android:color/holo_orange_dark"
-                android:textSize="@dimen/default_textsize_medium"></TextView>
+                android:layout_marginLeft="@dimen/dim_padding_15dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvHome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dim_padding_5dp"
+                    android:layout_marginTop="@dimen/dim_padding_5dp"
+                    android:padding="@dimen/dim_padding_10dp"
+                    android:text="@string/LeftPanelHome"
+                    android:textColor="@android:color/holo_orange_dark"
+                    android:textSize="@dimen/default_textsize_medium"></TextView>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/md_grey_200"></View>
+
+            <LinearLayout
+                android:id="@+id/llSettingsPanel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dim_padding_15dp"
+                android:layout_marginTop="@dimen/dim_padding_10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivSettings"
+                    android:layout_width="@dimen/left_panel_icon_hight"
+                    android:layout_height="@dimen/left_panel_icon_hight"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_settings"></ImageView>
+
+                <TextView
+                    android:id="@+id/tvSettings"
+                    style="@style/text_view_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dim_padding_5dp"
+                    android:padding="@dimen/dim_padding_10dp"
+                    android:text="@string/LeftPanelSettings"></TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llInsightsPanel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dim_padding_15dp"
+                android:layout_marginTop="@dimen/dim_padding_10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivInsights"
+                    android:layout_width="@dimen/left_panel_icon_hight"
+                    android:layout_height="@dimen/left_panel_icon_hight"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_insight"></ImageView>
+
+                <TextView
+                    android:id="@+id/tvInsights"
+                    style="@style/text_view_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/dim_padding_5dp"
+                    android:padding="@dimen/dim_padding_10dp"
+                    android:text="@string/LeftPanelInsights"></TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llIftttConfigPanel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dim_padding_15dp"
+                android:layout_marginTop="@dimen/dim_padding_10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivIftttConfig"
+                    android:layout_width="@dimen/left_panel_icon_hight"
+                    android:layout_height="@dimen/left_panel_icon_hight"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_ifttt_config"></ImageView>
+
+                <TextView
+                    android:id="@+id/tvIftttConfig"
+                    style="@style/text_view_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/dim_padding_5dp"
+                    android:padding="@dimen/dim_padding_10dp"
+                    android:text="@string/LeftPanelIftttConfig"></TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llAppliancePanel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dim_padding_15dp"
+                android:layout_marginTop="@dimen/dim_padding_10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivAppliances"
+                    android:layout_width="@dimen/left_panel_icon_hight"
+                    android:layout_height="@dimen/left_panel_icon_hight"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_appliances"></ImageView>
+
+                <TextView
+                    android:id="@+id/tvAppliances"
+                    style="@style/text_view_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/dim_padding_5dp"
+                    android:padding="@dimen/dim_padding_10dp"
+                    android:text="@string/LeftPanelAppliances"></TextView>
+            </LinearLayout>
+
+            <!--<LinearLayout
+                android:id="@+id/llLiveCameraPanel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dim_padding_15dp"
+                android:layout_marginTop="@dimen/dim_padding_5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivLiveCamera"
+                    android:layout_width="@dimen/left_panel_icon_hight"
+                    android:layout_height="@dimen/left_panel_icon_hight"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_insight"></ImageView>
+
+                <TextView
+                    android:id="@+id/tvLiveCamera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/dim_padding_10dp"
+                    android:text="@string/LeftPanelLiveCamera"
+                    android:textColor="@color/colorAppBlack"
+                    android:textSize="@dimen/default_textsize_medium"></TextView>
+            </LinearLayout>-->
+
+            <LinearLayout
+                android:id="@+id/llUserManualPanel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dim_padding_15dp"
+                android:layout_marginTop="@dimen/dim_padding_10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivUserManual"
+                    android:layout_width="@dimen/left_panel_icon_hight"
+                    android:layout_height="@dimen/left_panel_icon_hight"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_username"></ImageView>
+
+                <TextView
+                    android:id="@+id/tvUserManual"
+                    style="@style/text_view_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/dim_padding_5dp"
+                    android:padding="@dimen/dim_padding_10dp"
+                    android:text="@string/LeftPanelUserManuals"></TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llContactUsPanel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dim_padding_15dp"
+                android:layout_marginTop="@dimen/dim_padding_10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivContactUs"
+                    android:layout_width="@dimen/left_panel_icon_hight"
+                    android:layout_height="@dimen/left_panel_icon_hight"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_contactus"></ImageView>
+
+                <TextView
+                    android:id="@+id/tvContactUs"
+                    style="@style/text_view_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/dim_padding_5dp"
+                    android:padding="@dimen/dim_padding_10dp"
+                    android:text="@string/LeftPanelContactUs"></TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llLogoutPanel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dim_padding_15dp"
+                android:layout_marginTop="@dimen/dim_padding_10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivLogout"
+                    android:layout_width="@dimen/left_panel_icon_hight"
+                    android:layout_height="@dimen/left_panel_icon_hight"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/ic_launcher"
+                    android:visibility="gone"></ImageView>
+
+                <TextView
+                    android:id="@+id/tvLogout"
+                    style="@style/text_view_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/dim_padding_5dp"
+                    android:padding="@dimen/dim_padding_10dp"
+                    android:text="@string/LeftPanelLogout"></TextView>
+            </LinearLayout>
         </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/md_grey_200">
-        </View>
-
-        <LinearLayout
-            android:id="@+id/llSettingsPanel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/dim_padding_5dp"
-            android:layout_marginLeft="@dimen/dim_padding_15dp">
-
-            <ImageView
-                android:id="@+id/ivSettings"
-                android:layout_width="@dimen/left_panel_icon_hight"
-                android:layout_height="@dimen/left_panel_icon_hight"
-                android:layout_centerVertical="true"
-                android:src="@mipmap/ic_launcher"></ImageView>
-
-            <TextView
-                android:id="@+id/tvSettings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:padding="@dimen/dim_padding_10dp"
-                android:text="@string/LeftPanelSettings"
-                android:textColor="@color/colorAppBlack"
-                android:textSize="@dimen/default_textsize_medium"></TextView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llInsightsPanel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/dim_padding_5dp"
-            android:layout_marginLeft="@dimen/dim_padding_15dp">
-
-            <ImageView
-                android:id="@+id/ivInsights"
-                android:layout_width="@dimen/left_panel_icon_hight"
-                android:layout_height="@dimen/left_panel_icon_hight"
-                android:layout_centerVertical="true"
-                android:src="@mipmap/ic_launcher"></ImageView>
-
-            <TextView
-                android:id="@+id/tvInsights"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:padding="@dimen/dim_padding_10dp"
-                android:text="@string/LeftPanelInsights"
-                android:textColor="@color/colorAppBlack"
-                android:textSize="@dimen/default_textsize_medium"></TextView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llIftttConfigPanel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/dim_padding_5dp"
-            android:layout_marginLeft="@dimen/dim_padding_15dp">
-
-            <ImageView
-                android:id="@+id/ivIftttConfig"
-                android:layout_width="@dimen/left_panel_icon_hight"
-                android:layout_height="@dimen/left_panel_icon_hight"
-                android:layout_centerVertical="true"
-                android:src="@mipmap/ic_launcher"></ImageView>
-
-            <TextView
-                android:id="@+id/tvIftttConfig"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:padding="@dimen/dim_padding_10dp"
-                android:text="@string/LeftPanelIftttConfig"
-                android:textColor="@color/colorAppBlack"
-                android:textSize="@dimen/default_textsize_medium"></TextView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llAppliancePanel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/dim_padding_5dp"
-            android:layout_marginLeft="@dimen/dim_padding_15dp">
-
-            <ImageView
-                android:id="@+id/ivAppliances"
-                android:layout_width="@dimen/left_panel_icon_hight"
-                android:layout_height="@dimen/left_panel_icon_hight"
-                android:layout_centerVertical="true"
-                android:src="@mipmap/ic_launcher"></ImageView>
-
-            <TextView
-                android:id="@+id/tvAppliances"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:padding="@dimen/dim_padding_10dp"
-                android:text="@string/LeftPanelAppliances"
-                android:textColor="@color/colorAppBlack"
-                android:textSize="@dimen/default_textsize_medium"></TextView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llLiveCameraPanel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/dim_padding_5dp"
-            android:layout_marginLeft="@dimen/dim_padding_15dp">
-
-            <ImageView
-                android:id="@+id/ivLiveCamera"
-                android:layout_width="@dimen/left_panel_icon_hight"
-                android:layout_height="@dimen/left_panel_icon_hight"
-                android:layout_centerVertical="true"
-                android:src="@mipmap/ic_launcher"></ImageView>
-
-            <TextView
-                android:id="@+id/tvLiveCamera"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:padding="@dimen/dim_padding_10dp"
-                android:text="@string/LeftPanelLiveCamera"
-                android:textColor="@color/colorAppBlack"
-                android:textSize="@dimen/default_textsize_medium"></TextView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llUserManualPanel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/dim_padding_5dp"
-            android:layout_marginLeft="@dimen/dim_padding_15dp">
-
-            <ImageView
-                android:id="@+id/ivUserManual"
-                android:layout_width="@dimen/left_panel_icon_hight"
-                android:layout_height="@dimen/left_panel_icon_hight"
-                android:layout_centerVertical="true"
-                android:src="@mipmap/ic_launcher"></ImageView>
-
-            <TextView
-                android:id="@+id/tvUserManual"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:padding="@dimen/dim_padding_10dp"
-                android:text="@string/LeftPanelUserManuals"
-                android:textColor="@color/colorAppBlack"
-                android:textSize="@dimen/default_textsize_medium"></TextView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llContactUsPanel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/dim_padding_5dp"
-            android:layout_marginLeft="@dimen/dim_padding_15dp">
-
-            <ImageView
-                android:id="@+id/ivContactUs"
-                android:layout_width="@dimen/left_panel_icon_hight"
-                android:layout_height="@dimen/left_panel_icon_hight"
-                android:layout_centerVertical="true"
-                android:src="@mipmap/ic_launcher"></ImageView>
-
-            <TextView
-                android:id="@+id/tvContactUs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:padding="@dimen/dim_padding_10dp"
-                android:text="@string/LeftPanelContactUs"
-                android:textColor="@color/colorAppBlack"
-                android:textSize="@dimen/default_textsize_medium"></TextView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llLogoutPanel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/dim_padding_5dp"
-            android:layout_marginLeft="@dimen/dim_padding_15dp">
-
-            <ImageView
-                android:id="@+id/ivLogout"
-                android:layout_width="@dimen/left_panel_icon_hight"
-                android:layout_height="@dimen/left_panel_icon_hight"
-                android:layout_centerVertical="true"
-                android:src="@mipmap/ic_launcher"
-                android:visibility="gone"></ImageView>
-
-            <TextView
-                android:id="@+id/tvLogout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:padding="@dimen/dim_padding_10dp"
-                android:text="@string/LeftPanelLogout"
-                android:textColor="@color/colorAppBlack"
-                android:textSize="@dimen/default_textsize_large"></TextView>
-        </LinearLayout>
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</LinearLayout>

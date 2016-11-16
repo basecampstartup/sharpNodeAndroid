@@ -16,7 +16,8 @@
         android:layout_gravity="center_vertical"
         android:clickable="true"
         android:scaleType="fitXY"
-        android:src="@mipmap/ic_launcher"
+        android:layout_marginLeft="@dimen/dim_padding_5dp"
+        android:src="@drawable/default_profile"
         app:biv_maskDrawable="@drawable/circle_mask" />
 
     <LinearLayout

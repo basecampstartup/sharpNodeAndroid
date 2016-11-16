@@ -24,7 +24,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private Context mContext;
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;  //toggle to open and close drawer
-    private TextView tvUserName, tvUserRole;
+    private TextView tvUserName, tvUserRole, tvHome, tvSettings, tvInsights, tvIftttConfig, tvAppliances,
+            tvUserManual, tvContactUs, tvLogout;
     private ImageView ivProfilePicture,imgSecurity;
     private LinearLayout llHomePanel, llSettingsPanel, llInsightsPanel, llIftttConfigPanel,
             llAppliancePanel, llLiveCameraPanel, llUserManualPanel, llLogoutPanel;
@@ -85,9 +86,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.llAppliancePanel:
                 startActivity(new Intent(mContext, AppliancesActivity.class));
                 break;
-            case R.id.llLiveCameraPanel:
+            /*case R.id.llLiveCameraPanel:
                 startActivity(new Intent(mContext, LiveCameraActivity.class));
-                break;
+                break;*/
             case R.id.llUserManualPanel:
                 startActivity(new Intent(mContext, UserMannualActivity.class));
                 break;
@@ -134,7 +135,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         llInsightsPanel = (LinearLayout)findViewById(R.id.llInsightsPanel);
         llIftttConfigPanel = (LinearLayout)findViewById(R.id.llIftttConfigPanel);
         llAppliancePanel = (LinearLayout)findViewById(R.id.llAppliancePanel);
-        llLiveCameraPanel = (LinearLayout)findViewById(R.id.llLiveCameraPanel);
+       // llLiveCameraPanel = (LinearLayout)findViewById(R.id.llLiveCameraPanel);
         llUserManualPanel = (LinearLayout)findViewById(R.id.llUserManualPanel);
         llLogoutPanel = (LinearLayout)findViewById(R.id.llLogoutPanel);
         llContactUsPanel = (LinearLayout)findViewById(R.id.llContactUsPanel);
@@ -153,11 +154,29 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         llInsightsPanel.setOnClickListener(this);
         llIftttConfigPanel.setOnClickListener(this);
         llAppliancePanel.setOnClickListener(this);
-        llLiveCameraPanel.setOnClickListener(this);
+       // llLiveCameraPanel.setOnClickListener(this);
         llUserManualPanel.setOnClickListener(this);
         llLogoutPanel.setOnClickListener(this);
         imgSecurity.setOnClickListener(this);
         llContactUsPanel.setOnClickListener(this);
+
+        tvHome = (TextView)findViewById(R.id.tvHome);
+        tvSettings = (TextView)findViewById(R.id.tvSettings);
+        tvInsights = (TextView)findViewById(R.id.tvInsights);
+        tvIftttConfig = (TextView)findViewById(R.id.tvIftttConfig);
+        tvAppliances = (TextView)findViewById(R.id.tvAppliances);
+        tvUserManual = (TextView)findViewById(R.id.tvUserManual);
+        tvContactUs = (TextView)findViewById(R.id.tvContactUs);
+        tvLogout = (TextView)findViewById(R.id.tvLogout);
+
+        tvHome.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        tvSettings.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        tvInsights.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        tvIftttConfig.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        tvAppliances.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        tvUserManual.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        tvContactUs.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        tvLogout.setTypeface(SNApplication.APP_FONT_TYPEFACE);
     }
     /**
      * Method to initialize header options of side panel
@@ -166,6 +185,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         ivProfilePicture = (ImageView) findViewById(R.id.ivProfilePicture);
         tvUserName = (TextView) findViewById(R.id.tvUserName);
         tvUserRole = (TextView) findViewById(R.id.tvUserRole);
+
+        tvUserName.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        tvUserRole.setTypeface(SNApplication.APP_FONT_TYPEFACE);
     }
 
     /**
