@@ -106,26 +106,16 @@
 
                 <include layout="@layout/divider" />
 
-                <LinearLayout
-                    android:id="@+id/linearLayout1"
-                    android:layout_width="wrap_content"
+                <CheckBox
+                    android:id="@+id/chkTerms"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/margin_10dp"
-                    android:layout_marginRight="@dimen/margin_10dp"
+                    android:text="@string/SignUpIAgree"
+                    android:padding="5dp"
+                    android:layout_marginLeft="-4dp"
                     android:layout_marginTop="@dimen/dim_padding_15dp"
-                    android:background="@android:color/transparent"
-                    android:paddingLeft="@dimen/dim_padding_5dp"
-                    android:paddingRight="@dimen/dim_padding_5dp"
-                    android:paddingTop="@dimen/dim_padding_5dp">
-
-                    <CheckBox
-                        android:id="@+id/chkTerms"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/SignUpIAgree"
-                        android:textColor="@color/color_white"
-                        android:textSize="@dimen/default_textsize_medium" />
-                </LinearLayout>
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/default_textsize_medium" />
 
                 <Button
                     android:id="@+id/btnSignUp"

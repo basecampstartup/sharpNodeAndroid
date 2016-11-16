@@ -56,6 +56,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         txtResetPassword.setOnClickListener(this);
         txtCreateAccount.setOnClickListener(this);
 
+        ((TextView)findViewById(R.id.tvLable)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
         btnSignIn.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         edtEmail.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         edtPassword.setTypeface(SNApplication.APP_FONT_TYPEFACE);

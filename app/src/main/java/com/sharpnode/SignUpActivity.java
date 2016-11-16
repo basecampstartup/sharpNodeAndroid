@@ -53,6 +53,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         txtAlreadyHaveAccount=(TextView)findViewById(R.id.txtAlreadyHaveAccount);
         txtAlreadyHaveAccount.setOnClickListener(this);
 
+        ((TextView)findViewById(R.id.tvLable)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
         btnSignUp.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         edtName.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         edtEmail.setTypeface(SNApplication.APP_FONT_TYPEFACE);
