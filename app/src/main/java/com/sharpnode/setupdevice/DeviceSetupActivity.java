@@ -23,8 +23,8 @@ import io.particle.android.sdk.utils.ui.Toaster;
 
 public class DeviceSetupActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private final String TAG = getClass().getSimpleName();
     public final static String EXTRA_SETUP_LAUNCHED_TIME = "io.particle.devicesetup.sharpnode.SETUP_LAUNCHED_TIME";
+    private final String TAG = getClass().getSimpleName();
     private Context mContext;
     private Button btnSetupDevice;
     private ParticleDeviceSetupLibrary.DeviceSetupCompleteReceiver receiver = null;
@@ -35,7 +35,7 @@ public class DeviceSetupActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device_setup);
 
-        mContext=this;
+        mContext = this;
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
       /*  getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -49,15 +49,15 @@ public class DeviceSetupActivity extends AppCompatActivity implements View.OnCli
 
             @Override
             public void onSetupSuccess(@NonNull String configuredDeviceId) {
-                Logger.i(TAG, "onSetupSuccess, deviceId="+configuredDeviceId);
+                Logger.i(TAG, "onSetupSuccess, deviceId=" + configuredDeviceId);
                 AppSPrefs.setDeviceId(configuredDeviceId);
 
                 Toaster.s(mContext, "Hooray, you set up device " + configuredDeviceId);
-                try{
-                    if(receiver!=null){
+                try {
+                    if (receiver != null) {
                         receiver.unregister(mContext);
                     }
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }

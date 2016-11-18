@@ -20,7 +20,6 @@ public class DeviceSetupCompleteIntentBuilder implements SetupCompleteIntentBuil
     public Intent buildIntent(Context ctx, SetupResult result) {
         Intent intent = new Intent(ctx, DeviceSetupActivity.class);
         intent.putExtra(DeviceSetupActivity.EXTRA_SETUP_LAUNCHED_TIME, setupLaunchedTime);
-
         return intent;
     }
 }

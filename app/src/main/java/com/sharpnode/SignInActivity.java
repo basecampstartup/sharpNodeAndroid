@@ -27,11 +27,11 @@ import java.util.HashMap;
 
 public class SignInActivity extends AppCompatActivity implements View.OnClickListener, APIRequestCallbacak {
     private final String TAG = getClass().getSimpleName();
-    private Button btnSignIn;
-    private Context mContext;
     EditText edtEmail, edtPassword;
     TextView txtResetPassword, txtCreateAccount;
-    String strEmail,strPassword;
+    String strEmail, strPassword;
+    private Button btnSignIn;
+    private Context mContext;
     private long mLastClickTime = 0;
 
     @Override
@@ -49,14 +49,14 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     public void initializeComponents() {
         btnSignIn = (Button) findViewById(R.id.btnSignIn);
         btnSignIn.setOnClickListener(this);
-        edtEmail=(EditText)findViewById(R.id.edtEmailID);
-        edtPassword=(EditText)findViewById(R.id.edtPassword);
-        txtResetPassword=(TextView)findViewById(R.id.txtResetPassword);
-        txtCreateAccount=(TextView)findViewById(R.id.txtCreateAccount);
+        edtEmail = (EditText) findViewById(R.id.edtEmailID);
+        edtPassword = (EditText) findViewById(R.id.edtPassword);
+        txtResetPassword = (TextView) findViewById(R.id.txtResetPassword);
+        txtCreateAccount = (TextView) findViewById(R.id.txtCreateAccount);
         txtResetPassword.setOnClickListener(this);
         txtCreateAccount.setOnClickListener(this);
 
-        ((TextView)findViewById(R.id.tvLable)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        ((TextView) findViewById(R.id.tvLable)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
         btnSignIn.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         edtEmail.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         edtPassword.setTypeface(SNApplication.APP_FONT_TYPEFACE);
@@ -72,8 +72,8 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 if (SystemClock.elapsedRealtime() - mLastClickTime < Commons.THRESHOLD_TIME_POST_SCREEN) {
                     return;
                 }
-                strEmail=edtEmail.getText().toString().trim();
-                strPassword=edtPassword.getText().toString().trim();
+                strEmail = edtEmail.getText().toString().trim();
+                strPassword = edtPassword.getText().toString().trim();
 
                 //Call API Request after check internet connection
                 new Communicator(mContext, APIUtils.CMD_SIGN_IN,
@@ -120,7 +120,6 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     /**
-     *
      * @param method
      * @param userId
      * @param password
@@ -136,18 +135,17 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onSuccess(String name, Object object) {
-        if(APIUtils.CMD_SIGN_IN.equalsIgnoreCase(name))
-        {
+        if (APIUtils.CMD_SIGN_IN.equalsIgnoreCase(name)) {
 
         }
-        Toast.makeText(mContext,"Login response Success",Toast.LENGTH_LONG).show();
+        Toast.makeText(mContext, "Login response Success", Toast.LENGTH_LONG).show();
         startActivity(new Intent(SignInActivity.this, HomeActivity.class));
         finish();
     }
 
     @Override
     public void onFailure(String name, Object object) {
-        Toast.makeText(mContext,"Login response Failure",Toast.LENGTH_LONG).show();
+        Toast.makeText(mContext, "Login response Failure", Toast.LENGTH_LONG).show();
     }
 }
 

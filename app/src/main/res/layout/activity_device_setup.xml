@@ -7,24 +7,24 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/dim_padding_10dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="@dimen/dim_padding_10dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Let's configure your SharpNode device"
-            android:textColor="@color/color_teal"
             android:gravity="center"
             android:padding="@dimen/dim_padding_5dp"
+            android:text="Let's configure your SharpNode device"
+            android:textColor="@color/color_teal"
             android:textSize="@dimen/dim_font_size_16"></TextView>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dim_padding_10dp"
             android:text="Instruction:"
             android:textColor="@color/md_red_A200"
-            android:layout_marginTop="@dimen/dim_padding_10dp"
             android:textSize="@dimen/dim_font_size_22"></TextView>
 
         <TextView
@@ -40,41 +40,40 @@
             android:id="@+id/tvInstruction2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dim_padding_5dp"
             android:text="Press and hold setup button for a little while if LED indicator is not blinking blue."
             android:textColor="@color/colorAppWhite"
-            android:layout_marginTop="@dimen/dim_padding_5dp"
             android:textSize="@dimen/dim_font_size_18"></TextView>
 
         <TextView
             android:id="@+id/tvInstruction3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dim_padding_5dp"
             android:text="Connect your Smart Phone or Laptop to new WiFi hotspot."
             android:textColor="@color/colorAppWhite"
-            android:layout_marginTop="@dimen/dim_padding_5dp"
             android:textSize="@dimen/dim_font_size_18"></TextView>
 
         <TextView
             android:id="@+id/tvInstruction4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dim_padding_5dp"
             android:text="After connecting to WiFi 'SharpNode-xxxxxx', click on Device Connect."
             android:textColor="@color/colorAppWhite"
-            android:layout_marginTop="@dimen/dim_padding_5dp"
             android:textSize="@dimen/dim_font_size_18"></TextView>
 
 
         <Button
             android:id="@+id/btnSetupDevice"
             style="@style/button_style"
-            android:padding="@dimen/dim_padding_10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="Device Connect"
             android:layout_gravity="center"
-            android:textColor="@color/colorAppWhite"
             android:layout_marginTop="50dp"
-            ></Button>
+            android:padding="@dimen/dim_padding_10dp"
+            android:text="Device Connect"
+            android:textAllCaps="false"
+            android:textColor="@color/colorAppWhite"></Button>
     </LinearLayout>
 </ScrollView>

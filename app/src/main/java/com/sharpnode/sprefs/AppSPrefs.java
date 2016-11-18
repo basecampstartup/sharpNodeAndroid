@@ -15,6 +15,10 @@ public class AppSPrefs {
     private static SharedPreferences sPrefs;
     private static SharedPreferences.Editor editor;
 
+    /**
+     *
+     * @return
+     */
     private static SharedPreferences getSPrefsInstance() {
         if (sPrefs == null) {
             sPrefs = PreferenceManager.getDefaultSharedPreferences(ContextHelper.getContext());

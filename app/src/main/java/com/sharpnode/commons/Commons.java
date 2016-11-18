@@ -19,8 +19,4 @@ public class Commons {
     public static final String NAME = "name";
     public static final String CONFIGURED_DEVICE_ID = "device_id";
     public static final String ANDROID_DEVICE_ID = "android_device_id";
-
-
-
-
 }

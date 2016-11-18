@@ -185,7 +185,6 @@
                 android:layout_marginTop="@dimen/dim_padding_5dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
-
                 <ImageView
                     android:id="@+id/ivDeviceManual"
                     android:layout_width="wrap_content"
@@ -200,8 +199,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:padding="@dimen/dim_padding_10dp"
-                    android:text="@string/LeftPanelDeviceManual"
-                    ></TextView>
+                    android:text="@string/LeftPanelDeviceManual"></TextView>
             </LinearLayout>
 
             <LinearLayout

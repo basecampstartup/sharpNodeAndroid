@@ -17,12 +17,16 @@ import io.particle.android.sdk.devicesetup.ParticleDeviceSetupLibrary;
  * Created by admin on 11/9/2016.
  */
 
-public class SNApplication extends MultiDexApplication{
+public class SNApplication extends MultiDexApplication {
+    public static final String TAG = SNApplication.class.getSimpleName();
     public static SNApplication snApp;
-
     public static Typeface APP_FONT_TYPEFACE;
     private RequestQueue mRequestQueue;
-    public static final String TAG = SNApplication.class.getSimpleName();
+
+    public static synchronized SNApplication getInstance() {
+        return snApp;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -31,10 +35,6 @@ public class SNApplication extends MultiDexApplication{
 
         APP_FONT_TYPEFACE = Utils.getTypeface(this, 1);
         ParticleDeviceSetupLibrary.init(this, DeviceSetupActivity.class);
-    }
-
-    public static synchronized SNApplication getInstance() {
-        return snApp;
     }
 
     public RequestQueue getRequestQueue() {
