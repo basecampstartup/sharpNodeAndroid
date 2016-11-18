@@ -58,7 +58,8 @@
 
     //Scheduler Settings
     <string name="SchedulerList">Scheduler List</string>
-    <string name="SchedulerAddNew">ADD NEW</string>
+    <string name="SchedulerAddNew">Add New</string>
+    <string name="SchedulerAddNewTask">Add New Task</string>
     //Crop Screen
     <string name="Done">Done</string>
     <string name="CropImage">Crop Image</string>
@@ -82,5 +83,20 @@
 
     <string name="untrusted_cert_dialog_action_ok">Untrusted Certificate</string>
     <string name="untrusted_cert_dialog_action_cancel">Cancel</string>
+
+    <string name="AddTaskTaskName">Task Name</string>
+    <string name="SelectAppliance">Select Appliance</string>
+    <string name="SelectApplianceLabel">Select Appliance do you want to schedule:</string>
+    <string name="ApplianceOperation">Select Operation for selected Appliance:</string>
+
+    <string name="ScheduleDateTime">Select Schedule Days and time:</string>
+    <string name="SelectTime">Select time:</string>
+    <string name="EveryWeek">Every Week:</string>
+    <string name="WeekDaysfs">Week days:</string>
+
+    <string name="commonOn">ON</string>
+    <string name="commonOff">OFF</string>
+    <string name="ScheduleBtn">Schedule</string>
+    <string name="DefaultTime">00:00 am</string>
 
 </resources>

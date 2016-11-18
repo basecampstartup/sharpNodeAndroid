@@ -104,11 +104,18 @@
         <activity
             android:name=".TimerListActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Base"></activity>
+            android:theme="@style/AppTheme.Base" />
+
+        <activity
+            android:name=".AddScheduleTaskActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Base" />
+
         <activity
             android:name=".setupdevice.DeviceSetupActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Base"></activity>
+            android:theme="@style/AppTheme.Base" />
+            </activity>
 
         <!-- All of the following are from the device setup lib,
     and must be present in your app's manifest or you will

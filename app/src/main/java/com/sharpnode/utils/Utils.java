@@ -29,8 +29,11 @@ import com.sharpnode.SNApplication;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.text.DateFormat;
+import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by admin on 11/9/2016.
@@ -239,4 +242,50 @@ public class Utils {
 
         }
     }
+
+
+
+    /**
+     * Method to return formatted time according to locale
+     *
+     * @param context
+     * @param mDate
+     * @param timeStyle
+     * @return
+     */
+    public static String formatTime(Context context, Date mDate, TimeStyleEnum.StyleType timeStyle) {
+        switch (timeStyle) {
+            case SHORT:
+//                DateFormat shortTimeFormat = DateFormat.getTimeInstance(DateFormat.SHORT, getSysLocale(context));
+//                return shortTimeFormat.format(mDate);
+                SimpleDateFormat sdf = new SimpleDateFormat(Utils.getTimeFormat(context));
+                return sdf.format(mDate);
+            case LONG:
+                DateFormat longTimeFormat = DateFormat.getTimeInstance(DateFormat.LONG, getSysLocale(context));
+                return longTimeFormat.format(mDate);
+            default:
+                return "";
+
+        }
+    }
+
+    /**
+     *
+     * @param context
+     * @return
+     */
+    public static String getTimeFormat(Context context) {
+        Format systemTimeFormat = android.text.format.DateFormat.getTimeFormat(context);
+        return ((SimpleDateFormat) systemTimeFormat).toLocalizedPattern();
+    }
+
+    /**
+     * method to return system locale
+     *
+     * @return
+     */
+    private static Locale getSysLocale(Context context) {
+        return context.getResources().getConfiguration().locale;
+    }
+
 }

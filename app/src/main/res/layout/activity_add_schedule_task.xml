@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_add_schedule_task"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    tools:context="com.sharpnode.AddScheduleTaskActivity">
+
+    <LinearLayout
+        android:id="@+id/container_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:fillViewport="true"
+        android:isScrollContainer="false"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:id="@+id/rlRoot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/margin_15dp"
+            android:orientation="horizontal"
+            android:padding="@dimen/dim_padding_10dp">
+
+            <LinearLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin">
+
+                <EditText
+                    android:id="@+id/edtTaskName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_10dp"
+                    android:background="@null"
+                    android:hint="@string/AddTaskTaskName"
+                    android:inputType="textPersonName"
+                    android:padding="@dimen/dim_padding_5dp"
+                    android:textColor="@color/colorAppWhite"
+                    android:textColorHint="@color/colorAppWhite" />
+
+                <include layout="@layout/divider" />
+
+                <TextView
+                    android:id="@+id/tvSelectApplianceLbl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:text="@string/SelectApplianceLabel"
+                    android:textColor="@color/colorButtonBg"
+                    android:textSize="@dimen/default_textsize_large" />
+
+                <TextView
+                    android:id="@+id/tvSelectAppliance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_10dp"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:drawableRight="@drawable/ic_arrow_drop_down_black_24dp"
+                    android:gravity="center"
+                    android:text="@string/SelectAppliance"
+                    android:textColor="@color/colorAppWhite"
+                    android:textSize="@dimen/default_textsize_medium" />
+
+                <include layout="@layout/divider" />
+
+                <TextView
+                    android:id="@+id/tvOperationLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:text="@string/ApplianceOperation"
+                    android:textColor="@color/colorButtonBg"
+                    android:textSize="@dimen/default_textsize_large" />
+
+                <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/radGroupOnOff"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_10dp"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/radOn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/commonOn"
+                        android:checked="true"
+                        android:textColor="@color/color_text"
+                        android:theme="@style/AppRadioButton" />
+
+                    <RadioButton
+                        android:id="@+id/radOff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/commonOff"
+                        android:textColor="@color/color_text"
+                        android:theme="@style/AppRadioButton" />
+                </RadioGroup>
+
+                <include layout="@layout/divider" />
+
+
+                <TextView
+                    android:id="@+id/tvScheduleDayTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:text="@string/ScheduleDateTime"
+                    android:textColor="@color/colorButtonBg"
+                    android:textSize="@dimen/default_textsize_large" />
+
+                <TextView
+                    android:id="@+id/tvSelectTimeLbl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:text="@string/SelectTime"
+                    android:textColor="@color/color_gray"
+                    android:textSize="@dimen/default_textsize_large" />
+
+                <TextView
+                    android:id="@+id/tvSelectedTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_10dp"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:gravity="center"
+                    android:text="@string/DefaultTime"
+                    android:textColor="@color/colorAppWhite"
+                    android:textSize="@dimen/default_textsize_medium" />
+
+                <include layout="@layout/divider" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvEveryWeekLbl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/EveryWeek"
+                        android:textColor="@color/color_gray"
+                        android:textSize="@dimen/default_textsize_large" />
+
+                    <CheckBox
+
+                        android:id="@+id/chkEveryWeek"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/default_textsize_medium"
+                        android:theme="@style/AppCheckBoxNormal" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_10dp"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/chkSu"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:gravity="center"
+                        android:padding="@dimen/dim_padding_2dp"
+                        android:text="S"
+                        android:textColor="@color/color_text"
+                        android:textSize="@dimen/default_textsize_medium" />
+
+                    <TextView
+                        android:id="@+id/chkMo"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="@dimen/margin_10dp"
+                        android:gravity="center"
+                        android:padding="@dimen/dim_padding_2dp"
+                        android:text="M"
+                        android:textColor="@color/color_text"
+                        android:textSize="@dimen/default_textsize_medium" />
+
+                    <TextView
+                        android:id="@+id/chkTu"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="@dimen/margin_10dp"
+                        android:gravity="center"
+                        android:padding="@dimen/dim_padding_2dp"
+                        android:text="T"
+                        android:textColor="@color/color_text"
+                        android:textSize="@dimen/default_textsize_medium" />
+
+                    <TextView
+                        android:id="@+id/chkWe"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="@dimen/margin_10dp"
+                        android:gravity="center"
+                        android:padding="@dimen/dim_padding_2dp"
+                        android:text="W"
+                        android:textColor="@color/color_text"
+                        android:textSize="@dimen/default_textsize_medium" />
+
+                    <TextView
+                        android:id="@+id/chkTh"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="@dimen/margin_10dp"
+                        android:gravity="center"
+                        android:padding="@dimen/dim_padding_2dp"
+                        android:text="T"
+                        android:textColor="@color/color_text"
+                        android:textSize="@dimen/default_textsize_medium" />
+
+                    <TextView
+                        android:id="@+id/chkFr"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="@dimen/margin_10dp"
+                        android:gravity="center"
+                        android:padding="@dimen/dim_padding_2dp"
+                        android:text="F"
+                        android:textColor="@color/color_text"
+                        android:textSize="@dimen/default_textsize_medium" />
+
+                    <TextView
+                        android:id="@+id/chkSat"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="@dimen/margin_10dp"
+                        android:gravity="center"
+                        android:padding="@dimen/dim_padding_2dp"
+                        android:text="S"
+                        android:textColor="@color/color_text"
+                        android:textSize="@dimen/default_textsize_medium" />
+                </LinearLayout>
+
+                <include layout="@layout/divider" />
+
+                <Button
+                    android:id="@+id/btnSchedule"
+                    style="@style/button_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:text="@string/ScheduleBtn"></Button>
+            </LinearLayout>
+        </RelativeLayout>
+
+    </ScrollView>
+</LinearLayout>

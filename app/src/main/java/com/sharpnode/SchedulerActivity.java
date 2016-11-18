@@ -1,6 +1,7 @@
 package com.sharpnode;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -18,7 +19,6 @@ public class SchedulerActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scheduler);
         mContext=this;
-
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -48,6 +48,8 @@ public class SchedulerActivity extends AppCompatActivity implements View.OnClick
         switch (v.getId()){
             case R.id.containerAddNew:
                 //Toast.makeText(mContext,"Add New Task",Toast.LENGTH_LONG).show();
+                startActivity(new Intent(SchedulerActivity.this, AddScheduleTaskActivity.class));
+
                 break;
             default:
                 break;

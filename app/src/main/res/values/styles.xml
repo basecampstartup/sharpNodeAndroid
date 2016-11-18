@@ -124,4 +124,19 @@
         <item name="android:textSize">13sp</item>
     </style>
 
+    <style name="AppRadioButton" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/color_text</item>
+        <item name="colorControlActivated">@color/colorButtonBg</item>
+    </style>
+
+
+    <style name="AppCheckBoxDays" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/color_text</item>
+        <item name="colorControlActivated">@color/colorButtonBg</item>
+    </style>
+
+    <style name="AppCheckBoxNormal" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/color_text</item>
+        <item name="colorControlActivated">@color/colorButtonBg</item>
+    </style>
 </resources>
