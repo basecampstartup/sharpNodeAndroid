@@ -128,9 +128,9 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
      */
     public HashMap<String, String> getLoginRequestMap(String method, String userId, String password) {
         HashMap<String, String> map = new HashMap<>();
-        map.put(Commons.CMD, method);
-        map.put(Commons.USER_ID, userId);
-        map.put(Commons.PASSWORD, password);
+        map.put("Command", method);
+        map.put("Userid", userId);
+        map.put("Password", password);
         return map;
     }
 

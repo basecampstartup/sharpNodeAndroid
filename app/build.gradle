@@ -21,13 +21,15 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    /*androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
-    })
+    })*/
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:design:24.2.1'
     compile 'com.android.support:multidex:1.0.0'
     compile('com.mikepenz.materialdrawer:library:2.6.0@aar')
     compile 'me.neavo:volley:2014.12.09'
+//    compile 'io.particle:devicesetup:0.3.6'
+    compile project(':devicesetup')
 }
 apply plugin: 'com.getkeepsafe.dexcount'

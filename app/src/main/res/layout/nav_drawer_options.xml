@@ -150,33 +150,6 @@
                     android:text="@string/LeftPanelAppliances"></TextView>
             </LinearLayout>
 
-            <!--<LinearLayout
-                android:id="@+id/llLiveCameraPanel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dim_padding_15dp"
-                android:layout_marginTop="@dimen/dim_padding_5dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/ivLiveCamera"
-                    android:layout_width="@dimen/left_panel_icon_hight"
-                    android:layout_height="@dimen/left_panel_icon_hight"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_insight"></ImageView>
-
-                <TextView
-                    android:id="@+id/tvLiveCamera"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:padding="@dimen/dim_padding_10dp"
-                    android:text="@string/LeftPanelLiveCamera"
-                    android:textColor="@color/colorAppBlack"
-                    android:textSize="@dimen/default_textsize_medium"></TextView>
-            </LinearLayout>-->
-
             <LinearLayout
                 android:id="@+id/llUserManualPanel"
                 android:layout_width="match_parent"
@@ -202,6 +175,33 @@
                     android:layout_marginLeft="@dimen/dim_padding_5dp"
                     android:padding="@dimen/dim_padding_10dp"
                     android:text="@string/LeftPanelUserManuals"></TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llDeviceManualPanel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dim_padding_15dp"
+                android:layout_marginTop="@dimen/dim_padding_5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivDeviceManual"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_insight"></ImageView>
+
+                <TextView
+                    android:id="@+id/tvDeviceManual"
+                    style="@style/text_view_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/dim_padding_10dp"
+                    android:text="@string/LeftPanelDeviceManual"
+                    ></TextView>
             </LinearLayout>
 
             <LinearLayout

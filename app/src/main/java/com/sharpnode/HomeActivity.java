@@ -16,7 +16,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.sharpnode.setupdevice.DeviceSetupActivity;
 
 /**
  * class: HomeActivity it is dashboard screen of application from where can access all features of
@@ -31,7 +32,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             tvUserManual, tvContactUs, tvLogout, tvTemperature, tvHumidity, tvSecurityFeature;
     private ImageView ivProfilePicture,ivSecurityFeature, ivAppliancesShortcut, ivSchedulerShortcut, ivLiveCameraShortcut, ivTimerShortcut;
     private LinearLayout llHomePanel, llSettingsPanel, llInsightsPanel, llIftttConfigPanel,
-            llAppliancePanel, llLiveCameraPanel, llUserManualPanel, llLogoutPanel, llContactUsPanel;
+            llAppliancePanel, llLiveCameraPanel, llUserManualPanel, llLogoutPanel, llContactUsPanel, llDeviceManualPanel;
     private RelativeLayout rlShortcutAppliance, rlShortcutScheduler, rlShortcutLiveCamera, rlShortcutTimer, rlSecurityFeature;
     private Animation animationEnlarge, animationShrink;
 
@@ -116,6 +117,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.rlSecurityFeature:
                 enLargeShrinkAnimation();
                 break;
+            case R.id.llDeviceManualPanel:
+                startActivity(new Intent(mContext, DeviceSetupActivity.class));
+                break;
             case R.id.llLogoutPanel:
                 finish();
                 break;
@@ -152,6 +156,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         llUserManualPanel = (LinearLayout)findViewById(R.id.llUserManualPanel);
         llLogoutPanel = (LinearLayout)findViewById(R.id.llLogoutPanel);
         llContactUsPanel = (LinearLayout)findViewById(R.id.llContactUsPanel);
+        llDeviceManualPanel = (LinearLayout)findViewById(R.id.llDeviceManualPanel);
 
         rlSecurityFeature = (RelativeLayout) findViewById(R.id.rlSecurityFeature);
         rlShortcutAppliance = (RelativeLayout) findViewById(R.id.rlShortcutAppliance);
@@ -173,6 +178,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         llUserManualPanel.setOnClickListener(this);
         llLogoutPanel.setOnClickListener(this);
         llContactUsPanel.setOnClickListener(this);
+        llDeviceManualPanel.setOnClickListener(this);
 
         ivSecurityFeature = (ImageView)findViewById(R.id.ivSecurityFeature);
         ivSecurityFeature.setImageResource(R.drawable.ic_security_off);

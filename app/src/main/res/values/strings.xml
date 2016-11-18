@@ -15,6 +15,7 @@
     <string name="LeftPanelUserManuals">User Manual</string>
     <string name="LeftPanelContactUs">Contact Us</string>
     <string name="LeftPanelLogout">Logout</string>
+    <string name="LeftPanelDeviceManual">Device Manual</string>
 
     //Appliances Screen Strings
     <string name="ApplianceFan">Fan</string>

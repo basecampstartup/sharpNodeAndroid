@@ -7,7 +7,11 @@ import android.text.TextUtils;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.sharpnode.context.ContextHelper;
+import com.sharpnode.setupdevice.DeviceSetupActivity;
 import com.sharpnode.utils.Utils;
+
+import io.particle.android.sdk.devicesetup.ParticleDeviceSetupLibrary;
 
 /**
  * Created by admin on 11/9/2016.
@@ -23,7 +27,10 @@ public class SNApplication extends MultiDexApplication{
     public void onCreate() {
         super.onCreate();
         snApp = this;
+        ContextHelper.setContext(this);
+
         APP_FONT_TYPEFACE = Utils.getTypeface(this, 1);
+        ParticleDeviceSetupLibrary.init(this, DeviceSetupActivity.class);
     }
 
     public static synchronized SNApplication getInstance() {
