@@ -1,1 +1,1 @@
-include ':app', ':devicesetup'
+include ':app', ':devicesetup', ':datepickerlibrary'

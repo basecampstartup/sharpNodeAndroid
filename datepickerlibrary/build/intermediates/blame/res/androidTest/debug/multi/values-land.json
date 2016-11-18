@@ -1,0 +1,102 @@
+[
+    {
+        "outputFile": "E:\\SharpNodeWorkspace\\SharpNodeGIT\\sharpNodeAndroid\\datepickerlibrary\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-land\\values-land.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 51,
+                    "endOffset": 102
+                },
+                "from": {
+                    "file": "E:\\SharpNodeWorkspace\\SharpNodeGIT\\sharpNodeAndroid\\datepickerlibrary\\build\\intermediates\\bundles\\debug\\res\\values-land\\values-land.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 51,
+                        "endOffset": 102
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 107,
+                    "endColumn": 53,
+                    "endOffset": 156
+                },
+                "from": {
+                    "file": "E:\\SharpNodeWorkspace\\SharpNodeGIT\\sharpNodeAndroid\\datepickerlibrary\\build\\intermediates\\bundles\\debug\\res\\values-land\\values-land.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 107,
+                        "endColumn": 53,
+                        "endOffset": 156
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 161,
+                    "endColumn": 59,
+                    "endOffset": 216
+                },
+                "from": {
+                    "file": "E:\\SharpNodeWorkspace\\SharpNodeGIT\\sharpNodeAndroid\\datepickerlibrary\\build\\intermediates\\bundles\\debug\\res\\values-land\\values-land.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 161,
+                        "endColumn": 59,
+                        "endOffset": 216
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 221,
+                    "endColumn": 60,
+                    "endOffset": 277
+                },
+                "from": {
+                    "file": "E:\\SharpNodeWorkspace\\SharpNodeGIT\\sharpNodeAndroid\\datepickerlibrary\\build\\intermediates\\bundles\\debug\\res\\values-land\\values-land.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 221,
+                        "endColumn": 60,
+                        "endOffset": 277
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 6,
+                    "startColumn": 4,
+                    "startOffset": 282,
+                    "endColumn": 59,
+                    "endOffset": 337
+                },
+                "from": {
+                    "file": "E:\\SharpNodeWorkspace\\SharpNodeGIT\\sharpNodeAndroid\\datepickerlibrary\\build\\intermediates\\bundles\\debug\\res\\values-land\\values-land.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 282,
+                        "endColumn": 59,
+                        "endOffset": 337
+                    }
+                }
+            }
+        ]
+    }
+]

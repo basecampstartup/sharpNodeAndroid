@@ -93,10 +93,7 @@
             android:name=".LiveCameraActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base" />
-        <activity
-            android:name=".UserMannual"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Base" />
+
         <activity
             android:name=".ContactUsActivity"
             android:screenOrientation="portrait"
@@ -108,13 +105,17 @@
         <activity
             android:name=".TimerListActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Base"></activity>
+            android:theme="@style/AppTheme.Base" />
+
+        <activity
+            android:name=".AddScheduleTaskActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Base" />
+
         <activity
             android:name=".DeviceSetupActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Base"></activity>
-
-
+            android:theme="@style/AppTheme.Base" />
     </application>
 
 </manifest>

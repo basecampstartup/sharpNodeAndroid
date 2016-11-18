@@ -1,0 +1,102 @@
+[
+    {
+        "outputFile": "E:\\SharpNodeWorkspace\\SharpNodeGIT\\sharpNodeAndroid\\datepickerlibrary\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-land\\values-land.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 51,
+                    "endOffset": 102
+                },
+                "from": {
+                    "file": "E:\\SharpNodeWorkspace\\SharpNodeGIT\\sharpNodeAndroid\\datepickerlibrary\\src\\main\\res\\values-land\\dimens.xml",
+                    "position": {
+                        "startLine": 22,
+                        "startColumn": 4,
+                        "startOffset": 822,
+                        "endColumn": 51,
+                        "endOffset": 869
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 107,
+                    "endColumn": 53,
+                    "endOffset": 156
+                },
+                "from": {
+                    "file": "E:\\SharpNodeWorkspace\\SharpNodeGIT\\sharpNodeAndroid\\datepickerlibrary\\src\\main\\res\\values-land\\dimens.xml",
+                    "position": {
+                        "startLine": 23,
+                        "startColumn": 4,
+                        "startOffset": 875,
+                        "endColumn": 53,
+                        "endOffset": 924
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 161,
+                    "endColumn": 59,
+                    "endOffset": 216
+                },
+                "from": {
+                    "file": "E:\\SharpNodeWorkspace\\SharpNodeGIT\\sharpNodeAndroid\\datepickerlibrary\\src\\main\\res\\values-land\\dimens.xml",
+                    "position": {
+                        "startLine": 26,
+                        "startColumn": 4,
+                        "startOffset": 993,
+                        "endColumn": 59,
+                        "endOffset": 1048
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 221,
+                    "endColumn": 60,
+                    "endOffset": 277
+                },
+                "from": {
+                    "file": "E:\\SharpNodeWorkspace\\SharpNodeGIT\\sharpNodeAndroid\\datepickerlibrary\\src\\main\\res\\values-land\\dimens.xml",
+                    "position": {
+                        "startLine": 27,
+                        "startColumn": 4,
+                        "startOffset": 1054,
+                        "endColumn": 60,
+                        "endOffset": 1110
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 6,
+                    "startColumn": 4,
+                    "startOffset": 282,
+                    "endColumn": 59,
+                    "endOffset": 337
+                },
+                "from": {
+                    "file": "E:\\SharpNodeWorkspace\\SharpNodeGIT\\sharpNodeAndroid\\datepickerlibrary\\src\\main\\res\\values-land\\dimens.xml",
+                    "position": {
+                        "startLine": 25,
+                        "startColumn": 4,
+                        "startOffset": 932,
+                        "endColumn": 59,
+                        "endOffset": 987
+                    }
+                }
+            }
+        ]
+    }
+]

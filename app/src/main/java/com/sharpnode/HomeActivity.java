@@ -41,7 +41,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
         //toolbar.setBackgroundResource(android.R.color.transparent);
         mContext = this;
 
@@ -75,7 +74,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         closeDrawer();
-
+         //switch case
         switch (view.getId()){
             case R.id.llHomePanel:
                 break;
