@@ -9,6 +9,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.sharpnode.SNApplication;
 import com.sharpnode.callback.APIRequestCallbacak;
+import com.sharpnode.commons.Commons;
+import com.sharpnode.sprefs.AppSPrefs;
 import com.sharpnode.utils.Logger;
 
 import java.util.HashMap;
@@ -40,6 +42,9 @@ public class Communicator {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        AppSPrefs.setString(Commons.USER_ID, params.get(Commons.USER_ID));
+                        AppSPrefs.setString(Commons.PASSWORD, params.get(Commons.PASSWORD));
+
                         Logger.i("Response: ", response.toString());
                         ((APIRequestCallbacak)mContext).onSuccess(methodName, response);
                     }

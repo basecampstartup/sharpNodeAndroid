@@ -53,12 +53,12 @@
                     style="@style/edit_text_style"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_10dp"
                     android:drawableLeft="@drawable/ic_username"
                     android:drawablePadding="@dimen/dim_padding_20dp"
                     android:gravity="center_vertical"
                     android:hint="@string/CommonName"
-                    android:inputType="text"
-                    android:layout_marginBottom="@dimen/margin_10dp">
+                    android:inputType="text">
 
                     <requestFocus />
                 </EditText>
@@ -71,12 +71,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/edtName"
+                    android:layout_marginBottom="@dimen/margin_10dp"
                     android:layout_marginTop="@dimen/margin_top_30dp"
                     android:drawableLeft="@drawable/ic_email"
                     android:drawablePadding="@dimen/dim_padding_20dp"
                     android:hint="@string/CommonEmailID"
-                    android:inputType="textEmailAddress"
-                    android:layout_marginBottom="@dimen/margin_10dp"></EditText>
+                    android:inputType="textEmailAddress"></EditText>
 
                 <include layout="@layout/divider" />
 
@@ -86,12 +86,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/edtEmailID"
+                    android:layout_marginBottom="@dimen/margin_10dp"
                     android:layout_marginTop="@dimen/margin_top_30dp"
                     android:drawableLeft="@drawable/ic_phone"
                     android:drawablePadding="@dimen/dim_padding_20dp"
                     android:hint="@string/CommonPhone"
-                    android:inputType="phone"
-                    android:layout_marginBottom="@dimen/margin_10dp"></EditText>
+                    android:inputType="phone"></EditText>
 
                 <include layout="@layout/divider" />
 
@@ -101,27 +101,39 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/edEmail"
+                    android:layout_marginBottom="@dimen/margin_10dp"
                     android:layout_marginTop="@dimen/margin_top_30dp"
                     android:drawableLeft="@drawable/ic_password"
                     android:drawablePadding="@dimen/dim_padding_20dp"
                     android:hint="@string/CommonPassword"
-                    android:inputType="textPassword"
-                    android:layout_marginBottom="@dimen/margin_10dp"></EditText>
+                    android:inputType="textPassword"></EditText>
 
                 <include layout="@layout/divider" />
 
-                <CheckBox
-                    android:id="@+id/chkTerms"
-                    android:theme="@style/check_box_style"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/SignUpIAgree"
-                    android:padding="5dp"
                     android:layout_marginLeft="-5dp"
                     android:layout_marginTop="@dimen/dim_padding_15dp"
-                    android:textColor="@color/colorAppWhite"
-                    android:textSize="@dimen/default_textsize_medium"
-                    />
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/chkTerms"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:theme="@style/check_box_style" />
+
+                    <TextView
+                        android:id="@+id/tvTermsLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dp"
+                        android:paddingBottom="2dp"
+                        android:text="@string/SignUpIAgree"
+                        android:textColor="@color/colorAppWhite"
+                        android:textSize="@dimen/default_textsize_medium"
+                        android:theme="@style/check_box_style" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/btnSignUp"

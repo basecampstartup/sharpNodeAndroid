@@ -19,11 +19,13 @@ import com.sharpnode.sprefs.AppSPrefs;
 import com.sharpnode.utils.Logger;
 
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 
 import io.particle.android.sdk.cloud.ParticleCloud;
 import io.particle.android.sdk.cloud.ParticleCloudException;
 import io.particle.android.sdk.cloud.ParticleCloudSDK;
+import io.particle.android.sdk.cloud.ParticleUser;
 import io.particle.android.sdk.cloud.Responses;
 import io.particle.android.sdk.devicesetup.ParticleDeviceSetupLibrary;
 import io.particle.android.sdk.devicesetup.ui.DeviceSetupState;
@@ -57,14 +59,21 @@ public class DeviceSetupActivity extends AppCompatActivity implements View.OnCli
         mContext = this;
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
-      /*  getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(getString(R.string.LeftPanelDeviceManual));*/
+        getSupportActionBar().setTitle(getString(R.string.LeftPanelDeviceManual));
 
         sparkCloud = ParticleCloudSDK.getCloud();
         softAPConfigRemover = new SoftAPConfigRemover(this);
         softAPConfigRemover.removeAllSoftApConfigs();
         softAPConfigRemover.reenableWifiNetworks();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_YEAR, 1);
+        Date expiryDate = calendar.getTime();
+        sparkCloud.setAccessToken(AppSPrefs.getString(Commons.ACCESS_TOKEN), expiryDate);
+        ParticleUser.fromNewCredentials(AppSPrefs.getString(Commons.USER_ID),
+                AppSPrefs.getString(Commons.PASSWORD));;
 
         btnSetupDevice = (Button) findViewById(R.id.btnSetupDevice);
         btnSetupDevice.setOnClickListener(this);
