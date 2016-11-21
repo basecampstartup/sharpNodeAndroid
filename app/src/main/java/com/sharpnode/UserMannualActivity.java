@@ -1,16 +1,23 @@
 package com.sharpnode;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+
+import com.sharpnode.servercommunication.APIUtils;
 
 public class UserMannualActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
     private Context mContext;
-
+    ProgressDialog pd ;
+    private WebView webView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +28,12 @@ public class UserMannualActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.app_name));
+        pd = new ProgressDialog(UserMannualActivity.this);
+        webView = (WebView) findViewById(R.id.webView);
+        webView.setWebViewClient(new UserMannualActivity.LoadWebClient());
+        webView.getSettings().setJavaScriptEnabled(true);
+        // spanText();
+        webView.loadUrl(APIUtils.USER_MANNUAL_URL);
     }
 
     @Override
@@ -31,6 +44,35 @@ public class UserMannualActivity extends AppCompatActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    //This is for showing the loading until page load.
+    public class LoadWebClient extends WebViewClient {
+        @Override
+        public void onPageStarted(WebView view, String url, Bitmap favicon) {
+            // TODO Auto-generated method stub
+            super.onPageStarted(view, url, favicon);
+            pd.setMessage("loading");
+            pd.show();
+
+        }
+
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            // TODO Auto-generated method stub
+            // loading.setVisibility(View.VISIBLE);
+            view.loadUrl(url);
+            return true;
+
+        }
+
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            // TODO Auto-generated method stub
+            super.onPageFinished(view, url);
+            if(pd!=null)pd.dismiss();
+            //loading.setVisibility(View.GONE);
         }
     }
 }

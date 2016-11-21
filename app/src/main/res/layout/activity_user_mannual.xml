@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     >
-    <TextView
+   <!-- <TextView
         android:id="@+id/tvDevider"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,4 +14,30 @@
         android:layout_marginTop="@dimen/dim_padding_5dp"
         android:text="User Mannual Screen"
         />
+-->
+    <LinearLayout
+        android:id="@+id/container_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+        <RelativeLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+            <WebView
+                android:id="@+id/webView"
+
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" />
+
+
+        </RelativeLayout>
+    </LinearLayout>
+
 </RelativeLayout>

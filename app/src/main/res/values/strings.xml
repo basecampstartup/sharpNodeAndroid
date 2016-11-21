@@ -88,14 +88,12 @@
     <string name="SelectAppliance">Select Appliance</string>
     <string name="SelectApplianceLabel">Select Appliance do you want to schedule:</string>
     <string name="ApplianceOperation">Select Operation for selected Appliance:</string>
-
     <string name="ScheduleDateTime">Select Schedule Days and time:</string>
     <string name="SelectTime">Select time:</string>
-    <string name="EveryWeek">Every Week:</string>
+    <string name="EveryDay">Every Day:</string>
     <string name="WeekDaysfs">Week days:</string>
     <string name="commonOn">ON</string>
     <string name="commonOff">OFF</string>
     <string name="ScheduleBtn">Schedule</string>
     <string name="DefaultTime">00:00 am</string>
-
 </resources>

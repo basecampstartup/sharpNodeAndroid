@@ -4,7 +4,7 @@
     tools:context=".AccountSettingsActivity">
     <item android:id="@+id/action_other_update"
         android:title="@string/Done"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/ic_done_black_24dp"
         android:orderInCategory="100"
         app:showAsAction="always" />
 </menu>

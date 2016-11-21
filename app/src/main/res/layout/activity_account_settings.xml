@@ -91,14 +91,14 @@
 
                 <include layout="@layout/divider" />
 
+
                 <Button
-                    android:id="@+id/btnSignUp"
-                    style="@style/login_button_style"
+                    android:id="@+id/btnSubmit"
+                    style="@style/button_style"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dim_padding_20dp"
-                    android:hint="@string/Submit"></Button>
-
+                    android:text="@string/Submit"></Button>
             </LinearLayout>
         </LinearLayout>
 

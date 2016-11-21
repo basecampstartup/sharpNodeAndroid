@@ -80,6 +80,7 @@
                     android:textColor="@color/colorAppWhite"
                     android:layout_marginRight="@dimen/dim_padding_2dp"
                     android:background="@color/colorButtonBg"
+                    android:textSize="@dimen/default_textsize_btn"
                     android:textAllCaps="false"
                      />
                 <Button
@@ -94,6 +95,7 @@
                     android:textColor="@color/colorAppWhite"
                     android:layout_marginLeft="@dimen/dim_padding_2dp"
                     android:textAllCaps="false"
+                    android:textSize="@dimen/default_textsize_btn"
                     android:background="@color/colorButtonBg"
                  />
                 </LinearLayout>

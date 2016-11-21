@@ -1,6 +1,8 @@
 package com.sharpnode;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -9,7 +11,11 @@ import android.text.Spanned;
 import android.text.style.ClickableSpan;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.TextView;
+
+import com.sharpnode.servercommunication.APIUtils;
 
 
 public class ContactUsActivity extends AppCompatActivity {
@@ -17,6 +23,10 @@ public class ContactUsActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     private Context mContext;
     private TextView tvText;
+    private WebView webView;
+
+
+    ProgressDialog pd ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +38,13 @@ public class ContactUsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.app_name));
-        tvText=(TextView)findViewById(R.id.tvText);
-        spanText();
+        pd = new ProgressDialog(ContactUsActivity.this);
+        webView = (WebView) findViewById(R.id.webView);
+        webView.setWebViewClient(new LoadWebClient());
+        webView.getSettings().setJavaScriptEnabled(true);
+       // spanText();
+        webView.loadUrl(APIUtils.CONTACT_US_URL);
+
     }
 
     @Override
@@ -41,6 +56,12 @@ public class ContactUsActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
     }
 
     public void spanText()
@@ -64,4 +85,34 @@ public class ContactUsActivity extends AppCompatActivity {
         //vText.setMovementMethod(LinkMovementMethod.getInstance());
         tvText.setText(sb);
     }
+
+    //This is for showing the loading until page load.
+    public class LoadWebClient extends WebViewClient {
+        @Override
+        public void onPageStarted(WebView view, String url, Bitmap favicon) {
+            // TODO Auto-generated method stub
+            super.onPageStarted(view, url, favicon);
+            pd.setMessage("loading");
+            pd.show();
+
+        }
+
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            // TODO Auto-generated method stub
+           // loading.setVisibility(View.VISIBLE);
+            view.loadUrl(url);
+            return true;
+
+        }
+
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            // TODO Auto-generated method stub
+            super.onPageFinished(view, url);
+              if(pd!=null)pd.dismiss();
+            //loading.setVisibility(View.GONE);
+        }
+    }
+
 }

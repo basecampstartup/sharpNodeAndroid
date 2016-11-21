@@ -31,7 +31,8 @@ public class AppliancesActivity extends AppCompatActivity implements View.OnClic
     private ActionBar actionBar;
     private Toolbar mToolbar;
     ImageView ivFanSwitchBtn, ivCFLSwitchBtn, ivLampSwitchBtn, ivTVSwitchBtn, ivMusicSwitchBtn, ivWashingMachineSwitchBtn;
-
+    ImageView ivFan, ivCFL, ivLamp, ivTV, ivMusic, ivWashingMachine;
+    TextView tvFan, tvCFL, tvLamp, tvTV,tvMusic,tvWashingMachine;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,12 +60,39 @@ public class AppliancesActivity extends AppCompatActivity implements View.OnClic
         ivTVSwitchBtn = (ImageView) findViewById(R.id.ivTVSwitchBtn);
         ivMusicSwitchBtn = (ImageView) findViewById(R.id.ivMusicSwitchBtn);
         ivWashingMachineSwitchBtn = (ImageView) findViewById(R.id.ivWashingMachineSwitchBtn);
+
+        ivFan = (ImageView) findViewById(R.id.ivFan);
+        ivCFL = (ImageView) findViewById(R.id.ivCFL);
+        ivLamp = (ImageView) findViewById(R.id.ivLamp);
+        ivTV = (ImageView) findViewById(R.id.ivTV);
+        ivMusic = (ImageView) findViewById(R.id.ivMusic);
+        ivWashingMachine = (ImageView) findViewById(R.id.ivWashingMachine);
+
+        ivFanSwitchBtn.setTag(false);
+        ivCFLSwitchBtn.setTag(false);
+        ivLampSwitchBtn.setTag(false);
+        ivTVSwitchBtn.setTag(false);
+        ivMusicSwitchBtn.setTag(false);
+
+        ivWashingMachineSwitchBtn.setTag(false);
         ivFanSwitchBtn.setOnClickListener(this);
         ivCFLSwitchBtn.setOnClickListener(this);
         ivLampSwitchBtn.setOnClickListener(this);
         ivTVSwitchBtn.setOnClickListener(this);
         ivMusicSwitchBtn.setOnClickListener(this);
         ivWashingMachineSwitchBtn.setOnClickListener(this);
+        tvFan=(TextView)findViewById(R.id.tvFan);
+        tvFan.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        tvCFL=(TextView)findViewById(R.id.tvCFL);
+        tvCFL.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        tvLamp=(TextView)findViewById(R.id.tvLamp);
+        tvLamp.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        tvTV=(TextView)findViewById(R.id.tvTV);
+        tvTV.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        tvMusic=(TextView)findViewById(R.id.tvMusic);
+        tvMusic.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        tvWashingMachine=(TextView)findViewById(R.id.tvWashingMachine);
+        tvWashingMachine.setTypeface(SNApplication.APP_FONT_TYPEFACE);
 
 
     }
@@ -87,7 +115,10 @@ public class AppliancesActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+        try {
+            overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+        }catch (Exception e){}
+
         this.finish();
     }
 
@@ -96,32 +127,75 @@ public class AppliancesActivity extends AppCompatActivity implements View.OnClic
         switch (v.getId()) {
             case R.id.ivFanSwitchBtn:
                 if ((boolean)ivFanSwitchBtn.getTag()){
-                    ivFanSwitchBtn.setImageResource(R.drawable.on_btn);
-                    ivFanSwitchBtn.setTag(false);
-                } else {
                     ivFanSwitchBtn.setImageResource(R.drawable.off_btn);
+                    ivFanSwitchBtn.setTag(false);
+                    ivFan.setImageResource(R.drawable.fan);
+                } else {
+                    ivFanSwitchBtn.setImageResource(R.drawable.on_btn);
                     ivFanSwitchBtn.setTag(true);
+                    ivFan.setImageResource(R.drawable.fan_teal);
                 }
-                Toast.makeText(mContext,"click",Toast.LENGTH_LONG).show();
+                ivFanSwitchBtn.playSoundEffect(SoundEffectConstants.CLICK);
                 break;
             case R.id.ivCFLSwitchBtn:
-                Toast.makeText(mContext,"click",Toast.LENGTH_LONG).show();
+
+                if ((boolean)ivCFLSwitchBtn.getTag()){
+                    ivCFLSwitchBtn.setImageResource(R.drawable.off_btn);
+                    ivCFLSwitchBtn.setTag(false);
+                    ivCFL.setImageResource(R.drawable.cfl);
+                } else {
+                    ivCFLSwitchBtn.setImageResource(R.drawable.on_btn);
+                    ivCFLSwitchBtn.setTag(true);
+                    ivCFL.setImageResource(R.drawable.cfl_teal);
+                }
                 ivCFLSwitchBtn.playSoundEffect(SoundEffectConstants.CLICK);
                 break;
             case R.id.ivLampSwitchBtn:
-                Toast.makeText(mContext,"click",Toast.LENGTH_LONG).show();
+                if ((boolean)ivLampSwitchBtn.getTag()){
+                    ivLampSwitchBtn.setImageResource(R.drawable.off_btn);
+                    ivLampSwitchBtn.setTag(false);
+                    ivLamp.setImageResource(R.drawable.lamp);
+                } else {
+                    ivLampSwitchBtn.setImageResource(R.drawable.on_btn);
+                    ivLampSwitchBtn.setTag(true);
+                    ivLamp.setImageResource(R.drawable.lamp_teal);
+                }
                 ivLampSwitchBtn.playSoundEffect(SoundEffectConstants.CLICK);
                 break;
             case R.id.ivTVSwitchBtn:
-                Toast.makeText(mContext,"click",Toast.LENGTH_LONG).show();
+                if ((boolean)ivTVSwitchBtn.getTag()){
+                    ivTVSwitchBtn.setImageResource(R.drawable.off_btn);
+                    ivTVSwitchBtn.setTag(false);
+                    ivTV.setImageResource(R.drawable.tv);
+                } else {
+                    ivTVSwitchBtn.setImageResource(R.drawable.on_btn);
+                    ivTVSwitchBtn.setTag(true);
+                    ivTV.setImageResource(R.drawable.tv_teal);
+                }
                 ivTVSwitchBtn.playSoundEffect(SoundEffectConstants.CLICK);
                 break;
             case R.id.ivMusicSwitchBtn:
-                Toast.makeText(mContext,"click",Toast.LENGTH_LONG).show();
+                if ((boolean)ivMusicSwitchBtn.getTag()){
+                    ivMusicSwitchBtn.setImageResource(R.drawable.off_btn);
+                    ivMusicSwitchBtn.setTag(false);
+                    ivMusic.setImageResource(R.drawable.music);
+                } else {
+                    ivMusicSwitchBtn.setImageResource(R.drawable.on_btn);
+                    ivMusicSwitchBtn.setTag(true);
+                    ivMusic.setImageResource(R.drawable.music_teal);
+                }
                 ivMusicSwitchBtn.playSoundEffect(SoundEffectConstants.CLICK);
                 break;
             case R.id.ivWashingMachineSwitchBtn:
-                Toast.makeText(mContext,"click",Toast.LENGTH_LONG).show();
+                if ((boolean)ivWashingMachineSwitchBtn.getTag()){
+                    ivWashingMachineSwitchBtn.setImageResource(R.drawable.off_btn);
+                    ivWashingMachineSwitchBtn.setTag(false);
+                    ivWashingMachine.setImageResource(R.drawable.washing_machine);
+                } else {
+                    ivWashingMachineSwitchBtn.setImageResource(R.drawable.on_btn);
+                    ivWashingMachineSwitchBtn.setTag(true);
+                    ivWashingMachine.setImageResource(R.drawable.washing_machine_teal);
+                }
                 ivWashingMachineSwitchBtn.playSoundEffect(SoundEffectConstants.CLICK);
                 break;
         }

@@ -82,12 +82,12 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 strPassword = edtPassword.getText().toString().trim();
 
                 //Call API Request after check internet connection
-                new Communicator(mContext, APIUtils.CMD_SIGN_IN,
+              /*  new Communicator(mContext, APIUtils.CMD_SIGN_IN,
                         getLoginRequestMap(APIUtils.CMD_SIGN_IN,
-                                strEmail, strPassword));
+                                strEmail, strPassword));*/
 
-                //startActivity(new Intent(SignInActivity.this, HomeActivity.class));
-                //finish();
+                startActivity(new Intent(SignInActivity.this, HomeActivity.class));
+                finish();
                 break;
             case R.id.txtCreateAccount:
                 startActivity(new Intent(SignInActivity.this, SignUpActivity.class));

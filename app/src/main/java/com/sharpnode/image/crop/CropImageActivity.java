@@ -101,7 +101,7 @@ public class CropImageActivity extends MonitoredActivity {
         }*/
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_launcher));
+        getSupportActionBar().setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_black_24dp));
         getSupportActionBar().setTitle(getResources().getString(R.string.CropImage));
         imageView = (CropImageView) findViewById(R.id.crop_image);
         imageView.context = this;

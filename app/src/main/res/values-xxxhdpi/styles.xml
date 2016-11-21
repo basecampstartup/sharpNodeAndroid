@@ -1,0 +1,46 @@
+<resources>
+
+    <style name="login_edit_text_style">
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingLeft">11dp</item>
+        <item name="android:paddingRight">11dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColorHint">@color/color_gray</item>
+        <item name="android:textSize">@dimen/default_textsize_large</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:background">@drawable/rounded_rectangle_shape</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:textCursorDrawable">@drawable/cursor_color_login</item>
+        <item name="android:textColor">@color/color_black</item>
+    </style>
+
+    <style name="login_button_style">
+        <item name="android:paddingTop">13dp</item>
+        <item name="android:paddingBottom">13dp</item>
+        <item name="android:paddingLeft">11dp</item>
+        <item name="android:paddingRight">11dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColorHint">@color/color_edittext_hint</item>
+        <item name="android:textSize">@dimen/default_textsize_large</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:background">@drawable/rounded_rectangle_for_button</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:textCursorDrawable">@drawable/cursor_color_login</item>
+        <item name="android:textColor">@color/color_black</item>
+    </style>
+
+
+    <style name="text_view_style">
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">@dimen/default_textsize_medium</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/colorAppWhite</item>
+    </style>
+</resources>

@@ -18,7 +18,7 @@
             android:paddingRight="@dimen/dim_padding_5dp">
 
             <TextView
-                android:id="@+id/tvItemLable"
+                android:id="@+id/tvTaskName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@+id/txtCreateAccount"
@@ -57,7 +57,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvTurnOnOffStatus"
+                android:id="@+id/tvTurnOnOffDays"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/tvTurnOnOff"

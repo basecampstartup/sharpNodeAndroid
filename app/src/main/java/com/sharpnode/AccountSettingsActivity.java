@@ -20,6 +20,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -57,6 +59,8 @@ public class AccountSettingsActivity extends AppCompatActivity implements View.O
     private String pictureByteArray = "";
     //private ActionBar actionBar;
     private Toolbar mToolbar;
+    private EditText edtName,edtEmail,edtPassword,edtPhone;
+    Button btnSubmit;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +80,22 @@ public class AccountSettingsActivity extends AppCompatActivity implements View.O
         ivProfilePicture = (ImageView) findViewById(R.id.ivProfilePicture);
         ivProfilePicture.setOnClickListener(this);
         pictureOption = new ArrayList<>();
+    }
+
+    /**
+     * Initialize the UI Components.
+     */
+    public void initializeComponents() {
+        btnSubmit = (Button) findViewById(R.id.btnSubmit);
+        btnSubmit.setOnClickListener(this);
+        edtName=(EditText)findViewById(R.id.edtName);
+        edtEmail=(EditText)findViewById(R.id.edtEmailID);
+        edtPhone=(EditText)findViewById(R.id.edtPhone);
+        btnSubmit.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        edtName.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        edtEmail.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        edtPhone.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        edtEmail.setEnabled(false);
     }
 
     @Override
@@ -319,7 +339,7 @@ public class AccountSettingsActivity extends AppCompatActivity implements View.O
      * This method validate all the required fields.
      * @return
      */
-   /* public boolean validate() {
+    public boolean validate() {
         boolean valid = true;
         String name = edtName.getText().toString();
         String email = edtEmail.getText().toString();
@@ -354,5 +374,5 @@ public class AccountSettingsActivity extends AppCompatActivity implements View.O
         }
 
         return valid;
-    }*/
+    }
 }

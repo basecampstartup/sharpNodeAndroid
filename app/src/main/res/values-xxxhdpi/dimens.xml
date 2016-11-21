@@ -1,0 +1,44 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_vertical_spacing">22dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">22dp</dimen>
+    <dimen name="activity_vertical_margin">22dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="padding_8dp">8dp</dimen>
+
+    <dimen name="nav_header_height">250dp</dimen>
+    <dimen name="nav_drawer_width">325dp</dimen>
+
+    <dimen name="divider_height_1dp">1dp</dimen>
+    <dimen name="profile_picture_size">80dp</dimen>
+    <dimen name="dim_padding_5dp">8dp</dimen>
+    <dimen name="dim_padding_10dp">13dp</dimen>
+    <dimen name="dim_padding_15dp">18dp</dimen>
+    <dimen name="dim_padding_20dp">24dp</dimen>
+    <dimen name="dim_padding_2dp">4dp</dimen>
+    <dimen name="dim_font_size_16">19dp</dimen>
+    <dimen name="dim_font_size_17">20dp</dimen>
+    <dimen name="dim_font_size_18">21dp</dimen>
+
+    <dimen name="logo_height">80dp</dimen>
+    <dimen name="logo_margin_top">60dp</dimen>
+    <dimen name="margin_top_50dp">70dp</dimen>
+    <dimen name="margin_top_30dp">50dp</dimen>
+    <dimen name="margin_10dp">14dp</dimen>
+    <dimen name="default_textsize_large">25sp</dimen>
+    <dimen name="default_textsize_medium">19sp</dimen>
+    <dimen name="default_textsize_btn">21sp</dimen>
+    <dimen name="margin_15dp">19dp</dimen>
+    <dimen name="landing_page_logo_margin_top">122dp</dimen>
+    <dimen name="tagline_margin_top">90dp</dimen>
+
+    <!--
+Refer to App Widget Documentation for margin information
+http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
+   -->
+    <dimen name="widget_margin">11dp</dimen>
+    <dimen name="widget_height">80dp</dimen>
+    <dimen name="widget_width">1920dp</dimen>
+    <dimen name="left_panel_icon_hight">40dp</dimen>
+</resources>

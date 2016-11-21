@@ -4,9 +4,10 @@
     android:id="@+id/activity_scheduler"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/background"
+    android:orientation="vertical"
     tools:context="com.sharpnode.SchedulerActivity">
+
     <LinearLayout
         android:id="@+id/container_toolbar"
         android:layout_width="match_parent"
@@ -17,47 +18,53 @@
             android:id="@+id/toolbar"
             layout="@layout/toolbar" />
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/containerAddNew"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:padding="@dimen/dim_padding_10dp"
-        android:orientation="horizontal">
-    <TextView
-        android:id="@+id/tvAddNew"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:drawableLeft="@drawable/ic_add_black_24dp"
-        android:text="@string/SchedulerAddNew"
-        android:textColor="@color/color_text"
-        android:layout_marginTop="@dimen/dim_padding_5dp"
-        />
-        </LinearLayout>
-  <!--  <TextView
-        android:id="@+id/tvDevider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="@dimen/dim_padding_5dp"
-        android:background="@color/color_gray"
+        android:orientation="horizontal"
+        android:padding="@dimen/dim_padding_10dp">
 
-        />-->
+        <TextView
+            android:id="@+id/tvAddNew"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dim_padding_5dp"
+            android:drawableLeft="@drawable/ic_add_black_24dp"
+            android:gravity="center"
+            android:text="@string/SchedulerAddNew"
+            android:textColor="@color/color_text" />
+    </LinearLayout>
+    <!--  <TextView
+          android:id="@+id/tvDevider"
+          android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:layout_marginTop="@dimen/dim_padding_5dp"
+          android:background="@color/color_gray"
+
+          />-->
     <include layout="@layout/divider"></include>
-    <include layout="@layout/schedular_list_item" >
-    </include>
-    <include layout="@layout/schedular_list_item" >
-    </include>
-    <include layout="@layout/schedular_list_item" >
-    </include>
-    <include layout="@layout/schedular_list_item" >
-    </include>
-    <include layout="@layout/schedular_list_item" >
-    </include>
-    <include layout="@layout/schedular_list_item" >
-    </include>
-    <include layout="@layout/schedular_list_item" >
-    </include>
+<!--
+    <include layout="@layout/schedular_list_item"></include>-->
+
+    <ListView
+        android:layout_width="match_parent"
+        android:id="@+id/schedularList"
+        android:layout_height="match_parent" />
+
+ <!--   <include layout="@layout/schedular_list_item"></include>
+
+    <include layout="@layout/schedular_list_item"></include>
+
+    <include layout="@layout/schedular_list_item"></include>
+
+    <include layout="@layout/schedular_list_item"></include>
+
+    <include layout="@layout/schedular_list_item"></include>
+
+    <include layout="@layout/schedular_list_item"></include>-->
 
 
 </LinearLayout>
