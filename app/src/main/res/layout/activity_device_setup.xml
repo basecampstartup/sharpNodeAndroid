@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="@dimen/dim_padding_5dp"
+            android:padding="@dimen/dim_padding_10dp"
             android:text="Let's configure your SharpNode device"
             android:textColor="@color/color_teal"
             android:textSize="@dimen/dim_font_size_16"></TextView>
@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dim_padding_20dp"
-            android:text="Make sure that SharpNode device is ON."
+            android:text="*\tMake sure that SharpNode device is ON."
             android:textColor="@color/colorAppWhite"
             android:textSize="@dimen/dim_font_size_18"></TextView>
 
@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dim_padding_5dp"
-            android:text="Press and hold setup button for a little while if LED indicator is not blinking blue."
+            android:text="*\tPress and hold setup button for a little while if LED indicator is not blinking blue."
             android:textColor="@color/colorAppWhite"
             android:textSize="@dimen/dim_font_size_18"></TextView>
 
@@ -50,8 +50,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dim_padding_5dp"
-            android:text="Connect your Smart Phone or Laptop to new WiFi hotspot."
+            android:text="*\tConnect your Smart Phone or Laptop to new WiFi hotspot."
             android:textColor="@color/colorAppWhite"
+            android:textSize="@dimen/dim_font_size_18"></TextView>
+        <TextView
+            android:id="@+id/tvInstruction5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dim_padding_5dp"
+            android:text=" \t(New WiFi hotspot will appears as 'SharpNode-xxxxxx' in your WiFi network list.)"
+            android:textColor="@color/colorAppWhite"
+            android:textStyle="italic"
             android:textSize="@dimen/dim_font_size_18"></TextView>
 
         <TextView
@@ -59,7 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dim_padding_5dp"
-            android:text="After connecting to WiFi 'SharpNode-xxxxxx', click on Device Connect."
+            android:text="*\tAfter connecting to WiFi 'SharpNode-xxxxxx', click on Device Connect."
             android:textColor="@color/colorAppWhite"
             android:textSize="@dimen/dim_font_size_18"></TextView>
 

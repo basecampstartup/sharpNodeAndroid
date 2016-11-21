@@ -26,6 +26,32 @@ public class AppSPrefs {
         return sPrefs;
     }
 
+    public static void clearAppSPrefs(){
+        editor = getSPrefsInstance().edit();
+        editor.clear();
+        editor.commit();
+    }
+
+    public static String getString(String key){
+        return getSPrefsInstance().getString(key, "");
+    }
+
+    public static void setString(String key, String value){
+        editor = getSPrefsInstance().edit();
+        editor.putString(key, value);
+        editor.commit();
+    }
+
+    public static boolean isAlreadyLoggedIn(){
+        return getSPrefsInstance().getBoolean(Commons.IS_ALREADY_LOGGED_IN, false);
+    }
+
+    public static void setAlreadyLoggedIn(boolean value){
+        editor = getSPrefsInstance().edit();
+        editor.putBoolean(Commons.IS_ALREADY_LOGGED_IN, value);
+        editor.commit();
+    }
+
     public static String getDeviceId(){
         return getSPrefsInstance().getString(Commons.CONFIGURED_DEVICE_ID, "");
     }
@@ -33,5 +59,6 @@ public class AppSPrefs {
     public static void setDeviceId(String deviceId){
         editor = getSPrefsInstance().edit();
         editor.putString(Commons.CONFIGURED_DEVICE_ID, deviceId);
+        editor.commit();
     }
 }

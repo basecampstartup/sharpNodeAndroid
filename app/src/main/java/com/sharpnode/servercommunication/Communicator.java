@@ -40,7 +40,7 @@ public class Communicator {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Logger.i("Response", response.toString());
+                        Logger.i("Response: ", response.toString());
                         ((APIRequestCallbacak)mContext).onSuccess(methodName, response);
                     }
                 },
@@ -52,6 +52,7 @@ public class Communicator {
                 }) {
             @Override
             protected Map<String, String> getParams() {
+                Logger.i("Communicator", "params: "+params);
                 return params;
             }
 

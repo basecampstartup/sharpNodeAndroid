@@ -57,9 +57,9 @@
     <string name="header_text_font_name">fonts/roboto_light.ttf</string>
 
     <!-- enable invite codes, other APIs -->
-    <bool name="organization">false</bool>
-    <string name="organization_slug">CHANGE_ME</string>
-    <string name="product_slug">CHANGE_ME</string>
+    <bool name="organization">true</bool>
+    <string name="organization_slug">sbi</string>
+    <string name="product_slug">448</string>
 
     <!-- FIXME: unused, remove? -->
     <!-- filename of the setup video, which should be placed under the src/main/res/raw folder -->
