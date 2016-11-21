@@ -53,10 +53,12 @@
                     android:layout_marginBottom="@dimen/margin_10dp"
                     android:background="@null"
                     android:hint="@string/AddTaskTaskName"
-                    android:inputType="textPersonName"
                     android:padding="@dimen/dim_padding_5dp"
                     android:textColor="@color/colorAppWhite"
-                    android:textColorHint="@color/colorAppWhite" />
+                    android:textColorHint="@color/colorAppWhite"
+                    >
+                    <requestFocus></requestFocus>
+                    </EditText>
 
                 <include layout="@layout/divider" />
 

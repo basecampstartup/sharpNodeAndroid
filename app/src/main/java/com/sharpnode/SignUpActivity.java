@@ -11,8 +11,13 @@ import android.content.Intent;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,19 +42,52 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private Context mContext;
 
     EditText edtName,edtEmail,edtPhone,edtPassword;
-    TextView txtAlreadyHaveAccount;
+    TextView txtAlreadyHaveAccount, tvTermsLabel;
     String strName,strEmail,strPhone,strPassword;
     private long mLastClickTime = 0;
     private ProgressDialog loader=null;
+    private Toolbar mToolbar;
+    private CheckBox chkTerms;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         mContext = this;
+
+        //Initialize toolbar
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(getString(R.string.SingUpSignUpBtn));
+
         initializeComponents();
         loader = new ProgressDialog(this);
-        loader.setTitle("Please wait...");
+        loader.setMessage("Please wait...");
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+        this.finish();
     }
 
     /**
@@ -62,6 +100,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         edtEmail=(EditText)findViewById(R.id.edtEmailID);
         edtPhone=(EditText)findViewById(R.id.edtPhone);
         edtPassword=(EditText)findViewById(R.id.edtPassword);
+        tvTermsLabel = (TextView)findViewById(R.id.tvTermsLabel);
         txtAlreadyHaveAccount=(TextView)findViewById(R.id.txtAlreadyHaveAccount);
         txtAlreadyHaveAccount.setOnClickListener(this);
 
@@ -72,20 +111,36 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         edtPhone.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         edtPassword.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         txtAlreadyHaveAccount.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        tvTermsLabel.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+
+        chkTerms = (CheckBox)findViewById(R.id.chkTerms);
+        /*chkTerms.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)
+                    tvTermsLabel.setTextColor(getResources().getColor(R.color.colorAppWhite));
+            }
+        });*/
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnSignUp:
-                loader.show();
                 //This will check if your click on button successively.
                 if (SystemClock.elapsedRealtime() - mLastClickTime < Commons.THRESHOLD_TIME_POST_SCREEN) {
                     return;
                 }
-               /* if (!validate()) {
+                if (!validate()) {
                     return;
-                }*/
+                }
+
+                if(!chkTerms.isChecked()) {
+                    Toast.makeText(mContext, "Please accept Terms & Condition befor Sign-Up.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                loader.show();
                 //Code for further process Signup.
                 //Navigating to home screen
                 //Call API Request after check internet connection
@@ -137,7 +192,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         } else {
             edtName.setError(null);
         }
-        if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
+        if (password.isEmpty()/* || password.length() < 4 || password.length() > 10*/) {
             edtPassword.setError(getString(R.string.SignUpPasswordRequired));
             valid = false;
         } else {

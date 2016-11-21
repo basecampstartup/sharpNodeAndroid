@@ -42,7 +42,7 @@
     <string name="SignUpAlreadyHaveAccountSignIn">Already have account? Sign in</string>
     <string name="SignUpIAgree">I agree that, I have a device and I follow the terms.</string>
     <string name="SignUpNameRequired">Name required.</string>
-    <string name="SignUpPasswordRequired">Password between 4 and 10 alphanumeric characters</string>
+    <string name="SignUpPasswordRequired">Enter password</string>
     <string name="SignUpEmailRequired">Enter a valid email address.</string>
     <string name="SignUpPhoneRequired">Phone number required.</string>
 

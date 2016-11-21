@@ -146,7 +146,7 @@ public class AddScheduleTaskActivity extends AppCompatActivity implements View.O
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectedAppliance = appliancesList.get(position);
-                Toast.makeText(AddScheduleTaskActivity.this, "Item :" + selectedAppliance, Toast.LENGTH_SHORT).show();
+            //    Toast.makeText(AddScheduleTaskActivity.this, "Item :" + selectedAppliance, Toast.LENGTH_SHORT).show();
                 txtSelectAppliance.setText(selectedAppliance);
                 dialog.dismiss();
             }

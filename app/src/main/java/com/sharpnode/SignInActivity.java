@@ -11,6 +11,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,7 +29,6 @@ import com.sharpnode.sprefs.AppSPrefs;
 import com.sharpnode.utils.EmailSyntaxChecker;
 import com.sharpnode.utils.Logger;
 
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -41,15 +43,47 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     private Context mContext;
     private long mLastClickTime = 0;
     private ProgressDialog loader=null;
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_in_layout);
         mContext = this;
+
+        //Initialize toolbar
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(getString(R.string.SignInBtn));
+
         initializeComponents();
         loader = new ProgressDialog(this);
-        loader.setTitle("Please wait...");
+        loader.setMessage("Please wait...");
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+        this.finish();
     }
 
     /**
@@ -77,14 +111,17 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnSignIn:
-                loader.show();
+
                 //This will check if your click on button successively.
                 if (SystemClock.elapsedRealtime() - mLastClickTime < Commons.THRESHOLD_TIME_POST_SCREEN) {
                     return;
                 }
                 strEmail = edtEmail.getText().toString().trim();
                 strPassword = edtPassword.getText().toString().trim();
-
+                if (!validate()) {
+                    return;
+                }
+                loader.show();
                 //Call API Request after check internet connection
                 new Communicator(mContext, APIUtils.CMD_SIGN_IN,
                         getLoginRequestMap(APIUtils.CMD_SIGN_IN,
@@ -119,7 +156,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             edtEmail.setError(null);
         }
 
-        if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
+        if (password.isEmpty()/* || password.length() < 4 || password.length() > 10*/) {
             edtPassword.setError(getString(R.string.SignUpPasswordRequired));
             valid = false;
         } else {
