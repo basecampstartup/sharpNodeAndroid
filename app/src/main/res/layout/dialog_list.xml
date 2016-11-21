@@ -11,10 +11,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="#ffffff"
-        android:divider="@color/colorAppBlack"
+        android:divider="@android:color/transparent"
         android:listSelector="#ffffff"
         android:layout_marginBottom="49dp"
-        android:dividerHeight="1dp" />
+        android:dividerHeight="0dp" />
 
     <TextView
         android:id="@+id/id_cancel_text"

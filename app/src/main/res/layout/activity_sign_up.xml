@@ -121,6 +121,7 @@
                         android:id="@+id/chkTerms"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
                         android:theme="@style/check_box_style" />
 
                     <TextView

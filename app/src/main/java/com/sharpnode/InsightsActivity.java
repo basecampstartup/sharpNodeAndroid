@@ -2,6 +2,7 @@ package com.sharpnode;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -37,7 +38,7 @@ public class InsightsActivity extends AppCompatActivity {
 
         BARENTRY = new ArrayList<>();
 
-        BarEntryLabels = new ArrayList<String>();
+        BarEntryLabels = new ArrayList<>();
 
         AddValuesToBARENTRY();
 
@@ -78,13 +79,25 @@ public class InsightsActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                this.finish();
+                onBackPressed();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+        this.finish();
     }
 }

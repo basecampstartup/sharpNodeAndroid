@@ -83,7 +83,6 @@
             android:theme="@style/AppTheme.Base" />
         <activity
             android:name=".InsightsActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base" />
         <activity
             android:name=".IFTTTConfigActivity"
