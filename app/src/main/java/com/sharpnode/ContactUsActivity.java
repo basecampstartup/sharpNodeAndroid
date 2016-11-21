@@ -31,19 +31,19 @@ public class ContactUsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contact_us);
+        setContentView(R.layout.contact_us_layout);
         mContext = this;
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(getString(R.string.app_name));
-        pd = new ProgressDialog(ContactUsActivity.this);
+        getSupportActionBar().setTitle(getString(R.string.ContactUsLabel));
+       /* pd = new ProgressDialog(ContactUsActivity.this);
         webView = (WebView) findViewById(R.id.webView);
         webView.setWebViewClient(new LoadWebClient());
         webView.getSettings().setJavaScriptEnabled(true);
        // spanText();
-        webView.loadUrl(APIUtils.CONTACT_US_URL);
+        webView.loadUrl(APIUtils.CONTACT_US_URL);*/
 
     }
 

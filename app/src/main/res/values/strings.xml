@@ -96,4 +96,7 @@
     <string name="commonOff">OFF</string>
     <string name="ScheduleBtn">Schedule</string>
     <string name="DefaultTime">00:00 am</string>
+
+    <string name="CommonDescription">Description</string>
+    <string name="ContactUsLabel">Contact Us</string>
 </resources>
