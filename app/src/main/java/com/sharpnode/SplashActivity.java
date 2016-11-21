@@ -12,6 +12,8 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
+import com.sharpnode.sprefs.AppSPrefs;
+
 public class SplashActivity extends AppCompatActivity {
     private final String TAG = getClass().getSimpleName();
     private Context mContext;
@@ -22,14 +24,19 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         mContext = this;
         ((TextView)findViewById(R.id.txtAppName)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
-        goToNextScreen();
+
+        if (AppSPrefs.isAlreadyLoggedIn()) {
+            goToHomePage();
+        } else {
+            goToNextScreen();
+        }
     }
 
     /**
      * Method  to Finish Splash screen after some time.
      */
     private void goToNextScreen() {
-        final int splashTime = 1000;
+        final int splashTime = 2000;
         new Handler().postDelayed(new Runnable() {
             public void run() {
                 goToLandingPage();
@@ -42,6 +49,16 @@ public class SplashActivity extends AppCompatActivity {
      */
     private void goToLandingPage() {
         startActivity(new Intent(SplashActivity.this, LandingPageActivity.class));
+        finish();
+    }
+
+    /**
+     * Method  to redirect to Landing Page.
+     */
+    private void goToHomePage() {
+        Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
         finish();
     }
 }

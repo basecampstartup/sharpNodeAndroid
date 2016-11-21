@@ -5,6 +5,7 @@
 //===============================================================================
 package com.sharpnode;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -39,6 +40,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     private Button btnSignIn;
     private Context mContext;
     private long mLastClickTime = 0;
+    private ProgressDialog loader=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +48,8 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.sign_in_layout);
         mContext = this;
         initializeComponents();
-
+        loader = new ProgressDialog(this);
+        loader.setTitle("Please wait...");
     }
 
     /**
@@ -74,6 +77,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnSignIn:
+                loader.show();
                 //This will check if your click on button successively.
                 if (SystemClock.elapsedRealtime() - mLastClickTime < Commons.THRESHOLD_TIME_POST_SCREEN) {
                     return;
@@ -82,12 +86,11 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 strPassword = edtPassword.getText().toString().trim();
 
                 //Call API Request after check internet connection
-              /*  new Communicator(mContext, APIUtils.CMD_SIGN_IN,
+                new Communicator(mContext, APIUtils.CMD_SIGN_IN,
                         getLoginRequestMap(APIUtils.CMD_SIGN_IN,
-                                strEmail, strPassword));*/
-
-                startActivity(new Intent(SignInActivity.this, HomeActivity.class));
-                finish();
+                                strEmail, strPassword));
+                //startActivity(new Intent(SignInActivity.this, HomeActivity.class));
+                //finish();
                 break;
             case R.id.txtCreateAccount:
                 startActivity(new Intent(SignInActivity.this, SignUpActivity.class));
@@ -141,6 +144,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onSuccess(String name, Object object) {
+        loader.dismiss();
         try{
             Logger.i(TAG, "Response: "+object);
             if (APIUtils.CMD_SIGN_IN.equalsIgnoreCase(name)) {
@@ -156,6 +160,8 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 } else {
                     Toast.makeText(mContext, parseLoginResponse(object).getResponseMsg(), Toast.LENGTH_LONG).show();
                 }
+            } else{
+
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -164,6 +170,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onFailure(String name, Object object) {
+        loader.dismiss();
         Toast.makeText(mContext, "Login response Failure", Toast.LENGTH_LONG).show();
     }
 

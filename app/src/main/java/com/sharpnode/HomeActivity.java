@@ -18,6 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.sharpnode.setupdevice.DeviceSetupActivity;
+import com.sharpnode.sprefs.AppSPrefs;
 
 /**
  * class: HomeActivity it is dashboard screen of application from where can access all features of
@@ -120,6 +121,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(mContext, DeviceSetupActivity.class));
                 break;
             case R.id.llLogoutPanel:
+                AppSPrefs.clearAppSPrefs();
+                Intent intent = new Intent(mContext, LandingPageActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
                 finish();
                 break;
         }
