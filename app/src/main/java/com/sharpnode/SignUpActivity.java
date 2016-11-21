@@ -81,7 +81,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 strPassword=edtPassword.getText().toString().trim();
                 strPhone=edtPhone.getText().toString().trim();
 
-                new Communicator(mContext, APIUtils.CMD_SIGN_IN,
+                new Communicator(mContext, APIUtils.CMD_SIGN_UP,
                         getSignUpRequestMap(APIUtils.CMD_SIGN_UP,
                                 strEmail, strName, strPassword, strPhone));
 
