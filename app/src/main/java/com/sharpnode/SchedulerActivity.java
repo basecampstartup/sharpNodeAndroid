@@ -9,10 +9,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.sharpnode.adapter.SchedulerAdapter;
 import com.sharpnode.model.SchedulerModel;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 public class SchedulerActivity extends AppCompatActivity implements View.OnClickListener {
@@ -34,6 +36,15 @@ public class SchedulerActivity extends AppCompatActivity implements View.OnClick
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.SchedulerList));
+        //Set Custom font to title.
+        try {
+            Field f = mToolbar.getClass().getDeclaredField("mTitleTextView");
+            f.setAccessible(true);
+            TextView titleText = (TextView) f.get(mToolbar);
+            titleText.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        } catch (NoSuchFieldException e) {
+        } catch (IllegalAccessException e) {
+        }
         containerAddNew = (LinearLayout) findViewById(R.id.containerAddNew);
         containerAddNew.setOnClickListener(this);
         schedularList = (ListView) findViewById(R.id.schedularList);

@@ -21,6 +21,8 @@ import com.sharpnode.commons.Commons;
 import com.sharpnode.servercommunication.APIUtils;
 import com.sharpnode.servercommunication.Communicator;
 
+import java.lang.reflect.Field;
+
 /**
  * Created by admin on 11/8/2016.
  */
@@ -46,6 +48,15 @@ public class AppliancesActivity extends AppCompatActivity implements View.OnClic
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.LeftPanelAppliances));
+        //Set Custom font to title.
+        try {
+            Field f = mToolbar.getClass().getDeclaredField("mTitleTextView");
+            f.setAccessible(true);
+            TextView titleText = (TextView) f.get(mToolbar);
+            titleText.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        } catch (NoSuchFieldException e) {
+        } catch (IllegalAccessException e) {
+        }
         initializeComponents();
 
     }

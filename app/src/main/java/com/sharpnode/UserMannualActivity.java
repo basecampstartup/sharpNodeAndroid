@@ -9,8 +9,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.TextView;
 
 import com.sharpnode.servercommunication.APIUtils;
+
+import java.lang.reflect.Field;
 
 public class UserMannualActivity extends AppCompatActivity {
 
@@ -28,7 +31,17 @@ public class UserMannualActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(getString(R.string.app_name));
+        getSupportActionBar().setTitle(getString(R.string.LeftPanelUserManuals));
+        //Set Custom font to title.
+        try {
+            Field f = mToolbar.getClass().getDeclaredField("mTitleTextView");
+            f.setAccessible(true);
+            TextView titleText = (TextView) f.get(mToolbar);
+            titleText.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        } catch (NoSuchFieldException e) {
+        } catch (IllegalAccessException e) {
+
+        }
         loader = new ProgressDialog(UserMannualActivity.this);
         webView = (WebView) findViewById(R.id.webView);
         webView.setWebViewClient(new UserMannualActivity.LoadWebClient());

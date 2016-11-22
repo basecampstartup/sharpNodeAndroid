@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import java.lang.reflect.Field;
 
 public class TimerListActivity extends AppCompatActivity {
     private Toolbar mToolbar;
@@ -19,7 +22,17 @@ public class TimerListActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(getString(R.string.app_name));
+        getSupportActionBar().setTitle(getString(R.string.HomeTimer));
+        //Set Custom font to title.
+        try {
+            Field f = mToolbar.getClass().getDeclaredField("mTitleTextView");
+            f.setAccessible(true);
+            TextView titleText = (TextView) f.get(mToolbar);
+            titleText.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        } catch (NoSuchFieldException e) {
+        } catch (IllegalAccessException e) {
+
+        }
     }
 
     @Override

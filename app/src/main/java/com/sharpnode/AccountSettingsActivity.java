@@ -40,6 +40,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,7 +62,7 @@ public class AccountSettingsActivity extends AppCompatActivity implements View.O
     private String pictureByteArray = "";
     //private ActionBar actionBar;
     private Toolbar mToolbar;
-    private EditText edtName,edtEmail,edtPassword,edtPhone;
+    private EditText edtName,edtEmail,edtPhone;
     Button btnSubmit;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -75,9 +76,16 @@ public class AccountSettingsActivity extends AppCompatActivity implements View.O
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.AccountSettings));
-       /* actionBar = getSupportActionBar();
-        actionBar.setTitle(getString(R.string.AccountSettings));
-        actionBar.setDisplayHomeAsUpEnabled(true);*/
+        //Set Custom font to title.
+        try {
+            Field f = mToolbar.getClass().getDeclaredField("mTitleTextView");
+            f.setAccessible(true);
+            TextView titleText = (TextView) f.get(mToolbar);
+            titleText.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        } catch (NoSuchFieldException e) {
+        } catch (IllegalAccessException e) {
+
+        }
 
         ivProfilePicture = (ImageView) findViewById(R.id.ivProfilePicture);
         ivProfilePicture.setOnClickListener(this);
@@ -349,7 +357,6 @@ public class AccountSettingsActivity extends AppCompatActivity implements View.O
         boolean valid = true;
         String name = edtName.getText().toString();
         String email = edtEmail.getText().toString();
-        String password = edtPassword.getText().toString();
         String phone = edtPhone.getText().toString();
 
         if (name.isEmpty()) {
@@ -371,12 +378,6 @@ public class AccountSettingsActivity extends AppCompatActivity implements View.O
             valid = false;
         } else {
             edtName.setError(null);
-        }
-        if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
-            edtPassword.setError(getString(R.string.SignUpPasswordRequired));
-            valid = false;
-        } else {
-            edtPassword.setError(null);
         }
 
         return valid;

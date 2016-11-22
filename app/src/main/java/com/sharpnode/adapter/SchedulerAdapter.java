@@ -56,9 +56,9 @@ public class SchedulerAdapter extends BaseAdapter {
             viewHolder.turnOnOffStatus = (TextView) convertView.findViewById(R.id.tvTurnOnOff);
             viewHolder.turnOnOffStatus.setTypeface(SNApplication.APP_FONT_TYPEFACE, Typeface.BOLD);
             viewHolder.weekDays = (TextView) convertView.findViewById(R.id.tvTurnOnOffDays);
-            viewHolder.weekDays.setTypeface(SNApplication.APP_FONT_TYPEFACE, Typeface.BOLD);
+            viewHolder.weekDays.setTypeface(SNApplication.APP_FONT_TYPEFACE, Typeface.NORMAL);
             viewHolder.txtTime = (TextView) convertView.findViewById(R.id.tvTime);
-            viewHolder.txtTime.setTypeface(SNApplication.APP_FONT_TYPEFACE, Typeface.BOLD);
+            viewHolder.txtTime.setTypeface(SNApplication.APP_FONT_TYPEFACE, Typeface.NORMAL);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();

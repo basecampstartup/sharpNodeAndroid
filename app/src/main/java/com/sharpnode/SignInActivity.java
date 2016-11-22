@@ -31,6 +31,7 @@ import com.sharpnode.sprefs.AppSPrefs;
 import com.sharpnode.utils.EmailSyntaxChecker;
 import com.sharpnode.utils.Logger;
 
+import java.lang.reflect.Field;
 import java.util.HashMap;
 
 public class SignInActivity extends AppCompatActivity implements View.OnClickListener, APIRequestCallbacak {
@@ -56,7 +57,15 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.SignInBtn));
-
+        //Set Custom font to title.
+        try {
+            Field f = mToolbar.getClass().getDeclaredField("mTitleTextView");
+            f.setAccessible(true);
+            TextView titleText = (TextView) f.get(mToolbar);
+            titleText.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        } catch (NoSuchFieldException e) {
+        } catch (IllegalAccessException e) {
+        }
         initializeComponents();
         loader = new ProgressDialog(this);
         loader.setMessage(getString(R.string.MessagePleaseWait));

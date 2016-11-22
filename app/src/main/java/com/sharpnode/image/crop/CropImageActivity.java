@@ -7,6 +7,7 @@
 package com.sharpnode.image.crop;
 
 import android.annotation.TargetApi;
+import android.app.ActionBar;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -21,15 +22,21 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v4.content.ContextCompat;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.TypefaceSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import com.sharpnode.R;
+import com.sharpnode.SNApplication;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Field;
 import java.util.concurrent.CountDownLatch;
 
 import static com.sharpnode.image.crop.Crop.IMAGE_BITMAP;
@@ -103,6 +110,11 @@ public class CropImageActivity extends MonitoredActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_black_24dp));
         getSupportActionBar().setTitle(getResources().getString(R.string.CropImage));
+        SpannableString s = new SpannableString(getResources().getString(R.string.CropImage));
+        s.setSpan(new TypefaceSpan("avenir-roman.otf"), 0, s.length(),
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        // Update the action bar title with the TypefaceSpan instance
+        getSupportActionBar().setTitle(s);
         imageView = (CropImageView) findViewById(R.id.crop_image);
         imageView.context = this;
         imageView.setRecycler(new ImageViewTouchBase.Recycler() {

@@ -29,6 +29,7 @@
             android:padding="@dimen/dim_padding_10dp">
 
             <TextView
+                android:id="@+id/tvConfigureDeviceLbl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -38,6 +39,7 @@
                 android:textSize="@dimen/dim_font_size_16"></TextView>
 
             <TextView
+                android:id="@+id/tvInstructionLbl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dim_padding_10dp"

@@ -9,6 +9,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -20,6 +22,8 @@ import android.widget.TextView;
 import com.sharpnode.commons.Commons;
 import com.sharpnode.setupdevice.DeviceSetupActivity;
 import com.sharpnode.sprefs.AppSPrefs;
+
+import java.lang.reflect.Field;
 
 /**
  * class: HomeActivity it is dashboard screen of application from where can access all features of
@@ -44,9 +48,18 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(getString(R.string.app_name));
+        //Set Custom font to title.
+        try {
+            Field f = toolbar.getClass().getDeclaredField("mTitleTextView");
+            f.setAccessible(true);
+            TextView titleText = (TextView) f.get(toolbar);
+            titleText.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        } catch (NoSuchFieldException e) {
+        } catch (IllegalAccessException e) {
 
+        }
         mContext = this;
-
         //initialize drawer items
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(
@@ -217,6 +230,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         tvUserManual.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         tvContactUs.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         tvLogout.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        ((TextView)findViewById(R.id.tvAppliancesShortcut)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        ((TextView)findViewById(R.id.tvSchedulerShortcut)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        ((TextView)findViewById(R.id.tvLiveCameraShortcut)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        ((TextView)findViewById(R.id.tvTimerShortcut)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
     }
 
     /**

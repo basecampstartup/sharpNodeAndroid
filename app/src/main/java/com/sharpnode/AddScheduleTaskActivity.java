@@ -26,6 +26,7 @@ import com.sharpnode.utils.Utils;
 import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
+import java.lang.reflect.Field;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -63,6 +64,16 @@ public class AddScheduleTaskActivity extends AppCompatActivity implements View.O
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.SchedulerAddNewTask));
+        //Set Custom font to title.
+        try {
+            Field f = mToolbar.getClass().getDeclaredField("mTitleTextView");
+            f.setAccessible(true);
+            TextView titleText = (TextView) f.get(mToolbar);
+            titleText.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        } catch (NoSuchFieldException e) {
+        } catch (IllegalAccessException e) {
+
+        }
         initializeComponents();
         setCurrentDataTimeFields();
 
@@ -78,6 +89,8 @@ public class AddScheduleTaskActivity extends AppCompatActivity implements View.O
         ((TextView) findViewById(R.id.tvSelectAppliance)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
         ((TextView) findViewById(R.id.tvSelectApplianceLbl)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
         ((TextView) findViewById(R.id.tvEveryWeekLbl)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        ((TextView) findViewById(R.id.tvOperationLabel)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        ((TextView) findViewById(R.id.tvScheduleDayTime)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
         edtTaskName = (EditText) findViewById(R.id.edtTaskName);
         edtTaskName.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         tvSelectTimeLbl = (TextView) findViewById(R.id.tvSelectTimeLbl);
@@ -119,6 +132,15 @@ public class AddScheduleTaskActivity extends AppCompatActivity implements View.O
         chkTh.setOnClickListener(this);
         chkFr.setOnClickListener(this);
         chkSat.setOnClickListener(this);
+
+        chkSu.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        chkMo.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        chkTu.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        chkWe.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        chkTh.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        chkFr.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        chkSat.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+
     }
 
     @Override

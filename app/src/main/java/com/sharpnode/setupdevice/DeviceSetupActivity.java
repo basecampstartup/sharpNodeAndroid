@@ -17,12 +17,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.sharpnode.HomeActivity;
 import com.sharpnode.R;
+import com.sharpnode.SNApplication;
 import com.sharpnode.SignInActivity;
 import com.sharpnode.adapter.DeviceAdapter;
 import com.sharpnode.callback.APIRequestCallbacak;
@@ -36,6 +38,7 @@ import com.sharpnode.servercommunication.ResponseParser;
 import com.sharpnode.sprefs.AppSPrefs;
 import com.sharpnode.utils.Logger;
 
+import java.lang.reflect.Field;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -106,6 +109,16 @@ public class DeviceSetupActivity extends AppCompatActivity implements View.OnCli
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.LeftPanelDeviceManual));
+        //Set Custom font to title.
+        try {
+            Field f = mToolbar.getClass().getDeclaredField("mTitleTextView");
+            f.setAccessible(true);
+            TextView titleText = (TextView) f.get(mToolbar);
+            titleText.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        } catch (NoSuchFieldException e) {
+        } catch (IllegalAccessException e) {
+
+        }
 
         llDevices = (LinearLayout)findViewById(R.id.llDevices);
         rvDevices = (RecyclerView) findViewById(R.id.rvDevices);
@@ -120,6 +133,16 @@ public class DeviceSetupActivity extends AppCompatActivity implements View.OnCli
         prepareDeviceList();
         getDevices();
 
+        btnSetupDevice = (Button) findViewById(R.id.btnSetupDevice);
+        btnSetupDevice.setOnClickListener(this);
+        ((TextView)findViewById(R.id.tvConfigureDeviceLbl)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        ((TextView)findViewById(R.id.tvInstructionLbl)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        ((TextView)findViewById(R.id.tvInstruction1)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        ((TextView)findViewById(R.id.tvInstruction2)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        ((TextView)findViewById(R.id.tvInstruction3)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        ((TextView)findViewById(R.id.tvInstruction4)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        ((TextView)findViewById(R.id.tvInstruction5)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        btnSetupDevice.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         receiver = new ParticleDeviceSetupLibrary.DeviceSetupCompleteReceiver() {
 
             @Override

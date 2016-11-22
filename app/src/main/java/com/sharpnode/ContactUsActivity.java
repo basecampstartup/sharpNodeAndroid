@@ -9,6 +9,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import java.lang.reflect.Field;
 
 
 public class ContactUsActivity extends AppCompatActivity implements View.OnClickListener {
@@ -29,6 +32,16 @@ public class ContactUsActivity extends AppCompatActivity implements View.OnClick
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.ContactUsLabel));
+        //Set Custom font to title.
+        try {
+            Field f = mToolbar.getClass().getDeclaredField("mTitleTextView");
+            f.setAccessible(true);
+            TextView titleText = (TextView) f.get(mToolbar);
+            titleText.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        } catch (NoSuchFieldException e) {
+        } catch (IllegalAccessException e) {
+
+        }
 
         loader = new ProgressDialog(this);
         loader.setMessage(getString(R.string.MessagePleaseWait));
