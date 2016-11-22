@@ -47,6 +47,7 @@
     <string name="SignUpPasswordRequired">Enter password</string>
     <string name="SignUpEmailRequired">Enter a valid email address.</string>
     <string name="SignUpPhoneRequired">Phone number required.</string>
+    <string name="TcnRequired">Please accept Terms &amp; Condition before SignUp.</string>
 
     //Login Screen strings
     <string name="LoginAccountSignInLable">Account Sign In</string>

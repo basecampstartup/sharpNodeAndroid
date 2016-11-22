@@ -126,7 +126,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 }
 
                 if (!chkTerms.isChecked()) {
-                    Toast.makeText(mContext, "Please accept Terms & Condition befor Sign-Up.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, getString(R.string.TcnRequired), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
