@@ -2,9 +2,13 @@ package com.sharpnode.servercommunication;
 
 import com.sharpnode.commons.Commons;
 import com.sharpnode.model.AccountModel;
+import com.sharpnode.model.ConfiguredDevices;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 /**
  * Created by admin on 11/15/2016.
@@ -14,10 +18,11 @@ public class ResponseParser {
 
     /**
      * Method for parse login response.
+     *
      * @param object
      * @return
      */
-    public static AccountModel parseLoginResponse(Object object){
+    public static AccountModel parseLoginResponse(Object object) {
         JSONObject jsonObj = null;
         AccountModel model = new AccountModel();
         try {
@@ -37,10 +42,11 @@ public class ResponseParser {
 
     /**
      * Method for parse SignUp response.
+     *
      * @param object
      * @return
      */
-    public static AccountModel parseSignUpResponse(Object object){
+    public static AccountModel parseSignUpResponse(Object object) {
         JSONObject jsonObj = null;
         AccountModel model = new AccountModel();
         try {
@@ -57,4 +63,33 @@ public class ResponseParser {
         }
         return model;
     }
+
+    /**
+     * Parse method for get devices response.
+     * @param object
+     * @return
+     */
+    public static ConfiguredDevices parseGetDevicesResponse(Object object) {
+        JSONArray jsonArr = null;
+        JSONObject jsonObj=null;
+        ArrayList<ConfiguredDevices> devices = new ArrayList<>();
+        ConfiguredDevices model = null;
+        try {
+            jsonObj = new JSONObject(object.toString());
+            jsonArr = jsonObj.optJSONArray("devices");
+            for (int i = 0; i < jsonArr.length(); i++) {
+                model = new ConfiguredDevices();
+                model.setDeviceId(jsonArr.optJSONObject(i).optString(Commons.CONFIGURED_DEVICE_ID));
+                model.setDeviceName(jsonArr.optJSONObject(i).optString(Commons.CONFIGURED_DEVICE_NAME));
+                devices.add(model);
+            }
+            model.setDevicesList(devices);
+            model.setResponseCode(jsonObj.optString(Commons.RESPONSE_CODE));
+            model.setResponseMessage(jsonObj.optString(Commons.TXT));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return model;
+    }
+
 }

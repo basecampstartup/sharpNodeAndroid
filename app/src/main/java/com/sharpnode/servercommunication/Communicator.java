@@ -49,8 +49,11 @@ public class Communicator {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        AppSPrefs.setString(Commons.USER_ID, params.get(Commons.USER_ID));
-                        AppSPrefs.setString(Commons.PASSWORD, params.get(Commons.PASSWORD));
+                        if(APIUtils.CMD_SIGN_IN.equalsIgnoreCase(methodName)
+                                || APIUtils.CMD_SIGN_UP.equalsIgnoreCase(methodName)){
+                            AppSPrefs.setString(Commons.USER_ID, params.get(Commons.USER_ID));
+                            AppSPrefs.setString(Commons.PASSWORD, params.get(Commons.PASSWORD));
+                        }
                         ((APIRequestCallbacak) mContext).onSuccess(methodName, response);
                     }
                 },
