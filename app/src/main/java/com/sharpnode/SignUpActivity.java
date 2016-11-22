@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.sharpnode.callback.APIRequestCallbacak;
 import com.sharpnode.commons.Commons;
 import com.sharpnode.model.AccountModel;
+import com.sharpnode.network.CheckNetwork;
 import com.sharpnode.servercommunication.APIUtils;
 import com.sharpnode.servercommunication.Communicator;
 import com.sharpnode.servercommunication.ResponseParser;
@@ -129,7 +130,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     return;
                 }
 
-                loader.show();
                 //Code for further process Signup.
                 //Navigating to home screen
                 //Call API Request after check internet connection
@@ -138,9 +138,16 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 strPassword = edtPassword.getText().toString().trim();
                 strPhone = edtPhone.getText().toString().trim();
 
-                new Communicator(mContext, APIUtils.CMD_SIGN_UP,
-                        getSignUpRequestMap(APIUtils.CMD_SIGN_UP,
-                                strEmail, strName, strPassword, strPhone));
+                if (CheckNetwork.isInternetAvailable(mContext)) {
+                    loader.show();
+                    //Call API Request after check internet connection
+                    new Communicator(mContext, APIUtils.CMD_SIGN_UP,
+                            getSignUpRequestMap(APIUtils.CMD_SIGN_UP,
+                                    strEmail, strName, strPassword, strPhone));
+                } else {
+                    Logger.i(TAG, "Not connected to Internet.");
+                    Toast.makeText(mContext, mContext.getString(R.string.MessageNoInternetConnection), Toast.LENGTH_LONG).show();
+                }
 
                 break;
             case R.id.txtAlreadyHaveAccount:

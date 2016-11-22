@@ -34,13 +34,8 @@ public class Communicator {
         this.params = params;
         this.methodName = methodName;
 
-        if (CheckNetwork.isInternetAvailable(mContext)) {
-            //network call for api.
-            callAPI();
-        } else {
-            Logger.i(TAG, "Not connected to Internet.");
-            Toast.makeText(mContext, mContext.getString(R.string.MessageNoInternetConnection), Toast.LENGTH_LONG).show();
-        }
+        //network call for api.
+        callAPI();
     }
 
     /**

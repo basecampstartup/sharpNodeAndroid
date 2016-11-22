@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.sharpnode.callback.APIRequestCallbacak;
 import com.sharpnode.commons.Commons;
 import com.sharpnode.model.AccountModel;
+import com.sharpnode.network.CheckNetwork;
 import com.sharpnode.servercommunication.APIUtils;
 import com.sharpnode.servercommunication.Communicator;
 import com.sharpnode.servercommunication.ResponseParser;
@@ -119,11 +120,18 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 if (!validate()) {
                     return;
                 }
-                loader.show();
-                //Call API Request after check internet connection
-                new Communicator(mContext, APIUtils.CMD_SIGN_IN,
-                        getLoginRequestMap(APIUtils.CMD_SIGN_IN,
-                                strEmail, strPassword));
+
+                if (CheckNetwork.isInternetAvailable(mContext)) {
+                    loader.show();
+                    //Call API Request after check internet connection
+                    new Communicator(mContext, APIUtils.CMD_SIGN_IN,
+                            getLoginRequestMap(APIUtils.CMD_SIGN_IN,
+                                    strEmail, strPassword));
+                } else {
+                    Logger.i(TAG, "Not connected to Internet.");
+                    Toast.makeText(mContext, mContext.getString(R.string.MessageNoInternetConnection), Toast.LENGTH_LONG).show();
+                }
+
                 //startActivity(new Intent(SignInActivity.this, HomeActivity.class));
                 //finish();
                 break;
