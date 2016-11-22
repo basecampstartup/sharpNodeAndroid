@@ -65,6 +65,8 @@
                     style="@style/edit_text_style"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_username"
+                    android:drawablePadding="@dimen/dim_padding_10dp"
                     android:layout_marginBottom="@dimen/margin_10dp"
                     android:gravity="center_vertical"
                     android:hint="@string/CommonName"
@@ -79,6 +81,8 @@
                     android:id="@+id/edtEmailID"
                     style="@style/edit_text_style"
                     android:layout_width="match_parent"
+                    android:drawableLeft="@drawable/ic_email"
+                    android:drawablePadding="@dimen/dim_padding_10dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/edtName"
                     android:layout_marginBottom="@dimen/margin_10dp"
@@ -94,6 +98,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/edtEmailID"
+                    android:drawableLeft="@drawable/ic_phone"
+                    android:drawablePadding="@dimen/dim_padding_10dp"
                     android:layout_marginBottom="@dimen/margin_10dp"
                     android:layout_marginTop="@dimen/margin_top_30dp"
                     android:hint="@string/CommonPhone"
@@ -106,6 +112,8 @@
                     style="@style/edit_text_style"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_phone"
+                    android:drawablePadding="@dimen/dim_padding_10dp"
                     android:layout_below="@+id/edEmail"
                     android:layout_marginBottom="@dimen/margin_10dp"
                     android:layout_marginTop="@dimen/margin_top_30dp"
@@ -122,9 +130,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dim_padding_20dp"
                     android:text="@string/Submit"></Button>
-
-
-
             </LinearLayout>
         </LinearLayout>
 

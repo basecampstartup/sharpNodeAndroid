@@ -25,12 +25,10 @@ import com.sharpnode.commons.Commons;
 import com.sharpnode.model.AccountModel;
 import com.sharpnode.servercommunication.APIUtils;
 import com.sharpnode.servercommunication.Communicator;
+import com.sharpnode.servercommunication.ResponseParser;
 import com.sharpnode.sprefs.AppSPrefs;
 import com.sharpnode.utils.EmailSyntaxChecker;
 import com.sharpnode.utils.Logger;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.HashMap;
 
@@ -42,7 +40,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     private Button btnSignIn;
     private Context mContext;
     private long mLastClickTime = 0;
-    private ProgressDialog loader=null;
+    private ProgressDialog loader = null;
     private Toolbar mToolbar;
 
     @Override
@@ -60,7 +58,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
         initializeComponents();
         loader = new ProgressDialog(this);
-        loader.setMessage("Please wait...");
+        loader.setMessage(getString(R.string.MessagePleaseWait));
     }
 
     @Override
@@ -182,25 +180,28 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onSuccess(String name, Object object) {
         loader.dismiss();
-        try{
-            Logger.i(TAG, "Response: "+object);
+        try {
+            Logger.i(TAG, "Response: " + object);
             if (APIUtils.CMD_SIGN_IN.equalsIgnoreCase(name)) {
-                if(parseLoginResponse(object).getResponseCode().equalsIgnoreCase(Commons.CODE_200)){
+                if (ResponseParser.parseLoginResponse(object).getResponseCode().equalsIgnoreCase(Commons.CODE_200)) {
                     AppSPrefs.setAlreadyLoggedIn(true);
-                    AppSPrefs.setString(Commons.ACCESS_TOKEN, parseLoginResponse(object).getAccessToken());
-                    AppSPrefs.setString(Commons.USER_ID, parseLoginResponse(object).getUserId());
-                    AppSPrefs.setString(Commons.NAME, parseLoginResponse(object).getName());
-                    AppSPrefs.setString(Commons.PHONE, parseLoginResponse(object).getPhoneNo());
-                    AppSPrefs.setString(Commons.PHOTO, parseLoginResponse(object).getPhoto());
+                    AccountModel model = ResponseParser.parseSignUpResponse(object);
+                    AppSPrefs.setString(Commons.ACCESS_TOKEN, model.getAccessToken());
+                    AppSPrefs.setString(Commons.EMAIL, model.getUserId());
+                    AppSPrefs.setString(Commons.USER_ID, model.getUserId());
+                    AppSPrefs.setString(Commons.NAME, model.getName());
+                    AppSPrefs.setString(Commons.PHONE, model.getPhoneNo());
+                    AppSPrefs.setString(Commons.PHOTO, model.getPhoto());
                     startActivity(new Intent(SignInActivity.this, HomeActivity.class));
                     finish();
                 } else {
-                    Toast.makeText(mContext, parseLoginResponse(object).getResponseMsg(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(mContext, ResponseParser.parseLoginResponse(object).getResponseMsg(),
+                            Toast.LENGTH_LONG).show();
                 }
-            } else{
+            } else {
 
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -209,24 +210,6 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     public void onFailure(String name, Object object) {
         loader.dismiss();
         Toast.makeText(mContext, "Login response Failure", Toast.LENGTH_LONG).show();
-    }
-
-    private AccountModel parseLoginResponse(Object object){
-        JSONObject jsonObj = null;
-        AccountModel model = new AccountModel();
-        try {
-            jsonObj = new JSONObject(object.toString());
-            model.setResponseCode(jsonObj.optString(Commons.RESPONSE_CODE));
-            model.setResponseMsg(jsonObj.optString(Commons.TXT));
-            model.setUserId(jsonObj.optString(Commons.USER_ID));
-            model.setPhoneNo(jsonObj.optString(Commons.PHONE));
-            model.setPhoto(jsonObj.optString(Commons.PHOTO));
-            model.setAccessToken(jsonObj.optString(Commons.ACCESS_TOKEN));
-            model.setName(jsonObj.optString(Commons.NAME));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return model;
     }
 }
 

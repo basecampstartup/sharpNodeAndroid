@@ -14,21 +14,22 @@ import com.sharpnode.servercommunication.APIUtils;
 
 public class UserMannualActivity extends AppCompatActivity {
 
+    private ProgressDialog loader;
     private Toolbar mToolbar;
     private Context mContext;
-    ProgressDialog pd ;
     private WebView webView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_mannual);
-        mContext=this;
+        mContext = this;
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.app_name));
-        pd = new ProgressDialog(UserMannualActivity.this);
+        loader = new ProgressDialog(UserMannualActivity.this);
         webView = (WebView) findViewById(R.id.webView);
         webView.setWebViewClient(new UserMannualActivity.LoadWebClient());
         webView.getSettings().setJavaScriptEnabled(true);
@@ -53,8 +54,8 @@ public class UserMannualActivity extends AppCompatActivity {
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             // TODO Auto-generated method stub
             super.onPageStarted(view, url, favicon);
-            pd.setMessage("loading");
-            pd.show();
+            loader.setMessage(getString(R.string.MessagePleaseWait));
+            loader.show();
 
         }
 
@@ -71,8 +72,7 @@ public class UserMannualActivity extends AppCompatActivity {
         public void onPageFinished(WebView view, String url) {
             // TODO Auto-generated method stub
             super.onPageFinished(view, url);
-            if(pd!=null)pd.dismiss();
-            //loading.setVisibility(View.GONE);
+            if (loader != null) loader.dismiss();
         }
     }
 }

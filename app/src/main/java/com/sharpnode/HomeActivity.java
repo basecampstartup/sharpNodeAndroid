@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.sharpnode.commons.Commons;
 import com.sharpnode.setupdevice.DeviceSetupActivity;
 import com.sharpnode.sprefs.AppSPrefs;
 
@@ -24,14 +25,14 @@ import com.sharpnode.sprefs.AppSPrefs;
  * class: HomeActivity it is dashboard screen of application from where can access all features of
  * application.
  */
-public class HomeActivity extends AppCompatActivity implements View.OnClickListener{
+public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Context mContext;
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;  //toggle to open and close drawer
     private TextView tvUserName, tvUserRole, tvHome, tvSettings, tvInsights, tvIftttConfig, tvAppliances,
             tvUserManual, tvContactUs, tvLogout, tvTemperature, tvHumidity, tvSecurityFeature;
-    private ImageView ivProfilePicture,ivSecurityFeature, ivAppliancesShortcut, ivSchedulerShortcut, ivLiveCameraShortcut, ivTimerShortcut;
+    private ImageView ivProfilePicture, ivSecurityFeature, ivAppliancesShortcut, ivSchedulerShortcut, ivLiveCameraShortcut, ivTimerShortcut;
     private LinearLayout llHomePanel, llSettingsPanel, llInsightsPanel, llIftttConfigPanel,
             llAppliancePanel, llLiveCameraPanel, llUserManualPanel, llLogoutPanel, llContactUsPanel, llDeviceManualPanel;
     private RelativeLayout rlShortcutAppliance, rlShortcutScheduler, rlShortcutLiveCamera, rlShortcutTimer, rlSecurityFeature;
@@ -76,8 +77,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         closeDrawer();
-         //switch case
-        switch (view.getId()){
+        //switch case
+        switch (view.getId()) {
             case R.id.llHomePanel:
                 break;
             case R.id.llSettingsPanel:
@@ -123,14 +124,14 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.llLogoutPanel:
                 AppSPrefs.clearAppSPrefs();
                 Intent intent = new Intent(mContext, LandingPageActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();
                 break;
         }
     }
 
-    private void enLargeShrinkAnimation(){
+    private void enLargeShrinkAnimation() {
         animationEnlarge = AnimationUtils.loadAnimation(this, R.anim.enlarge);
         animationShrink = AnimationUtils.loadAnimation(this, R.anim.shrink);
         animationEnlarge.setAnimationListener(animationEnlargeListener);
@@ -151,22 +152,22 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     /**
      * Method for initialize component of screen.
      */
-    private void initializeComponents(){
-        llHomePanel = (LinearLayout)findViewById(R.id.llHomePanel);
-        llSettingsPanel = (LinearLayout)findViewById(R.id.llSettingsPanel);
-        llInsightsPanel = (LinearLayout)findViewById(R.id.llInsightsPanel);
-        llIftttConfigPanel = (LinearLayout)findViewById(R.id.llIftttConfigPanel);
-        llAppliancePanel = (LinearLayout)findViewById(R.id.llAppliancePanel);
-        llUserManualPanel = (LinearLayout)findViewById(R.id.llUserManualPanel);
-        llLogoutPanel = (LinearLayout)findViewById(R.id.llLogoutPanel);
-        llContactUsPanel = (LinearLayout)findViewById(R.id.llContactUsPanel);
-        llDeviceManualPanel = (LinearLayout)findViewById(R.id.llDeviceManualPanel);
+    private void initializeComponents() {
+        llHomePanel = (LinearLayout) findViewById(R.id.llHomePanel);
+        llSettingsPanel = (LinearLayout) findViewById(R.id.llSettingsPanel);
+        llInsightsPanel = (LinearLayout) findViewById(R.id.llInsightsPanel);
+        llIftttConfigPanel = (LinearLayout) findViewById(R.id.llIftttConfigPanel);
+        llAppliancePanel = (LinearLayout) findViewById(R.id.llAppliancePanel);
+        llUserManualPanel = (LinearLayout) findViewById(R.id.llUserManualPanel);
+        llLogoutPanel = (LinearLayout) findViewById(R.id.llLogoutPanel);
+        llContactUsPanel = (LinearLayout) findViewById(R.id.llContactUsPanel);
+        llDeviceManualPanel = (LinearLayout) findViewById(R.id.llDeviceManualPanel);
 
         rlSecurityFeature = (RelativeLayout) findViewById(R.id.rlSecurityFeature);
         rlShortcutAppliance = (RelativeLayout) findViewById(R.id.rlShortcutAppliance);
-        rlShortcutScheduler = (RelativeLayout)findViewById(R.id.rlShortcutScheduler);
-        rlShortcutLiveCamera = (RelativeLayout)findViewById(R.id.rlShortcutLiveCamera);
-        rlShortcutTimer = (RelativeLayout)findViewById(R.id.rlShortcutTimer);
+        rlShortcutScheduler = (RelativeLayout) findViewById(R.id.rlShortcutScheduler);
+        rlShortcutLiveCamera = (RelativeLayout) findViewById(R.id.rlShortcutLiveCamera);
+        rlShortcutTimer = (RelativeLayout) findViewById(R.id.rlShortcutTimer);
 
         rlSecurityFeature.setOnClickListener(this);
         rlShortcutAppliance.setOnClickListener(this);
@@ -184,27 +185,27 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         llContactUsPanel.setOnClickListener(this);
         llDeviceManualPanel.setOnClickListener(this);
 
-        ivSecurityFeature = (ImageView)findViewById(R.id.ivSecurityFeature);
+        ivSecurityFeature = (ImageView) findViewById(R.id.ivSecurityFeature);
         ivSecurityFeature.setImageResource(R.drawable.ic_security_off);
         ivSecurityFeature.setTag(false);
 
-        tvHome = (TextView)findViewById(R.id.tvHome);
-        tvSettings = (TextView)findViewById(R.id.tvSettings);
-        tvInsights = (TextView)findViewById(R.id.tvInsights);
-        tvIftttConfig = (TextView)findViewById(R.id.tvIftttConfig);
-        tvAppliances = (TextView)findViewById(R.id.tvAppliances);
-        tvUserManual = (TextView)findViewById(R.id.tvUserManual);
-        tvContactUs = (TextView)findViewById(R.id.tvContactUs);
-        tvLogout = (TextView)findViewById(R.id.tvLogout);
-        tvTemperature = (TextView)findViewById(R.id.tvTemperature);
-        tvHumidity = (TextView)findViewById(R.id.tvHumidity);
+        tvHome = (TextView) findViewById(R.id.tvHome);
+        tvSettings = (TextView) findViewById(R.id.tvSettings);
+        tvInsights = (TextView) findViewById(R.id.tvInsights);
+        tvIftttConfig = (TextView) findViewById(R.id.tvIftttConfig);
+        tvAppliances = (TextView) findViewById(R.id.tvAppliances);
+        tvUserManual = (TextView) findViewById(R.id.tvUserManual);
+        tvContactUs = (TextView) findViewById(R.id.tvContactUs);
+        tvLogout = (TextView) findViewById(R.id.tvLogout);
+        tvTemperature = (TextView) findViewById(R.id.tvTemperature);
+        tvHumidity = (TextView) findViewById(R.id.tvHumidity);
 
-        ivAppliancesShortcut = (ImageView)findViewById(R.id.ivAppliancesShortcut);
-        ivSchedulerShortcut = (ImageView)findViewById(R.id.ivSchedulerShortcut);
-        ivLiveCameraShortcut = (ImageView)findViewById(R.id.ivLiveCameraShortcut);
-        ivTimerShortcut = (ImageView)findViewById(R.id.ivTimerShortcut);
+        ivAppliancesShortcut = (ImageView) findViewById(R.id.ivAppliancesShortcut);
+        ivSchedulerShortcut = (ImageView) findViewById(R.id.ivSchedulerShortcut);
+        ivLiveCameraShortcut = (ImageView) findViewById(R.id.ivLiveCameraShortcut);
+        ivTimerShortcut = (ImageView) findViewById(R.id.ivTimerShortcut);
 
-        ((TextView)findViewById(R.id.tvSecurityFeature)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        ((TextView) findViewById(R.id.tvSecurityFeature)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
         tvTemperature.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         tvHumidity.setTypeface(SNApplication.APP_FONT_TYPEFACE);
 
@@ -217,6 +218,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         tvContactUs.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         tvLogout.setTypeface(SNApplication.APP_FONT_TYPEFACE);
     }
+
     /**
      * Method to initialize header options of side panel
      */
@@ -227,6 +229,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         tvUserName.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         tvUserRole.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+
+        tvUserName.setText(AppSPrefs.getString(Commons.NAME));
     }
 
     /**
@@ -253,11 +257,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         public void onAnimationStart(Animation animation) {
         }
     };
-
     Animation.AnimationListener animationShrinkListener = new Animation.AnimationListener() {
         @Override
         public void onAnimationEnd(Animation animation) {
-            if ((boolean)ivSecurityFeature.getTag()){
+            if ((boolean) ivSecurityFeature.getTag()) {
                 ivSecurityFeature.setImageResource(R.drawable.ic_security_off);
                 ivSecurityFeature.setTag(false);
             } else {

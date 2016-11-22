@@ -35,6 +35,7 @@ import io.particle.android.sdk.devicesetup.ui.DiscoverDeviceActivity;
 import io.particle.android.sdk.utils.Async;
 import io.particle.android.sdk.utils.SoftAPConfigRemover;
 import io.particle.android.sdk.utils.ui.Toaster;
+
 import static io.particle.android.sdk.utils.Py.truthy;
 
 /**
@@ -75,7 +76,7 @@ public class DeviceSetupActivity extends AppCompatActivity implements View.OnCli
         Date expiryDate = calendar.getTime();
         sparkCloud.setAccessToken(AppSPrefs.getString(Commons.ACCESS_TOKEN), expiryDate);
         ParticleUser.fromNewCredentials(AppSPrefs.getString(Commons.USER_ID),
-                AppSPrefs.getString(Commons.PASSWORD));;
+                AppSPrefs.getString(Commons.PASSWORD));
 
         btnSetupDevice = (Button) findViewById(R.id.btnSetupDevice);
         btnSetupDevice.setOnClickListener(this);
@@ -141,17 +142,6 @@ public class DeviceSetupActivity extends AppCompatActivity implements View.OnCli
         this.finish();
     }
 
-    public void invokeDeviceSetup() {
-        ParticleDeviceSetupLibrary.startDeviceSetup(mContext);
-    }
-
-    private void invokeDeviceSetupWithCustomIntentBuilder() {
-        final String setupLaunchedTime = new Date().toString();
-        DeviceSetupCompleteIntentBuilder deviceSetupCompleteIntentBuilder = new DeviceSetupCompleteIntentBuilder(setupLaunchedTime);
-        // Important: don't use an anonymous inner class to implement SetupCompleteIntentBuilder, otherwise you will cause a memory leak.
-        ParticleDeviceSetupLibrary.startDeviceSetup(this, deviceSetupCompleteIntentBuilder);
-    }
-
     private void onReadyButtonClicked() {
         // FIXME: check here that another of these tasks isn't already running
         DeviceSetupState.reset();
@@ -162,8 +152,7 @@ public class DeviceSetupActivity extends AppCompatActivity implements View.OnCli
             public Responses.ClaimCodeResponse callApi(ParticleCloud sparkCloud) throws ParticleCloudException {
                 Resources res = ctx.getResources();
                 if (res.getBoolean(io.particle.android.sdk.devicesetup.R.bool.organization)) {
-                    return sparkCloud.generateClaimCodeForOrg("sbi",
-                            "448");
+                    return sparkCloud.generateClaimCodeForOrg("sbi", "448");
                 } else {
                     return sparkCloud.generateClaimCode();
                 }
@@ -247,9 +236,9 @@ public class DeviceSetupActivity extends AppCompatActivity implements View.OnCli
 
     private void moveToDeviceDiscovery() {
         //if (PermissionsFragment.hasPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
-            startActivity(new Intent(mContext, DiscoverDeviceActivity.class));
-       // } else {
-            //PermissionsFragment.get(this).ensurePermission(Manifest.permission.ACCESS_COARSE_LOCATION);
+        startActivity(new Intent(mContext, DiscoverDeviceActivity.class));
+        // } else {
+        //PermissionsFragment.get(this).ensurePermission(Manifest.permission.ACCESS_COARSE_LOCATION);
         //}
     }
 }

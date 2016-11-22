@@ -4,6 +4,8 @@
     //Constant Strings======
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="MessagePleaseWait">Please wait...</string>
+    <string name="MessageNoInternetConnection">Please check internet connection.</string>
 
     //Left Panel Strings
     <string name="LeftPanelHome">Home</string>

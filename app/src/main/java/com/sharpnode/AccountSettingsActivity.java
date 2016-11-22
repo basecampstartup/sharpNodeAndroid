@@ -26,11 +26,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sharpnode.adapter.DialogAdapter;
+import com.sharpnode.commons.Commons;
 import com.sharpnode.image.crop.Crop;
+import com.sharpnode.permissions.PermissionManager;
+import com.sharpnode.sprefs.AppSPrefs;
 import com.sharpnode.utils.Constants;
 import com.sharpnode.utils.EmailSyntaxChecker;
 import com.sharpnode.utils.Logger;
-import com.sharpnode.permissions.PermissionManager;
 import com.sharpnode.utils.Utils;
 
 import java.io.BufferedInputStream;
@@ -80,6 +82,7 @@ public class AccountSettingsActivity extends AppCompatActivity implements View.O
         ivProfilePicture = (ImageView) findViewById(R.id.ivProfilePicture);
         ivProfilePicture.setOnClickListener(this);
         pictureOption = new ArrayList<>();
+        initializeComponents();
     }
 
     /**
@@ -95,6 +98,9 @@ public class AccountSettingsActivity extends AppCompatActivity implements View.O
         edtName.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         edtEmail.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         edtPhone.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        edtName.setText(AppSPrefs.getString(Commons.NAME));
+        edtEmail.setText(AppSPrefs.getString(Commons.EMAIL));
+        edtPhone.setText(AppSPrefs.getString(Commons.PHONE));
         edtEmail.setEnabled(false);
     }
 
