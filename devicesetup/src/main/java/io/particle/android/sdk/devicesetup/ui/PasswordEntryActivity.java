@@ -3,7 +3,10 @@ package io.particle.android.sdk.devicesetup.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.InputType;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -26,6 +29,7 @@ import io.particle.android.sdk.utils.ui.Ui;
 public class PasswordEntryActivity extends BaseActivity {
 
     public static final String EXTRA_NETWORK_TO_CONFIGURE = "EXTRA_NETWORK_TO_CONFIGURE";
+    private Toolbar mToolbar;
 
     public static Intent buildIntent(Context ctx, ScanApCommand.Scan networkToConnectTo) {
         return new Intent(ctx, PasswordEntryActivity.class)
@@ -45,6 +49,12 @@ public class PasswordEntryActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_password_entry);
 
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(getString(R.string.title_activity_password_entry));
+
         ParticleUi.enableBrandLogoInverseVisibilityAgainstSoftKeyboard(this);
 
         String asJson = getIntent().getStringExtra(EXTRA_NETWORK_TO_CONFIGURE);
@@ -56,6 +66,22 @@ public class PasswordEntryActivity extends BaseActivity {
         showPwdBox = Ui.findView(this, R.id.show_password);
 
         initViews();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void initViews() {

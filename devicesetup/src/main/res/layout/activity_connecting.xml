@@ -5,9 +5,15 @@
               android:clipChildren="false"
               android:orientation="vertical"
               tools:context="io.particle.android.sdk.devicesetup.ui.ConnectingActivity"
-              tools:ignore="RtlHardcoded">
+              tools:ignore="RtlHardcoded"
+    android:background="@drawable/background">
 
-    <include layout="@layout/brand_image_header"/>
+    <include layout="@layout/brand_image_header"
+        android:visibility="gone"/>
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,7 +30,8 @@
             style="@style/SectionHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/connecting"/>
+            android:text="@string/connecting"
+            android:textColor="@android:color/white"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -45,6 +52,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:textColor="@android:color/white"
                     android:text="@string/connecting_text"
                     android:textSize="@dimen/text_size_medium"/>
 
@@ -59,6 +67,7 @@
                     android:text="[network name]"
                     android:textSize="@dimen/text_size_medium"
                     android:textStyle="bold"
+                    android:textColor="@android:color/white"
                     tools:ignore="MissingPrefix,HardcodedText"/>
 
                 <TextView
@@ -66,6 +75,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:gravity="center"
+                    android:textColor="@android:color/white"
                     android:text="@string/connecting_text_2"
                     android:textSize="@dimen/text_size_medium"/>
 
@@ -107,6 +117,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="left|center_vertical"
                         android:layout_marginLeft="8dp"
+                        android:textColor="@android:color/white"
                         android:text="@string/configure_device_wifi_credentials"
                         android:textSize="@dimen/text_size_small"/>
 
@@ -145,6 +156,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="left|center_vertical"
                         android:layout_marginLeft="8dp"
+                        android:textColor="@android:color/white"
                         android:text="@string/connect_to_wifi_network"
                         android:textSize="@dimen/text_size_small"/>
 
@@ -183,6 +195,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="left|center_vertical"
                         android:layout_marginLeft="8dp"
+                        android:textColor="@android:color/white"
                         android:text="@string/wait_for_device_cloud_connection"
                         android:textSize="@dimen/text_size_small"/>
 
@@ -221,6 +234,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="left|center_vertical"
                         android:layout_marginLeft="8dp"
+                        android:textColor="@android:color/white"
                         android:text="@string/check_for_internet_connectivity"
                         android:textSize="@dimen/text_size_small"/>
 
@@ -259,6 +273,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="left|center_vertical"
                         android:layout_marginLeft="8dp"
+                        android:textColor="@android:color/white"
                         android:text="@string/verify_product_ownership"
                         android:textSize="@dimen/text_size_small"/>
 
@@ -268,9 +283,11 @@
 
             <Button
                 android:id="@+id/action_cancel"
-                style="@style/SparkButton"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/button_style"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/cancel"/>
 
             <Button

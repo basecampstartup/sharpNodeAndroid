@@ -6,7 +6,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.util.Pair;
+import android.support.v7.widget.Toolbar;
 import android.util.SparseArray;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -35,6 +37,7 @@ public class SuccessActivity extends BaseActivity {
     public static final int RESULT_FAILURE_CONFIGURE = 4;
     public static final int RESULT_FAILURE_NO_DISCONNECT = 5;
     public static final int RESULT_FAILURE_LOST_CONNECTION_TO_DEVICE = 6;
+    private Toolbar mToolbar;
 
 
     public static Intent buildIntent(Context ctx, int resultCode) {
@@ -77,6 +80,12 @@ public class SuccessActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_success);
+
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("SharpNode");
 
         particleCloud = ParticleCloud.get(this);
 
@@ -131,6 +140,17 @@ public class SuccessActivity extends BaseActivity {
                     }
                 });
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private Pair<? extends CharSequence, CharSequence> buildUiStringPair(int resultCode) {

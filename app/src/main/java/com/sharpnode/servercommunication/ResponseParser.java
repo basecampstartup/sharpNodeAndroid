@@ -73,19 +73,21 @@ public class ResponseParser {
         JSONArray jsonArr = null;
         JSONObject jsonObj=null;
         ArrayList<ConfiguredDevices> devices = new ArrayList<>();
-        ConfiguredDevices model = null;
+        ConfiguredDevices model = new ConfiguredDevices();;
         try {
             jsonObj = new JSONObject(object.toString());
-            jsonArr = jsonObj.optJSONArray("devices");
-            for (int i = 0; i < jsonArr.length(); i++) {
-                model = new ConfiguredDevices();
-                model.setDeviceId(jsonArr.optJSONObject(i).optString(Commons.CONFIGURED_DEVICE_ID));
-                model.setDeviceName(jsonArr.optJSONObject(i).optString(Commons.CONFIGURED_DEVICE_NAME));
-                devices.add(model);
-            }
-            model.setDevicesList(devices);
             model.setResponseCode(jsonObj.optString(Commons.RESPONSE_CODE));
             model.setResponseMessage(jsonObj.optString(Commons.TXT));
+            jsonArr = jsonObj.optJSONArray("devices");
+            if(jsonArr!=null) {
+                for (int i = 0; i < jsonArr.length(); i++) {
+                    ConfiguredDevices m = new ConfiguredDevices();
+                    m.setDeviceId(jsonArr.optJSONObject(i).optString(Commons.CONFIGURED_DEVICE_ID));
+                    m.setDeviceName(jsonArr.optJSONObject(i).optString(Commons.CONFIGURED_DEVICE_NAME));
+                    devices.add(m);
+                }
+            }
+            model.setDevicesList(devices);
         } catch (JSONException e) {
             e.printStackTrace();
         }

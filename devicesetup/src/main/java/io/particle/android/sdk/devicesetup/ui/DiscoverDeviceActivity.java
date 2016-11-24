@@ -13,6 +13,8 @@ import android.os.Bundle;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AlertDialog.Builder;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.squareup.phrase.Phrase;
@@ -26,6 +28,7 @@ import java.util.concurrent.TimeUnit;
 
 import io.particle.android.sdk.accountsetup.LoginActivity;
 import io.particle.android.sdk.cloud.ParticleCloud;
+import io.particle.android.sdk.cloud.ParticleCloudSDK;
 import io.particle.android.sdk.devicesetup.R;
 import io.particle.android.sdk.devicesetup.commands.CommandClient;
 import io.particle.android.sdk.devicesetup.commands.DeviceIdCommand;
@@ -74,11 +77,29 @@ public class DiscoverDeviceActivity extends RequiresWifiScansActivity
     // FIXME: UGH. Figure out a way to pass this info along without making it
     // into class-wide mutable state.
     private String currentSSID;
+    private Toolbar mToolbar;
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_discover_device);
+
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(getString(R.string.title_activity_discover_device));
 
         softAPConfigRemover = new SoftAPConfigRemover(this);
         softAPConfigRemover.removeAllSoftApConfigs();
@@ -87,7 +108,7 @@ public class DiscoverDeviceActivity extends RequiresWifiScansActivity
         DeviceSetupState.previouslyConnectedWifiNetwork = WiFi.getCurrentlyConnectedSSID(this);
 
         wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
-        sparkCloud = ParticleCloud.get(this);
+        sparkCloud = ParticleCloudSDK.getCloud();
 
         wifiListFragment = Ui.findFrag(this, R.id.wifi_list_fragment);
         ConnectToApFragment.ensureAttached(this);
@@ -108,38 +129,38 @@ public class DiscoverDeviceActivity extends RequiresWifiScansActivity
                         .format()
         );
 
-        Ui.setTextFromHtml(this, R.id.action_troubleshooting, R.string.troubleshooting).setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Uri uri = Uri.parse(v.getContext().getString(R.string.troubleshooting_uri));
-                        startActivity(WebViewActivity.buildIntent(v.getContext(), uri));
-                    }
-                }
-        );
-
-        Ui.setText(this, R.id.logged_in_as,
-                Phrase.from(this, R.string.you_are_logged_in_as)
-                        .put("username", sparkCloud.getLoggedInUsername())
-                        .format()
-        );
-
-        Ui.findView(this, R.id.action_log_out).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sparkCloud.logOut();
-                log.i("logged out, username is: " + sparkCloud.getLoggedInUsername());
-                startActivity(new Intent(DiscoverDeviceActivity.this, LoginActivity.class));
-                finish();
-            }
-        });
-
-        Ui.findView(this, R.id.action_cancel).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+//        Ui.setTextFromHtml(this, R.id.action_troubleshooting, R.string.troubleshooting).setOnClickListener(
+//                new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Uri uri = Uri.parse(v.getContext().getString(R.string.troubleshooting_uri));
+//                        startActivity(WebViewActivity.buildIntent(v.getContext(), uri));
+//                    }
+//                }
+//        );
+//
+//        Ui.setText(this, R.id.logged_in_as,
+//                Phrase.from(this, R.string.you_are_logged_in_as)
+//                        .put("username", sparkCloud.getLoggedInUsername())
+//                        .format()
+//        );
+//
+//        Ui.findView(this, R.id.action_log_out).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                sparkCloud.logOut();
+//                log.i("logged out, username is: " + sparkCloud.getLoggedInUsername());
+//                startActivity(new Intent(DiscoverDeviceActivity.this, LoginActivity.class));
+//                finish();
+//            }
+//        });
+//
+//        Ui.findView(this, R.id.action_cancel).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                finish();
+//            }
+//        });
     }
 
     @Override

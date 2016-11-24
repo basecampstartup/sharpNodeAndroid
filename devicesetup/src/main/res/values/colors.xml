@@ -1,4 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="shaded_background">#5222</color>
+
+    <color name="colorPrimary">#50d2ce</color>
+    <color name="colorPrimaryDark">#00B7AD</color>
+    <color name="colorAccent">#00B7AD</color>
+
+    <color name="colorAppWhite">#FFFFFF</color>
+    <color name="colorAppBlack">#000000</color>
+    <color name="colorAppLightBlack">#3E3D42</color>
+
+    <color name="colorButtonBg">#00B7AD</color>
+
+    <color name="color_black">#000000</color>
+    <color name="color_edittext_hint">#FFFFFF</color>
+
+
+    <!--image cropper-->
+    <color name="color_crop_button_bar">#f3f3f3</color>
+    <color name="color_crop_button_text">#666666</color>
+    <color name="color_crop_selector_pressed">#1a000000</color>
+    <color name="color_crop_selector_focused">#77000000</color>
+
+    <color name="color_teal">#50d2ce</color>
+    <color name="color_teal_light">#72dbce</color>
+    <color name="color_teal_lighter">#72dbce</color>
+    <color name="color_gray">#b6b6b8</color>
+    <color name="color_black1">#1d1d26</color>
+
+    <color name="color_text">#ffffff</color>
+
+
+
+    <color name="color_orange">#FF8C00</color>
 </resources>

@@ -1,12 +1,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:paddingBottom="12dp"
-              tools:context="io.particle.android.sdk.devicesetup.ui.DiscoverDeviceActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    android:paddingBottom="12dp"
+    tools:context="io.particle.android.sdk.devicesetup.ui.DiscoverDeviceActivity">
 
-    <include layout="@layout/brand_image_header"/>
+    <include layout="@layout/brand_image_header"
+        android:visibility="gone"/>
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,14 +30,14 @@
             android:layout_height="96dp"
             android:layout_marginBottom="4dp"
             android:layout_marginTop="8dp"
-            android:src="@drawable/device_image_small"/>
+            android:src="@drawable/device_image_small" />
 
         <TextView
             android:id="@+id/wifi_list_header"
             style="@style/SectionHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/wifi_list_header_text"/>
+            android:text="@string/wifi_list_header_text" />
 
         <fragment
             android:id="@+id/wifi_list_fragment"
@@ -39,7 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="0px"
             android:layout_weight="1"
-            tools:layout="@layout/row_wifi_scan_result"/>
+            tools:layout="@layout/row_wifi_scan_result" />
 
         <TextView
             android:id="@+id/msg_device_not_listed"
@@ -51,7 +57,8 @@
             android:padding="8dp"
             android:text="@string/msg_device_not_listed"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textSize="@dimen/text_size_nano"/>
+            android:textSize="@dimen/text_size_nano"
+            android:textColor="@android:color/white"/>
 
         <TextView
             android:id="@+id/action_troubleshooting"
@@ -61,7 +68,7 @@
             android:layout_marginBottom="12dp"
             android:gravity="center"
             android:text="@string/troubleshooting"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/logged_in_as"
@@ -71,19 +78,22 @@
             android:gravity="center"
             android:text="@string/you_are_logged_in_as"
             android:textColor="@color/normal_text_color"
-            android:textSize="@dimen/text_size_micro"/>
+            android:textSize="@dimen/text_size_micro"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/action_log_out"
             style="@style/SparkButton"
             android:layout_marginBottom="12dp"
-            android:text="@string/log_out"/>
+            android:text="@string/log_out"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/action_cancel"
             style="@style/SparkButton"
             android:layout_marginBottom="8dp"
-            android:text="@string/cancel"/>
+            android:text="@string/cancel"
+            android:visibility="gone" />
 
     </LinearLayout>
 

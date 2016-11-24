@@ -6,9 +6,15 @@
     android:clipChildren="false"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@drawable/background"
     tools:context="io.particle.android.sdk.devicesetup.ui.SelectNetworkActivity">
 
-    <include layout="@layout/brand_image_header"/>
+    <include layout="@layout/brand_image_header"
+        android:visibility="gone"/>
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,11 +47,13 @@
             android:layout_marginTop="16dp"
             android:onClick="onManualNetworkEntryClicked"
             android:text="@string/manual_network_name"
-            android:textSize="14sp"/>
+            android:textSize="14sp"
+            android:visibility="gone"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:visibility="gone">
 
             <Button
                 android:id="@+id/action_rescan"

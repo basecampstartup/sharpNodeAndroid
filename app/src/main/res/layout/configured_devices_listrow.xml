@@ -1,60 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    >
+
+    <ImageView
+        android:id="@+id/ivPhotonIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_margin="@dimen/dim_padding_5dp"
+        android:src="@drawable/photon_vector_small">
+
+    </ImageView>
 
     <LinearLayout
-        android:id="@+id/llDeviceName"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dim_padding_10dp"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/llPresence"
+        android:layout_toRightOf="@+id/ivPhotonIcon"
+        android:layout_marginTop="@dimen/dim_padding_5dp"
+        android:layout_marginLeft="@dimen/dim_padding_5dp"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tvDeviceNameLabel"
+            android:id="@+id/tvLabel"
             style="@style/text_view_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name: "></TextView>
+            android:singleLine="true"
+            android:text="Label"></TextView>
 
         <TextView
             android:id="@+id/tvDeviceName"
             style="@style/text_view_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Device Name"></TextView>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/llDeviceName"
-        android:layout_marginTop="@dimen/dim_padding_2dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/tvDeviceIdLabel"
-            style="@style/text_view_style"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ID: "></TextView>
+            android:layout_marginTop="@dimen/dim_padding_2dp"
+            android:singleLine="true"
+            android:text="Name"
+            android:textSize="@dimen/text_size_medium"></TextView>
 
         <TextView
             android:id="@+id/tvDeviceId"
             style="@style/text_view_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Device ID"></TextView>
+            android:layout_marginTop="@dimen/dim_padding_2dp"
+            android:singleLine="true"
+            android:text="Device ID"
+            android:textSize="@dimen/text_size_small"></TextView>
     </LinearLayout>
 
-    <Button
+    <LinearLayout
+        android:id="@+id/llPresence"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/btnRemove"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvPresence"
+            style="@style/text_view_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dim_padding_2dp"
+            android:text="Offline"
+            android:textSize="@dimen/text_size_small"></TextView>
+
+
+        <ImageView
+            android:id="@+id/ivPresence"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/presence_invisible"></ImageView>
+    </LinearLayout>
+
+    <ImageView
         android:id="@+id/btnRemove"
-        style="@style/button_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:text="@string/Remove"></Button>
+        android:src="@drawable/ic_more_vert_black_24dp"></ImageView>
+
+    <View
+        android:layout_width="match_parent"
+        android:background="@drawable/dashboard_horizontal_line"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/dim_padding_10dp"
+        android:layout_marginBottom="@dimen/dim_padding_10dp"
+        android:layout_alignParentBottom="true"></View>
 
 </RelativeLayout>

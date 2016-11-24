@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -59,6 +61,7 @@ public class ConnectingActivity extends RequiresWifiScansActivity {
 
     private static final TLog log = TLog.get(ConnectingActivity.class);
     private static final Gson gson = new Gson();
+    private Toolbar mToolbar;
 
     public static Intent buildIntent(Context ctx, String deviceSoftApSsid,
                                      ScanApCommand.Scan networkToConnectTo) {
@@ -96,6 +99,12 @@ public class ConnectingActivity extends RequiresWifiScansActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connecting);
+
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(getString(R.string.title_activity_connecting));
 
         softAPConfigRemover = new SoftAPConfigRemover(this);
 
@@ -144,6 +153,17 @@ public class ConnectingActivity extends RequiresWifiScansActivity {
 
         connectingProcessWorkerTask = new ConnectingProcessWorkerTask(buildSteps(), 15);
         connectingProcessWorkerTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override

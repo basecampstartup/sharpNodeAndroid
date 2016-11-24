@@ -116,8 +116,9 @@ public class DeviceSetupActivity extends AppCompatActivity implements View.OnCli
             TextView titleText = (TextView) f.get(mToolbar);
             titleText.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         } catch (NoSuchFieldException e) {
+            e.printStackTrace();
         } catch (IllegalAccessException e) {
-
+            e.printStackTrace();
         }
 
         llDevices = (LinearLayout)findViewById(R.id.llDevices);
@@ -128,7 +129,7 @@ public class DeviceSetupActivity extends AppCompatActivity implements View.OnCli
 
         loader = new ProgressDialog(this);
         loader.setMessage(getString(R.string.MessagePleaseWait));
-
+        loader.setCancelable(false);
         initDeviceSetupProperty();
         prepareDeviceList();
         getDevices();
@@ -173,6 +174,7 @@ public class DeviceSetupActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnSetupDevice:
+                loader.show();
                 onReadyButtonClicked();
                 break;
         }
@@ -226,6 +228,7 @@ public class DeviceSetupActivity extends AppCompatActivity implements View.OnCli
             new Communicator(mContext, APIUtils.CMD_GET_DEVICES,
                     getDeviceRequestMap(APIUtils.CMD_GET_DEVICES, AppSPrefs.getString(Commons.ACCESS_TOKEN)));
         } else {
+            finish();
             Logger.i(TAG, "Not connected to Internet.");
             Toast.makeText(mContext, mContext.getString(R.string.MessageNoInternetConnection), Toast.LENGTH_LONG).show();
         }
@@ -269,6 +272,7 @@ public class DeviceSetupActivity extends AppCompatActivity implements View.OnCli
 
             @Override
             public void onFailure(ParticleCloudException error) {
+                loader.dismiss();
                 Logger.i(TAG, "Generating claim code failed");
                 ParticleCloudException.ResponseErrorData errorData = error.getResponseData();
                 if (errorData != null && errorData.getHttpStatusCode() == 401) {
@@ -322,6 +326,7 @@ public class DeviceSetupActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void moveToDeviceDiscovery() {
+        loader.dismiss();
         //if (PermissionsFragment.hasPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
         startActivity(new Intent(mContext, DiscoverDeviceActivity.class));
         // } else {
@@ -360,7 +365,9 @@ public class DeviceSetupActivity extends AppCompatActivity implements View.OnCli
                         llDevices.setVisibility(View.GONE);
                     }
                 } else {
-                    Toast.makeText(mContext, ResponseParser.parseLoginResponse(object).getResponseMsg(),
+                    svSetupInstruction.setVisibility(View.VISIBLE);
+                    llDevices.setVisibility(View.GONE);
+                    Toast.makeText(mContext, model.getResponseMessage(),
                             Toast.LENGTH_LONG).show();
                 }
             } else {
