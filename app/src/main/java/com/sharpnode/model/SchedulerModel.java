@@ -4,7 +4,7 @@ package com.sharpnode.model;
  * Created by admin on 11/21/2016.
  */
 
-public class SchedulerModel {
+public class SchedulerModel extends BaseModel{
 
     private String scheduleTaskName="";
     private String applianceName="";

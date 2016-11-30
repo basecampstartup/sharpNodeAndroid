@@ -7,5 +7,5 @@
     android:previewImage="@drawable/ic_launcher"
     android:updatePeriodMillis="86400000"
     android:resizeMode="horizontal|vertical"
-    android:configure="com.sharpnode.HomeActivity"
+    android:configure="com.sharpnode.DeviceDashboardActivity"
     android:widgetCategory="home_screen"></appwidget-provider>

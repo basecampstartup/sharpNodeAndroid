@@ -1,8 +1,10 @@
 package com.sharpnode.utils;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BlurMaskFilter;
@@ -15,6 +17,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -32,8 +35,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.sharpnode.LandingPageActivity;
 import com.sharpnode.R;
 import com.sharpnode.SNApplication;
+import com.sharpnode.sprefs.AppSPrefs;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -338,5 +343,21 @@ public class Utils {
         canvas.drawBitmap(src, 0, 0, null);
 
         imageView.setImageBitmap(bmp);
+    }
+
+    public static void logoutFromApp(final Activity activity){
+        AppSPrefs.clearAppSPrefs();
+        activity.finish();
+        Intent intent = new Intent(activity, LandingPageActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        activity.startActivity(intent);
+    }
+
+    public static void exitFromApp(Activity activity){
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        activity.startActivity(intent);
+        activity.finish();
     }
 }

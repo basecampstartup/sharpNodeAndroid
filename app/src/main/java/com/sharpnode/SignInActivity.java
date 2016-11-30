@@ -90,7 +90,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+        //overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
         this.finish();
     }
 
@@ -209,7 +209,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                     AppSPrefs.setString(Commons.NAME, model.getName());
                     AppSPrefs.setString(Commons.PHONE, model.getPhoneNo());
                     AppSPrefs.setString(Commons.PHOTO, model.getPhoto());
-                    startActivity(new Intent(SignInActivity.this, HomeActivity.class));
+                    startActivity(new Intent(SignInActivity.this, HomeDashboardActivity.class));
                     finish();
                 } else {
                     Toast.makeText(mContext, ResponseParser.parseLoginResponse(object).getResponseMsg(),

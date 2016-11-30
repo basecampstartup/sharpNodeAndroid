@@ -139,4 +139,9 @@
         <item name="colorControlNormal">@color/color_text</item>
         <item name="colorControlActivated">@color/colorButtonBg</item>
     </style>
+
+    <dimen name="shortcut_ic_margin_left">15dp</dimen>
+    <dimen name="shortcut_ic_margin_right">15dp</dimen>
+    <dimen name="shortcut_ic_margin_bottom">25dp</dimen>
+    <dimen name="shortcut_ic_control_margin_bottom">60dp</dimen>
 </resources>

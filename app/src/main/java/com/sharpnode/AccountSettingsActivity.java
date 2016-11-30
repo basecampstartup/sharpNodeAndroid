@@ -63,7 +63,7 @@ public class AccountSettingsActivity extends AppCompatActivity implements View.O
     //private ActionBar actionBar;
     private Toolbar mToolbar;
     private EditText edtName,edtEmail,edtPhone;
-    Button btnSubmit;
+    Button btnSubmit, btnChange;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,10 +99,13 @@ public class AccountSettingsActivity extends AppCompatActivity implements View.O
     public void initializeComponents() {
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
         btnSubmit.setOnClickListener(this);
+        btnChange = (Button) findViewById(R.id.btnChange);
+        btnChange.setOnClickListener(this);
         edtName=(EditText)findViewById(R.id.edtName);
         edtEmail=(EditText)findViewById(R.id.edtEmailID);
         edtPhone=(EditText)findViewById(R.id.edtPhone);
         btnSubmit.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        btnChange.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         edtName.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         edtEmail.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         edtPhone.setTypeface(SNApplication.APP_FONT_TYPEFACE);
@@ -138,6 +141,11 @@ public class AccountSettingsActivity extends AppCompatActivity implements View.O
                 }
                 showSelectImageDialog();
                 break;
+            case R.id.btnSubmit:
+                break;
+            case R.id.btnChange:
+                startActivity(new Intent(mContext, ChangePasswordActivity.class));
+                break;
         }
     }
 
@@ -160,7 +168,7 @@ public class AccountSettingsActivity extends AppCompatActivity implements View.O
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+        //overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
         this.finish();
     }
 

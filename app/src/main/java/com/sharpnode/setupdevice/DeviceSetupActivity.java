@@ -1,6 +1,5 @@
 package com.sharpnode.setupdevice;
 
-import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,26 +9,18 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.Toast;
 
-import com.sharpnode.HomeActivity;
 import com.sharpnode.R;
 import com.sharpnode.SNApplication;
-import com.sharpnode.SignInActivity;
-import com.sharpnode.adapter.DeviceAdapter;
 import com.sharpnode.callback.APIRequestCallbacak;
 import com.sharpnode.commons.Commons;
-import com.sharpnode.model.AccountModel;
 import com.sharpnode.model.ConfiguredDevices;
 import com.sharpnode.network.CheckNetwork;
 import com.sharpnode.servercommunication.APIUtils;
@@ -39,9 +30,6 @@ import com.sharpnode.sprefs.AppSPrefs;
 import com.sharpnode.utils.Logger;
 
 import java.lang.reflect.Field;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
@@ -65,7 +53,7 @@ import static io.particle.android.sdk.utils.Py.truthy;
  * Created by admin on 11/15/2016.
  */
 
-public class DeviceSetupActivity extends AppCompatActivity implements View.OnClickListener, APIRequestCallbacak {
+public class DeviceSetupActivity extends AppCompatActivity implements View.OnClickListener, APIRequestCallbacak{
 
     public final static String EXTRA_SETUP_LAUNCHED_TIME = "io.particle.devicesetup.sharpnode.SETUP_LAUNCHED_TIME";
     private final String TAG = getClass().getSimpleName();
@@ -76,27 +64,7 @@ public class DeviceSetupActivity extends AppCompatActivity implements View.OnCli
     private Async.AsyncApiWorker<ParticleCloud, Responses.ClaimCodeResponse> claimCodeWorker;
     private ParticleCloud sparkCloud;
     private SoftAPConfigRemover softAPConfigRemover;
-    private RecyclerView rvDevices;
-    private LinearLayoutManager mLayoutManager;
-    private DeviceAdapter mAdapter;
-    private ArrayList<ConfiguredDevices> devices = null;
-    private ScrollView svSetupInstruction;
     private ProgressDialog loader = null;
-    private LinearLayout llDevices;
-
-    private void prepareDeviceList(){
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-        rvDevices.setHasFixedSize(true);
-
-        // use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(this);
-        rvDevices.setLayoutManager(mLayoutManager);
-        devices = new ArrayList<>();
-        // specify an adapter (see also next example)
-        mAdapter = new DeviceAdapter(this, devices);
-        rvDevices.setAdapter(mAdapter);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,7 +76,7 @@ public class DeviceSetupActivity extends AppCompatActivity implements View.OnCli
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(getString(R.string.LeftPanelDeviceManual));
+        getSupportActionBar().setTitle(getString(R.string.DeviceSetup));
         //Set Custom font to title.
         try {
             Field f = mToolbar.getClass().getDeclaredField("mTitleTextView");
@@ -121,18 +89,11 @@ public class DeviceSetupActivity extends AppCompatActivity implements View.OnCli
             e.printStackTrace();
         }
 
-        llDevices = (LinearLayout)findViewById(R.id.llDevices);
-        rvDevices = (RecyclerView) findViewById(R.id.rvDevices);
-        svSetupInstruction = (ScrollView)findViewById(R.id.svSetupInstruction);
-        llDevices.setVisibility(View.GONE);
-        svSetupInstruction.setVisibility(View.GONE);
-
         loader = new ProgressDialog(this);
         loader.setMessage(getString(R.string.MessagePleaseWait));
         loader.setCancelable(false);
+
         initDeviceSetupProperty();
-        prepareDeviceList();
-        getDevices();
 
         btnSetupDevice = (Button) findViewById(R.id.btnSetupDevice);
         btnSetupDevice.setOnClickListener(this);
@@ -149,8 +110,7 @@ public class DeviceSetupActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void onSetupSuccess(@NonNull String configuredDeviceId) {
                 Logger.i(TAG, "onSetupSuccess, deviceId=" + configuredDeviceId);
-                AppSPrefs.setDeviceId(configuredDeviceId);
-
+                addDevice(configuredDeviceId);
                 try {
                     if (receiver != null) {
                         receiver.unregister(mContext);
@@ -174,8 +134,13 @@ public class DeviceSetupActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnSetupDevice:
-                loader.show();
-                onReadyButtonClicked();
+                if (CheckNetwork.isInternetAvailable(mContext)) {
+                    loader.show();
+                    onReadyButtonClicked();
+                } else {
+                    Logger.i(TAG, "Not connected to Internet.");
+                    Toast.makeText(mContext, mContext.getString(R.string.MessageNoInternetConnection), Toast.LENGTH_LONG).show();
+                }
                 break;
         }
     }
@@ -199,7 +164,7 @@ public class DeviceSetupActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+        //overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
         this.finish();
     }
 
@@ -219,19 +184,6 @@ public class DeviceSetupActivity extends AppCompatActivity implements View.OnCli
         sparkCloud.setAccessToken(AppSPrefs.getString(Commons.ACCESS_TOKEN), expiryDate);
         ParticleUser.fromNewCredentials(AppSPrefs.getString(Commons.USER_ID),
                 AppSPrefs.getString(Commons.PASSWORD));
-    }
-
-    private void getDevices(){
-        if (CheckNetwork.isInternetAvailable(mContext)) {
-            loader.show();
-            //Call API Request after check internet connection
-            new Communicator(mContext, APIUtils.CMD_GET_DEVICES,
-                    getDeviceRequestMap(APIUtils.CMD_GET_DEVICES, AppSPrefs.getString(Commons.ACCESS_TOKEN)));
-        } else {
-            finish();
-            Logger.i(TAG, "Not connected to Internet.");
-            Toast.makeText(mContext, mContext.getString(R.string.MessageNoInternetConnection), Toast.LENGTH_LONG).show();
-        }
     }
 
     private void onReadyButtonClicked() {
@@ -334,14 +286,28 @@ public class DeviceSetupActivity extends AppCompatActivity implements View.OnCli
         //}
     }
 
+    private void addDevice(String configuredDeviceId){
+        if (CheckNetwork.isInternetAvailable(mContext)) {
+            loader.show();
+            //Call API Request after check internet connection
+            new Communicator(mContext, APIUtils.CMD_ADD_DEVICE,
+                    addDeviceRequestMap(APIUtils.CMD_ADD_DEVICE, configuredDeviceId, AppSPrefs.getString(Commons.ACCESS_TOKEN)));
+        } else {
+            finish();
+            Logger.i(TAG, "Not connected to Internet.");
+            Toast.makeText(mContext, mContext.getString(R.string.MessageNoInternetConnection), Toast.LENGTH_LONG).show();
+        }
+    }
+
     /**
      * @param method
      * @param accessToken
      * @return
      */
-    public HashMap<String, String> getDeviceRequestMap(String method, String accessToken) {
+    public HashMap<String, String> addDeviceRequestMap(String method, String configuredDeviceId, String accessToken) {
         HashMap<String, String> map = new HashMap<>();
         map.put(Commons.COMMAND, method);
+        map.put(Commons.CONFIGURED_DEVICE_ID, configuredDeviceId);
         map.put(Commons.ACCESS_TOKEN, accessToken);
         return map;
     }
@@ -350,28 +316,14 @@ public class DeviceSetupActivity extends AppCompatActivity implements View.OnCli
     public void onSuccess(String name, Object object) {
         loader.dismiss();
         try {
-            Logger.i(TAG, "Response: " + object);
-            if (APIUtils.CMD_GET_DEVICES.equalsIgnoreCase(name)) {
+            Logger.i(TAG, "Name: "+name+"Response: " + object);
+            if (APIUtils.CMD_ADD_DEVICE.equalsIgnoreCase(name)) {
                 ConfiguredDevices model = ResponseParser.parseGetDevicesResponse(object);
                 if (model.getResponseCode().equalsIgnoreCase(Commons.CODE_200)) {
-
-                    if(model.getDevicesList().size()>0){
-                        svSetupInstruction.setVisibility(View.GONE);
-                        llDevices.setVisibility(View.VISIBLE);
-                        mAdapter.setData(model.getDevicesList());
-                        mAdapter.notifyDataSetChanged();
-                    } else {
-                        svSetupInstruction.setVisibility(View.VISIBLE);
-                        llDevices.setVisibility(View.GONE);
-                    }
                 } else {
-                    svSetupInstruction.setVisibility(View.VISIBLE);
-                    llDevices.setVisibility(View.GONE);
-                    Toast.makeText(mContext, model.getResponseMessage(),
+                    Toast.makeText(mContext, model.getResponseMsg(),
                             Toast.LENGTH_LONG).show();
                 }
-            } else {
-
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -383,4 +335,5 @@ public class DeviceSetupActivity extends AppCompatActivity implements View.OnCli
         loader.dismiss();
         Toast.makeText(mContext, "Login response Failure", Toast.LENGTH_LONG).show();
     }
+
 }

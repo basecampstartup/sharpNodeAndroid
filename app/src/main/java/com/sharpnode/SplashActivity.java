@@ -56,7 +56,7 @@ public class SplashActivity extends AppCompatActivity {
      * Method  to redirect to Landing Page.
      */
     private void goToHomePage() {
-        Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
+        Intent intent = new Intent(SplashActivity.this, HomeDashboardActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();

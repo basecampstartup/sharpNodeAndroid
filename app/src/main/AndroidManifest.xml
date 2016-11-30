@@ -34,14 +34,13 @@
         <activity
             android:name=".LandingPageActivity"
             android:screenOrientation="portrait"
-            android:launchMode="singleInstance"
             android:theme="@style/AppTheme.Base" />
         <activity
             android:name=".SignUpActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".DeviceDashboardActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -115,6 +114,27 @@
 
         <activity
             android:name=".setupdevice.DeviceSetupActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Base" />
+
+        <activity
+            android:name=".setupdevice.MyDevicesActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Base" />
+
+        <activity
+            android:name=".HomeDashboardActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme.Base" />
+
+        <activity
+            android:name=".NotificationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Base" />
+
+        <activity
+            android:name=".ChangePasswordActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base" />
 

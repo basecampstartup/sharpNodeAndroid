@@ -10,6 +10,7 @@
     //Left Panel Strings
     <string name="LeftPanelHome">Home</string>
     <string name="LeftPanelSettings">Settings</string>
+    <string name="LeftPanelAccountSettings">Account Settings</string>
     <string name="LeftPanelInsights">Insights</string>
     <string name="LeftPanelIftttConfig">IFTTT Config</string>
     <string name="LeftPanelAppliances">Appliances</string>
@@ -17,8 +18,12 @@
     <string name="LeftPanelUserManuals">User Manual</string>
     <string name="LeftPanelContactUs">Contact Us</string>
     <string name="LeftPanelLogout">Logout</string>
-    <string name="LeftPanelDeviceManual">Device Manual</string>
-
+    <string name="LeftPanelDeviceManual">My Devices</string>
+    <string name="DeviceSetup">Device Setup</string>
+    <string name="Control">Control</string>
+    <string name="Remote">Remote</string>
+    <string name="Camera">Camera</string>
+    <string name="Notifications">Notifications</string>
     //Appliances Screen Strings
     <string name="ApplianceFan">Fan</string>
     <string name="ApplianceCfl">CFL</string>
@@ -59,6 +64,10 @@
     <string name="AccountSettings">Account Settings</string>
     <string name="Submit">Submit</string>
 
+    <string name="OldPassword">Old password</string>
+    <string name="NewPassword">New password</string>
+    <string name="ConfirmPassword">Confirm password</string>
+
     //Scheduler Settings
     <string name="SchedulerList">Scheduler List</string>
     <string name="SchedulerAddNew">Add New</string>
@@ -74,7 +83,8 @@
     <string name="add_widget">Add widget</string>
 
     //Forget Password
-    <string name="ForgotPassword">Forgot your password?</string>
+    <string name="ForgotPassword">Forgot password</string>
+    <string name="LblForgotPassword">Forgot your password?</string>
     <string name="PFForgotPasswordText">Please enter your email address to reset password. We will send you a link shortly.</string>
     <string name="SendLink">Send me a link</string>
 
@@ -104,4 +114,5 @@
     <string name="ContactUsLabel">Contact Us</string>
     <string name="Remove">Remove</string>
     <string name="Rename">Rename</string>
+    <string name="ChangePassword">Change Password</string>
 </resources>

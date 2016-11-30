@@ -19,7 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <LinearLayout
+            <!--<LinearLayout
                 android:id="@+id/llHomePanel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:background="@color/md_grey_200"></View>
+                android:background="@color/md_grey_200"></View>-->
 
             <LinearLayout
                 android:id="@+id/llSettingsPanel"
@@ -66,88 +66,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dim_padding_5dp"
                     android:padding="@dimen/dim_padding_10dp"
-                    android:text="@string/LeftPanelSettings"></TextView>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llInsightsPanel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dim_padding_15dp"
-                android:layout_marginTop="@dimen/dim_padding_10dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/ivInsights"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_insight"></ImageView>
-
-                <TextView
-                    android:id="@+id/tvInsights"
-                    style="@style/text_view_style"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/dim_padding_5dp"
-                    android:padding="@dimen/dim_padding_10dp"
-                    android:text="@string/LeftPanelInsights"></TextView>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llIftttConfigPanel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dim_padding_15dp"
-                android:layout_marginTop="@dimen/dim_padding_10dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/ivIftttConfig"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_ifttt_config"></ImageView>
-
-                <TextView
-                    android:id="@+id/tvIftttConfig"
-                    style="@style/text_view_style"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/dim_padding_5dp"
-                    android:padding="@dimen/dim_padding_10dp"
-                    android:text="@string/LeftPanelIftttConfig"></TextView>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llAppliancePanel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dim_padding_15dp"
-                android:layout_marginTop="@dimen/dim_padding_10dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/ivAppliances"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_appliances"></ImageView>
-
-                <TextView
-                    android:id="@+id/tvAppliances"
-                    style="@style/text_view_style"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/dim_padding_5dp"
-                    android:padding="@dimen/dim_padding_10dp"
-                    android:text="@string/LeftPanelAppliances"></TextView>
+                    android:text="@string/LeftPanelAccountSettings"></TextView>
             </LinearLayout>
 
             <LinearLayout
@@ -177,30 +96,6 @@
                     android:text="@string/LeftPanelUserManuals"></TextView>
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/llDeviceManualPanel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dim_padding_15dp"
-                android:layout_marginTop="@dimen/dim_padding_5dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-                <ImageView
-                    android:id="@+id/ivDeviceManual"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_insight"></ImageView>
-
-                <TextView
-                    android:id="@+id/tvDeviceManual"
-                    style="@style/text_view_style"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:padding="@dimen/dim_padding_10dp"
-                    android:text="@string/LeftPanelDeviceManual"></TextView>
-            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/llContactUsPanel"
@@ -243,8 +138,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:src="@mipmap/ic_launcher"
-                    android:visibility="gone"></ImageView>
+                    android:src="@drawable/ic_logout"
+                    ></ImageView>
 
                 <TextView
                     android:id="@+id/tvLogout"

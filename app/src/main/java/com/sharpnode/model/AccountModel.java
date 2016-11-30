@@ -4,31 +4,12 @@ package com.sharpnode.model;
  * Created by admin on 11/18/2016.
  */
 
-public class AccountModel {
+public class AccountModel extends BaseModel{
     private String userId="";
     private String phoneNo="";
     private String photo="";
     private String accessToken="";
     private String name="";
-
-    public String getResponseMsg() {
-        return responseMsg;
-    }
-
-    public void setResponseMsg(String responseMsg) {
-        this.responseMsg = responseMsg;
-    }
-
-    private String responseMsg = "";
-    public String getResponseCode() {
-        return responseCode;
-    }
-
-    public void setResponseCode(String responseCode) {
-        this.responseCode = responseCode;
-    }
-
-    private String responseCode="";
 
     public String getUserId() {
         return userId;

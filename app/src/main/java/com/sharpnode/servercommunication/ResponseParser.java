@@ -77,7 +77,7 @@ public class ResponseParser {
         try {
             jsonObj = new JSONObject(object.toString());
             model.setResponseCode(jsonObj.optString(Commons.RESPONSE_CODE));
-            model.setResponseMessage(jsonObj.optString(Commons.TXT));
+            model.setResponseMsg(jsonObj.optString(Commons.TXT));
             jsonArr = jsonObj.optJSONArray("devices");
             if(jsonArr!=null) {
                 for (int i = 0; i < jsonArr.length(); i++) {

@@ -127,7 +127,7 @@ public class AppliancesActivity extends AppCompatActivity implements View.OnClic
     public void onBackPressed() {
         super.onBackPressed();
         try {
-            overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+            //overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
         }catch (Exception e){}
 
         this.finish();

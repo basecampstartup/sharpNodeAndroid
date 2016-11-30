@@ -126,13 +126,4 @@
                 android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
         </LinearLayout>
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/fBtnAddDevice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="@dimen/dim_padding_20dp"
-        android:layout_marginRight="@dimen/dim_padding_20dp" />
 </RelativeLayout>

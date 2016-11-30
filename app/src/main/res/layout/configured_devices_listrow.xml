@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/rlParentLayout"
     >
 
     <ImageView
@@ -26,22 +27,22 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tvLabel"
+            android:id="@+id/tvDeviceName"
             style="@style/text_view_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:text="Label"></TextView>
+            android:text="Name"></TextView>
 
         <TextView
-            android:id="@+id/tvDeviceName"
+            android:id="@+id/tvDeviceType"
             style="@style/text_view_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dim_padding_2dp"
             android:singleLine="true"
-            android:text="Name"
-            android:textSize="@dimen/text_size_medium"></TextView>
+            android:text="Type"
+            android:textSize="@dimen/text_size_small"></TextView>
 
         <TextView
             android:id="@+id/tvDeviceId"
@@ -86,6 +87,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
+        android:padding="@dimen/dim_padding_5dp"
         android:src="@drawable/ic_more_vert_black_24dp"></ImageView>
 
     <View

@@ -1,8 +1,8 @@
 package com.sharpnode;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -49,7 +49,7 @@ public class TimerListActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+        //overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
         this.finish();
     }
 }

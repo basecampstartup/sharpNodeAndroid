@@ -41,4 +41,9 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
     <dimen name="widget_height">80dp</dimen>
     <dimen name="widget_width">1920dp</dimen>
     <dimen name="left_panel_icon_hight">40dp</dimen>
+
+    <dimen name="shortcut_ic_margin_left">20dp</dimen>
+    <dimen name="shortcut_ic_margin_right">20dp</dimen>
+    <dimen name="shortcut_ic_margin_bottom">30dp</dimen>
+    <dimen name="shortcut_ic_control_margin_bottom">80dp</dimen>
 </resources>
