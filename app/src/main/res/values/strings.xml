@@ -115,4 +115,5 @@
     <string name="Remove">Remove</string>
     <string name="Rename">Rename</string>
     <string name="ChangePassword">Change Password</string>
+    <string name="NoDeviceFound">No device exist in this account. \nClick on (+) plus to setup new device.</string>
 </resources>

@@ -180,8 +180,9 @@ public class AppliancesActivity extends AppCompatActivity implements View.OnClic
                     ivCFL.setImageResource(R.drawable.cfl_teal);
                 }
                 String value = ((boolean)ivCFLSwitchBtn.getTag())?"l1,HIGH":"l1,LOW";
-                showLoader();
+
                 if(CheckNetwork.isInternetAvailable(mContext)){
+                    showLoader();
                     //Call Cloud API Request after check internet connection
                     new CloudCommunicator(mContext, CloudUtils.CLOUD_FUNCTION_LED,
                             getParams(configuredDeviceId, value));

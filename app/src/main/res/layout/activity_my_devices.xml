@@ -26,7 +26,19 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rvDevices"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+            android:layout_height="match_parent"
+            android:visibility="visible"></android.support.v7.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/tvNoDeviceFound"
+            style="@style/text_view_style"
+            android:singleLine="false"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/dim_padding_10dp"
+            android:text="@string/NoDeviceFound"
+            android:visibility="gone"></TextView>
 
     </LinearLayout>
 

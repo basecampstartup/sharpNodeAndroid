@@ -31,6 +31,8 @@ import com.sharpnode.servercommunication.ResponseParser;
 import com.sharpnode.sprefs.AppSPrefs;
 import com.sharpnode.utils.Logger;
 
+import org.w3c.dom.Text;
+
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -64,6 +66,7 @@ public class MyDevicesActivity extends AppCompatActivity implements View.OnClick
     private ProgressDialog loader = null;
     private LinearLayout llDevices;
     private ImageButton btnAddDevice;
+    private TextView tvNoDeviceFound;
 
     private void prepareDeviceList(){
         // use this setting to improve performance if you know that changes
@@ -104,9 +107,12 @@ public class MyDevicesActivity extends AppCompatActivity implements View.OnClick
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
-
+        tvNoDeviceFound = (TextView)findViewById(R.id.tvNoDeviceFound);
+        tvNoDeviceFound.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         llDevices = (LinearLayout)findViewById(R.id.llDevices);
         rvDevices = (RecyclerView) findViewById(R.id.rvDevices);
+        rvDevices.setVisibility(View.GONE);
+        tvNoDeviceFound.setVisibility(View.GONE);
 
         loader = new ProgressDialog(this);
         loader.setMessage(getString(R.string.MessagePleaseWait));
@@ -170,18 +176,22 @@ public class MyDevicesActivity extends AppCompatActivity implements View.OnClick
     public void onSuccess(String name, Object object) {
         loader.dismiss();
         try {
-            Logger.i(TAG, "Name: "+name+"Response: " + object);
+            Logger.i(TAG, "onSuccess"+" Name: "+name+"Response: " + object);
             if (APIUtils.CMD_GET_DEVICES.equalsIgnoreCase(name)) {
                 ConfiguredDevices model = ResponseParser.parseGetDevicesResponse(object);
                 if (model.getResponseCode().equalsIgnoreCase(Commons.CODE_200)) {
                     mAdapter.setData(model.getDevicesList());
                     mAdapter.notifyDataSetChanged();
-                } else {
-                    Toast.makeText(mContext, model.getResponseMsg(),
-                            Toast.LENGTH_LONG).show();
                 }
             } else if (APIUtils.CMD_REMOVE_DEVICE.equalsIgnoreCase(name)) {
 
+            }
+            if (mAdapter != null && mAdapter.getItemCount() == 0) {
+                rvDevices.setVisibility(View.GONE);
+                tvNoDeviceFound.setVisibility(View.VISIBLE);
+            } else {
+                rvDevices.setVisibility(View.VISIBLE);
+                tvNoDeviceFound.setVisibility(View.GONE);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -191,6 +201,6 @@ public class MyDevicesActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onFailure(String name, Object object) {
         loader.dismiss();
-        Toast.makeText(mContext, "Login response Failure", Toast.LENGTH_LONG).show();
+        Logger.i(TAG, "onFailure"+" Name: "+name+"Response: " + object);
     }
 }
