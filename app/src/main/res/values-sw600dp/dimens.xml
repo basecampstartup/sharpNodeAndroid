@@ -1,0 +1,49 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_vertical_spacing">22dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">22dp</dimen>
+    <dimen name="activity_vertical_margin">22dp</dimen>
+    <dimen name="fab_margin">20dp</dimen>
+    <dimen name="padding_8dp">13dp</dimen>
+    <dimen name="splash_text_size">30dp</dimen>
+    <dimen name="nav_header_height">290dp</dimen>
+    <dimen name="nav_drawer_width">355dp</dimen>
+
+    <dimen name="divider_height_1dp">1dp</dimen>
+    <dimen name="profile_picture_size">80dp</dimen>
+    <dimen name="dim_padding_5dp">15dp</dimen>
+    <dimen name="dim_padding_10dp">15dp</dimen>
+    <dimen name="dim_padding_15dp">21dp</dimen>
+    <dimen name="dim_padding_20dp">28dp</dimen>
+    <dimen name="dim_padding_2dp">7dp</dimen>
+    <dimen name="dim_font_size_16">24dp</dimen>
+    <dimen name="dim_font_size_17">26dp</dimen>
+    <dimen name="dim_font_size_18">26dp</dimen>
+
+    <dimen name="logo_height">120dp</dimen>
+    <dimen name="logo_margin_top">90dp</dimen>
+    <dimen name="margin_top_50dp">100dp</dimen>
+    <dimen name="margin_top_30dp">60dp</dimen>
+    <dimen name="margin_10dp">20dp</dimen>
+    <dimen name="default_textsize_large">30sp</dimen>
+    <dimen name="default_textsize_medium">24sp</dimen>
+    <dimen name="default_textsize_btn">26sp</dimen>
+    <dimen name="margin_15dp">19dp</dimen>
+    <dimen name="landing_page_logo_margin_top">142dp</dimen>
+    <dimen name="tagline_margin_top">130dp</dimen>
+
+    <!--
+Refer to App Widget Documentation for margin information
+http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
+   -->
+    <dimen name="widget_margin">11dp</dimen>
+    <dimen name="widget_height">80dp</dimen>
+    <dimen name="widget_width">1920dp</dimen>
+    <dimen name="left_panel_icon_hight">50dp</dimen>
+
+    <dimen name="shortcut_ic_margin_left">30dp</dimen>
+    <dimen name="shortcut_ic_margin_right">30dp</dimen>
+    <dimen name="shortcut_ic_margin_bottom">40dp</dimen>
+    <dimen name="shortcut_ic_control_margin_bottom">90dp</dimen>
+</resources>

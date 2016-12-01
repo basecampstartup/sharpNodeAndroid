@@ -51,9 +51,6 @@ public class SchedulerActivity extends AppCompatActivity implements View.OnClick
         setScheduleListDummyData();
         adapter = new SchedulerAdapter(mContext, schedulerModels);
         schedularList.setAdapter(adapter);
-        /*actionBar = getSupportActionBar();
-        actionBar.setTitle(getString(R.string.SchedulerList));
-        actionBar.setDisplayHomeAsUpEnabled(true);*/
     }
 
     @Override

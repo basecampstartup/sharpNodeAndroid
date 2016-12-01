@@ -55,10 +55,10 @@
                     android:hint="@string/AddTaskTaskName"
                     android:padding="@dimen/dim_padding_5dp"
                     android:textColor="@color/colorAppWhite"
-                    android:textColorHint="@color/colorAppWhite"
-                    >
+                    android:textColorHint="@color/colorAppWhite">
+
                     <requestFocus></requestFocus>
-                    </EditText>
+                </EditText>
 
                 <include layout="@layout/divider" />
 
@@ -105,8 +105,8 @@
                         android:id="@+id/radOn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/commonOn"
                         android:checked="true"
+                        android:text="@string/commonOn"
                         android:textColor="@color/color_text"
                         android:theme="@style/AppRadioButton" />
 

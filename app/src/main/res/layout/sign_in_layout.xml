@@ -136,7 +136,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_alignRight="@+id/edOldPassword"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="@dimen/margin_top_30dp"
                     android:gravity="center"
                     android:text="@string/LoginDontHaveAccount"
                     android:textColor="@color/colorAppWhite"
