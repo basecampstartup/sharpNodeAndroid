@@ -30,6 +30,7 @@ import com.sharpnode.servercommunication.ResponseParser;
 import com.sharpnode.sprefs.AppSPrefs;
 import com.sharpnode.utils.EmailSyntaxChecker;
 import com.sharpnode.utils.Logger;
+import com.sharpnode.utils.Utils;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -41,7 +42,6 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     String strEmail, strPassword;
     private Button btnSignIn;
     private Context mContext;
-    private long mLastClickTime = 0;
     private ProgressDialog loader = null;
     private Toolbar mToolbar;
 
@@ -117,13 +117,11 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
+        if(Utils.preventMultipleClick())
+            return;
+
         switch (v.getId()) {
             case R.id.btnSignIn:
-
-                //This will check if your click on button successively.
-                if (SystemClock.elapsedRealtime() - mLastClickTime < Commons.THRESHOLD_TIME_POST_SCREEN) {
-                    return;
-                }
                 strEmail = edtEmail.getText().toString().trim();
                 strPassword = edtPassword.getText().toString().trim();
                 if (!validate()) {

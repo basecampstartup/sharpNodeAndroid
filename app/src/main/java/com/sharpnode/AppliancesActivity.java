@@ -1,5 +1,6 @@
 package com.sharpnode;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,24 +18,51 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.sharpnode.callback.APIRequestCallbacak;
+import com.sharpnode.cloudcommunication.CloudCommunicator;
+import com.sharpnode.cloudcommunication.CloudUtils;
 import com.sharpnode.commons.Commons;
+import com.sharpnode.model.AccountModel;
+import com.sharpnode.network.CheckNetwork;
 import com.sharpnode.servercommunication.APIUtils;
 import com.sharpnode.servercommunication.Communicator;
+import com.sharpnode.servercommunication.ResponseParser;
+import com.sharpnode.sprefs.AppSPrefs;
+import com.sharpnode.utils.Logger;
+import com.sharpnode.utils.Utils;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import io.particle.android.sdk.cloud.ParticleCloud;
+import io.particle.android.sdk.cloud.ParticleCloudException;
+import io.particle.android.sdk.cloud.ParticleCloudSDK;
+import io.particle.android.sdk.cloud.ParticleDevice;
+import io.particle.android.sdk.cloud.ParticleEvent;
 
 /**
  * Created by admin on 11/8/2016.
  */
-public class AppliancesActivity extends AppCompatActivity implements View.OnClickListener {
+public class AppliancesActivity extends AppCompatActivity implements View.OnClickListener, APIRequestCallbacak {
 
     private final String TAG = getClass().getSimpleName();
     private Context mContext;
-    private ActionBar actionBar;
     private Toolbar mToolbar;
     ImageView ivFanSwitchBtn, ivCFLSwitchBtn, ivLampSwitchBtn, ivTVSwitchBtn, ivMusicSwitchBtn, ivWashingMachineSwitchBtn;
     ImageView ivFan, ivCFL, ivLamp, ivTV, ivMusic, ivWashingMachine;
     TextView tvFan, tvCFL, tvLamp, tvTV,tvMusic,tvWashingMachine;
+    private String configuredDeviceId = "";
+    private ProgressDialog loader;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,8 +85,12 @@ public class AppliancesActivity extends AppCompatActivity implements View.OnClic
         } catch (NoSuchFieldException e) {
         } catch (IllegalAccessException e) {
         }
-        initializeComponents();
 
+        configuredDeviceId = AppSPrefs.getString(Commons.CONFIGURED_DEVICE_ID);
+        loader = new ProgressDialog(this);
+        loader.setMessage(getString(R.string.MessagePleaseWait));
+        loader.setCancelable(false);
+        initializeComponents();
     }
 
     /**
@@ -104,8 +136,6 @@ public class AppliancesActivity extends AppCompatActivity implements View.OnClic
         tvMusic.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         tvWashingMachine=(TextView)findViewById(R.id.tvWashingMachine);
         tvWashingMachine.setTypeface(SNApplication.APP_FONT_TYPEFACE);
-
-
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -135,7 +165,31 @@ public class AppliancesActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View v) {
+        if(Utils.preventMultipleClick())
+            return;
+
         switch (v.getId()) {
+            case R.id.ivCFLSwitchBtn:
+                if ((boolean)ivCFLSwitchBtn.getTag()){
+                    ivCFLSwitchBtn.setImageResource(R.drawable.off_btn);
+                    ivCFLSwitchBtn.setTag(false);
+                    ivCFL.setImageResource(R.drawable.cfl);
+                } else {
+                    ivCFLSwitchBtn.setImageResource(R.drawable.on_btn);
+                    ivCFLSwitchBtn.setTag(true);
+                    ivCFL.setImageResource(R.drawable.cfl_teal);
+                }
+                String value = ((boolean)ivCFLSwitchBtn.getTag())?"l1,HIGH":"l1,LOW";
+                showLoader();
+                if(CheckNetwork.isInternetAvailable(mContext)){
+                    //Call Cloud API Request after check internet connection
+                    new CloudCommunicator(mContext, CloudUtils.CLOUD_FUNCTION_LED,
+                            getParams(configuredDeviceId, value));
+                } else {
+                    Toast.makeText(mContext, getString(R.string.check_for_internet_connectivity),
+                            Toast.LENGTH_LONG).show();
+                }
+                break;
             case R.id.ivFanSwitchBtn:
                 if ((boolean)ivFanSwitchBtn.getTag()){
                     ivFanSwitchBtn.setImageResource(R.drawable.off_btn);
@@ -146,20 +200,6 @@ public class AppliancesActivity extends AppCompatActivity implements View.OnClic
                     ivFanSwitchBtn.setTag(true);
                     ivFan.setImageResource(R.drawable.fan_teal);
                 }
-                ivFanSwitchBtn.playSoundEffect(SoundEffectConstants.CLICK);
-                break;
-            case R.id.ivCFLSwitchBtn:
-
-                if ((boolean)ivCFLSwitchBtn.getTag()){
-                    ivCFLSwitchBtn.setImageResource(R.drawable.off_btn);
-                    ivCFLSwitchBtn.setTag(false);
-                    ivCFL.setImageResource(R.drawable.cfl);
-                } else {
-                    ivCFLSwitchBtn.setImageResource(R.drawable.on_btn);
-                    ivCFLSwitchBtn.setTag(true);
-                    ivCFL.setImageResource(R.drawable.cfl_teal);
-                }
-                ivCFLSwitchBtn.playSoundEffect(SoundEffectConstants.CLICK);
                 break;
             case R.id.ivLampSwitchBtn:
                 if ((boolean)ivLampSwitchBtn.getTag()){
@@ -171,7 +211,6 @@ public class AppliancesActivity extends AppCompatActivity implements View.OnClic
                     ivLampSwitchBtn.setTag(true);
                     ivLamp.setImageResource(R.drawable.lamp_teal);
                 }
-                ivLampSwitchBtn.playSoundEffect(SoundEffectConstants.CLICK);
                 break;
             case R.id.ivTVSwitchBtn:
                 if ((boolean)ivTVSwitchBtn.getTag()){
@@ -183,7 +222,7 @@ public class AppliancesActivity extends AppCompatActivity implements View.OnClic
                     ivTVSwitchBtn.setTag(true);
                     ivTV.setImageResource(R.drawable.tv_teal);
                 }
-                ivTVSwitchBtn.playSoundEffect(SoundEffectConstants.CLICK);
+
                 break;
             case R.id.ivMusicSwitchBtn:
                 if ((boolean)ivMusicSwitchBtn.getTag()){
@@ -195,7 +234,6 @@ public class AppliancesActivity extends AppCompatActivity implements View.OnClic
                     ivMusicSwitchBtn.setTag(true);
                     ivMusic.setImageResource(R.drawable.music_teal);
                 }
-                ivMusicSwitchBtn.playSoundEffect(SoundEffectConstants.CLICK);
                 break;
             case R.id.ivWashingMachineSwitchBtn:
                 if ((boolean)ivWashingMachineSwitchBtn.getTag()){
@@ -207,9 +245,49 @@ public class AppliancesActivity extends AppCompatActivity implements View.OnClic
                     ivWashingMachineSwitchBtn.setTag(true);
                     ivWashingMachine.setImageResource(R.drawable.washing_machine_teal);
                 }
-                ivWashingMachineSwitchBtn.playSoundEffect(SoundEffectConstants.CLICK);
                 break;
         }
+    }
 
+    private HashMap<String, String> getParams(String deviceId, String methodName){
+        HashMap<String, String> params = new HashMap<>();
+        params.put(Commons.CONFIGURED_DEVICE_ID, deviceId);
+        params.put(CloudUtils.CLOUD_FUNCTION_LED, methodName);
+        return params;
+    }
+
+    @Override
+    public void onSuccess(String name, Object object) {
+        dismissLoader();
+        Logger.i(TAG, name+", onSuccess, Response: " + object);
+        try {
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onFailure(String name, Object object) {
+        dismissLoader();
+        Logger.i(TAG, name+", onFailure, Response: " + object);
+    }
+
+    private void showLoader(){
+        try {
+            if (loader != null && !loader.isShowing())
+                loader.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void dismissLoader(){
+        try {
+            if (loader != null)
+                loader.dismiss();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

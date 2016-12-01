@@ -29,45 +29,6 @@
         android:orientation="vertical">
 
         <RelativeLayout
-            android:id="@+id/rlFan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="@dimen/dim_padding_10dp">
-
-            <ImageView
-                android:id="@+id/ivFan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:src="@drawable/fan"
-                android:visibility="visible"></ImageView>
-
-            <TextView
-                android:id="@+id/tvFan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/dim_padding_10dp"
-                android:layout_toRightOf="@+id/ivFan"
-                android:padding="@dimen/dim_padding_10dp"
-                android:text="@string/ApplianceFan"
-                android:textColor="@color/color_text"
-                android:textSize="@dimen/dim_font_size_16"></TextView>
-
-            <ImageView
-                android:id="@+id/ivFanSwitchBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/off_btn"
-                android:visibility="visible"></ImageView>
-        </RelativeLayout>
-
-        <include layout="@layout/divider"></include>
-
-        <RelativeLayout
             android:id="@+id/rlCFL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -96,6 +57,45 @@
 
             <ImageView
                 android:id="@+id/ivCFLSwitchBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/off_btn"
+                android:visibility="visible"></ImageView>
+        </RelativeLayout>
+
+        <include layout="@layout/divider"></include>
+
+        <RelativeLayout
+            android:id="@+id/rlFan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/dim_padding_10dp">
+
+            <ImageView
+                android:id="@+id/ivFan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/fan"
+                android:visibility="visible"></ImageView>
+
+            <TextView
+                android:id="@+id/tvFan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dim_padding_10dp"
+                android:layout_toRightOf="@+id/ivFan"
+                android:padding="@dimen/dim_padding_10dp"
+                android:text="@string/ApplianceFan"
+                android:textColor="@color/color_text"
+                android:textSize="@dimen/dim_font_size_16"></TextView>
+
+            <ImageView
+                android:id="@+id/ivFanSwitchBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"

@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sharpnode.HomeDashboardActivity;
 import com.sharpnode.R;
 import com.sharpnode.SNApplication;
 import com.sharpnode.callback.APIRequestCallbacak;
@@ -288,7 +289,11 @@ public class DeviceSetupActivity extends AppCompatActivity implements View.OnCli
 
     private void addDevice(String configuredDeviceId){
         if (CheckNetwork.isInternetAvailable(mContext)) {
-            loader.show();
+            try{
+                loader.show();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
             //Call API Request after check internet connection
             new Communicator(mContext, APIUtils.CMD_ADD_DEVICE,
                     addDeviceRequestMap(APIUtils.CMD_ADD_DEVICE, configuredDeviceId, AppSPrefs.getString(Commons.ACCESS_TOKEN)));
@@ -320,6 +325,10 @@ public class DeviceSetupActivity extends AppCompatActivity implements View.OnCli
             if (APIUtils.CMD_ADD_DEVICE.equalsIgnoreCase(name)) {
                 ConfiguredDevices model = ResponseParser.parseGetDevicesResponse(object);
                 if (model.getResponseCode().equalsIgnoreCase(Commons.CODE_200)) {
+                    Intent intent = new Intent(HomeDashboardActivity.homeActivity, MyDevicesActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    HomeDashboardActivity.homeActivity.startActivity(intent);
+                    finish();
                 } else {
                     Toast.makeText(mContext, model.getResponseMsg(),
                             Toast.LENGTH_LONG).show();

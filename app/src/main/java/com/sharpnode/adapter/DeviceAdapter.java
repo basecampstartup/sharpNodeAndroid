@@ -86,7 +86,7 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder
     public void onBindViewHolder(DeviceAdapter.ViewHolder holder, final int position) {
         holder.tvDeviceId.setText(devices.get(position).getDeviceId());
         holder.tvDeviceName.setText(devices.get(position).getDeviceName());
-        holder.tvDeviceType.setText("Photon");
+        holder.tvDeviceType.setText("Electrify-GQN2");
 
         holder.btnRemove.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,6 +103,7 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder
         holder.rlParentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AppSPrefs.setString(Commons.CONFIGURED_DEVICE_ID, clickedDeviceId);
                 mContext.startActivity(new Intent(mContext, DeviceDashboardActivity.class));
             }
         });

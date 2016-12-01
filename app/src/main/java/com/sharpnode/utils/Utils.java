@@ -18,6 +18,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -38,6 +39,7 @@ import android.widget.TextView;
 import com.sharpnode.LandingPageActivity;
 import com.sharpnode.R;
 import com.sharpnode.SNApplication;
+import com.sharpnode.commons.Commons;
 import com.sharpnode.sprefs.AppSPrefs;
 
 import java.io.ByteArrayOutputStream;
@@ -55,7 +57,18 @@ public class Utils {
 
     private final String TAG = getClass().getSimpleName();
     public static AlertDialog alertDialog;
+    public static long mLastClickTime = 0;
 
+    public static boolean preventMultipleClick(){
+        //This will check if your click on button successively.
+        if (SystemClock.elapsedRealtime() - Utils.mLastClickTime < Commons.THRESHOLD_TIME_POST_SCREEN) {
+            Log.i("Utils", "preventMultipleClick: "+true);
+            return true;
+        }
+        Utils.mLastClickTime = SystemClock.elapsedRealtime();
+        Log.i("Utils", "preventMultipleClick: "+false);
+        return false;
+    }
     /**
      * dialog sheet of contacts/set photo option
      *
