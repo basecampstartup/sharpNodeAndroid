@@ -13,6 +13,7 @@ import android.widget.EditText;
 
 import io.particle.android.sdk.cloud.ParticleCloud;
 import io.particle.android.sdk.cloud.ParticleCloudException;
+import io.particle.android.sdk.cloud.ParticleCloudSDK;
 import io.particle.android.sdk.devicesetup.R;
 import io.particle.android.sdk.ui.BaseActivity;
 import io.particle.android.sdk.utils.Async;
@@ -52,7 +53,7 @@ public class PasswordResetActivity extends BaseActivity {
 
         ParticleUi.enableBrandLogoInverseVisibilityAgainstSoftKeyboard(this);
 
-        sparkCloud = ParticleCloud.get(this);
+        sparkCloud = ParticleCloudSDK.getCloud();
 
         Ui.findView(this, R.id.action_cancel).setOnClickListener(
                 new View.OnClickListener() {

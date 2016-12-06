@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Set;
 
 import io.particle.android.sdk.cloud.ParticleCloud;
+import io.particle.android.sdk.cloud.ParticleCloudSDK;
 import io.particle.android.sdk.cloud.ParticleDevice;
 import io.particle.android.sdk.devicesetup.R;
 import io.particle.android.sdk.devicesetup.SetupProcessException;
@@ -109,7 +110,7 @@ public class ConnectingActivity extends RequiresWifiScansActivity {
         softAPConfigRemover = new SoftAPConfigRemover(this);
 
         publicKey = DeviceSetupState.publicKey;
-        sparkCloud = ParticleCloud.get(this);
+        sparkCloud = ParticleCloudSDK.getCloud();
         deviceId = DeviceSetupState.deviceToBeSetUpId;
         needToClaimDevice = DeviceSetupState.deviceNeedsToBeClaimed;
 

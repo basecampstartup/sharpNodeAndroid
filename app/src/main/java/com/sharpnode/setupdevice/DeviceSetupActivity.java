@@ -36,14 +36,18 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
+import io.particle.android.sdk.accountsetup.CreateAccountActivity;
 import io.particle.android.sdk.cloud.ParticleCloud;
 import io.particle.android.sdk.cloud.ParticleCloudException;
 import io.particle.android.sdk.cloud.ParticleCloudSDK;
 import io.particle.android.sdk.cloud.ParticleUser;
 import io.particle.android.sdk.cloud.Responses;
+import io.particle.android.sdk.cloud.SDKGlobals;
 import io.particle.android.sdk.devicesetup.ParticleDeviceSetupLibrary;
 import io.particle.android.sdk.devicesetup.ui.DeviceSetupState;
 import io.particle.android.sdk.devicesetup.ui.DiscoverDeviceActivity;
+import io.particle.android.sdk.ui.BaseActivity;
+import io.particle.android.sdk.ui.NextActivitySelector;
 import io.particle.android.sdk.utils.Async;
 import io.particle.android.sdk.utils.SoftAPConfigRemover;
 import io.particle.android.sdk.utils.ui.Toaster;
@@ -54,7 +58,7 @@ import static io.particle.android.sdk.utils.Py.truthy;
  * Created by admin on 11/15/2016.
  */
 
-public class DeviceSetupActivity extends AppCompatActivity implements View.OnClickListener, APIRequestCallbacak{
+public class DeviceSetupActivity extends BaseActivity implements View.OnClickListener, APIRequestCallbacak{
 
     public final static String EXTRA_SETUP_LAUNCHED_TIME = "io.particle.devicesetup.sharpnode.SETUP_LAUNCHED_TIME";
     private final String TAG = getClass().getSimpleName();
@@ -185,6 +189,16 @@ public class DeviceSetupActivity extends AppCompatActivity implements View.OnCli
         sparkCloud.setAccessToken(AppSPrefs.getString(Commons.ACCESS_TOKEN), expiryDate);
         ParticleUser.fromNewCredentials(AppSPrefs.getString(Commons.USER_ID),
                 AppSPrefs.getString(Commons.PASSWORD));
+
+        //onLoginSuccess(sparkCloud);
+    }
+
+    private void onLoginSuccess(ParticleCloud cloud) {
+        startActivity(NextActivitySelector.getNextActivityIntent(
+                DeviceSetupActivity.this,
+                cloud,
+                SDKGlobals.getSensitiveDataStorage(),
+                null));
     }
 
     private void onReadyButtonClicked() {
@@ -326,7 +340,6 @@ public class DeviceSetupActivity extends AppCompatActivity implements View.OnCli
                 ConfiguredDevices model = ResponseParser.parseGetDevicesResponse(object);
                 if (model.getResponseCode().equalsIgnoreCase(Commons.CODE_200)) {
                     Intent intent = new Intent(HomeDashboardActivity.homeActivity, MyDevicesActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     HomeDashboardActivity.homeActivity.startActivity(intent);
                     finish();
                 } else {

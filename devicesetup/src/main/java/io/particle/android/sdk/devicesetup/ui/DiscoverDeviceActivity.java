@@ -320,7 +320,7 @@ public class DiscoverDeviceActivity extends RequiresWifiScansActivity
                     // we seem to attempt a socket connection too early,
                     // and it makes the process time out
                     log.d("Waiting a couple seconds before trying the socket connection...");
-                    EZ.threadSleep(2000);
+                    EZ.threadSleep(3000);
 
                     discoverProcessWorker.doTheThing(
                             new InterfaceBindingSocketFactory(DiscoverDeviceActivity.this, currentSSID));
@@ -377,7 +377,7 @@ public class DiscoverDeviceActivity extends RequiresWifiScansActivity
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        startActivity(new Intent(DiscoverDeviceActivity.this, GetReadyActivity.class));
+                        //startActivity(new Intent(DiscoverDeviceActivity.this, GetReadyActivity.class));
                         finish();
                     }
                 })
@@ -412,7 +412,7 @@ public class DiscoverDeviceActivity extends RequiresWifiScansActivity
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        startActivity(new Intent(DiscoverDeviceActivity.this, GetReadyActivity.class));
+                        //startActivity(new Intent(DiscoverDeviceActivity.this, GetReadyActivity.class));
                         finish();
                     }
                 })

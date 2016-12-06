@@ -14,6 +14,7 @@ import android.widget.ImageView;
 
 import com.squareup.phrase.Phrase;
 
+import io.particle.android.sdk.cloud.ParticleCloudSDK;
 import io.particle.android.sdk.cloud.SDKGlobals;
 import io.particle.android.sdk.cloud.ParticleCloud;
 import io.particle.android.sdk.devicesetup.ParticleDeviceSetupLibrary;
@@ -87,7 +88,7 @@ public class SuccessActivity extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("SharpNode");
 
-        particleCloud = ParticleCloud.get(this);
+        particleCloud = ParticleCloudSDK.getCloud();
 
         int resultCode = getIntent().getIntExtra(EXTRA_RESULT_CODE, -1);
 

@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.squareup.phrase.Phrase;
 
+import io.particle.android.sdk.cloud.ParticleCloudSDK;
 import io.particle.android.sdk.cloud.SDKGlobals;
 import io.particle.android.sdk.cloud.ParticleCloud;
 import io.particle.android.sdk.cloud.ParticleCloudException;
@@ -55,7 +56,7 @@ public class LoginActivity extends BaseActivity {
 
         ParticleUi.enableBrandLogoInverseVisibilityAgainstSoftKeyboard(this);
 
-        sparkCloud = ParticleCloud.get(this);
+        sparkCloud = ParticleCloudSDK.getCloud();
 
         // Set up the login form.
         emailView = Ui.findView(this, R.id.email);

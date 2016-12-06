@@ -1,5 +1,6 @@
 package com.sharpnode;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -17,20 +18,28 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.sharpnode.callback.APIRequestCallbacak;
+import com.sharpnode.cloudcommunication.CloudCommunicator;
+import com.sharpnode.cloudcommunication.CloudUtils;
 import com.sharpnode.commons.Commons;
+import com.sharpnode.network.CheckNetwork;
 import com.sharpnode.setupdevice.MyDevicesActivity;
 import com.sharpnode.sprefs.AppSPrefs;
+import com.sharpnode.utils.Logger;
 import com.sharpnode.utils.Utils;
 
 import java.lang.reflect.Field;
+import java.util.HashMap;
 
 /**
  * class: HomeActivity it is dashboard screen of application from where can access all features of
  * application.
  */
-public class DeviceDashboardActivity extends AppCompatActivity implements View.OnClickListener {
+public class DeviceDashboardActivity extends AppCompatActivity implements View.OnClickListener, APIRequestCallbacak{
 
+    private String TAG = getClass().getSimpleName();
     private Context mContext;
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;  //toggle to open and close drawer
@@ -42,11 +51,17 @@ public class DeviceDashboardActivity extends AppCompatActivity implements View.O
             llUserManualPanel, llLogoutPanel, llContactUsPanel;
     private RelativeLayout rlSecurityFeature;
     private Animation animationEnlarge, animationShrink;
+    private ProgressDialog loader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device_dashboard);
+
+        loader = new ProgressDialog(this);
+        loader.setMessage(getString(R.string.MessagePleaseWait));
+        loader.setCancelable(false);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(getString(R.string.app_name));
@@ -86,6 +101,7 @@ public class DeviceDashboardActivity extends AppCompatActivity implements View.O
 
         initializeComponents();
         initHeaderComponents();
+        getTempAndHumidity();
     }
 
     @Override
@@ -231,6 +247,26 @@ public class DeviceDashboardActivity extends AppCompatActivity implements View.O
         tvUserName.setText(AppSPrefs.getString(Commons.NAME));
     }
 
+    private void getTempAndHumidity(){
+        if(CheckNetwork.isInternetAvailable(mContext)){
+            showLoader();
+            //Call Cloud API Request after check internet connection
+            new CloudCommunicator(mContext, CloudUtils.CLOUD_TEMP_HUMIDITY_PREFIX,
+                    getParams(AppSPrefs.getDeviceId(), CloudUtils.CLOUD_TEMP_HUMIDITY_PREFIX));
+        } else {
+            Toast.makeText(mContext, getString(R.string.check_for_internet_connectivity),
+                    Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private HashMap<String, String> getParams(String deviceId, String prefix){
+        HashMap<String, String> params = new HashMap<>();
+        params.put(Commons.CONFIGURED_DEVICE_ID, deviceId);
+        params.put(Commons.TEMP_HUMIDITY_PREFIX, prefix);
+        params.put(Commons.CLOUD_EVENTS_TAG, CloudUtils.CLOUD_EVENTS);
+        return params;
+    }
+
     /**
      * Method to close Close Drawer
      */
@@ -275,4 +311,39 @@ public class DeviceDashboardActivity extends AppCompatActivity implements View.O
         public void onAnimationStart(Animation animation) {
         }
     };
+
+    @Override
+    public void onSuccess(String name, Object object) {
+        dismissLoader();
+        Logger.i(TAG, name+", onSuccess, Response: " + object);
+        try {
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onFailure(String name, Object object) {
+        dismissLoader();
+        Logger.i(TAG, name+", onFailure, Response: " + object);
+    }
+
+    private void showLoader(){
+        try {
+            if (loader != null && !loader.isShowing())
+                loader.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void dismissLoader(){
+        try {
+            if (loader != null)
+                loader.dismiss();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

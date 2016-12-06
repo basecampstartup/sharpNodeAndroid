@@ -2,52 +2,27 @@ package com.sharpnode;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.SystemClock;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.SoundEffectConstants;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.sharpnode.callback.APIRequestCallbacak;
 import com.sharpnode.cloudcommunication.CloudCommunicator;
 import com.sharpnode.cloudcommunication.CloudUtils;
 import com.sharpnode.commons.Commons;
-import com.sharpnode.model.AccountModel;
 import com.sharpnode.network.CheckNetwork;
-import com.sharpnode.servercommunication.APIUtils;
-import com.sharpnode.servercommunication.Communicator;
-import com.sharpnode.servercommunication.ResponseParser;
 import com.sharpnode.sprefs.AppSPrefs;
 import com.sharpnode.utils.Logger;
 import com.sharpnode.utils.Utils;
 
-import java.io.IOException;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import io.particle.android.sdk.cloud.ParticleCloud;
-import io.particle.android.sdk.cloud.ParticleCloudException;
-import io.particle.android.sdk.cloud.ParticleCloudSDK;
-import io.particle.android.sdk.cloud.ParticleDevice;
-import io.particle.android.sdk.cloud.ParticleEvent;
 
 /**
  * Created by admin on 11/8/2016.
@@ -250,10 +225,10 @@ public class AppliancesActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
-    private HashMap<String, String> getParams(String deviceId, String methodName){
+    private HashMap<String, String> getParams(String deviceId, String switchOnOff){
         HashMap<String, String> params = new HashMap<>();
         params.put(Commons.CONFIGURED_DEVICE_ID, deviceId);
-        params.put(CloudUtils.CLOUD_FUNCTION_LED, methodName);
+        params.put(CloudUtils.SWITCH_OPERATION_FOR_LED, switchOnOff);
         return params;
     }
 

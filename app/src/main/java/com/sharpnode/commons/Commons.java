@@ -20,6 +20,8 @@ public class Commons {
     public static final String CONFIGURED_DEVICE_ID = "device_id";
     public static final String CONFIGURED_DEVICE_NAME="device_name";
     public static final String ANDROID_DEVICE_ID = "android_device_id";
+    public static final String TEMP_HUMIDITY_PREFIX = "prefix";
+    public static final String CLOUD_EVENTS_TAG = "events_tag";
     public static final String ACCESS_TOKEN = "access_token";
     public static final String PHOTO = "photo";
     public static final String TXT = "txt";

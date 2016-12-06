@@ -56,9 +56,9 @@ public class AppSPrefs {
         return getSPrefsInstance().getString(Commons.CONFIGURED_DEVICE_ID, "");
     }
 
-    public static void setDeviceId(String deviceId){
+    /*public static void setDeviceId(String deviceId){
         editor = getSPrefsInstance().edit();
         editor.putString(Commons.CONFIGURED_DEVICE_ID, deviceId);
         editor.commit();
-    }
+    }*/
 }

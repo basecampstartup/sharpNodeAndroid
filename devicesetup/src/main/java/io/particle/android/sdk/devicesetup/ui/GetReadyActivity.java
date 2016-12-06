@@ -19,6 +19,7 @@ import java.util.Arrays;
 import io.particle.android.sdk.accountsetup.LoginActivity;
 import io.particle.android.sdk.cloud.ParticleCloud;
 import io.particle.android.sdk.cloud.ParticleCloudException;
+import io.particle.android.sdk.cloud.ParticleCloudSDK;
 import io.particle.android.sdk.cloud.Responses.ClaimCodeResponse;
 import io.particle.android.sdk.devicesetup.R;
 import io.particle.android.sdk.ui.BaseActivity;
@@ -49,7 +50,7 @@ public class GetReadyActivity extends BaseActivity implements PermissionsFragmen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_ready);
 
-        sparkCloud = ParticleCloud.get(this);
+        sparkCloud = ParticleCloudSDK.getCloud();
         softAPConfigRemover = new SoftAPConfigRemover(this);
         softAPConfigRemover.removeAllSoftApConfigs();
         softAPConfigRemover.reenableWifiNetworks();

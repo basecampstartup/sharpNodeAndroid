@@ -10,19 +10,11 @@ import com.android.volley.toolbox.StringRequest;
 import com.sharpnode.SNApplication;
 import com.sharpnode.callback.APIRequestCallbacak;
 import com.sharpnode.commons.Commons;
-import com.sharpnode.servercommunication.APIUtils;
 import com.sharpnode.sprefs.AppSPrefs;
 import com.sharpnode.utils.Logger;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import io.particle.android.sdk.cloud.ParticleCloudException;
-import io.particle.android.sdk.cloud.ParticleCloudSDK;
-import io.particle.android.sdk.cloud.ParticleDevice;
 
 /**
  * Created by admin on 12/1/2016.
@@ -41,7 +33,11 @@ public class CloudCommunicator {
         this.methodName = methodName;
 
         //network call for cloud api.
-        callCloudAPI();
+        if(CloudUtils.CLOUD_TEMP_HUMIDITY_PREFIX.equalsIgnoreCase(methodName)){
+            callPublishEventForTemp();
+        } else {
+            callCloudAPI();
+        }
     }
 
     /**
@@ -57,24 +53,105 @@ public class CloudCommunicator {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Logger.i(TAG, "response: " + response);
+                        Logger.i(TAG, "VolleyResponse: " + response);
                         ((APIRequestCallbacak) mContext).onSuccess(methodName, response);
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Logger.i(TAG, "error: " + error);
+                        Logger.i(TAG, "VolleyError: " + error);
                         ((APIRequestCallbacak) mContext).onFailure(methodName, error);
                     }
                 }) {
             @Override
             protected Map<String, String> getParams() {
-                HashMap<String, String> params = new HashMap<>();
-                params.put("params", methodName);
-                params.put("access_token", AppSPrefs.getString(Commons.ACCESS_TOKEN));
-                return params;
+                HashMap<String, String> p = new HashMap<>();
+                p.put("params", params.get(CloudUtils.SWITCH_OPERATION_FOR_LED));
+                p.put("access_token", AppSPrefs.getString(Commons.ACCESS_TOKEN));
+                return p;
             }
+
+        };
+        SNApplication.getInstance().addToRequestQueue(stringRequest, tag_json_obj);
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(5000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+    }
+
+    /**
+     *
+     */
+    public void callTempCloudAPI() {
+
+        //Log request parameters
+        String URL = CloudUtils.CLOUD_BASE_URL + params.get(Commons.CONFIGURED_DEVICE_ID)
+                /*+ "/"
+                + CloudUtils.CLOUD_EVENTS*/
+                + "/" + methodName + "?";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Logger.i(TAG, "VolleyResponse: " + response);
+                        ((APIRequestCallbacak) mContext).onSuccess(methodName, response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Logger.i(TAG, "VolleyError: " + error);
+                        ((APIRequestCallbacak) mContext).onFailure(methodName, error);
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                HashMap<String, String> p = new HashMap<>();
+                p.put("params", CloudUtils.START);
+                p.put("access_token", AppSPrefs.getString(Commons.ACCESS_TOKEN));
+                return p;
+            }
+
+        };
+        SNApplication.getInstance().addToRequestQueue(stringRequest, tag_json_obj);
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(5000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+    }
+
+    public void callPublishEventForTemp() {
+
+        //Log request parameters
+        String URL = CloudUtils.CLOUD_BASE_URL + params.get(Commons.CONFIGURED_DEVICE_ID)
+                + "/"
+                + CloudUtils.CLOUD_EVENTS
+                + "/" + methodName + "?"
+                + Commons.ACCESS_TOKEN + "=" + AppSPrefs.getString(Commons.ACCESS_TOKEN);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Logger.i(TAG, "VolleyResponse: " + response);
+                        //((APIRequestCallbacak) mContext).onSuccess(methodName, response);
+                        callTempCloudAPI();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Logger.i(TAG, "VolleyError: " + error);
+                        //((APIRequestCallbacak) mContext).onFailure(methodName, error);
+                    }
+                }) {
+//            @Override
+//            protected Map<String, String> getParams() {
+//                HashMap<String, String> p = new HashMap<>();
+//                p.put("params", params.get(Commons.TEMP_HUMIDITY_PREFIX));
+//                p.put("access_token", AppSPrefs.getString(Commons.ACCESS_TOKEN));
+//                return p;
+//            }
 
         };
         SNApplication.getInstance().addToRequestQueue(stringRequest, tag_json_obj);
@@ -92,34 +169,4 @@ public class CloudCommunicator {
 
         return super.toString();
     }
-
-//    private void onOffAppliance(){
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                int resultCode = 0;
-//                List<String> args = new ArrayList();
-//                args.add("access_token:"+AppSPrefs.getString(Commons.ACCESS_TOKEN));
-//                //args.add("led");
-//                args.add("params: l1,"+methodName);
-//                try {
-//                    ParticleDevice device = ParticleCloudSDK.getCloud().getDevice("44002a000447343339373536");
-//                    for (String funcName : device.getFunctions()) {
-//                        Logger.i(TAG, "Device has function: " + funcName);
-//                    }
-//                    resultCode = device.callFunction("led", args);
-//                } catch (ParticleCloudException e) {
-//                    e.printStackTrace();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                } catch (ParticleDevice.FunctionDoesNotExistException e) {
-//                    e.printStackTrace();
-//                }
-//
-//                if(resultCode==1){
-//
-//                }
-//            }
-//        }).start();
-//    }
 }

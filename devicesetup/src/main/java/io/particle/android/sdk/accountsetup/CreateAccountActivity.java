@@ -14,6 +14,7 @@ import com.squareup.phrase.Phrase;
 
 import io.particle.android.sdk.cloud.ParticleCloud;
 import io.particle.android.sdk.cloud.ParticleCloudException;
+import io.particle.android.sdk.cloud.ParticleCloudSDK;
 import io.particle.android.sdk.cloud.SDKGlobals;
 import io.particle.android.sdk.devicesetup.R;
 import io.particle.android.sdk.ui.BaseActivity;
@@ -154,7 +155,7 @@ public class CreateAccountActivity extends BaseActivity {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             ParticleUi.showParticleButtonProgress(this, R.id.action_create_account, true);
-            final ParticleCloud cloud = ParticleCloud.get(this);
+            final ParticleCloud cloud = ParticleCloudSDK.getCloud();
             createAccountTask = Async.executeAsync(cloud, new Async.ApiWork<ParticleCloud, Void>() {
                 @Override
                 public Void callApi(ParticleCloud particleCloud) throws ParticleCloudException {
@@ -234,7 +235,7 @@ public class CreateAccountActivity extends BaseActivity {
     }
 
     private void attemptLogin(final String username, final String password) {
-        final ParticleCloud cloud = ParticleCloud.get(this);
+        final ParticleCloud cloud = ParticleCloudSDK.getCloud();
         Async.executeAsync(cloud, new Async.ApiWork<ParticleCloud, Void>() {
             @Override
             public Void callApi(ParticleCloud particleCloud) throws ParticleCloudException {
