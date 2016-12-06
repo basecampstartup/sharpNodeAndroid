@@ -214,4 +214,10 @@ public class HomeDashboardActivity extends AppCompatActivity implements View.OnC
             drawer.closeDrawer(GravityCompat.START);
         }
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initHeaderComponents();
+    }
 }

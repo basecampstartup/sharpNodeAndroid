@@ -27,4 +27,11 @@ public class Commons {
     public static final String TXT = "txt";
     public static final String RESPONSE_CODE = "id";
     public static final String IS_ALREADY_LOGGED_IN = "is_already_logged_in";
+
+    public static final String PHONE_UPPER_CASE = "Phone";
+    public static final String NAME_UPPER_CASE = "Name";
+    public static final String ACCESS_TOKEN_UPPER_CASE = "Access_Token";
+    public static final String OLD_PASSWORD = "old_password";
+    public static final String NEW_PASSWORD = "new_password";
+
 }

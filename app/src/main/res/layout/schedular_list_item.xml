@@ -51,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingRight="@dimen/dim_padding_5dp"
-                android:text="Turn ON "
+                android:text="@string/TurnOn"
                 android:textColor="@color/color_text"
                 android:textSize="@dimen/default_textsize_medium"
                 android:textStyle="bold" />
@@ -61,7 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/tvTurnOnOff"
-                android:text="EveryDay"
+                android:text="@string/EveryDay"
                 android:textColor="@color/color_gray"
                 android:textSize="@dimen/default_textsize_medium" />
         </RelativeLayout>

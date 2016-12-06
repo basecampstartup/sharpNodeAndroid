@@ -12,7 +12,35 @@
         android:layout_weight="0.25"
         android:gravity="center_horizontal"
         android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl1"
+            android:gravity="right"
+            android:layout_marginTop="@dimen/margin_10dp"
+            android:paddingLeft="@dimen/dim_padding_5dp"
+            android:paddingRight="@dimen/dim_padding_5dp">
 
+            <TextView
+                android:id="@+id/tvActiveDeviceLbl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/dim_padding_5dp"
+                android:text="Active Device :"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/default_textsize_medium"
+         />
+
+            <TextView
+                android:id="@+id/tvActiveDeviceName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/tvActiveDeviceLbl"
+                android:text="SN-3633"
+                android:textStyle="bold"
+                android:textColor="@color/color_text"
+                android:textSize="@dimen/default_textsize_medium" />
+        </RelativeLayout>
         <RelativeLayout
             android:id="@+id/rlSecurityFeature"
             android:layout_width="match_parent"
@@ -75,7 +103,7 @@
                     android:layout_height="wrap_content"
                     android:text="Cold | 21 °C"
                     android:textColor="@color/colorAppWhite"
-                    android:textSize="@dimen/dim_font_size_16" />
+                    android:textSize="@dimen/default_textsize_medium" />
 
                 <View
                     android:id="@+id/tvDivider"
@@ -91,7 +119,7 @@
                     android:layout_height="wrap_content"
                     android:text="Humidity 48%"
                     android:textColor="@color/colorAppWhite"
-                    android:textSize="@dimen/dim_font_size_16" />
+                    android:textSize="@dimen/default_textsize_medium" />
             </LinearLayout>
         </RelativeLayout>
 

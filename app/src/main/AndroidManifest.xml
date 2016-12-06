@@ -106,41 +106,37 @@
             android:name=".TimerListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base" />
-
         <activity
             android:name=".AddScheduleTaskActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base" />
-
         <activity
             android:name=".setupdevice.DeviceSetupActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base" />
-
         <activity
             android:name=".setupdevice.MyDevicesActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base" />
-
         <activity
             android:name=".HomeDashboardActivity"
-            android:screenOrientation="portrait"
             android:launchMode="singleTask"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base" />
-
         <activity
             android:name=".NotificationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base" />
-
         <activity
             android:name=".ChangePasswordActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base" />
 
-        <!-- All of the following are from the device setup lib,
+        <!--
+    All of the following are from the device setup lib,
     and must be present in your app's manifest or you will
-    not go to space today. -->
+    not go to space today.
+        -->
 
         <activity
             android:name="io.particle.android.sdk.devicesetup.ui.DiscoverDeviceActivity"
@@ -206,6 +202,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/ParticleSetupTheme.NoActionBar"
             android:windowSoftInputMode="adjustResize|stateVisible" />
+        <activity
+            android:name=".RenameApplianceActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Base"></activity>
     </application>
 
 </manifest>

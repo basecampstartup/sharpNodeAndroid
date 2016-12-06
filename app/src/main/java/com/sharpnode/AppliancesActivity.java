@@ -2,13 +2,20 @@ package com.sharpnode;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,17 +34,18 @@ import java.util.HashMap;
 /**
  * Created by admin on 11/8/2016.
  */
-public class AppliancesActivity extends AppCompatActivity implements View.OnClickListener, APIRequestCallbacak {
+public class AppliancesActivity extends AppCompatActivity implements View.OnClickListener,View.OnLongClickListener,APIRequestCallbacak,PopupMenu.OnMenuItemClickListener{
 
     private final String TAG = getClass().getSimpleName();
     private Context mContext;
     private Toolbar mToolbar;
     ImageView ivFanSwitchBtn, ivCFLSwitchBtn, ivLampSwitchBtn, ivTVSwitchBtn, ivMusicSwitchBtn, ivWashingMachineSwitchBtn;
     ImageView ivFan, ivCFL, ivLamp, ivTV, ivMusic, ivWashingMachine;
-    TextView tvFan, tvCFL, tvLamp, tvTV,tvMusic,tvWashingMachine;
     private String configuredDeviceId = "";
     private ProgressDialog loader;
 
+    TextView tvFan, tvCFL, tvLamp, tvTV, tvMusic, tvWashingMachine;
+    RelativeLayout rlFan, rlCFL, rlLamp, rlTV, rlMusic, rlWashingMachine;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +74,7 @@ public class AppliancesActivity extends AppCompatActivity implements View.OnClic
         loader.setMessage(getString(R.string.MessagePleaseWait));
         loader.setCancelable(false);
         initializeComponents();
+        //call the code to set name of all appliaces here
     }
 
     /**
@@ -78,6 +87,13 @@ public class AppliancesActivity extends AppCompatActivity implements View.OnClic
         ivTVSwitchBtn = (ImageView) findViewById(R.id.ivTVSwitchBtn);
         ivMusicSwitchBtn = (ImageView) findViewById(R.id.ivMusicSwitchBtn);
         ivWashingMachineSwitchBtn = (ImageView) findViewById(R.id.ivWashingMachineSwitchBtn);
+
+        rlFan = (RelativeLayout) findViewById(R.id.rlFan);
+        rlCFL = (RelativeLayout) findViewById(R.id.rlCFL);
+        rlLamp = (RelativeLayout) findViewById(R.id.rlLamp);
+        rlTV = (RelativeLayout) findViewById(R.id.rlTV);
+        rlMusic = (RelativeLayout) findViewById(R.id.rlMusic);
+        rlWashingMachine = (RelativeLayout) findViewById(R.id.rlWashingMachine);
 
         ivFan = (ImageView) findViewById(R.id.ivFan);
         ivCFL = (ImageView) findViewById(R.id.ivCFL);
@@ -111,6 +127,15 @@ public class AppliancesActivity extends AppCompatActivity implements View.OnClic
         tvMusic.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         tvWashingMachine=(TextView)findViewById(R.id.tvWashingMachine);
         tvWashingMachine.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+
+        rlFan.setOnLongClickListener(this);
+        rlCFL.setOnLongClickListener(this);
+        rlLamp.setOnLongClickListener(this);
+        rlTV.setOnLongClickListener(this);
+        rlMusic.setOnLongClickListener(this);
+        rlWashingMachine.setOnLongClickListener(this);
+
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -144,7 +169,9 @@ public class AppliancesActivity extends AppCompatActivity implements View.OnClic
             return;
 
         switch (v.getId()) {
+
             case R.id.ivCFLSwitchBtn:
+
                 if ((boolean)ivCFLSwitchBtn.getTag()){
                     ivCFLSwitchBtn.setImageResource(R.drawable.off_btn);
                     ivCFLSwitchBtn.setTag(false);
@@ -224,12 +251,96 @@ public class AppliancesActivity extends AppCompatActivity implements View.OnClic
                 break;
         }
     }
+    @Override
+    public boolean onLongClick(View v) {
+        switch (v.getId()) {
+            case R.id.rlFan:
+                TextView tvFan=(TextView)v.findViewById(R.id.tvFan);
+                String name=tvFan.getText().toString();
+                Intent renameIntent=new Intent(AppliancesActivity.this,RenameApplianceActivity.class);
+                renameIntent.putExtra("name",name);
+                startActivity(renameIntent);
 
+            /*    showRenameDialog(mContext,name,tvFan);
+                PopupMenu popupMenu = new PopupMenu(mContext, view);
+                popupMenu.setOnMenuItemClickListener(AppliancesActivity.this);
+                popupMenu.inflate(R.menu.menu_device_options);
+                popupMenu.show();*/
+                break;
+            case R.id.rlCFL:
+
+                break;
+            case R.id.rlLamp:
+
+                break;
+            case R.id.rlMusic:
+
+                break;
+            case R.id.rlWashingMachine:
+
+                break;
+            case R.id.rlTV:
+
+                break;
+        }
+        return true;
+    }
     private HashMap<String, String> getParams(String deviceId, String switchOnOff){
+
         HashMap<String, String> params = new HashMap<>();
         params.put(Commons.CONFIGURED_DEVICE_ID, deviceId);
         params.put(CloudUtils.SWITCH_OPERATION_FOR_LED, switchOnOff);
         return params;
+    }
+
+    private void showLoader(){
+        try {
+            if (loader != null && !loader.isShowing())
+                loader.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void dismissLoader(){
+        try {
+            if (loader != null)
+                loader.dismiss();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void showRenameDialog(Context con,String oldName,final TextView tv)
+    {
+        LayoutInflater layoutInflaterAndroid = LayoutInflater.from(con);
+        View mView = layoutInflaterAndroid.inflate(R.layout.rename_dialog_box, null);
+        final EditText edtName=(EditText)mView.findViewById(R.id.userInputDialog);
+        edtName.setText(oldName);
+        AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(con);
+        alertDialogBuilderUserInput.setView(mView);
+
+        final EditText userInputDialogEditText = (EditText) mView.findViewById(R.id.userInputDialog);
+        alertDialogBuilderUserInput
+                .setCancelable(false)
+                .setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogBox, int id) {
+                        // Call Update name for that Item API here..
+                        tv.setText(edtName.getText().toString());
+                    }
+                })
+
+                .setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialogBox, int id) {
+                                dialogBox.cancel();
+                            }
+                        });
+
+        AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();
+        alertDialogAndroid.show();
+
     }
 
     @Override
@@ -249,21 +360,19 @@ public class AppliancesActivity extends AppCompatActivity implements View.OnClic
         Logger.i(TAG, name+", onFailure, Response: " + object);
     }
 
-    private void showLoader(){
-        try {
-            if (loader != null && !loader.isShowing())
-                loader.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item_rename:
+               /* TextView tvFan=(TextView)v.findViewById(R.id.tvFan);
+                String name=tvFan.getText().toString();
+                Toast.makeText(mContext, "Rename Clicked", Toast.LENGTH_SHORT).show();
+                Intent renameIntent=new Intent(AppliancesActivity.this,RenameApplianceActivity.class);
+                renameIntent.putExtra("name",name);*/
+                return true;
 
-    private void dismissLoader(){
-        try {
-            if (loader != null)
-                loader.dismiss();
-        } catch (Exception e) {
-            e.printStackTrace();
+            default:
+                return false;
         }
     }
 }

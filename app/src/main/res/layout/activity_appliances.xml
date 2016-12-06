@@ -101,6 +101,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:src="@drawable/off_btn"
+                android:soundEffectsEnabled="true"
                 android:visibility="visible"></ImageView>
         </RelativeLayout>
 
@@ -140,6 +141,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:src="@drawable/off_btn"
+                android:soundEffectsEnabled="true"
                 android:visibility="visible"></ImageView>
         </RelativeLayout>
 
@@ -179,6 +181,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:src="@drawable/off_btn"
+                android:soundEffectsEnabled="true"
                 android:visibility="visible"></ImageView>
         </RelativeLayout>
 
@@ -218,6 +221,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:src="@drawable/off_btn"
+                android:soundEffectsEnabled="true"
                 android:visibility="visible"></ImageView>
         </RelativeLayout>
 
@@ -257,6 +261,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:src="@drawable/off_btn"
+                android:soundEffectsEnabled="true"
                 android:visibility="visible"></ImageView>
         </RelativeLayout>
 

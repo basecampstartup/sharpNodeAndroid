@@ -1,12 +1,21 @@
 package com.sharpnode;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.TypefaceSpan;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -17,7 +26,7 @@ import com.sharpnode.model.SchedulerModel;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
-public class SchedulerActivity extends AppCompatActivity implements View.OnClickListener {
+public class SchedulerActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemLongClickListener {
     /*private ActionBar actionBar;*/
     Context mContext;
     private Toolbar mToolbar;
@@ -48,6 +57,7 @@ public class SchedulerActivity extends AppCompatActivity implements View.OnClick
         containerAddNew = (LinearLayout) findViewById(R.id.containerAddNew);
         containerAddNew.setOnClickListener(this);
         schedularList = (ListView) findViewById(R.id.schedularList);
+        schedularList.setOnItemLongClickListener(this);
         setScheduleListDummyData();
         adapter = new SchedulerAdapter(mContext, schedulerModels);
         schedularList.setAdapter(adapter);
@@ -133,5 +143,62 @@ public class SchedulerActivity extends AppCompatActivity implements View.OnClick
         model6.setTime("12:00 am");
         model6.setWeekDays("");
         schedulerModels.add(model6);
+    }
+
+
+
+
+
+    /**
+     * dialog to confirming user for Make admin and Remove admin
+     *
+     * @param title
+     * @param message
+     * @param position
+     */
+    public void confirmationAlertDialog(String title, String message, final int position) {
+        SpannableString s = new SpannableString(title);
+        s.setSpan(new TypefaceSpan("avenir-roman.otf"), 0, s.length(),
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                SchedulerActivity.this);
+
+        // set title
+        alertDialogBuilder.setTitle(s);
+
+        // set dialog message
+        alertDialogBuilder
+                .setMessage(message)
+                .setCancelable(false)
+                .setPositiveButton(getResources().getString(R.string.CommonYes), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //Add condition for self login admin functionality after change its own permission it should be logout.
+                        dialog.cancel();
+                        //check internet connection
+
+                    }
+                });
+        // set dialog message
+        alertDialogBuilder.setCancelable(false)
+                .setNegativeButton(getResources().getString(R.string.CommonNo), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+
+                    }
+                });
+        final AlertDialog alertDialog = alertDialogBuilder.create();
+        // show it
+        alertDialog.show();
+        // change color of delete text
+        alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(SchedulerActivity.this.getResources().getColor(R.color.colorPrimaryDark));
+        //change for font style of button
+        alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTypeface(SNApplication.APP_FONT_TYPEFACE);
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        confirmationAlertDialog(getResources().getString(R.string.DeleteScheduleTitle),getResources().getString(R.string.DeleteScheduleMessage),position);
+        return false;
     }
 }

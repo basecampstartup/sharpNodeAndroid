@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.sharpnode.DeviceDashboardActivity;
 import com.sharpnode.R;
 import com.sharpnode.SNApplication;
+import com.sharpnode.callback.APIRequestCallbacak;
 import com.sharpnode.commons.Commons;
 import com.sharpnode.model.ConfiguredDevices;
 import com.sharpnode.servercommunication.APIUtils;
@@ -141,6 +142,19 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder
      * @return
      */
     public HashMap<String, String> removeDeviceRequestMap(String method, String deviceId, String accessToken) {
+        HashMap<String, String> map = new HashMap<>();
+        map.put(Commons.COMMAND, method);
+        map.put(Commons.CONFIGURED_DEVICE_ID, deviceId);
+        map.put(Commons.ACCESS_TOKEN, accessToken);
+        return map;
+    }
+
+    /**
+     * @param method
+     * @param accessToken
+     * @return
+     */
+    public HashMap<String, String> loadDeviceRequestMap(String method, String deviceId, String accessToken) {
         HashMap<String, String> map = new HashMap<>();
         map.put(Commons.COMMAND, method);
         map.put(Commons.CONFIGURED_DEVICE_ID, deviceId);

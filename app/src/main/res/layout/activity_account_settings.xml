@@ -72,6 +72,7 @@
                     android:drawableLeft="@drawable/ic_email"
                     android:drawablePadding="@dimen/dim_padding_20dp"
                     android:hint="@string/CommonEmailID"
+                    android:enabled="false"
                     android:inputType="textEmailAddress"></EditText>
 
                 <include layout="@layout/divider" />

@@ -87,7 +87,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         mContext = this;
-
         //Initialize toolbar
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
@@ -145,7 +144,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         tvTermsLabel = (TextView) findViewById(R.id.tvTermsLabel);
         txtAlreadyHaveAccount = (TextView) findViewById(R.id.txtAlreadyHaveAccount);
         txtAlreadyHaveAccount.setOnClickListener(this);
-
         ((TextView) findViewById(R.id.tvLable)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
         btnSignUp.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         edtName.setTypeface(SNApplication.APP_FONT_TYPEFACE);

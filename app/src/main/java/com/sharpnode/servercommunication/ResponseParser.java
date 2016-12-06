@@ -94,4 +94,46 @@ public class ResponseParser {
         return model;
     }
 
+
+    /**
+     * Method for parse login response.
+     *
+     * @param object
+     * @return
+     */
+    public static AccountModel parseUpdateAccountResponse(Object object) {
+        JSONObject jsonObj = null;
+        AccountModel model = new AccountModel();
+        try {
+            jsonObj = new JSONObject(object.toString());
+            String id=jsonObj.optString(Commons.RESPONSE_CODE);
+            String txt=jsonObj.optString(Commons.TXT);
+            model.setResponseCode(id);
+            model.setResponseMsg(txt);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return model;
+    }
+    /**
+     * Method for parse login response.
+     *
+     * @param object
+     * @return
+     */
+    public static AccountModel parseUpdatePasswordResponse(Object object) {
+        JSONObject jsonObj = null;
+        AccountModel model = new AccountModel();
+        try {
+            jsonObj = new JSONObject(object.toString());
+            String id=jsonObj.optString(Commons.RESPONSE_CODE);
+            String txt=jsonObj.optString(Commons.TXT);
+            model.setResponseCode(id);
+            model.setResponseMsg(txt);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return model;
+    }
+
 }

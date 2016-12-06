@@ -18,6 +18,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sharpnode.DeviceDashboardActivity;
 import com.sharpnode.R;
 import com.sharpnode.SNApplication;
 import com.sharpnode.adapter.DeviceAdapter;
@@ -177,6 +178,16 @@ public class MyDevicesActivity extends AppCompatActivity implements View.OnClick
         loader.dismiss();
         try {
             Logger.i(TAG, "onSuccess"+" Name: "+name+"Response: " + object);
+            if (APIUtils.CMD_DEVICE_INFO.equalsIgnoreCase(name)) {
+                ConfiguredDevices model = ResponseParser.parseGetDevicesResponse(object);
+                if (model.getResponseCode().equalsIgnoreCase(Commons.CODE_200)) {
+                    mContext.startActivity(new Intent(mContext, DeviceDashboardActivity.class));
+                }
+                else{
+
+                }
+            }
+
             if (APIUtils.CMD_GET_DEVICES.equalsIgnoreCase(name)) {
                 ConfiguredDevices model = ResponseParser.parseGetDevicesResponse(object);
                 if (model.getResponseCode().equalsIgnoreCase(Commons.CODE_200)) {
@@ -186,6 +197,8 @@ public class MyDevicesActivity extends AppCompatActivity implements View.OnClick
             } else if (APIUtils.CMD_REMOVE_DEVICE.equalsIgnoreCase(name)) {
 
             }
+
+
             if (mAdapter != null && mAdapter.getItemCount() == 0) {
                 rvDevices.setVisibility(View.GONE);
                 tvNoDeviceFound.setVisibility(View.VISIBLE);

@@ -1,6 +1,7 @@
 package com.sharpnode;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,6 +16,7 @@ import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,11 +26,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sharpnode.adapter.DialogAdapter;
+import com.sharpnode.callback.APIRequestCallbacak;
 import com.sharpnode.commons.Commons;
 import com.sharpnode.image.crop.Crop;
+import com.sharpnode.model.AccountModel;
+import com.sharpnode.network.CheckNetwork;
 import com.sharpnode.permissions.PermissionManager;
+import com.sharpnode.servercommunication.APIUtils;
+import com.sharpnode.servercommunication.Communicator;
+import com.sharpnode.servercommunication.ResponseParser;
 import com.sharpnode.sprefs.AppSPrefs;
 import com.sharpnode.utils.Constants;
 import com.sharpnode.utils.EmailSyntaxChecker;
@@ -42,13 +51,14 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
  * Created by admin on 11/9/2016.
  */
 
-public class AccountSettingsActivity extends AppCompatActivity implements View.OnClickListener {
+public class AccountSettingsActivity extends AppCompatActivity implements View.OnClickListener, APIRequestCallbacak {
     private final String TAG = getClass().getSimpleName();
     protected int imageBitmapSize = 0;
     protected int imageBitmapHeight = 0;
@@ -64,6 +74,9 @@ public class AccountSettingsActivity extends AppCompatActivity implements View.O
     private Toolbar mToolbar;
     private EditText edtName,edtEmail,edtPhone;
     Button btnSubmit, btnChange;
+
+    private ProgressDialog loader = null;
+    String strName,strPhone;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,8 +97,10 @@ public class AccountSettingsActivity extends AppCompatActivity implements View.O
             titleText.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         } catch (NoSuchFieldException e) {
         } catch (IllegalAccessException e) {
-
         }
+
+        loader = new ProgressDialog(this);
+        loader.setMessage(getString(R.string.MessagePleaseWait));
 
         ivProfilePicture = (ImageView) findViewById(R.id.ivProfilePicture);
         ivProfilePicture.setOnClickListener(this);
@@ -109,10 +124,15 @@ public class AccountSettingsActivity extends AppCompatActivity implements View.O
         edtName.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         edtEmail.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         edtPhone.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        edtEmail.setEnabled(false);
+        setModelData();
+    }
+
+    public void setModelData()
+    {
         edtName.setText(AppSPrefs.getString(Commons.NAME));
         edtEmail.setText(AppSPrefs.getString(Commons.EMAIL));
         edtPhone.setText(AppSPrefs.getString(Commons.PHONE));
-        edtEmail.setEnabled(false);
     }
 
     @Override
@@ -142,12 +162,44 @@ public class AccountSettingsActivity extends AppCompatActivity implements View.O
                 showSelectImageDialog();
                 break;
             case R.id.btnSubmit:
+                strName=edtName.getText().toString().trim();
+                String email=edtEmail.getText().toString().trim();
+                strPhone=edtPhone.getText().toString().trim();
+
+                if (!validate()) {
+                    return;
+                }
+
+
+                if (CheckNetwork.isInternetAvailable(mContext)) {
+                    loader.show();
+                    //Call API Request after check internet connection
+                    new Communicator(mContext, APIUtils.CMD_UPDATE_ACCOUNT,
+                            getUpdateAccountRequestMap(APIUtils.CMD_UPDATE_ACCOUNT,email, strPhone, strName));
+                } else {
+                    Logger.i(TAG, "Not connected to Internet.");
+                    Toast.makeText(mContext, mContext.getString(R.string.MessageNoInternetConnection), Toast.LENGTH_LONG).show();
+                }
+
+
                 break;
             case R.id.btnChange:
                 startActivity(new Intent(mContext, ChangePasswordActivity.class));
                 break;
         }
     }
+
+
+    public HashMap<String, String> getUpdateAccountRequestMap(String method,String email, String phone, String name) {
+        HashMap<String, String> map = new HashMap<>();
+        map.put(Commons.COMMAND, method);
+        map.put(Commons.EMAIL, email);
+        map.put(Commons.PHONE, phone);
+        map.put(Commons.NAME, name);
+        map.put(Commons.ACCESS_TOKEN, AppSPrefs.getString(Commons.ACCESS_TOKEN));
+        return map;
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -321,7 +373,6 @@ public class AccountSettingsActivity extends AppCompatActivity implements View.O
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case PermissionManager.PERMISSION_REQUEST_CODE_READ_EXTERNAL_STORAGE:
-
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     selectOption(selectedOption);
@@ -331,6 +382,39 @@ public class AccountSettingsActivity extends AppCompatActivity implements View.O
                 }
                 break;
         }
+    }
+
+    @Override
+    public void onSuccess(String name, Object object) {
+        loader.dismiss();
+
+        try {
+            Logger.i(TAG, "Response: " + object);
+            if (APIUtils.CMD_UPDATE_ACCOUNT.equalsIgnoreCase(name)) {
+                if (ResponseParser.parseUpdateAccountResponse(object).getResponseCode().equalsIgnoreCase(Commons.CODE_200)) {
+
+
+                    AppSPrefs.setString(Commons.NAME, strName);
+                    AppSPrefs.setString(Commons.PHONE,strPhone);
+                    String message=ResponseParser.parseUpdateAccountResponse(object).getResponseMsg();
+                    Toast.makeText(mContext,message,Toast.LENGTH_LONG).show();
+                    finish();
+                } else {
+                    Toast.makeText(mContext, ResponseParser.parseLoginResponse(object).getResponseMsg(),
+                            Toast.LENGTH_LONG).show();
+                }
+            } else {
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onFailure(String name, Object object) {
+        loader.dismiss();
+        Toast.makeText(mContext, "Profile Setting response Failure", Toast.LENGTH_LONG).show();
     }
 
     //Thread to LoadImage in background or to solve blank screen issue in sony device.
@@ -364,7 +448,7 @@ public class AccountSettingsActivity extends AppCompatActivity implements View.O
     public boolean validate() {
         boolean valid = true;
         String name = edtName.getText().toString();
-        String email = edtEmail.getText().toString();
+        //String email = edtEmail.getText().toString();
         String phone = edtPhone.getText().toString();
 
         if (name.isEmpty()) {
@@ -374,20 +458,18 @@ public class AccountSettingsActivity extends AppCompatActivity implements View.O
             edtName.setError(null);
         }
 
-        if (email.isEmpty() || !EmailSyntaxChecker.check(email)) {
+        /* if (email.isEmpty() || !EmailSyntaxChecker.check(email)) {
             edtEmail.setError(getString(R.string.SignUpEmailRequired));
             valid = false;
         } else {
             edtEmail.setError(null);
-        }
-
+        }*/
         if (phone.isEmpty()) {
-            edtPhone.setError("Phone number is required");
+            edtPhone.setError("Enter a valid phone Number");
             valid = false;
         } else {
             edtName.setError(null);
         }
-
         return valid;
     }
 }

@@ -55,7 +55,8 @@
                     android:hint="@string/AddTaskTaskName"
                     android:padding="@dimen/dim_padding_5dp"
                     android:textColor="@color/colorAppWhite"
-                    android:textColorHint="@color/colorAppWhite">
+                    android:textColorHint="@color/colorAppWhite"
+                    android:textSize="@dimen/default_textsize_large">
 
                     <requestFocus></requestFocus>
                 </EditText>
@@ -73,12 +74,12 @@
 
                 <TextView
                     android:id="@+id/tvSelectAppliance"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/margin_10dp"
                     android:layout_marginTop="@dimen/margin_10dp"
                     android:drawableRight="@drawable/ic_arrow_drop_down_black_24dp"
-                    android:gravity="center"
+                    android:gravity="left"
                     android:text="@string/SelectAppliance"
                     android:textColor="@color/colorAppWhite"
                     android:textSize="@dimen/default_textsize_medium" />
