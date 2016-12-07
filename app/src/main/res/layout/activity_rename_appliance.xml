@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_rename_appliance"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    tools:context="com.sharpnode.RenameApplianceActivity">
+
+    <LinearLayout
+        android:id="@+id/container_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:fillViewport="true"
+        android:isScrollContainer="false"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:id="@+id/rlRoot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_30dp"
+            android:orientation="horizontal"
+            android:padding="@dimen/dim_padding_10dp">
+
+            <LinearLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin">
+                <TextView
+                    android:id="@+id/tvApplianceDetailLbl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:text="@string/ApplianceDetail"
+                    android:textColor="@color/colorButtonBg"
+                    android:textSize="@dimen/default_textsize_large" />
+                <EditText
+                    android:id="@+id/edtApplianceLableValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_10dp"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:background="@null"
+                    android:hint="@string/ApplianceLabel"
+                    android:padding="@dimen/dim_padding_5dp"
+                    android:textColor="@color/colorAppWhite"
+                    android:textColorHint="@color/colorAppWhite"
+                    android:textSize="@dimen/default_textsize_medium" >
+                    <requestFocus></requestFocus>
+                </EditText>
+
+                <include layout="@layout/divider" />
+
+                <TextView
+                    android:id="@+id/tvApplianceType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:text="@string/ApplianceType"
+                    android:textColor="@color/colorButtonBg"
+                    android:textSize="@dimen/default_textsize_large" />
+
+                <TextView
+                    android:id="@+id/tvSelectAppliance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_10dp"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:drawableRight="@drawable/ic_arrow_drop_down_black_24dp"
+                    android:gravity="left"
+                    android:text="@string/SelectAppliance"
+                    android:textColor="@color/colorAppWhite"
+                    android:textSize="@dimen/default_textsize_medium" />
+
+                <include layout="@layout/divider" />
+
+                <Button
+                    android:id="@+id/btnUpdate"
+                    style="@style/button_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:text="@string/Update"></Button>
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+</LinearLayout>
