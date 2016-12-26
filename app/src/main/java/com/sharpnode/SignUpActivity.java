@@ -17,12 +17,11 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Spannable;
-import android.text.SpannableString;
 import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -56,8 +55,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -93,15 +90,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.SingUpSignUpBtn));
-        //Set Custom font to title.
-        try {
-            Field f = mToolbar.getClass().getDeclaredField("mTitleTextView");
-            f.setAccessible(true);
-            TextView titleText = (TextView) f.get(mToolbar);
-            titleText.setTypeface(SNApplication.APP_FONT_TYPEFACE);
-        } catch (NoSuchFieldException e) {
-        } catch (IllegalAccessException e) {
-        }
+        Utils.setTitleFontTypeface(mToolbar);
 
         initializeComponents();
         loader = new ProgressDialog(this);
@@ -127,7 +116,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        //overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+        overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
         this.finish();
     }
 
@@ -188,7 +177,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 break;*/
             case R.id.btnSignUp:
                 //This will check if your click on button successively.
-                if (SystemClock.elapsedRealtime() - mLastClickTime < Commons.THRESHOLD_TIME_POST_SCREEN) {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < Commons.DELAY_LONG) {
                     return;
                 }
                 if (!validate()) {
@@ -211,7 +200,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 if (CheckNetwork.isInternetAvailable(mContext)) {
                     loader.show();
                     //Call API Request after check internet connection
-                    new Communicator(mContext, APIUtils.CMD_SIGN_UP,
+                    new Communicator(mContext, null, APIUtils.CMD_SIGN_UP,
                             getSignUpRequestMap(APIUtils.CMD_SIGN_UP,
                                     strEmail, strName, strPassword, strPhone));
                 } else {
@@ -222,6 +211,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.txtAlreadyHaveAccount:
                 startActivity(new Intent(SignUpActivity.this, SignInActivity.class));
+                overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
                 this.finish();
                 break;
         }
@@ -297,7 +287,13 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     AppSPrefs.setString(Commons.PHONE, model.getPhoneNo());
                     AppSPrefs.setString(Commons.PHOTO, model.getPhoto());
                     startActivity(new Intent(SignUpActivity.this, HomeDashboardActivity.class));
-                    finish();
+                    overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            finish();
+                        }
+                    }, 1000);
                 } else {
                     Toast.makeText(mContext, ResponseParser.parseLoginResponse(object).getResponseMsg(),
                             Toast.LENGTH_LONG).show();

@@ -17,6 +17,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.sharpnode.utils.Utils;
+
 public class LandingPageActivity extends AppCompatActivity implements View.OnClickListener{
     private final String TAG = getClass().getSimpleName();
     private Button btnLogin, btnSignUp;
@@ -50,11 +52,20 @@ public class LandingPageActivity extends AppCompatActivity implements View.OnCli
             case R.id.btnLogin:
                 //Navigate to Sign In screen
                 startActivity(new Intent(LandingPageActivity.this, SignInActivity.class));
+                overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
                 break;
             case R.id.btnSignUp:
                 //Navigate to Sign Up screen
                 startActivity(new Intent(LandingPageActivity.this, SignUpActivity.class));
+                overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        //overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+        //Utils.exitFromApp(this);
     }
 }

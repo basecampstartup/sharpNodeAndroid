@@ -7,6 +7,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.sharpnode.utils.Utils;
+
 import java.lang.reflect.Field;
 
 public class LiveCameraActivity extends AppCompatActivity {
@@ -23,15 +25,7 @@ public class LiveCameraActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.LeftPanelLiveCamera));
-        //Set Custom font to title.
-        try {
-            Field f = mToolbar.getClass().getDeclaredField("mTitleTextView");
-            f.setAccessible(true);
-            TextView titleText = (TextView) f.get(mToolbar);
-            titleText.setTypeface(SNApplication.APP_FONT_TYPEFACE);
-        } catch (NoSuchFieldException e) {
-        } catch (IllegalAccessException e) {
-        }
+        Utils.setTitleFontTypeface(mToolbar);
     }
 
     @Override
@@ -48,7 +42,7 @@ public class LiveCameraActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        //overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+        overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
         this.finish();
     }
 }

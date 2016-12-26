@@ -13,6 +13,7 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.sharpnode.utils.Utils;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -36,16 +37,7 @@ public class InsightsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.LeftPanelInsights));
-        //Set Custom font to title.
-        try {
-            Field f = mToolbar.getClass().getDeclaredField("mTitleTextView");
-            f.setAccessible(true);
-            TextView titleText = (TextView) f.get(mToolbar);
-            titleText.setTypeface(SNApplication.APP_FONT_TYPEFACE);
-        } catch (NoSuchFieldException e) {
-        } catch (IllegalAccessException e) {
-
-        }
+        Utils.setTitleFontTypeface(mToolbar);
         chart = (BarChart) findViewById(R.id.chart1);
 
         BARENTRY = new ArrayList<>();
@@ -109,7 +101,7 @@ public class InsightsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        //overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+        overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
         this.finish();
     }
 }

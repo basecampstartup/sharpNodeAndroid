@@ -28,6 +28,9 @@
     <string name="ApplianceFan">Fan</string>
     <string name="ApplianceCfl">CFL</string>
     <string name="ApplianceLamp">Lamp</string>
+    <string name="ApplianceAC">A.C.</string>
+    <string name="ApplianceWP">W.P.</string>
+    <string name="AppliancePrint">Print</string>
     <string name="ApplianceTV">TV</string>
     <string name="ApplianceMusic">Music</string>
     <string name="ApplianceWashingMachine">Washing Machine</string>
@@ -44,6 +47,7 @@
     <string name="SignUpCreateAccount">Create an Account</string>
     <string name="CommonName">Name</string>
     <string name="CommonEmailID">Email ID</string>
+    <string name="CommonSecretKey">Secret Key</string>
     <string name="CommonPhone">Phone</string>
     <string name="CommonPassword">Password</string>
     <string name="SignUpAlreadyHaveAccountSignIn">Already have account? Sign in</string>
@@ -72,6 +76,13 @@
     <string name="SchedulerList">Scheduler List</string>
     <string name="SchedulerAddNew">Add New</string>
     <string name="SchedulerAddNewTask">Add New Task</string>
+    <string name="SchedulerUpdateTask">Update Task</string>
+
+    //Timer
+    <string name="TimerList">Timer List</string>
+    <string name="TimerAddNew">Add New</string>
+    <string name="TimerAddNewTask">Add New Task</string>
+
     //Crop Screen
     <string name="Done">Done</string>
     <string name="CropImage">Crop Image</string>
@@ -86,7 +97,8 @@
     <string name="ForgotPassword">Forgot password</string>
     <string name="LblForgotPassword">Forgot your password?</string>
     <string name="PFForgotPasswordText">Please enter your email address to reset password. We will send you a link shortly.</string>
-    <string name="SendLink">Send me a link</string>
+    <string name="SendLink">Send Secret Key</string>
+    <string name="SetPassword">Set Password</string>
 
     //Home Screen Items
 
@@ -99,9 +111,9 @@
 
     <string name="AddTaskTaskName">Task Name</string>
     <string name="SelectAppliance">Select Appliance</string>
-    <string name="SelectApplianceLabel">Select Appliance do you want to schedule:</string>
-    <string name="ApplianceOperation">Select Operation for selected Appliance:</string>
-    <string name="ScheduleDateTime">Select Schedule Days and time:</string>
+    <string name="SelectApplianceLabel">Select appliance do you want to schedule:</string>
+    <string name="ApplianceOperation">Select operation for selected appliance:</string>
+    <string name="ScheduleDateTime">Select schedule time:</string>
     <string name="SelectTime">Select time:</string>
     <string name="EveryDay">Every Day:</string>
     <string name="WeekDaysfs">Week days:</string>
@@ -125,9 +137,10 @@
     <string name="ApplianceDetail">Appliance Detail </string>
     <string name="ApplianceType">Appliance Type </string>
     <string name="ApplianceLabel">Appliance Label </string>
+    <string name="ApplianceName">Appliance Name</string>
     <string name="Update">Update</string>
 
-    <string name="RenameAppliance">Rename Appliance:</string>
+    <string name="RenameAppliance">Rename Appliance</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -136,12 +149,17 @@
     <string name="CommonYes">Yes</string>
     <string name="CommonNo">No</string>
 
+    <string name="DeleteTimerMessage">Are you sure you want to delete this Timer ?</string>
     <string name="DeleteScheduleMessage">Are you sure you want to delete this Schedule ?</string>
-    <string name="DeleteScheduleTitle">Delete Schedule</string>
+    <string name="DeleteTimerTitle">Remove Timer</string>
+    <string name="DeleteScheduleTitle">Remove Schedule</string>
     <string name="NewPassworNotMatch">New Password and Confirm Password not match!</string>
 
 
     <string name="OldPasswordRequired">Old password Required!</string>
     <string name="NewPasswordRequired">New password Required!</string>
     <string name="ConfirmPasswordRequired">Confirm password Required!</string>
+
+    <string name="PresenceOnline">Online</string>
+    <string name="PresenceOffline">Offline</string>
 </resources>

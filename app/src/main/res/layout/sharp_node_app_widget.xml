@@ -1,62 +1,109 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/widget_height"
-    android:background="@android:color/holo_orange_light"
-    android:orientation="horizontal"
-    android:padding="0.5dp">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btnFanSwitch"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:textAllCaps="false"
-        android:text="@string/ApplianceFan"
-        android:textColor="@color/colorAppBlack"
-        android:textSize="@dimen/dim_font_size_18"
-        android:background="@color/colorAppWhite"
-        android:elevation="2dp"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:padding="@dimen/dim_padding_10dp">
 
-    <Button
-        android:id="@+id/btnLampSwitch"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:layout_marginLeft="1dp"
-        android:layout_marginRight="0.5dp"
-        android:textAllCaps="false"
-        android:text="@string/ApplianceCfl"
-        android:textColor="@color/colorAppBlack"
-        android:textSize="@dimen/dim_font_size_18"
-        android:background="@color/colorAppWhite"
-        android:elevation="2dp" />
+        <TextView
+            android:id="@+id/tvWidgetLbl1"
+            style="@style/text_view_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:visibility="gone"
+            android:textColor="@color/colorPrimary"></TextView>
 
-    <Button
-        android:id="@+id/btnCFLSwitch"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_weight="1"
-        android:layout_marginLeft="0.5dp"
-        android:layout_marginRight="1dp"
-        android:textAllCaps="false"
-        android:text="@string/ApplianceLamp"
-        android:textColor="@color/colorAppBlack"
-        android:textSize="@dimen/dim_font_size_18"
-        android:background="@color/colorAppWhite"
-        android:elevation="2dp" />
+        <TextView
+            android:id="@+id/tvWidgetLbl2"
+            style="@style/text_view_style"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/dim_padding_2dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="Control appliances of your Room-1"
+            android:textColor="@color/colorAppWhite"></TextView>
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/btnMusicSwitch"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:textAllCaps="false"
-        android:text="@string/ApplianceMusic"
-        android:textColor="@color/colorAppBlack"
-        android:textSize="@dimen/dim_font_size_18"
-        android:background="@color/colorAppWhite"
-        android:elevation="2dp"/>
+        android:layout_height="@dimen/widget_height"
+        android:orientation="horizontal"
+        android:padding="0.5dp">
+
+        <Button
+            android:id="@+id/btnCFLSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/color_black_semi_trans"
+            android:elevation="2dp"
+            android:text="@string/ApplianceCfl"
+            android:textAllCaps="false"
+            android:textColor="@color/colorAppWhite"
+            android:textSize="@dimen/default_textsize_medium" />
+
+        <Button
+            android:id="@+id/btnFanSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="0.5dp"
+            android:layout_weight="1"
+            android:background="@color/color_black_semi_trans"
+            android:elevation="2dp"
+            android:text="@string/ApplianceFan"
+            android:textAllCaps="false"
+            android:textColor="@color/colorAppWhite"
+            android:textSize="@dimen/default_textsize_medium" />
+
+        <Button
+            android:id="@+id/btnLampSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="0.5dp"
+            android:layout_marginRight="0.5dp"
+            android:layout_weight="1"
+            android:background="@color/color_black_semi_trans"
+            android:elevation="2dp"
+            android:text="@string/ApplianceAC"
+            android:textAllCaps="false"
+            android:textColor="@color/colorAppWhite"
+            android:textSize="@dimen/default_textsize_medium" />
+
+        <Button
+            android:id="@+id/btnTVSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="0.5dp"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:background="@color/color_black_semi_trans"
+            android:elevation="2dp"
+            android:text="@string/ApplianceWP"
+            android:textAllCaps="false"
+            android:textColor="@color/colorAppWhite"
+            android:textSize="@dimen/default_textsize_medium" />
+
+        <Button
+            android:id="@+id/btnMusicSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/color_black_semi_trans"
+            android:elevation="2dp"
+            android:text="@string/AppliancePrint"
+            android:textAllCaps="false"
+            android:textColor="@color/colorAppWhite"
+            android:textSize="@dimen/default_textsize_medium" />
+
+    </LinearLayout>
 
 </LinearLayout>

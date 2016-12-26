@@ -76,7 +76,8 @@
                 android:layout_marginLeft="@dimen/dim_padding_15dp"
                 android:layout_marginTop="@dimen/dim_padding_10dp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/ivAppliances"

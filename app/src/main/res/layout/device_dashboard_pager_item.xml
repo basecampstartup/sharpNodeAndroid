@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/llTop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.22"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl1"
+            android:layout_marginTop="@dimen/margin_10dp"
+            android:paddingLeft="@dimen/dim_padding_5dp"
+            android:paddingRight="@dimen/dim_padding_5dp">
+
+            <TextView
+                android:id="@+id/tvActiveDeviceLbl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/dim_padding_5dp"
+                android:text="Active Device: "
+                android:layout_centerVertical="true"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/default_textsize_medium"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/tvActiveDeviceName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/tvActiveDeviceLbl"
+                android:text="SN-3633"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:textColor="@color/color_text"
+                android:textSize="@dimen/default_textsize_medium"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlSecurityFeatureLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/dim_padding_10dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/ivSecurityFeature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_security_off" />
+
+            <TextView
+                android:id="@+id/tvSecurityFeature"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ivSecurityFeature"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/dim_padding_10dp"
+                android:text="@string/SecurityFeature"
+                android:textColor="@color/colorAppWhite"
+                android:textSize="@dimen/default_textsize_medium" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_above="@+id/llBottom"
+            android:background="@drawable/dashboard_horizontal_line"></View>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/ivTemperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_margin="@dimen/dim_padding_10dp"
+                android:src="@drawable/ic_shortcut_temp"></ImageView>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/ivTemperature"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvTemperature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Temp | 28 °C"
+                    android:textColor="@color/colorAppWhite"
+                    android:textSize="@dimen/default_textsize_medium" />
+
+                <View
+                    android:id="@+id/tvDivider"
+                    android:layout_width="100dp"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="@dimen/dim_padding_2dp"
+                    android:layout_marginTop="@dimen/dim_padding_2dp"
+                    android:background="@drawable/dashboard_horizontal_line" />
+
+                <TextView
+                    android:id="@+id/tvHumidity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Humidity 48%"
+                    android:textColor="@color/colorAppWhite"
+                    android:textSize="@dimen/default_textsize_medium" />
+            </LinearLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@+id/llBottom"
+        android:background="@drawable/dashboard_horizontal_line"></View>
+
+    <LinearLayout
+        android:id="@+id/llBottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.78"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/llShortcutAppliance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/dim_padding_10dp">
+
+            <ImageView
+                android:id="@+id/ivAppliances"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_shortcut_appliances" />
+
+            <TextView
+                android:id="@+id/tvAppliances"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ivSecurityFeature"
+                android:layout_marginTop="@dimen/dim_padding_10dp"
+                android:gravity="center"
+                android:text="@string/LeftPanelAppliances"
+                android:textColor="@color/colorAppWhite"
+                android:textSize="@dimen/default_textsize_medium" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/dashboard_vertical_line"></View>
+
+        <LinearLayout
+            android:id="@+id/llShortcutScheduler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/dim_padding_10dp"
+            android:paddingTop="@dimen/dim_padding_10dp">
+
+            <ImageView
+                android:id="@+id/ivScheduler"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_shortcut_scheduler" />
+
+            <TextView
+                android:id="@+id/tvScheduler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ivSecurityFeature"
+                android:layout_marginTop="@dimen/dim_padding_10dp"
+                android:gravity="center"
+                android:text="@string/HomeScheduler"
+                android:textColor="@color/colorAppWhite"
+                android:textSize="@dimen/default_textsize_medium" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/dashboard_vertical_line"></View>
+
+        <LinearLayout
+            android:id="@+id/llShortcutTimer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/dim_padding_10dp">
+
+            <ImageView
+                android:id="@+id/ivTimer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_shortcut_timer" />
+
+            <TextView
+                android:id="@+id/tvTimer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ivSecurityFeature"
+                android:layout_marginTop="@dimen/dim_padding_10dp"
+                android:gravity="center"
+                android:text="@string/HomeTimer"
+                android:textColor="@color/colorAppWhite"
+                android:textSize="@dimen/default_textsize_medium" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

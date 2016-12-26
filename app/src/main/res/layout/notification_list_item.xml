@@ -3,38 +3,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/background_dark">
+    >
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/dim_padding_10dp"
-      >
     <ImageView
         android:id="@+id/imgNotification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:padding="@dimen/dim_padding_5dp"
+        android:layout_marginTop="@dimen/dim_padding_10dp"
+        android:layout_marginLeft="@dimen/dim_padding_10dp"
         android:layout_centerInParent="true"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@drawable/ic_list_notification" />
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/llTop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dim_padding_10dp"
         android:layout_toRightOf="@+id/imgNotification"
-        android:paddingLeft="@dimen/dim_padding_5dp">
+        android:orientation="vertical"
+        android:padding="@dimen/dim_padding_5dp">
 
         <TextView
             android:id="@+id/tvTitle"
+            style="@style/text_view_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:textColor="@color/color_text"
-            android:textSize="@dimen/default_textsize_medium"
             android:text="Your set timer is stop" />
-
 
         <TextView
             android:id="@+id/tvTime"
@@ -42,12 +39,16 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_below="@id/tvTitle"
-            android:textColor="@color/color_text"
             android:paddingTop="@dimen/dim_padding_2dp"
-            android:textSize="@dimen/default_textsize_medium"
-            android:text="Just Now" />
-    </RelativeLayout>
+            android:singleLine="true"
+            android:text="Just Now"
+            android:textColor="@color/color_gray"
+            android:textSize="15sp" />
+    </LinearLayout>
 
-
-        </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/llTop"
+        android:background="@color/color_gray"></View>
 </RelativeLayout>

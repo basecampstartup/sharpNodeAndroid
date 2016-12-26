@@ -2,16 +2,19 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rlParentLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    >
 
     <ImageView
         android:id="@+id/ivPhotonIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_margin="@dimen/dim_padding_5dp"
-        android:src="@drawable/photon_vector_small">
-
+        android:layout_margin="@dimen/dim_padding_10dp"
+        android:paddingBottom="@dimen/dim_padding_10dp"
+        android:paddingTop="@dimen/dim_padding_10dp"
+        android:src="@drawable/ic_room_device_setting">
+<!--android:src="@drawable/photon_vector_small"-->
     </ImageView>
 
     <LinearLayout
@@ -41,6 +44,7 @@
             android:layout_marginTop="@dimen/dim_padding_2dp"
             android:singleLine="true"
             android:text="Type"
+            android:visibility="gone"
             android:textSize="@dimen/text_size_small"></TextView>
 
         <TextView
@@ -51,6 +55,7 @@
             android:layout_marginTop="@dimen/dim_padding_2dp"
             android:singleLine="true"
             android:text="Device ID"
+            android:visibility="gone"
             android:textSize="@dimen/text_size_small"></TextView>
     </LinearLayout>
 

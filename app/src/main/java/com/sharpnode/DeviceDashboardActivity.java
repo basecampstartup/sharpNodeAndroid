@@ -1,37 +1,44 @@
 package com.sharpnode;
 
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sharpnode.adapter.DeviceDashboardPagerAdaper;
 import com.sharpnode.callback.APIRequestCallbacak;
 import com.sharpnode.cloudcommunication.CloudCommunicator;
+import com.sharpnode.cloudcommunication.CloudResponseParser;
 import com.sharpnode.cloudcommunication.CloudUtils;
 import com.sharpnode.commons.Commons;
+import com.sharpnode.context.ContextHelper;
+import com.sharpnode.model.DeviceInfoModel;
+import com.sharpnode.model.DeviceModel;
 import com.sharpnode.network.CheckNetwork;
+import com.sharpnode.servercommunication.ResponseParser;
 import com.sharpnode.setupdevice.MyDevicesActivity;
 import com.sharpnode.sprefs.AppSPrefs;
 import com.sharpnode.utils.Logger;
 import com.sharpnode.utils.Utils;
 
-import java.lang.reflect.Field;
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * class: HomeActivity it is dashboard screen of application from where can access all features of
@@ -43,39 +50,30 @@ public class DeviceDashboardActivity extends AppCompatActivity implements View.O
     private Context mContext;
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;  //toggle to open and close drawer
-    private TextView tvUserName, tvUserRole, tvHome, tvMyDevices, tvInsights, tvIftttConfig, tvAppliances,
-            tvUserManual, tvContactUs, tvLogout, tvTemperature, tvHumidity, tvSecurityFeature;
-    private ImageView ivProfilePicture, ivSecurityFeature;
+    private TextView tvUserName, tvUserRole, tvHome, tvMyDevices, tvInsights, tvIftttConfig,
+            tvUserManual, tvContactUs, tvLogout;
+    private ImageView ivProfilePicture;
     private LinearLayout llHomePanel, llSettingsPanel, llInsightsPanel, llIftttConfigPanel,
-            llAppliancePanel, llDeviceManualPanel, llShortcutAppliance, llShortcutScheduler, llShortcutTimer,
+            llAppliancePanel, llDeviceManualPanel,
             llUserManualPanel, llLogoutPanel, llContactUsPanel;
-    private RelativeLayout rlSecurityFeature;
-    private Animation animationEnlarge, animationShrink;
+    public static DeviceInfoModel deviceInfoModel=null;
+
     private ProgressDialog loader;
+    public static boolean isConnected = false;
+    private ViewPager mPager;
+    private DeviceDashboardPagerAdaper mPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device_dashboard);
-
-        loader = new ProgressDialog(this);
-        loader.setMessage(getString(R.string.MessagePleaseWait));
-        loader.setCancelable(false);
-
+        ContextHelper.setContext(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(getString(R.string.app_name));
-        //Set Custom font to title.
-        try {
-            Field f = toolbar.getClass().getDeclaredField("mTitleTextView");
-            f.setAccessible(true);
-            TextView titleText = (TextView) f.get(toolbar);
-            titleText.setTypeface(SNApplication.APP_FONT_TYPEFACE);
-        } catch (NoSuchFieldException e) {
-        } catch (IllegalAccessException e) {
-
-        }
+        Utils.setTitleFontTypeface(toolbar);
         mContext = this;
+
         //initialize drawer items
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(
@@ -99,15 +97,46 @@ public class DeviceDashboardActivity extends AppCompatActivity implements View.O
         toggle.syncState();
         toggle.onConfigurationChanged(new Configuration());
 
+        loader = new ProgressDialog(mContext);
+        String deviceInfoData = getIntent().getStringExtra("DEVICE_INFO");
+        deviceInfoModel = ResponseParser.parseDeviceInfoResponse(deviceInfoData);
+        isConnected = CloudUtils.deviceStatus.get(deviceInfoModel.getDeviceId().toLowerCase());
+        AppSPrefs.setWidgetDevice(deviceInfoModel.getDeviceName());
+        // Instantiate a ViewPager and a PagerAdapter.
+        mPager = (ViewPager) findViewById(R.id.pager);
+        mPagerAdapter = new DeviceDashboardPagerAdaper(mContext, getSupportFragmentManager());
+        mPager.setAdapter(mPagerAdapter);
+
         initializeComponents();
         initHeaderComponents();
-        getTempAndHumidity();
+
     }
+
+
+//        @Override
+//    protected void onResume() {
+//        super.onResume();
+//        try{
+//            registerReceiver(deviceStatusChangedReceiver, new IntentFilter(CloudUtils.REFRESH_DEVICE_DASHBOARD));
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        try{
+//            unregisterReceiver(deviceStatusChangedReceiver);
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//    }
 
     @Override
     public void onClick(View view) {
         closeDrawer();
-        //switch case
+
         switch (view.getId()) {
             case R.id.llHomePanel:
                 Intent goToHomeIntent = new Intent(getApplicationContext(), HomeDashboardActivity.class);
@@ -121,44 +150,36 @@ public class DeviceDashboardActivity extends AppCompatActivity implements View.O
                 finish();
                 break;
             case R.id.llInsightsPanel:
-                startActivity(new Intent(mContext, InsightsActivity.class));
-                break;
-            case R.id.llAppliancePanel:
-                startActivity(new Intent(mContext, AppliancesActivity.class));
-                break;
-            case R.id.llShortcutAppliance:
-                startActivity(new Intent(mContext, AppliancesActivity.class));
-                //overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
-                break;
-            case R.id.llShortcutScheduler:
-                startActivity(new Intent(mContext, SchedulerActivity.class));
-                //overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
-                break;
-            case R.id.llShortcutTimer:
-                startActivity(new Intent(mContext, TimerListActivity.class));
-                //overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
-                break;
-            case R.id.rlSecurityFeature:
-                enLargeShrinkAnimation();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        startActivity(new Intent(mContext, InsightsActivity.class));
+                        overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+                    }
+                }, 100);
                 break;
             case R.id.llUserManualPanel:
-                startActivity(new Intent(mContext, UserMannualActivity.class));
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        startActivity(new Intent(mContext, UserMannualActivity.class));
+                        overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+                    }
+                }, 100);
                 break;
             case R.id.llContactUsPanel:
-                startActivity(new Intent(mContext, ContactUsActivity.class));
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        startActivity(new Intent(mContext, ContactUsActivity.class));
+                        overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+                    }
+                }, 100);
                 break;
             case R.id.llLogoutPanel:
                 Utils.logoutFromApp(DeviceDashboardActivity.this);
                 break;
         }
-    }
-
-    private void enLargeShrinkAnimation() {
-        animationEnlarge = AnimationUtils.loadAnimation(this, R.anim.enlarge);
-        animationShrink = AnimationUtils.loadAnimation(this, R.anim.shrink);
-        animationEnlarge.setAnimationListener(animationEnlargeListener);
-        animationShrink.setAnimationListener(animationShrinkListener);
-        ivSecurityFeature.startAnimation(animationEnlarge);
     }
 
     @Override
@@ -175,50 +196,32 @@ public class DeviceDashboardActivity extends AppCompatActivity implements View.O
      * Method for initialize component of screen.
      */
     private void initializeComponents() {
+        //Left panel_new components
         llHomePanel = (LinearLayout) findViewById(R.id.llHomePanel);
         llInsightsPanel = (LinearLayout) findViewById(R.id.llInsightsPanel);
         llIftttConfigPanel = (LinearLayout) findViewById(R.id.llIftttConfigPanel);
-        llAppliancePanel = (LinearLayout) findViewById(R.id.llAppliancePanel);
+        //llAppliancePanel = (LinearLayout) findViewById(R.id.llAppliancePanel);
         llDeviceManualPanel = (LinearLayout) findViewById(R.id.llMyDevices);
         llUserManualPanel = (LinearLayout) findViewById(R.id.llUserManualPanel);
         llLogoutPanel = (LinearLayout) findViewById(R.id.llLogoutPanel);
         llContactUsPanel = (LinearLayout) findViewById(R.id.llContactUsPanel);
 
-        rlSecurityFeature = (RelativeLayout) findViewById(R.id.rlSecurityFeature);
-        llShortcutAppliance = (LinearLayout) findViewById(R.id.llShortcutAppliance);
-        llShortcutScheduler = (LinearLayout) findViewById(R.id.llShortcutScheduler);
-        llShortcutTimer = (LinearLayout) findViewById(R.id.llShortcutTimer);
-
-        rlSecurityFeature.setOnClickListener(this);
-        llShortcutAppliance.setOnClickListener(this);
-        llShortcutScheduler.setOnClickListener(this);
-        llShortcutTimer.setOnClickListener(this);
-
         llHomePanel.setOnClickListener(this);
         llInsightsPanel.setOnClickListener(this);
         llIftttConfigPanel.setOnClickListener(this);
-        llAppliancePanel.setOnClickListener(this);
+        //llAppliancePanel.setOnClickListener(this);
         llDeviceManualPanel.setOnClickListener(this);
         llLogoutPanel.setOnClickListener(this);
         llContactUsPanel.setOnClickListener(this);
-
-        ivSecurityFeature = (ImageView) findViewById(R.id.ivSecurityFeature);
-        ivSecurityFeature.setImageResource(R.drawable.ic_security_off);
-        ivSecurityFeature.setTag(false);
+        llUserManualPanel.setOnClickListener(this);
 
         tvHome = (TextView) findViewById(R.id.tvHome);
         tvMyDevices = (TextView) findViewById(R.id.tvMyDevices);
         tvInsights = (TextView) findViewById(R.id.tvInsights);
         tvIftttConfig = (TextView) findViewById(R.id.tvIftttConfig);
-        tvTemperature = (TextView) findViewById(R.id.tvTemperature);
-        tvHumidity = (TextView) findViewById(R.id.tvHumidity);
-        tvLogout = (TextView) findViewById(R.id.tvLogout);
         tvUserManual = (TextView) findViewById(R.id.tvUserManual);
         tvContactUs = (TextView) findViewById(R.id.tvContactUs);
-
-        ((TextView) findViewById(R.id.tvSecurityFeature)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
-        tvTemperature.setTypeface(SNApplication.APP_FONT_TYPEFACE);
-        tvHumidity.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        tvLogout = (TextView) findViewById(R.id.tvLogout);
 
         tvHome.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         tvMyDevices.setTypeface(SNApplication.APP_FONT_TYPEFACE);
@@ -227,14 +230,10 @@ public class DeviceDashboardActivity extends AppCompatActivity implements View.O
         tvUserManual.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         tvContactUs.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         tvLogout.setTypeface(SNApplication.APP_FONT_TYPEFACE);
-
-        ((TextView)findViewById(R.id.tvAppliances)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
-        ((TextView)findViewById(R.id.tvScheduler)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
-        ((TextView)findViewById(R.id.tvTimer)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
     }
 
     /**
-     * Method to initialize header options of side panel
+     * Method to initialize header options of side panel_new
      */
     private void initHeaderComponents() {
         ivProfilePicture = (ImageView) findViewById(R.id.ivProfilePicture);
@@ -247,26 +246,6 @@ public class DeviceDashboardActivity extends AppCompatActivity implements View.O
         tvUserName.setText(AppSPrefs.getString(Commons.NAME));
     }
 
-    private void getTempAndHumidity(){
-        if(CheckNetwork.isInternetAvailable(mContext)){
-            showLoader();
-            //Call Cloud API Request after check internet connection
-            new CloudCommunicator(mContext, CloudUtils.CLOUD_TEMP_HUMIDITY_PREFIX,
-                    getParams(AppSPrefs.getDeviceId(), CloudUtils.CLOUD_TEMP_HUMIDITY_PREFIX));
-        } else {
-            Toast.makeText(mContext, getString(R.string.check_for_internet_connectivity),
-                    Toast.LENGTH_LONG).show();
-        }
-    }
-
-    private HashMap<String, String> getParams(String deviceId, String prefix){
-        HashMap<String, String> params = new HashMap<>();
-        params.put(Commons.CONFIGURED_DEVICE_ID, deviceId);
-        params.put(Commons.TEMP_HUMIDITY_PREFIX, prefix);
-        params.put(Commons.CLOUD_EVENTS_TAG, CloudUtils.CLOUD_EVENTS);
-        return params;
-    }
-
     /**
      * Method to close Close Drawer
      */
@@ -276,47 +255,18 @@ public class DeviceDashboardActivity extends AppCompatActivity implements View.O
         }
     }
 
-    Animation.AnimationListener animationEnlargeListener = new Animation.AnimationListener() {
-
-        @Override
-        public void onAnimationEnd(Animation animation) {
-            ivSecurityFeature.startAnimation(animationShrink);
-        }
-
-        @Override
-        public void onAnimationRepeat(Animation animation) {
-        }
-
-        @Override
-        public void onAnimationStart(Animation animation) {
-        }
-    };
-    Animation.AnimationListener animationShrinkListener = new Animation.AnimationListener() {
-        @Override
-        public void onAnimationEnd(Animation animation) {
-            if ((boolean) ivSecurityFeature.getTag()) {
-                ivSecurityFeature.setImageResource(R.drawable.ic_security_off);
-                ivSecurityFeature.setTag(false);
-            } else {
-                ivSecurityFeature.setImageResource(R.drawable.ic_security_on);
-                ivSecurityFeature.setTag(true);
-            }
-        }
-
-        @Override
-        public void onAnimationRepeat(Animation animation) {
-        }
-
-        @Override
-        public void onAnimationStart(Animation animation) {
-        }
-    };
-
     @Override
     public void onSuccess(String name, Object object) {
-        dismissLoader();
-        Logger.i(TAG, name+", onSuccess, Response: " + object);
+        Utils.dismissLoader();
+        //Logger.i(TAG, name+", onSuccess, Response: " + object);
         try {
+            if(CloudUtils.CLOUD_FUNCTION_DEVICE_STATUS.equalsIgnoreCase(name)){
+               DeviceModel model = CloudResponseParser.parseDeviceStatusResponse(object);
+                if (model.getResponseCode() == Commons.CODE_200) {
+                    CloudUtils.deviceStatus.put(model.getDevice_id().toLowerCase(), model.isDeviceStatus());
+                    sendBroadcast(new Intent());
+                }
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -325,25 +275,7 @@ public class DeviceDashboardActivity extends AppCompatActivity implements View.O
 
     @Override
     public void onFailure(String name, Object object) {
-        dismissLoader();
+        Utils.dismissLoader();
         Logger.i(TAG, name+", onFailure, Response: " + object);
-    }
-
-    private void showLoader(){
-        try {
-            if (loader != null && !loader.isShowing())
-                loader.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void dismissLoader(){
-        try {
-            if (loader != null)
-                loader.dismiss();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }

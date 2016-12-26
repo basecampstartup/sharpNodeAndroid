@@ -22,6 +22,7 @@ import com.sharpnode.servercommunication.Communicator;
 import com.sharpnode.servercommunication.ResponseParser;
 import com.sharpnode.sprefs.AppSPrefs;
 import com.sharpnode.utils.Logger;
+import com.sharpnode.utils.Utils;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -49,16 +50,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
         getSupportActionBar().setTitle(getString(R.string.ChangePassword));
         loader = new ProgressDialog(this);
         loader.setMessage(getString(R.string.MessagePleaseWait));
-        //Set Custom font to title.
-        try {
-            Field f = mToolbar.getClass().getDeclaredField("mTitleTextView");
-            f.setAccessible(true);
-            TextView titleText = (TextView) f.get(mToolbar);
-            titleText.setTypeface(SNApplication.APP_FONT_TYPEFACE);
-        } catch (NoSuchFieldException e) {
-        } catch (IllegalAccessException e) {
-
-        }
+        Utils.setTitleFontTypeface(mToolbar);
         initializeComponents();
     }
 
@@ -99,7 +91,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
                 if (CheckNetwork.isInternetAvailable(mContext)) {
                     loader.show();
                     //Call API Request after check internet connection
-                    new Communicator(mContext, APIUtils.CMD_UPDATE_PASSWORD,
+                    new Communicator(mContext, null, APIUtils.CMD_UPDATE_PASSWORD,
                             getSetPasswordRequestMap(APIUtils.CMD_UPDATE_PASSWORD,oldPassword, newPassword));
                 } else {
                     Toast.makeText(mContext, mContext.getString(R.string.MessageNoInternetConnection), Toast.LENGTH_LONG).show();
@@ -128,7 +120,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        //overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+        overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
         this.finish();
     }
 

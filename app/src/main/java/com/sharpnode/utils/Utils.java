@@ -2,11 +2,11 @@ package com.sharpnode.utils;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -21,6 +21,8 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -35,15 +37,20 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.sharpnode.HomeDashboardActivity;
 import com.sharpnode.LandingPageActivity;
 import com.sharpnode.R;
 import com.sharpnode.SNApplication;
+import com.sharpnode.SplashActivity;
+import com.sharpnode.WebviewOfflineActivity;
 import com.sharpnode.commons.Commons;
 import com.sharpnode.sprefs.AppSPrefs;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.lang.reflect.Field;
 import java.text.DateFormat;
 import java.text.Format;
 import java.text.SimpleDateFormat;
@@ -58,17 +65,59 @@ public class Utils {
     private final String TAG = getClass().getSimpleName();
     public static AlertDialog alertDialog;
     public static long mLastClickTime = 0;
+    public static ProgressDialog loader = null;
+    public static int delay05Seconds = 5 * 1000;
+    public static int delay30Seconds = 30 * 1000;
+    public static int delay45Seconds = 45 * 1000;
+    public static int delay60Seconds = 60 * 1000;
+    public static String[] arrInterval = {"1-Min", "2-Min", "3-Min", "4-Min", "5-Min", "6-Min", "7-Min", "9-Min", "10-Min",
+            "11-Min", "12-Min", "13-Min", "14-Min", "15-Min", "16-Min"
+            , "17-Min", "18-Min", "19-Min", "20-Min", "21-Min", "22-Min", "23-Min", "24-Min", "25-Min", "26-Min", "27-Min",
+            "28-Min", "29-Min", "30-Min", "31-Min", "32-Min", "33-Min"
+            , "34-Min", "35-Min", "36-Min", "37-Min", "38-Min", "39-Min", "40-Min", "41-Min", "42-Min", "43-Min", "44-Min",
+            "45-Min", "46-Min", "47-Min", "48-Min", "49-Min", "50-Min", "51-Min",
+            "52-Min", "53-Min", "54-Min", "55-Min", "56-Min", "57-Min", "58-Min", "59-Min", "60-Min"};
 
-    public static boolean preventMultipleClick(){
+    public static String[] arrAppliances = {"CFL", "Fan", "Lamp", "TV", "Music", "Washing Machine", "Security"};
+    public static String[] arrAppliancesKey = {"switch-one", "switch-two", "switch-three", "switch-four", "switch-five", "switch-six"};
+    public static String[] arrOptions = {"Everyday", "Weekly", "Monthly", "Yearly", "Never"};
+    public static String[] arrRepeat = {"Everyday", "Weekly", "Monthly", "Yearly", "Never"};
+
+    public static void showLoader(Context mContext, ProgressDialog loader1) {
+        loader = loader1;
+        loader.setMessage(mContext.getString(R.string.MessagePleaseWait));
+        if (!loader.isShowing())
+            loader.show();
+    }
+
+    public static void dismissLoader() {
+        if (loader != null) {
+            loader.dismiss();
+        }
+    }
+
+    public static boolean multipleTapDelayLONG(){
         //This will check if your click on button successively.
-        if (SystemClock.elapsedRealtime() - Utils.mLastClickTime < Commons.THRESHOLD_TIME_POST_SCREEN) {
-            Log.i("Utils", "preventMultipleClick: "+true);
+        if (SystemClock.elapsedRealtime() - Utils.mLastClickTime < Commons.DELAY_LONG) {
+            Log.i("Utils", "multipleTapDelayLONG: "+true);
             return true;
         }
         Utils.mLastClickTime = SystemClock.elapsedRealtime();
-        Log.i("Utils", "preventMultipleClick: "+false);
+        Log.i("Utils", "multipleTapDelayLONG: "+false);
         return false;
     }
+
+    public static boolean multipleTapDelaySHORT(){
+        //This will check if your click on button successively.
+        if (SystemClock.elapsedRealtime() - Utils.mLastClickTime < Commons.DELAY_SHORT) {
+            Log.i("Utils", "multipleTapDelaySHORT: "+true);
+            return true;
+        }
+        Utils.mLastClickTime = SystemClock.elapsedRealtime();
+        Log.i("Utils", "multipleTapDelaySHORT: "+false);
+        return false;
+    }
+
     /**
      * dialog sheet of contacts/set photo option
      *
@@ -360,17 +409,100 @@ public class Utils {
 
     public static void logoutFromApp(final Activity activity){
         AppSPrefs.clearAppSPrefs();
-        activity.finish();
-        Intent intent = new Intent(activity, LandingPageActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        Intent intent = new Intent(activity.getApplicationContext(), LandingPageActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         activity.startActivity(intent);
+        //activity.overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+        //activity.finish();
+        /*new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                activity.finish();
+            }
+        }, 1000);*/
     }
 
     public static void exitFromApp(Activity activity){
+        /*activity.finish();
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.addCategory(Intent.CATEGORY_HOME);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        activity.startActivity(intent);
-        activity.finish();
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        activity.startActivity(intent);*/
+        activity.moveTaskToBack(true);
+    }
+
+    public static void setTitleFontTypeface(Toolbar mToolbar){
+        //Set Custom font to title.
+        try {
+            Field f = mToolbar.getClass().getDeclaredField("mTitleTextView");
+            f.setAccessible(true);
+            TextView titleText = (TextView) f.get(mToolbar);
+            titleText.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static boolean validateContactUs(String name, String email, String phone, String message) {
+        if (TextUtils.isEmpty(name)) {
+            Toast.makeText(SNApplication.snApp, "Enter your name", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (TextUtils.isEmpty(email)) {
+            Toast.makeText(SNApplication.snApp, "Enter your email address", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (TextUtils.isEmpty(phone)) {
+            Toast.makeText(SNApplication.snApp, "Enter your phone number", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (TextUtils.isEmpty(message)) {
+            Toast.makeText(SNApplication.snApp, "Enter your message", Toast.LENGTH_SHORT).show();
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public static void okAlertDialog(Context mContext, String message) {
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(mContext);
+        builder.setMessage(message);
+        builder.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int arg1) {
+                        dialog.dismiss();
+                    }
+                });
+        android.app.AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    public static void offlineDeviceAlertDialog(final Context mContext, String title, String message, final String lastIP) {
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(mContext);
+        builder.setMessage(message);
+        builder.setTitle(title);
+        builder.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int arg1) {
+                        dialog.dismiss();
+                    }
+                });
+
+        builder.setNegativeButton("Offline",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int arg1) {
+                        dialog.dismiss();
+                        Intent intent = new Intent(mContext, WebviewOfflineActivity.class);
+                        intent.putExtra("LAST_IP", lastIP);
+                        ((Activity)mContext).startActivity(intent);
+                    }
+                });
+        android.app.AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }

@@ -49,7 +49,13 @@ public class SplashActivity extends AppCompatActivity {
      */
     private void goToLandingPage() {
         startActivity(new Intent(SplashActivity.this, LandingPageActivity.class));
-        finish();
+        overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                finish();
+            }
+        }, 1000);
     }
 
     /**
@@ -59,6 +65,13 @@ public class SplashActivity extends AppCompatActivity {
         Intent intent = new Intent(SplashActivity.this, HomeDashboardActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+        //overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
         finish();
+        /*new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                finish();
+            }
+        }, 1000);*/
     }
 }

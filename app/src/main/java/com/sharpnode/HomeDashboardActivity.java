@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -20,6 +21,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.sharpnode.commons.Commons;
+import com.sharpnode.context.ContextHelper;
 import com.sharpnode.setupdevice.MyDevicesActivity;
 import com.sharpnode.sprefs.AppSPrefs;
 import com.sharpnode.utils.Utils;
@@ -48,25 +50,17 @@ public class HomeDashboardActivity extends AppCompatActivity implements View.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_dashboard);
+        ContextHelper.setContext(this);
         homeActivity = this;
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle(getString(R.string.app_name));
-        //Set Custom font to title.
-        try {
-            Field f = toolbar.getClass().getDeclaredField("mTitleTextView");
-            f.setAccessible(true);
-            TextView titleText = (TextView) f.get(toolbar);
-            titleText.setTypeface(SNApplication.APP_FONT_TYPEFACE);
-        } catch (NoSuchFieldException e) {
-        } catch (IllegalAccessException e) {
-
-        }
+        Utils.setTitleFontTypeface(mToolbar);
         mContext = this;
         //initialize drawer items
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
+                this, drawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
             @Override
             public void onDrawerClosed(View drawerView) {
             }
@@ -102,6 +96,7 @@ public class HomeDashboardActivity extends AppCompatActivity implements View.OnC
         switch (item.getItemId()) {
             case R.id.notification:
                 startActivity(new Intent(mContext, NotificationActivity.class));
+                overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -109,35 +104,43 @@ public class HomeDashboardActivity extends AppCompatActivity implements View.OnC
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(final View view) {
         closeDrawer();
-        //switch case
-        switch (view.getId()) {
-            case R.id.llSettingsPanel:
-                startActivity(new Intent(mContext, AccountSettingsActivity.class));
-                break;
-            case R.id.llCamera:
-                startActivity(new Intent(mContext, LiveCameraActivity.class));
-                //overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
-                break;
-            case R.id.llControl:
-                startActivity(new Intent(mContext, MyDevicesActivity.class));
-                //overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
-                break;
-            case R.id.llRemote:
-                //startActivity(new Intent(mContext, SchedulerActivity.class));
-                //overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
-                break;
-            case R.id.llUserManualPanel:
-                startActivity(new Intent(mContext, UserMannualActivity.class));
-                break;
-            case R.id.llContactUsPanel:
-                startActivity(new Intent(mContext, ContactUsActivity.class));
-                break;
-            case R.id.llLogoutPanel:
-                Utils.logoutFromApp(HomeDashboardActivity.this);
-                break;
-        }
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //switch case
+                switch (view.getId()) {
+                    case R.id.llSettingsPanel:
+                        startActivity(new Intent(mContext, AccountSettingsActivity.class));
+                        overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+                        break;
+                    case R.id.llCamera:
+                        startActivity(new Intent(mContext, LiveCameraActivity.class));
+                        overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+                        break;
+                    case R.id.llControl:
+                        startActivity(new Intent(mContext, MyDevicesActivity.class));
+                        overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+                        break;
+                    case R.id.llRemote:
+                        //startActivity(new Intent(mContext, SchedulerActivity.class));
+                        //overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+                        break;
+                    case R.id.llUserManualPanel:
+                        startActivity(new Intent(mContext, UserMannualActivity.class));
+                        overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+                        break;
+                    case R.id.llContactUsPanel:
+                        startActivity(new Intent(mContext, ContactUsActivity.class));
+                        overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+                        break;
+                    case R.id.llLogoutPanel:
+                        Utils.logoutFromApp(HomeDashboardActivity.this);
+                        break;
+                }
+            }
+        }, 100);
     }
 
     @Override
@@ -193,7 +196,7 @@ public class HomeDashboardActivity extends AppCompatActivity implements View.OnC
     }
 
     /**
-     * Method to initialize header options of side panel
+     * Method to initialize header options of side panel_new
      */
     private void initHeaderComponents() {
         ivProfilePicture = (ImageView) findViewById(R.id.ivProfilePicture);

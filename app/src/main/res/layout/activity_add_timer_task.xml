@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_add_schedule_task"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    tools:context="com.sharpnode.AddScheduleTaskActivity">
+
+    <LinearLayout
+        android:id="@+id/container_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:fillViewport="true"
+        android:isScrollContainer="false"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:id="@+id/rlRoot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/margin_top_30dp"
+            android:orientation="horizontal"
+            android:padding="@dimen/dim_padding_10dp">
+
+            <LinearLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <EditText
+                    android:id="@+id/edtTaskName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_10dp"
+                    android:background="@null"
+                    android:hint="@string/AddTaskTaskName"
+                    android:padding="@dimen/dim_padding_5dp"
+                    android:textColor="@color/colorAppWhite"
+                    android:textColorHint="@color/color_gray"
+                    android:textSize="@dimen/default_textsize_large">
+
+                    <requestFocus></requestFocus>
+                </EditText>
+
+                <include layout="@layout/divider" />
+
+                <TextView
+                    android:id="@+id/tvSelectAppliance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_10dp"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:drawableRight="@drawable/ic_arrow_drop_down_black_24dp"
+                    android:gravity="left"
+                    android:text="@string/SelectAppliance"
+                    android:textColor="@color/colorAppWhite"
+                    android:visibility="visible"
+                    android:textSize="@dimen/default_textsize_medium" />
+
+                <include layout="@layout/divider" />
+
+                <TextView
+                    android:id="@+id/tvOperationLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:text="Select operation type for timer:"
+                    android:textColor="@color/colorButtonBg"
+                    android:textSize="@dimen/default_textsize_large" />
+
+                <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/radGroupOnOff"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_10dp"
+                    android:layout_marginTop="@dimen/dim_padding_5dp"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/radOn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="@string/commonOn"
+                        android:textColor="@color/color_text"
+                        android:theme="@style/AppRadioButton" />
+
+                    <RadioButton
+                        android:id="@+id/radOff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/commonOff"
+                        android:layout_marginTop="@dimen/dim_padding_2dp"
+                        android:textColor="@color/color_text"
+                        android:theme="@style/AppRadioButton" />
+                </RadioGroup>
+
+                <include layout="@layout/divider" />
+
+
+                <TextView
+                    android:id="@+id/tvScheduleDayTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:text="Enter timer interval:"
+                    android:textColor="@color/colorButtonBg"
+                    android:textSize="@dimen/default_textsize_large" />
+
+                <TextView
+                    android:id="@+id/tvSelectTimeLbl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:text="@string/SelectTime"
+                    android:textColor="@color/color_gray"
+                    android:textSize="@dimen/default_textsize_large"
+                    android:visibility="gone"/>
+
+                <EditText
+                    android:id="@+id/tvSelectedTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_10dp"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:gravity="center_vertical"
+                    android:hint="1-60 Min"
+                    android:background="@null"
+                    android:maxLength="3"
+                    android:inputType="number"
+                    android:textColor="@color/colorAppWhite"
+                    android:textColorHint="@color/color_gray"
+                    android:textSize="@dimen/default_textsize_large"/>
+
+                <include layout="@layout/divider" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_10dp"
+                    android:layout_marginTop="@dimen/margin_10dp">
+                    <TextView
+                        android:id="@+id/tvRepeat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="Repeat"
+                        android:textColor="@color/colorButtonBg"
+                        android:textSize="@dimen/default_textsize_large" />
+
+                    <CheckBox
+                        android:id="@+id/cbRepeat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:theme="@style/check_box_style"
+                         />
+                </RelativeLayout>
+
+                <include layout="@layout/divider" />
+
+                <Button
+                    android:id="@+id/btnAdd"
+                    style="@style/button_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:text="Add"></Button>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:visibility="invisible"></View>
+            </LinearLayout>
+        </RelativeLayout>
+
+    </ScrollView>
+</LinearLayout>

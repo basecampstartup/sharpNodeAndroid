@@ -57,8 +57,38 @@ public class AppSPrefs {
     }
 
     /*public static void setDeviceId(String deviceId){
-        editor = getSPrefsInstance().edit();
+        editor = getSPrefsInstance().edit_new();
         editor.putString(Commons.CONFIGURED_DEVICE_ID, deviceId);
         editor.commit();
     }*/
+
+    public static String getTemperature(){
+        return getSPrefsInstance().getString(Commons.TEMPERATURE, "21");
+    }
+
+    public static void setTemperature(String value){
+        editor = getSPrefsInstance().edit();
+        editor.putString(Commons.TEMPERATURE, value);
+        editor.commit();
+    }
+
+    public static String getHumidity(){
+        return getSPrefsInstance().getString(Commons.HUMIDITY, "48");
+    }
+
+    public static void setHumidity(String value){
+        editor = getSPrefsInstance().edit();
+        editor.putString(Commons.HUMIDITY, value);
+        editor.commit();
+    }
+
+    public static String getWidgetDevice(){
+        return getSPrefsInstance().getString(Commons.CONFIGURED_DEVICE_NAME, "None");
+    }
+
+    public static void setWidgetDevice(String value){
+        editor = getSPrefsInstance().edit();
+        editor.putString(Commons.CONFIGURED_DEVICE_NAME, value);
+        editor.commit();
+    }
 }

@@ -10,9 +10,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.sharpnode.adapter.NotificationAdapter;
-import com.sharpnode.adapter.SchedulerAdapter;
 import com.sharpnode.model.NotificationModel;
-import com.sharpnode.model.SchedulerModel;
+import com.sharpnode.utils.Utils;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -37,15 +36,7 @@ public class NotificationActivity extends AppCompatActivity{
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.Notifications));
-        //Set Custom font to title.
-        try {
-            Field f = mToolbar.getClass().getDeclaredField("mTitleTextView");
-            f.setAccessible(true);
-            TextView titleText = (TextView) f.get(mToolbar);
-            titleText.setTypeface(SNApplication.APP_FONT_TYPEFACE);
-        } catch (NoSuchFieldException e) {
-        } catch (IllegalAccessException e) {
-        }
+        Utils.setTitleFontTypeface(mToolbar);
         notificationList=(ListView)findViewById(R.id.notificationList);
         setScheduleListDummyData();
         adapter = new NotificationAdapter(mContext, NotificationModels);
@@ -66,7 +57,7 @@ public class NotificationActivity extends AppCompatActivity{
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        //overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+        overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
         this.finish();
     }
     ArrayList<NotificationModel> NotificationModels = new ArrayList<>();

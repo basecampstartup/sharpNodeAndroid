@@ -10,6 +10,7 @@
 
     <color name="colorButtonBg">#00B7AD</color>
 
+    <color name="color_black_semi_trans">#77000000</color>
     <color name="color_black">#000000</color>
     <color name="color_edittext_hint">#FFFFFF</color>
 

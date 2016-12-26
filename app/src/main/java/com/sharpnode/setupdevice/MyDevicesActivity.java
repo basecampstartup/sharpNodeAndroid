@@ -1,8 +1,10 @@
 package com.sharpnode.setupdevice;
 
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,20 +25,29 @@ import com.sharpnode.R;
 import com.sharpnode.SNApplication;
 import com.sharpnode.adapter.DeviceAdapter;
 import com.sharpnode.callback.APIRequestCallbacak;
+import com.sharpnode.cloudcommunication.CloudCommunicator;
+import com.sharpnode.cloudcommunication.CloudResponseParser;
+import com.sharpnode.cloudcommunication.CloudUtils;
 import com.sharpnode.commons.Commons;
+import com.sharpnode.model.BaseModel;
 import com.sharpnode.model.ConfiguredDevices;
+import com.sharpnode.model.DeviceInfoModel;
+import com.sharpnode.model.DeviceModel;
 import com.sharpnode.network.CheckNetwork;
 import com.sharpnode.servercommunication.APIUtils;
 import com.sharpnode.servercommunication.Communicator;
 import com.sharpnode.servercommunication.ResponseParser;
 import com.sharpnode.sprefs.AppSPrefs;
 import com.sharpnode.utils.Logger;
+import com.sharpnode.utils.Utils;
 
 import org.w3c.dom.Text;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import io.particle.android.sdk.cloud.ParticleCloud;
 import io.particle.android.sdk.cloud.Responses;
@@ -50,24 +61,20 @@ import io.particle.android.sdk.utils.SoftAPConfigRemover;
 
 public class MyDevicesActivity extends AppCompatActivity implements View.OnClickListener, APIRequestCallbacak {
 
-    public final static String EXTRA_SETUP_LAUNCHED_TIME = "io.particle.devicesetup.sharpnode.SETUP_LAUNCHED_TIME";
     private final String TAG = getClass().getSimpleName();
     private Context mContext;
-    private Button btnSetupDevice;
     private ParticleDeviceSetupLibrary.DeviceSetupCompleteReceiver receiver = null;
     private Toolbar mToolbar;
     private Async.AsyncApiWorker<ParticleCloud, Responses.ClaimCodeResponse> claimCodeWorker;
-    private ParticleCloud sparkCloud;
-    private SoftAPConfigRemover softAPConfigRemover;
     private RecyclerView rvDevices;
     private LinearLayoutManager mLayoutManager;
     private DeviceAdapter mAdapter;
     private ArrayList<ConfiguredDevices> devices = null;
-    private ScrollView svSetupInstruction;
-    private ProgressDialog loader = null;
-    private LinearLayout llDevices;
     private ImageButton btnAddDevice;
     private TextView tvNoDeviceFound;
+    private ProgressDialog loader;
+    private Timer timer;
+    private MyTimerTask myTimerTask;
 
     private void prepareDeviceList(){
         // use this setting to improve performance if you know that changes
@@ -97,28 +104,13 @@ public class MyDevicesActivity extends AppCompatActivity implements View.OnClick
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.LeftPanelDeviceManual));
-        //Set Custom font to title.
-        try {
-            Field f = mToolbar.getClass().getDeclaredField("mTitleTextView");
-            f.setAccessible(true);
-            TextView titleText = (TextView) f.get(mToolbar);
-            titleText.setTypeface(SNApplication.APP_FONT_TYPEFACE);
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
+        Utils.setTitleFontTypeface(mToolbar);
         tvNoDeviceFound = (TextView)findViewById(R.id.tvNoDeviceFound);
         tvNoDeviceFound.setTypeface(SNApplication.APP_FONT_TYPEFACE);
-        llDevices = (LinearLayout)findViewById(R.id.llDevices);
         rvDevices = (RecyclerView) findViewById(R.id.rvDevices);
         rvDevices.setVisibility(View.GONE);
         tvNoDeviceFound.setVisibility(View.GONE);
-
-        loader = new ProgressDialog(this);
-        loader.setMessage(getString(R.string.MessagePleaseWait));
-        loader.setCancelable(false);
-
+        loader = new ProgressDialog(mContext);
         prepareDeviceList();
         getDevices();
     }
@@ -128,6 +120,7 @@ public class MyDevicesActivity extends AppCompatActivity implements View.OnClick
         switch (view.getId()) {
             case R.id.btnAddDevice:
                 startActivity(new Intent(mContext, DeviceSetupActivity.class));
+                overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
                 break;
         }
     }
@@ -141,18 +134,27 @@ public class MyDevicesActivity extends AppCompatActivity implements View.OnClick
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                onBackPressed();
+                overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+                finish();
+                //onBackPressed();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        //overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+        this.finish();
+    }
+
     private void getDevices(){
         if (CheckNetwork.isInternetAvailable(mContext)) {
-            loader.show();
+            Utils.showLoader(mContext, loader);
             //Call API Request after check internet connection
-            new Communicator(mContext, APIUtils.CMD_GET_DEVICES,
+            new Communicator(mContext, null, APIUtils.CMD_GET_DEVICES,
                     getDeviceRequestMap(APIUtils.CMD_GET_DEVICES, AppSPrefs.getString(Commons.ACCESS_TOKEN)));
         } else {
             finish();
@@ -173,31 +175,62 @@ public class MyDevicesActivity extends AppCompatActivity implements View.OnClick
         return map;
     }
 
+    private void getDeviceStatus(String deviceId){
+        if(CheckNetwork.isInternetAvailable(mContext)){
+            //Utils.showLoader(mContext, loader);
+            //Call Cloud API Request after check internet connection
+            new CloudCommunicator(mContext, null, CloudUtils.CLOUD_FUNCTION_DEVICE_STATUS, getStatusReqParams(deviceId));
+        } else {
+            Toast.makeText(mContext, getString(R.string.check_for_internet_connectivity),
+                    Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private HashMap<String, String> getStatusReqParams(String deviceId){
+        HashMap<String, String> params = new HashMap<>();
+        params.put(Commons.CONFIGURED_DEVICE_ID, deviceId);
+        params.put(Commons.ACCESS_TOKEN, AppSPrefs.getString(Commons.ACCESS_TOKEN));
+        return params;
+    }
+
     @Override
     public void onSuccess(String name, Object object) {
-        loader.dismiss();
+        Utils.dismissLoader();
+
         try {
-            Logger.i(TAG, "onSuccess"+" Name: "+name+"Response: " + object);
-            if (APIUtils.CMD_DEVICE_INFO.equalsIgnoreCase(name)) {
-                ConfiguredDevices model = ResponseParser.parseGetDevicesResponse(object);
-                if (model.getResponseCode().equalsIgnoreCase(Commons.CODE_200)) {
-                    mContext.startActivity(new Intent(mContext, DeviceDashboardActivity.class));
-                }
-                else{
-
-                }
-            }
-
             if (APIUtils.CMD_GET_DEVICES.equalsIgnoreCase(name)) {
+                Logger.i(TAG, "onSuccess"+" Name: "+name+" Response: " + object);
                 ConfiguredDevices model = ResponseParser.parseGetDevicesResponse(object);
                 if (model.getResponseCode().equalsIgnoreCase(Commons.CODE_200)) {
                     mAdapter.setData(model.getDevicesList());
                     mAdapter.notifyDataSetChanged();
+                    if (model.getDevicesList().size() > 0)
+                        AppSPrefs.setString(Commons.CONFIGURED_DEVICE_ID, model.getDevicesList().get(0).getDeviceId());
+                    initTimer(1*1000);
+                }
+            } else if (APIUtils.CMD_DEVICE_INFO.equalsIgnoreCase(name)) {
+                Logger.i(TAG, "onSuccess"+" Name: "+name+" Response: " + object);
+                //Parsed only for check status is 200.
+                BaseModel model = ResponseParser.parseResponse(object);
+                if (model.getResponseCode().equalsIgnoreCase(Commons.CODE_200)) {
+                    Intent deviceInfoIntent = new Intent(mContext, DeviceDashboardActivity.class);
+                    //Sending response JSON data on called Activity for later use.
+                    deviceInfoIntent.putExtra("DEVICE_INFO", object.toString());
+                    startActivity(deviceInfoIntent);
+                    //overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
                 }
             } else if (APIUtils.CMD_REMOVE_DEVICE.equalsIgnoreCase(name)) {
-
+                getDevices();
+            } else if (APIUtils.CMD_RENAME_DEVICE.equalsIgnoreCase(name)) {
+                getDevices();
+            } else if(CloudUtils.CLOUD_FUNCTION_DEVICE_STATUS.equalsIgnoreCase(name)){
+                DeviceModel model = CloudResponseParser.parseDeviceStatusResponse(object);
+                CloudUtils.deviceStatus.put(model.getDevice_id().toLowerCase(), model.isDeviceStatus());
+                if(mAdapter!=null){
+                    mAdapter.notifyDataSetChanged();
+                }
+                initTimer(Utils.delay45Seconds);
             }
-
 
             if (mAdapter != null && mAdapter.getItemCount() == 0) {
                 rvDevices.setVisibility(View.GONE);
@@ -213,7 +246,45 @@ public class MyDevicesActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onFailure(String name, Object object) {
-        loader.dismiss();
+        Utils.dismissLoader();
         Logger.i(TAG, "onFailure"+" Name: "+name+"Response: " + object);
+    }
+
+    private void initTimer(int delayTime) {
+        timer = new Timer();
+        myTimerTask = new MyTimerTask();
+        timer.schedule(myTimerTask, delayTime);
+    }
+
+    class MyTimerTask extends TimerTask {
+
+        @Override
+        public void run() {
+            runOnUiThread(new Runnable() {
+
+                @Override
+                public void run() {
+                    Logger.i(TAG, "Timer Running! Device Id: "+AppSPrefs.getDeviceId());
+                    //update UI here.
+                    getDeviceStatus(AppSPrefs.getDeviceId());
+                }
+            });
+        }
+    }
+
+    private void cancelTimer(){
+        if(timer!=null){
+            timer.cancel();
+        }
+
+        if(myTimerTask!=null){
+            myTimerTask.cancel();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        cancelTimer();
     }
 }

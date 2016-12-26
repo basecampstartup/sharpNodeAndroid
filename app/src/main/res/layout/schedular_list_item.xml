@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/rlParent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/dim_padding_10dp">
@@ -15,7 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/dim_padding_5dp"
-            android:paddingRight="@dimen/dim_padding_5dp">
+            android:layout_toLeftOf="@+id/btnOptions"
+            >
 
             <TextView
                 android:id="@+id/tvTaskName"
@@ -26,7 +28,8 @@
                 android:text="A.C. at night turn off"
                 android:textColor="@color/colorButtonBg"
                 android:textSize="@dimen/default_textsize_medium"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:maxLength="30"/>
 
             <TextView
                 android:id="@+id/tvTime"
@@ -34,46 +37,49 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:text="03:00 am"
-                android:textColor="@color/color_text"
+                android:textColor="@color/color_gray"
                 android:textSize="@dimen/default_textsize_medium" />
+
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/rl1"
             android:layout_marginTop="@dimen/margin_10dp"
             android:paddingLeft="@dimen/dim_padding_5dp"
-            android:paddingRight="@dimen/dim_padding_5dp">
+            android:layout_toLeftOf="@+id/btnOptions">
 
             <TextView
                 android:id="@+id/tvTurnOnOff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingRight="@dimen/dim_padding_5dp"
-                android:text="@string/TurnOn"
-                android:textColor="@color/color_text"
+                android:text="Repeat : "
+                android:textColor="@color/color_gray"
                 android:textSize="@dimen/default_textsize_medium"
-                android:textStyle="bold" />
+                 />
 
             <TextView
                 android:id="@+id/tvTurnOnOffDays"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/tvTurnOnOff"
-                android:text="@string/EveryDay"
                 android:textColor="@color/color_gray"
                 android:textSize="@dimen/default_textsize_medium" />
+
         </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/btnOptions"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_more_vert_black_24dp"></ImageView>
+
     </RelativeLayout>
 
     <include layout="@layout/divider"></include>
 
-   <!-- <TextView
-        android:id="@+id/tvDevider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="@dimen/dim_padding_5dp"
-        android:background="@color/color_gray"
-        />-->
 </LinearLayout>

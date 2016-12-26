@@ -55,7 +55,7 @@
                     android:hint="@string/AddTaskTaskName"
                     android:padding="@dimen/dim_padding_5dp"
                     android:textColor="@color/colorAppWhite"
-                    android:textColorHint="@color/colorAppWhite"
+                    android:textColorHint="@color/color_gray"
                     android:textSize="@dimen/default_textsize_large">
 
                     <requestFocus></requestFocus>
@@ -70,7 +70,8 @@
                     android:layout_marginTop="@dimen/margin_10dp"
                     android:text="@string/SelectApplianceLabel"
                     android:textColor="@color/colorButtonBg"
-                    android:textSize="@dimen/default_textsize_large" />
+                    android:textSize="@dimen/default_textsize_large"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/tvSelectAppliance"
@@ -139,7 +140,8 @@
                     android:layout_marginTop="@dimen/margin_10dp"
                     android:text="@string/SelectTime"
                     android:textColor="@color/color_gray"
-                    android:textSize="@dimen/default_textsize_large" />
+                    android:textSize="@dimen/default_textsize_large"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/tvSelectedTime"
@@ -161,108 +163,27 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/tvEveryWeekLbl"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/tvRepeatOnLbl"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="@string/EveryDay"
-                        android:textColor="@color/color_gray"
+                        android:layout_marginTop="@dimen/margin_10dp"
+                        android:text="Scheduler repeat on:"
+                        android:textColor="@color/colorButtonBg"
                         android:textSize="@dimen/default_textsize_large" />
 
-                    <CheckBox
-
-                        android:id="@+id/chkEveryWeek"
-                        android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/tvRepeatOnValue"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:textSize="@dimen/default_textsize_medium"
-                        android:theme="@style/AppCheckBoxNormal" />
+                        android:layout_below="@+id/tvRepeatOnLbl"
+                        android:layout_marginBottom="@dimen/margin_10dp"
+                        android:layout_marginTop="@dimen/margin_10dp"
+                        android:gravity="center_vertical"
+                        android:drawableRight="@drawable/ic_arrow_drop_down_black_24dp"
+                        android:text="@string/EveryDaytxt"
+                        android:textColor="@color/colorAppWhite"
+                        android:textSize="@dimen/default_textsize_medium" />
                 </RelativeLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_10dp"
-                    android:layout_marginTop="@dimen/margin_10dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/chkSu"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:gravity="center"
-                        android:padding="@dimen/dim_padding_2dp"
-                        android:text="S"
-                        android:textColor="@color/color_text"
-                        android:textSize="@dimen/default_textsize_medium" />
-
-                    <TextView
-                        android:id="@+id/chkMo"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="@dimen/margin_10dp"
-                        android:gravity="center"
-                        android:padding="@dimen/dim_padding_2dp"
-                        android:text="M"
-                        android:textColor="@color/color_text"
-                        android:textSize="@dimen/default_textsize_medium" />
-
-                    <TextView
-                        android:id="@+id/chkTu"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="@dimen/margin_10dp"
-                        android:gravity="center"
-                        android:padding="@dimen/dim_padding_2dp"
-                        android:text="T"
-                        android:textColor="@color/color_text"
-                        android:textSize="@dimen/default_textsize_medium" />
-
-                    <TextView
-                        android:id="@+id/chkWe"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="@dimen/margin_10dp"
-                        android:gravity="center"
-                        android:padding="@dimen/dim_padding_2dp"
-                        android:text="W"
-                        android:textColor="@color/color_text"
-                        android:textSize="@dimen/default_textsize_medium" />
-
-                    <TextView
-                        android:id="@+id/chkTh"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="@dimen/margin_10dp"
-                        android:gravity="center"
-                        android:padding="@dimen/dim_padding_2dp"
-                        android:text="T"
-                        android:textColor="@color/color_text"
-                        android:textSize="@dimen/default_textsize_medium" />
-
-                    <TextView
-                        android:id="@+id/chkFr"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="@dimen/margin_10dp"
-                        android:gravity="center"
-                        android:padding="@dimen/dim_padding_2dp"
-                        android:text="F"
-                        android:textColor="@color/color_text"
-                        android:textSize="@dimen/default_textsize_medium" />
-
-                    <TextView
-                        android:id="@+id/chkSat"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="@dimen/margin_10dp"
-                        android:gravity="center"
-                        android:padding="@dimen/dim_padding_2dp"
-                        android:text="S"
-                        android:textColor="@color/color_text"
-                        android:textSize="@dimen/default_textsize_medium" />
-                </LinearLayout>
 
                 <include layout="@layout/divider" />
 
@@ -273,6 +194,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_10dp"
                     android:text="@string/ScheduleBtn"></Button>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:visibility="invisible"></View>
             </LinearLayout>
         </RelativeLayout>
 

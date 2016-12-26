@@ -132,6 +132,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base" />
 
+      <!--  <service
+            android:name=".services.SNService"
+            android:enabled="true" />-->
+
         <!--
     All of the following are from the device setup lib,
     and must be present in your app's manifest or you will
@@ -205,7 +209,20 @@
         <activity
             android:name=".RenameApplianceActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Base"></activity>
+            android:theme="@style/AppTheme.Base" />
+
+        <activity
+            android:name=".WebviewOfflineActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Base" />
+
+        <service
+            android:name=".services.SNService"
+            android:enabled="true"
+            android:exported="true"></service>
+
+        <!-- Web Camera SDK -->
+
     </application>
 
 </manifest>

@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_timer_list"
+    android:id="@+id/activity_scheduler"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.sharpnode.TimerListActivity">
+    android:background="@drawable/background"
+    android:orientation="vertical">
+
     <LinearLayout
         android:id="@+id/container_toolbar"
         android:layout_width="match_parent"
@@ -15,20 +17,32 @@
             android:id="@+id/toolbar"
             layout="@layout/toolbar" />
     </LinearLayout>
-    <RelativeLayout
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/tvDevider"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/dim_padding_5dp"
-            android:text="Timer List Screen"
-            />
-    </RelativeLayout>
 
-</RelativeLayout>
+    <LinearLayout
+        android:id="@+id/containerAddNew"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="@dimen/dim_padding_10dp">
+
+        <TextView
+            android:id="@+id/tvAddNew"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dim_padding_5dp"
+            android:drawableLeft="@drawable/ic_add_black_24dp"
+            android:gravity="center"
+            android:text="@string/SchedulerAddNew"
+            android:textColor="@color/color_text"
+            android:textSize="@dimen/default_textsize_btn" />
+    </LinearLayout>
+
+    <include layout="@layout/divider"></include>
+
+    <ListView
+        android:id="@+id/lvTimerList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

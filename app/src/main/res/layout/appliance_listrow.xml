@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <RelativeLayout
+        android:id="@+id/rlParentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dim_padding_10dp">
+
+        <ImageView
+            android:id="@+id/ivApplianceIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/cfl"
+            android:visibility="visible"></ImageView>
+
+        <TextView
+            android:id="@+id/tvApplianceName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dim_padding_10dp"
+            android:layout_toRightOf="@+id/ivApplianceIcon"
+            android:padding="@dimen/dim_padding_10dp"
+            android:text="@string/ApplianceCfl"
+            android:textColor="@color/color_text"
+            android:textSize="@dimen/dim_font_size_16"></TextView>
+
+        <ImageView
+            android:id="@+id/ivSwitchBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/off_btn"
+            android:visibility="visible"></ImageView>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/color_gray" />
+</LinearLayout>
+

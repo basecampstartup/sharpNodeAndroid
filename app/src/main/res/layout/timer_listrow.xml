@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dim_padding_10dp">
+
+        <RelativeLayout
+            android:id="@+id/rl2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/btnOptions">
+
+            <TextView
+                android:id="@+id/tvTaskName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/tvMinTime"
+                android:gravity="left"
+                android:maxLength="30"
+                android:text="Task Name"
+                android:textColor="@color/colorButtonBg"
+                android:textSize="@dimen/default_textsize_medium"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvMinTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="30 Min"
+                android:textColor="@color/color_gray"
+                android:textSize="@dimen/default_textsize_medium" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl2"
+            android:layout_marginTop="@dimen/dim_padding_5dp"
+            android:layout_toLeftOf="@+id/btnOptions">
+
+            <TextView
+                android:id="@+id/tvRepeat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/tvTime"
+                android:gravity="left"
+                android:text="Repeat: ON"
+                android:textColor="@color/color_gray"
+                android:textSize="@dimen/default_textsize_medium" />
+
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="03:15 AM"
+                android:textColor="@color/color_gray"
+                android:textSize="@dimen/default_textsize_medium" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/btnOptions"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_more_vert_black_24dp"></ImageView>
+    </RelativeLayout>
+
+    <include layout="@layout/divider"></include>
+
+</LinearLayout>

@@ -5,98 +5,99 @@
     android:background="@drawable/home_dashboard_bg"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/llCamera"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="@dimen/shortcut_ic_margin_bottom"
-        android:layout_marginLeft="@dimen/shortcut_ic_margin_left"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/ivControlShortcut"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/ic_camera_shortcut" />
-
-        <TextView
-            android:id="@+id/tvControlShortcut"
-            style="@style/text_view_style"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/ivSecurityFeature"
-            android:layout_marginTop="@dimen/dim_padding_10dp"
-            android:gravity="center"
-            android:text="@string/Camera"
-            android:textColor="@color/colorAppWhite"
-            android:textSize="@dimen/default_textsize_medium" />
-    </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/llControl"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/shortcut_ic_control_margin_bottom"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:padding="@dimen/dim_padding_10dp"
+        android:background="@color/color_black_semi_trans"
+        >
 
-        <ImageView
-            android:id="@+id/ivLiveCameraShortcut"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/llCamera"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/ic_control_shortcut" />
-
-        <TextView
-            android:id="@+id/tvLiveCameraShortcut"
-            style="@style/text_view_style"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/ivSecurityFeature"
-            android:layout_marginTop="@dimen/dim_padding_10dp"
+            android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/Control"
-            android:textColor="@color/colorAppWhite"
-            android:textSize="@dimen/default_textsize_medium" />
-    </LinearLayout>
+            android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/llRemote"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/shortcut_ic_margin_bottom"
-        android:layout_marginRight="@dimen/shortcut_ic_margin_left"
-        android:gravity="center"
-        android:orientation="vertical">
+            <ImageView
+                android:id="@+id/ivControlShortcut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_camera_shortcut" />
 
-        <ImageView
-            android:id="@+id/ivRemoteShortcut"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/tvControlShortcut"
+                style="@style/text_view_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ivSecurityFeature"
+                android:layout_marginTop="@dimen/dim_padding_10dp"
+                android:gravity="center"
+                android:text="@string/Camera"
+                android:textColor="@color/colorAppWhite"
+                android:textSize="@dimen/default_textsize_medium" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llControl"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/ic_remote_shortcut" />
-
-        <TextView
-            android:id="@+id/tvRemoteShortcut"
-            style="@style/text_view_style"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/ivSecurityFeature"
-            android:layout_marginTop="@dimen/dim_padding_10dp"
+            android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/Remote"
-            android:textColor="@color/colorAppWhite"
-            android:textSize="@dimen/default_textsize_medium" />
-    </LinearLayout>
+            android:orientation="vertical">
 
+            <ImageView
+                android:id="@+id/ivLiveCameraShortcut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_control_shortcut" />
+
+            <TextView
+                android:id="@+id/tvLiveCameraShortcut"
+                style="@style/text_view_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ivSecurityFeature"
+                android:layout_marginTop="@dimen/dim_padding_10dp"
+                android:gravity="center"
+                android:text="@string/Control"
+                android:textColor="@color/colorAppWhite"
+                android:textSize="@dimen/default_textsize_medium" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llRemote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/ivRemoteShortcut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_remote_shortcut" />
+
+            <TextView
+                android:id="@+id/tvRemoteShortcut"
+                style="@style/text_view_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ivSecurityFeature"
+                android:layout_marginTop="@dimen/dim_padding_10dp"
+                android:gravity="center"
+                android:text="@string/Remote"
+                android:textColor="@color/colorAppWhite"
+                android:textSize="@dimen/default_textsize_medium" />
+        </LinearLayout>
+    </LinearLayout>
 
 </RelativeLayout>

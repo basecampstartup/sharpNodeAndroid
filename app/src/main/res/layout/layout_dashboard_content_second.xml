@@ -5,11 +5,16 @@
     android:background="@drawable/background"
     android:orientation="vertical">
 
-    <LinearLayout
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+   <!-- <LinearLayout
         android:id="@+id/llTop"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.25"
+        android:layout_weight="0.22"
         android:gravity="center_horizontal"
         android:orientation="vertical">
         <RelativeLayout
@@ -54,6 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
+                android:padding="@dimen/dim_padding_10dp"
                 android:src="@drawable/ic_security_off" />
 
             <TextView
@@ -61,7 +67,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ivSecurityFeature"
-                android:layout_marginTop="@dimen/dim_padding_10dp"
                 android:gravity="center"
                 android:text="@string/SecurityFeature"
                 android:textColor="@color/colorAppWhite"
@@ -135,7 +140,7 @@
         android:id="@+id/llBottom"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.75"
+        android:layout_weight="0.78"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -160,7 +165,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ivSecurityFeature"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="@dimen/dim_padding_10dp"
                 android:gravity="center"
                 android:text="@string/LeftPanelAppliances"
                 android:textColor="@color/colorAppWhite"
@@ -235,6 +240,6 @@
                 android:textColor="@color/colorAppWhite"
                 android:textSize="@dimen/default_textsize_medium" />
         </LinearLayout>
-    </LinearLayout>
+    </LinearLayout>-->
 
 </LinearLayout>

@@ -58,7 +58,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dim_padding_20dp"
-                    android:text="*\tMake sure that SharpNode device is ON."
+                    android:text="1.\tMake sure that device power is ON."
                     android:textColor="@color/colorAppWhite"
                     android:textSize="@dimen/dim_font_size_18"></TextView>
 
@@ -67,7 +67,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dim_padding_5dp"
-                    android:text="*\tPress and hold setup button for a little while if LED indicator is not blinking blue."
+                    android:text="2.\tPress and hold 'Setup' button for a little while if LED indicator is not blinking blue."
                     android:textColor="@color/colorAppWhite"
                     android:textSize="@dimen/dim_font_size_18"></TextView>
 
@@ -76,11 +76,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dim_padding_5dp"
-                    android:text="*\tConnect your Smart Phone or Laptop to new WiFi hotspot."
+                    android:text="3.\tClick on Device Connect to configure your device."
                     android:textColor="@color/colorAppWhite"
                     android:textSize="@dimen/dim_font_size_18"></TextView>
 
-                <TextView
+                <!--<TextView
                     android:id="@+id/tvInstruction5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -97,7 +97,7 @@
                     android:layout_marginTop="@dimen/dim_padding_5dp"
                     android:text="*\tAfter connecting to WiFi 'SharpNode-xxxxxx', click on Device Connect."
                     android:textColor="@color/colorAppWhite"
-                    android:textSize="@dimen/dim_font_size_18"></TextView>
+                    android:textSize="@dimen/dim_font_size_18"></TextView>-->
 
 
                 <Button

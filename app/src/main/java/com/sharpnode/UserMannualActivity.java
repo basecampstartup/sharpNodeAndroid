@@ -12,6 +12,7 @@ import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 import com.sharpnode.servercommunication.APIUtils;
+import com.sharpnode.utils.Utils;
 
 import java.lang.reflect.Field;
 
@@ -32,17 +33,9 @@ public class UserMannualActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.LeftPanelUserManuals));
-        //Set Custom font to title.
-        try {
-            Field f = mToolbar.getClass().getDeclaredField("mTitleTextView");
-            f.setAccessible(true);
-            TextView titleText = (TextView) f.get(mToolbar);
-            titleText.setTypeface(SNApplication.APP_FONT_TYPEFACE);
-        } catch (NoSuchFieldException e) {
-        } catch (IllegalAccessException e) {
-
-        }
+        Utils.setTitleFontTypeface(mToolbar);
         loader = new ProgressDialog(UserMannualActivity.this);
+        loader.setCancelable(false);
         webView = (WebView) findViewById(R.id.webView);
         webView.setWebViewClient(new UserMannualActivity.LoadWebClient());
         webView.getSettings().setJavaScriptEnabled(true);
@@ -54,22 +47,31 @@ public class UserMannualActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                this.finish();
+                onBackPressed();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+        this.finish();
+    }
+
     //This is for showing the loading until page load.
     public class LoadWebClient extends WebViewClient {
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
-            // TODO Auto-generated method stub
             super.onPageStarted(view, url, favicon);
-            loader.setMessage(getString(R.string.MessagePleaseWait));
-            loader.show();
-
+            try{
+                loader.setMessage(getString(R.string.MessagePleaseWait));
+                loader.show();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
 
         @Override

@@ -1,18 +1,16 @@
 package com.sharpnode.servercommunication;
 
 import android.content.Context;
-import android.widget.Toast;
+import android.support.v4.app.Fragment;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.sharpnode.R;
 import com.sharpnode.SNApplication;
 import com.sharpnode.callback.APIRequestCallbacak;
 import com.sharpnode.commons.Commons;
-import com.sharpnode.network.CheckNetwork;
 import com.sharpnode.sprefs.AppSPrefs;
 import com.sharpnode.utils.Logger;
 
@@ -28,11 +26,13 @@ public class Communicator {
     private HashMap<String, String> params;
     private String methodName;
     private String tag_json_obj = "json_obj_req";
+    private Fragment fragmentContext;
 
-    public Communicator(Context mContext, String methodName, HashMap<String, String> params) {
+    public Communicator(Context mContext, Fragment fragmentContext, String methodName, HashMap<String, String> params) {
         this.mContext = mContext;
         this.params = params;
         this.methodName = methodName;
+        this.fragmentContext = fragmentContext;
 
         //network call for api.
         callAPI();
@@ -54,7 +54,11 @@ public class Communicator {
                             AppSPrefs.setString(Commons.USER_ID, params.get(Commons.USER_ID));
                             AppSPrefs.setString(Commons.PASSWORD, params.get(Commons.PASSWORD));
                         }
-                        ((APIRequestCallbacak) mContext).onSuccess(methodName, response);
+                        if(fragmentContext!=null){
+                            ((APIRequestCallbacak) fragmentContext).onSuccess(methodName, response);
+                        }else{
+                            ((APIRequestCallbacak) mContext).onSuccess(methodName, response);
+                        }
                     }
                 },
                 new Response.ErrorListener() {

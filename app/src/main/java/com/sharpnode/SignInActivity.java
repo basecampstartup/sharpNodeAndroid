@@ -9,7 +9,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.SystemClock;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -32,7 +32,6 @@ import com.sharpnode.utils.EmailSyntaxChecker;
 import com.sharpnode.utils.Logger;
 import com.sharpnode.utils.Utils;
 
-import java.lang.reflect.Field;
 import java.util.HashMap;
 
 public class SignInActivity extends AppCompatActivity implements View.OnClickListener, APIRequestCallbacak {
@@ -57,15 +56,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.SignInBtn));
-        //Set Custom font to title.
-        try {
-            Field f = mToolbar.getClass().getDeclaredField("mTitleTextView");
-            f.setAccessible(true);
-            TextView titleText = (TextView) f.get(mToolbar);
-            titleText.setTypeface(SNApplication.APP_FONT_TYPEFACE);
-        } catch (NoSuchFieldException e) {
-        } catch (IllegalAccessException e) {
-        }
+        Utils.setTitleFontTypeface(mToolbar);
         initializeComponents();
         loader = new ProgressDialog(this);
         loader.setMessage(getString(R.string.MessagePleaseWait));
@@ -90,8 +81,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        //overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
-        this.finish();
+        overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
     }
 
     /**
@@ -116,7 +106,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        if(Utils.preventMultipleClick())
+        if(Utils.multipleTapDelayLONG())
             return;
 
         switch (v.getId()) {
@@ -130,7 +120,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 if (CheckNetwork.isInternetAvailable(mContext)) {
                     loader.show();
                     //Call API Request after check internet connection
-                    new Communicator(mContext, APIUtils.CMD_SIGN_IN,
+                    new Communicator(mContext, null, APIUtils.CMD_SIGN_IN,
                             getLoginRequestMap(APIUtils.CMD_SIGN_IN,
                                     strEmail, strPassword));
                 } else {
@@ -143,10 +133,12 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.txtCreateAccount:
                 startActivity(new Intent(SignInActivity.this, SignUpActivity.class));
+                overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
                 finish();
                 break;
             case R.id.txtResetPassword:
                 startActivity(new Intent(SignInActivity.this, ForgotPasswordActivity.class));
+                overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
                 break;
         }
     }
@@ -207,7 +199,13 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                     AppSPrefs.setString(Commons.PHONE, model.getPhoneNo());
                     AppSPrefs.setString(Commons.PHOTO, model.getPhoto());
                     startActivity(new Intent(SignInActivity.this, HomeDashboardActivity.class));
-                    finish();
+                    overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            finish();
+                        }
+                    }, 1000);
                 } else {
                     Toast.makeText(mContext, ResponseParser.parseLoginResponse(object).getResponseMsg(),
                             Toast.LENGTH_LONG).show();

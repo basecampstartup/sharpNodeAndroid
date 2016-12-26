@@ -107,8 +107,8 @@ public class DeviceSetupActivity extends BaseActivity implements View.OnClickLis
         ((TextView)findViewById(R.id.tvInstruction1)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
         ((TextView)findViewById(R.id.tvInstruction2)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
         ((TextView)findViewById(R.id.tvInstruction3)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
-        ((TextView)findViewById(R.id.tvInstruction4)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
-        ((TextView)findViewById(R.id.tvInstruction5)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        //((TextView)findViewById(R.id.tvInstruction4)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        //((TextView)findViewById(R.id.tvInstruction5)).setTypeface(SNApplication.APP_FONT_TYPEFACE);
         btnSetupDevice.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         receiver = new ParticleDeviceSetupLibrary.DeviceSetupCompleteReceiver() {
 
@@ -169,7 +169,7 @@ public class DeviceSetupActivity extends BaseActivity implements View.OnClickLis
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        //overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
+        overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
         this.finish();
     }
 
@@ -309,7 +309,7 @@ public class DeviceSetupActivity extends BaseActivity implements View.OnClickLis
                 e.printStackTrace();
             }
             //Call API Request after check internet connection
-            new Communicator(mContext, APIUtils.CMD_ADD_DEVICE,
+            new Communicator(mContext, null, APIUtils.CMD_ADD_DEVICE,
                     addDeviceRequestMap(APIUtils.CMD_ADD_DEVICE, configuredDeviceId, AppSPrefs.getString(Commons.ACCESS_TOKEN)));
         } else {
             finish();
