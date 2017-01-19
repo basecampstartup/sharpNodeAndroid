@@ -44,6 +44,32 @@
                 android:background="@color/md_grey_200"></View>
 
             <LinearLayout
+                android:id="@+id/llWidgetSettingsPanel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dim_padding_15dp"
+                android:layout_marginTop="@dimen/dim_padding_10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivWidget"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_insight"></ImageView>
+
+                <TextView
+                    android:id="@+id/tvAppWidgetSetting"
+                    style="@style/text_view_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dim_padding_5dp"
+                    android:padding="@dimen/dim_padding_10dp"
+                    android:text="@string/LeftPanelWidgetSettings"></TextView>
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/llMyDevices"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

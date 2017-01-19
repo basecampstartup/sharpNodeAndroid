@@ -52,6 +52,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base" />
         <activity
+            android:name=".AppWidgetSettings"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Base" />
+        <activity
             android:name=".SchedulerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base" />

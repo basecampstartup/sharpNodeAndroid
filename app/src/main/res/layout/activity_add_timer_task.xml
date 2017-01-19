@@ -42,12 +42,12 @@
                 android:id="@+id/container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true">
+                android:paddingRight="@dimen/activity_horizontal_margin">
 
                 <EditText
                     android:id="@+id/edtTaskName"
@@ -66,20 +66,28 @@
 
                 <include layout="@layout/divider" />
 
-                <TextView
-                    android:id="@+id/tvSelectAppliance"
+                <LinearLayout
+                    android:id="@+id/llApplianceType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_10dp"
-                    android:layout_marginTop="@dimen/margin_10dp"
-                    android:drawableRight="@drawable/ic_arrow_drop_down_black_24dp"
-                    android:gravity="left"
-                    android:text="@string/SelectAppliance"
-                    android:textColor="@color/colorAppWhite"
-                    android:visibility="visible"
-                    android:textSize="@dimen/default_textsize_medium" />
+                    android:orientation="vertical"
+                    >
 
-                <include layout="@layout/divider" />
+                    <TextView
+                        android:id="@+id/tvSelectAppliance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_10dp"
+                        android:layout_marginTop="@dimen/margin_10dp"
+                        android:drawableRight="@drawable/ic_arrow_drop_down_black_24dp"
+                        android:gravity="left"
+                        android:text="@string/SelectAppliance"
+                        android:textColor="@color/colorAppWhite"
+                        android:textSize="@dimen/default_textsize_medium"
+                        android:visibility="visible" />
+
+                    <include layout="@layout/divider" />
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/tvOperationLabel"
@@ -111,8 +119,8 @@
                         android:id="@+id/radOff"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/commonOff"
                         android:layout_marginTop="@dimen/dim_padding_2dp"
+                        android:text="@string/commonOff"
                         android:textColor="@color/color_text"
                         android:theme="@style/AppRadioButton" />
                 </RadioGroup>
@@ -137,7 +145,7 @@
                     android:text="@string/SelectTime"
                     android:textColor="@color/color_gray"
                     android:textSize="@dimen/default_textsize_large"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
                 <EditText
                     android:id="@+id/tvSelectedTime"
@@ -145,14 +153,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/margin_10dp"
                     android:layout_marginTop="@dimen/margin_10dp"
+                    android:background="@null"
                     android:gravity="center_vertical"
                     android:hint="1-60 Min"
-                    android:background="@null"
-                    android:maxLength="3"
                     android:inputType="number"
+                    android:maxLength="3"
                     android:textColor="@color/colorAppWhite"
                     android:textColorHint="@color/color_gray"
-                    android:textSize="@dimen/default_textsize_large"/>
+                    android:textSize="@dimen/default_textsize_large" />
 
                 <include layout="@layout/divider" />
 
@@ -161,6 +169,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/margin_10dp"
                     android:layout_marginTop="@dimen/margin_10dp">
+
                     <TextView
                         android:id="@+id/tvRepeat"
                         android:layout_width="match_parent"
@@ -176,8 +185,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:theme="@style/check_box_style"
-                         />
+                        android:theme="@style/check_box_style" />
                 </RelativeLayout>
 
                 <include layout="@layout/divider" />

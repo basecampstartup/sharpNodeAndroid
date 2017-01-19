@@ -9,6 +9,16 @@ public class ApplianceModel extends BaseModel{
     private boolean status=false;
     private String switchIndex="";
 
+    public String getSwitchId() {
+        return switchId;
+    }
+
+    public void setSwitchId(String switchId) {
+        this.switchId = switchId;
+    }
+
+    private String switchId = "";
+
     public boolean isConnected() {
         return isConnected;
     }

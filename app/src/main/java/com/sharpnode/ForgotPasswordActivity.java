@@ -123,7 +123,12 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
                         new Communicator(mContext, null, APIUtils.CMD_RESET_PASSWORD,
                                 getResetPasswordRequestMap(APIUtils.CMD_RESET_PASSWORD, emailId));
                     } else {
-                        Toast.makeText(mContext, mContext.getString(R.string.MessageNoInternetConnection), Toast.LENGTH_LONG).show();
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(mContext, mContext.getString(R.string.MessageNoInternetConnection), Toast.LENGTH_LONG).show();
+                            }
+                        });
                     }
                 } else if(llayout2.isShown()){
                     String secretKey = edtSecretKey.getText().toString();
@@ -139,7 +144,12 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
                         new Communicator(mContext, null, APIUtils.CMD_SET_NEW_PASSWORD,
                                 getSetNewPasswordRequestMap(APIUtils.CMD_SET_NEW_PASSWORD, secretKey, newPassword, emailId));
                     } else {
-                        Toast.makeText(mContext, mContext.getString(R.string.MessageNoInternetConnection), Toast.LENGTH_LONG).show();
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(mContext, mContext.getString(R.string.MessageNoInternetConnection), Toast.LENGTH_LONG).show();
+                            }
+                        });
                     }
                 }
                 break;

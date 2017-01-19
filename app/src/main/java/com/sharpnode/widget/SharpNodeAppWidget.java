@@ -61,11 +61,62 @@ public class SharpNodeAppWidget extends AppWidgetProvider {
             ApplianceModel model = appliances.get(i);
             switch (i){
                 case 0:
+                    remoteViews.setTextViewText(R.id.btnCFLSwitch, model.getName());
                     if(model.isStatus()){
                         remoteViews.setTextColor(R.id.btnCFLSwitch,
                                 SNApplication.snApp.getResources().getColor(R.color.colorAccent));
                     }else{
                         remoteViews.setTextColor(R.id.btnCFLSwitch,
+                                SNApplication.snApp.getResources().getColor(R.color.colorAppWhite));
+                    }
+                    break;
+                case 1:
+                    remoteViews.setTextViewText(R.id.btnFanSwitch, model.getName());
+                    if(model.isStatus()){
+                        remoteViews.setTextColor(R.id.btnFanSwitch,
+                                SNApplication.snApp.getResources().getColor(R.color.colorAccent));
+                    }else{
+                        remoteViews.setTextColor(R.id.btnFanSwitch,
+                                SNApplication.snApp.getResources().getColor(R.color.colorAppWhite));
+                    }
+                    break;
+                case 2:
+                    remoteViews.setTextViewText(R.id.btnLampSwitch, model.getName());
+                    if(model.isStatus()){
+                        remoteViews.setTextColor(R.id.btnLampSwitch,
+                                SNApplication.snApp.getResources().getColor(R.color.colorAccent));
+                    }else{
+                        remoteViews.setTextColor(R.id.btnLampSwitch,
+                                SNApplication.snApp.getResources().getColor(R.color.colorAppWhite));
+                    }
+                    break;
+                case 3:
+                    remoteViews.setTextViewText(R.id.btnTVSwitch, model.getName());
+                    if(model.isStatus()){
+                        remoteViews.setTextColor(R.id.btnTVSwitch,
+                                SNApplication.snApp.getResources().getColor(R.color.colorAccent));
+                    }else{
+                        remoteViews.setTextColor(R.id.btnTVSwitch,
+                                SNApplication.snApp.getResources().getColor(R.color.colorAppWhite));
+                    }
+                    break;
+                case 4:
+                    remoteViews.setTextViewText(R.id.btnMusicSwitch, model.getName());
+                    if(model.isStatus()){
+                        remoteViews.setTextColor(R.id.btnMusicSwitch,
+                                SNApplication.snApp.getResources().getColor(R.color.colorAccent));
+                    }else{
+                        remoteViews.setTextColor(R.id.btnMusicSwitch,
+                                SNApplication.snApp.getResources().getColor(R.color.colorAppWhite));
+                    }
+                    break;
+                case 5:
+                    remoteViews.setTextViewText(R.id.btnSixSwitch, model.getName());
+                    if(model.isStatus()){
+                        remoteViews.setTextColor(R.id.btnSixSwitch,
+                                SNApplication.snApp.getResources().getColor(R.color.colorAccent));
+                    }else{
+                        remoteViews.setTextColor(R.id.btnSixSwitch,
                                 SNApplication.snApp.getResources().getColor(R.color.colorAppWhite));
                     }
                     break;

@@ -125,7 +125,12 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                                     strEmail, strPassword));
                 } else {
                     Logger.i(TAG, "Not connected to Internet.");
-                    Toast.makeText(mContext, mContext.getString(R.string.MessageNoInternetConnection), Toast.LENGTH_LONG).show();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(mContext, mContext.getString(R.string.MessageNoInternetConnection), Toast.LENGTH_LONG).show();
+                        }
+                    });
                 }
 
                 //startActivity(new Intent(SignInActivity.this, HomeActivity.class));
@@ -189,9 +194,9 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         try {
             Logger.i(TAG, "Response: " + object);
             if (APIUtils.CMD_SIGN_IN.equalsIgnoreCase(name)) {
-                if (ResponseParser.parseLoginResponse(object).getResponseCode().equalsIgnoreCase(Commons.CODE_200)) {
+                AccountModel model = ResponseParser.parseLoginResponse(object);
+                if (model.getResponseCode().equalsIgnoreCase(Commons.CODE_200)) {
                     AppSPrefs.setAlreadyLoggedIn(true);
-                    AccountModel model = ResponseParser.parseSignUpResponse(object);
                     AppSPrefs.setString(Commons.ACCESS_TOKEN, model.getAccessToken());
                     AppSPrefs.setString(Commons.EMAIL, model.getUserId());
                     AppSPrefs.setString(Commons.USER_ID, model.getUserId());
@@ -207,7 +212,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                         }
                     }, 1000);
                 } else {
-                    Toast.makeText(mContext, ResponseParser.parseLoginResponse(object).getResponseMsg(),
+                    Toast.makeText(mContext, model.getResponseMsg(),
                             Toast.LENGTH_LONG).show();
                 }
             } else {

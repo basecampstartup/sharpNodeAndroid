@@ -56,7 +56,7 @@ public class ResponseParser {
             model.setResponseMsg(jsonObj.optString(Commons.TXT));
             model.setUserId(jsonObj.optString(Commons.USER_ID));
             model.setPhoneNo(jsonObj.optString(Commons.PHONE));
-            model.setPhoto(jsonObj.optString(Commons.PHOTO));
+            model.setPhoto(jsonObj.optString(Commons.IMAGE));
             model.setAccessToken(jsonObj.optString(Commons.ACCESS_TOKEN));
             model.setName(jsonObj.optString(Commons.NAME));
         } catch (JSONException e) {
@@ -284,4 +284,41 @@ public class ResponseParser {
         }
         return model;
     }
+
+    public static DeviceInfoModel parseGetFavDevicesResponse(Object object) {
+        JSONObject jsonObj = null;
+        DeviceInfoModel model = new DeviceInfoModel();
+        try {
+            if (object == null)
+                return model;
+            jsonObj = new JSONObject(object.toString());
+            String id=jsonObj.optString(Commons.RESPONSE_CODE);
+            String txt=jsonObj.optString(Commons.TXT);
+            model.setResponseCode(id);
+            model.setResponseMsg(txt);
+            model.setDeviceId(jsonObj.optString(Commons.CONFIGURED_DEVICE_ID));
+            model.setDeviceName(jsonObj.optString(Commons.CONFIGURED_DEVICE_NAME));
+            model.setLastIP(jsonObj.optString(Commons.LAST_IP));
+            model.setSwitches(jsonObj.optString(Commons.SWITCHES));
+            String security = jsonObj.optString(Commons.SECURITY);
+            if (TextUtils.isEmpty(security))
+                model.setSecurity(false);
+            else
+                model.setSecurity(Boolean.parseBoolean(security));
+
+            JSONObject appliances = jsonObj.optJSONObject("appliances");
+            ArrayList list = new ArrayList();
+            list.add(appliances.optString("switch-one"));
+            list.add(appliances.optString("switch-two"));
+            list.add(appliances.optString("switch-three"));
+            list.add(appliances.optString("switch-four"));
+            list.add(appliances.optString("switch-five"));
+            list.add(appliances.optString("switch-six"));
+            model.setApplianceList(list);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return model;
+    }
+
 }

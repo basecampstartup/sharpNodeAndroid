@@ -54,14 +54,14 @@ public class AppliancesActivity extends AppCompatActivity implements APIRequestC
     private ProgressDialog loader;
 
     private void prepareApplianceList(ArrayList<ApplianceModel> applianceList){
-        WidgetUtils.setWidgetAppliances(applianceList);
-        int[] ids = AppWidgetManager.getInstance(mContext).getAppWidgetIds(new ComponentName(mContext,
-                SharpNodeAppWidget.class));
-        //onUpdate(context, AppWidgetManager.getInstance(context), ids);
-        Intent updateIntent = new Intent(mContext, SharpNodeAppWidget.class);
-        updateIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
-        updateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
-        mContext.sendBroadcast(updateIntent);
+//        WidgetUtils.setWidgetAppliances(applianceList);
+//        int[] ids = AppWidgetManager.getInstance(mContext).getAppWidgetIds(new ComponentName(mContext,
+//                SharpNodeAppWidget.class));
+//        //onUpdate(context, AppWidgetManager.getInstance(context), ids);
+//        Intent updateIntent = new Intent(mContext, SharpNodeAppWidget.class);
+//        updateIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
+//        updateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
+//        mContext.sendBroadcast(updateIntent);
 
         rvAppliances = (RecyclerView) findViewById(R.id.rvAppliances);
 
@@ -100,6 +100,7 @@ public class AppliancesActivity extends AppCompatActivity implements APIRequestC
         loader = new ProgressDialog(this);
         switches = getIntent().getStringExtra("SWITCH");
         appliancesName = getIntent().getStringArrayListExtra("APPLIANCE");
+        Utils.arrAppliances = (String[]) appliancesName.toArray(new String[appliancesName.size()]);
         //applianceList = getApplianceList(appliancesName);
         prepareApplianceList(getApplianceList(appliancesName));
         getApplianceStatus();
@@ -112,6 +113,7 @@ public class AppliancesActivity extends AppCompatActivity implements APIRequestC
         for (int i = 0; i < appliances.size(); i++) {
             model = new ApplianceModel();
             model.setName(appliances.get(i));
+            model.setSwitchId(Utils.arrAppliancesKey[i]);
             model.setSwitchIndex(String.valueOf(c[i]));
             if(String.valueOf(c[i]).equalsIgnoreCase("2")){
                 model.setStatus(false);  // Appliance is OFF.
@@ -158,7 +160,12 @@ public class AppliancesActivity extends AppCompatActivity implements APIRequestC
         } else {
             finish();
             Logger.i(TAG, "Not connected to Internet.");
-            Toast.makeText(mContext, mContext.getString(R.string.MessageNoInternetConnection), Toast.LENGTH_LONG).show();
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(mContext, mContext.getString(R.string.MessageNoInternetConnection), Toast.LENGTH_LONG).show();
+                }
+            });
         }
     }
 
@@ -185,7 +192,7 @@ public class AppliancesActivity extends AppCompatActivity implements APIRequestC
                 switches = jsonObject.optString("result");
                 coreInfo = jsonObject.optJSONObject("coreInfo");
                 String deviceId= coreInfo.optString("DeviceID");
-                prepareApplianceList(getApplianceList(appliancesName));
+                //prepareApplianceList(getApplianceList(appliancesName));
             } else if(CloudUtils.CLOUD_FUNCTION_LED.equalsIgnoreCase(name)){
                 int[] ids = AppWidgetManager.getInstance(mContext).getAppWidgetIds(new ComponentName(mContext,
                         SharpNodeAppWidget.class));

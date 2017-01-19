@@ -50,6 +50,7 @@ public class RenameApplianceActivity extends AppCompatActivity implements APIReq
     private Context mContext;
     private Toolbar mToolbar;
     private ProgressDialog loader;
+    private String switchId=Utils.arrAppliancesKey[0];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +68,7 @@ public class RenameApplianceActivity extends AppCompatActivity implements APIReq
         initializeComponents();
 
         String name = getIntent().getStringExtra("APPLIANCE_NAME");
+        switchId = getIntent().getStringExtra("SWITCH_ID");
         edtApplianceLabelValue.setText(name);
     }
 
@@ -75,20 +77,19 @@ public class RenameApplianceActivity extends AppCompatActivity implements APIReq
      */
     public void initializeComponents() {
         tvApplianceDetailLbl = (TextView)findViewById(R.id.tvApplianceDetailLbl);
-        tvApplianceType = (TextView)findViewById(R.id.tvApplianceType);
-
-        tvSelectAppliance = (TextView) findViewById(R.id.tvSelectAppliance);
-        tvSelectAppliance.setOnClickListener(this);
-
+        tvApplianceDetailLbl.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         edtApplianceLabelValue = (EditText) findViewById(R.id.edtApplianceLabelValue);
         edtApplianceLabelValue.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        //tvApplianceType = (TextView)findViewById(R.id.tvApplianceType);
+        //tvApplianceType.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+
+        //tvSelectAppliance = (TextView) findViewById(R.id.tvSelectAppliance);
+        //tvSelectAppliance.setOnClickListener(this);
 
         btnUpdate = (Button) findViewById(R.id.btnUpdate);
         btnUpdate.setOnClickListener(this);
 
-        tvApplianceDetailLbl.setTypeface(SNApplication.APP_FONT_TYPEFACE);
-        tvApplianceType.setTypeface(SNApplication.APP_FONT_TYPEFACE);
-        tvSelectAppliance.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        //tvSelectAppliance.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         btnUpdate.setTypeface(SNApplication.APP_FONT_TYPEFACE);
     }
 
@@ -101,12 +102,12 @@ public class RenameApplianceActivity extends AppCompatActivity implements APIReq
                     Toast.makeText(mContext, "Appliance name is required", Toast.LENGTH_LONG).show();
                     return;
                 }
-                String appliance = tvSelectAppliance.getText().toString();
+                /*String appliance = tvSelectAppliance.getText().toString();
                 if(TextUtils.isEmpty(appliance) || getString(R.string.SelectAppliance).equalsIgnoreCase(appliance)){
                     Toast.makeText(mContext, "Appliance type selection is required", Toast.LENGTH_LONG).show();
                     return;
-                }
-                callRenameAppliance(name, action);
+                }*/
+                callRenameAppliance(name, switchId);
                 break;
             case R.id.tvSelectAppliance:
                 showApplianceDialog();
@@ -176,7 +177,12 @@ public class RenameApplianceActivity extends AppCompatActivity implements APIReq
         } else {
             finish();
             Logger.i(TAG, "Not connected to Internet.");
-            Toast.makeText(mContext, mContext.getString(R.string.MessageNoInternetConnection), Toast.LENGTH_LONG).show();
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(mContext, mContext.getString(R.string.MessageNoInternetConnection), Toast.LENGTH_LONG).show();
+                }
+            });
         }
     }
 

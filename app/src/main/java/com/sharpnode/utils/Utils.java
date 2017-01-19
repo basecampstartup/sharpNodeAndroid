@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -23,6 +24,7 @@ import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -79,7 +81,7 @@ public class Utils {
             "52-Min", "53-Min", "54-Min", "55-Min", "56-Min", "57-Min", "58-Min", "59-Min", "60-Min"};
 
     public static String[] arrAppliances = {"CFL", "Fan", "Lamp", "TV", "Music", "Washing Machine", "Security"};
-    public static String[] arrAppliancesKey = {"switch-one", "switch-two", "switch-three", "switch-four", "switch-five", "switch-six"};
+    public static String[] arrAppliancesKey = {"switch-one", "switch-two", "switch-three", "switch-four", "switch-five", "switch-six", "switch-seven"};
     public static String[] arrOptions = {"Everyday", "Weekly", "Monthly", "Yearly", "Never"};
     public static String[] arrRepeat = {"Everyday", "Weekly", "Monthly", "Yearly", "Never"};
 
@@ -504,5 +506,16 @@ public class Utils {
                 });
         android.app.AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
+
+    public static Bitmap getBitmapFromBase64(String base64Data){
+        Bitmap bitmap = null;
+        try{
+            byte[] imageAsBytes = Base64.decode(base64Data.getBytes(), Base64.DEFAULT);
+            bitmap = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return bitmap;
     }
 }

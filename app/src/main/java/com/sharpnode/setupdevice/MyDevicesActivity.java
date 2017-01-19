@@ -159,7 +159,12 @@ public class MyDevicesActivity extends AppCompatActivity implements View.OnClick
         } else {
             finish();
             Logger.i(TAG, "Not connected to Internet.");
-            Toast.makeText(mContext, mContext.getString(R.string.MessageNoInternetConnection), Toast.LENGTH_LONG).show();
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(mContext, mContext.getString(R.string.MessageNoInternetConnection), Toast.LENGTH_LONG).show();
+                }
+            });
         }
     }
 
@@ -181,8 +186,7 @@ public class MyDevicesActivity extends AppCompatActivity implements View.OnClick
             //Call Cloud API Request after check internet connection
             new CloudCommunicator(mContext, null, CloudUtils.CLOUD_FUNCTION_DEVICE_STATUS, getStatusReqParams(deviceId));
         } else {
-            Toast.makeText(mContext, getString(R.string.check_for_internet_connectivity),
-                    Toast.LENGTH_LONG).show();
+            Logger.i(TAG, getString(R.string.check_for_internet_connectivity));
         }
     }
 
@@ -202,7 +206,8 @@ public class MyDevicesActivity extends AppCompatActivity implements View.OnClick
                 Logger.i(TAG, "onSuccess"+" Name: "+name+" Response: " + object);
                 ConfiguredDevices model = ResponseParser.parseGetDevicesResponse(object);
                 if (model.getResponseCode().equalsIgnoreCase(Commons.CODE_200)) {
-                    mAdapter.setData(model.getDevicesList());
+                    devices = model.getDevicesList();
+                    mAdapter.setData(devices);
                     mAdapter.notifyDataSetChanged();
                     if (model.getDevicesList().size() > 0)
                         AppSPrefs.setString(Commons.CONFIGURED_DEVICE_ID, model.getDevicesList().get(0).getDeviceId());
@@ -248,6 +253,15 @@ public class MyDevicesActivity extends AppCompatActivity implements View.OnClick
     public void onFailure(String name, Object object) {
         Utils.dismissLoader();
         Logger.i(TAG, "onFailure"+" Name: "+name+"Response: " + object);
+
+        if(CloudUtils.CLOUD_FUNCTION_DEVICE_STATUS.equalsIgnoreCase(name)){
+//            DeviceModel model = CloudResponseParser.parseDeviceStatusResponse(object);
+//            CloudUtils.deviceStatus.put(model.getDevice_id().toLowerCase(), model.isDeviceStatus());
+//            if(mAdapter!=null){
+//                mAdapter.notifyDataSetChanged();
+//            }
+            initTimer(Utils.delay45Seconds);
+        }
     }
 
     private void initTimer(int delayTime) {
@@ -255,6 +269,8 @@ public class MyDevicesActivity extends AppCompatActivity implements View.OnClick
         myTimerTask = new MyTimerTask();
         timer.schedule(myTimerTask, delayTime);
     }
+
+    private int counter = 0;
 
     class MyTimerTask extends TimerTask {
 
@@ -264,9 +280,15 @@ public class MyDevicesActivity extends AppCompatActivity implements View.OnClick
 
                 @Override
                 public void run() {
-                    Logger.i(TAG, "Timer Running! Device Id: "+AppSPrefs.getDeviceId());
-                    //update UI here.
-                    getDeviceStatus(AppSPrefs.getDeviceId());
+                    if (counter < devices.size()) {
+                        String deviceId = devices.get(counter).getDeviceId();
+                        counter++;
+                        Logger.i(TAG, "Timer Running! Device Id: " + deviceId);
+                        //update UI here.
+                        getDeviceStatus(deviceId);
+                    } else {
+                        counter = 0;
+                    }
                 }
             });
         }

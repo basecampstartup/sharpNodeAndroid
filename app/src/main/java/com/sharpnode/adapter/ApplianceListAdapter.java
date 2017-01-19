@@ -112,7 +112,7 @@ public class ApplianceListAdapter extends RecyclerView.Adapter<ApplianceListAdap
         holder.ivSwitchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Utils.multipleTapDelaySHORT())
+                if (Utils.multipleTapDelayLONG())
                     return;
                 if(DeviceDashboardActivity.isConnected){
                     if(CheckNetwork.isInternetAvailable(mContext)){
@@ -146,6 +146,7 @@ public class ApplianceListAdapter extends RecyclerView.Adapter<ApplianceListAdap
             public boolean onLongClick(View view) {
                 Intent renameApplianceIntent = new Intent(mContext, RenameApplianceActivity.class);
                 renameApplianceIntent.putExtra("APPLIANCE_NAME", appliances.get(position).getName());
+                renameApplianceIntent.putExtra("SWITCH_ID", appliances.get(position).getSwitchId());
                 mContext.startActivity(renameApplianceIntent);
                 ((Activity)mContext).overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
                 return false;

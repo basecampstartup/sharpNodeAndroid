@@ -205,7 +205,12 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                                     strEmail, strName, strPassword, strPhone));
                 } else {
                     Logger.i(TAG, "Not connected to Internet.");
-                    Toast.makeText(mContext, mContext.getString(R.string.MessageNoInternetConnection), Toast.LENGTH_LONG).show();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(mContext, mContext.getString(R.string.MessageNoInternetConnection), Toast.LENGTH_LONG).show();
+                        }
+                    });
                 }
 
                 break;

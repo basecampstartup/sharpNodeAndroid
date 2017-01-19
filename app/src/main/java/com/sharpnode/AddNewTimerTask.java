@@ -174,9 +174,9 @@ public class AddNewTimerTask extends AppCompatActivity implements View.OnClickLi
             case R.id.tvSelectedTime:
                 //showIntervalDialog();//openTimePicker();
                 break;
-            case R.id.tvScheduleDayTime:
-                showIntervalDialog();//openTimePicker();
-                break;
+//            case R.id.tvScheduleDayTime:
+//                showIntervalDialog();//openTimePicker();
+//                break;
             case R.id.tvRepeat:
                 if(cbRepeat.isChecked())
                     cbRepeat.setChecked(false);
@@ -316,7 +316,12 @@ public class AddNewTimerTask extends AppCompatActivity implements View.OnClickLi
         } else {
             finish();
             Logger.i(TAG, "Not connected to Internet.");
-            Toast.makeText(mContext, mContext.getString(R.string.MessageNoInternetConnection), Toast.LENGTH_LONG).show();
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(mContext, mContext.getString(R.string.MessageNoInternetConnection), Toast.LENGTH_LONG).show();
+                }
+            });
         }
     }
 

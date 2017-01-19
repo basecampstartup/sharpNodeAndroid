@@ -50,10 +50,10 @@ public class DeviceDashboardActivity extends AppCompatActivity implements View.O
     private Context mContext;
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;  //toggle to open and close drawer
-    private TextView tvUserName, tvUserRole, tvHome, tvMyDevices, tvInsights, tvIftttConfig,
+    private TextView tvUserName, tvUserRole, tvHome, tvWidgetSetting ,tvMyDevices, tvInsights, tvIftttConfig,
             tvUserManual, tvContactUs, tvLogout;
     private ImageView ivProfilePicture;
-    private LinearLayout llHomePanel, llSettingsPanel, llInsightsPanel, llIftttConfigPanel,
+    private LinearLayout llHomePanel, llWidgetSettingsPanel, llInsightsPanel, llIftttConfigPanel,
             llAppliancePanel, llDeviceManualPanel,
             llUserManualPanel, llLogoutPanel, llContactUsPanel;
     public static DeviceInfoModel deviceInfoModel=null;
@@ -68,47 +68,53 @@ public class DeviceDashboardActivity extends AppCompatActivity implements View.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device_dashboard);
         ContextHelper.setContext(this);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(getString(R.string.app_name));
-        Utils.setTitleFontTypeface(toolbar);
-        mContext = this;
+        try{
+            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setTitle(getString(R.string.app_name));
+            Utils.setTitleFontTypeface(toolbar);
+            mContext = this;
 
-        //initialize drawer items
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
-            @Override
-            public void onDrawerClosed(View drawerView) {
-            }
+            //initialize drawer items
+            drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            toggle = new ActionBarDrawerToggle(
+                    this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
+                @Override
+                public void onDrawerClosed(View drawerView) {
+                }
 
-            @Override
-            public void onDrawerSlide(View drawerView, float slideOffset) {
-                super.onDrawerSlide(drawerView, slideOffset);
-            }
+                @Override
+                public void onDrawerSlide(View drawerView, float slideOffset) {
+                    super.onDrawerSlide(drawerView, slideOffset);
+                }
 
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-            }
-        };
+                @Override
+                public void onDrawerOpened(View drawerView) {
+                    super.onDrawerOpened(drawerView);
+                    ivProfilePicture.setImageBitmap(Utils.getBitmapFromBase64(AppSPrefs.getString(Commons.PHOTO)));
+                }
+            };
 
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-        toggle.onConfigurationChanged(new Configuration());
+            drawer.setDrawerListener(toggle);
+            toggle.syncState();
+            toggle.onConfigurationChanged(new Configuration());
 
-        loader = new ProgressDialog(mContext);
-        String deviceInfoData = getIntent().getStringExtra("DEVICE_INFO");
-        deviceInfoModel = ResponseParser.parseDeviceInfoResponse(deviceInfoData);
-        isConnected = CloudUtils.deviceStatus.get(deviceInfoModel.getDeviceId().toLowerCase());
-        AppSPrefs.setWidgetDevice(deviceInfoModel.getDeviceName());
-        // Instantiate a ViewPager and a PagerAdapter.
-        mPager = (ViewPager) findViewById(R.id.pager);
-        mPagerAdapter = new DeviceDashboardPagerAdaper(mContext, getSupportFragmentManager());
-        mPager.setAdapter(mPagerAdapter);
+            loader = new ProgressDialog(mContext);
+            String deviceInfoData = getIntent().getStringExtra("DEVICE_INFO");
+            deviceInfoModel = ResponseParser.parseDeviceInfoResponse(deviceInfoData);
+            isConnected = CloudUtils.deviceStatus.get(deviceInfoModel.getDeviceId().toLowerCase());
+            AppSPrefs.setWidgetDevice(deviceInfoModel.getDeviceName());
+            // Instantiate a ViewPager and a PagerAdapter.
+            mPager = (ViewPager) findViewById(R.id.pager);
+            mPagerAdapter = new DeviceDashboardPagerAdaper(mContext, getSupportFragmentManager());
+            mPager.setAdapter(mPagerAdapter);
 
-        initializeComponents();
-        initHeaderComponents();
+            initializeComponents();
+            initHeaderComponents();
+        }catch (Exception e){
+            e.printStackTrace();
+            finish();
+        }
 
     }
 
@@ -142,6 +148,10 @@ public class DeviceDashboardActivity extends AppCompatActivity implements View.O
                 Intent goToHomeIntent = new Intent(getApplicationContext(), HomeDashboardActivity.class);
                 startActivity(goToHomeIntent);
                 finish();
+                break;
+            case R.id.llWidgetSettingsPanel:
+                startActivity(new Intent(mContext, AppWidgetSettings.class));
+                overridePendingTransition(R.anim.right_side_in, R.anim.right_side_out);
                 break;
             case R.id.llMyDevices:
                 Intent intent = new Intent(HomeDashboardActivity.homeActivity, MyDevicesActivity.class);
@@ -198,6 +208,7 @@ public class DeviceDashboardActivity extends AppCompatActivity implements View.O
     private void initializeComponents() {
         //Left panel_new components
         llHomePanel = (LinearLayout) findViewById(R.id.llHomePanel);
+        llWidgetSettingsPanel = (LinearLayout) findViewById(R.id.llWidgetSettingsPanel);
         llInsightsPanel = (LinearLayout) findViewById(R.id.llInsightsPanel);
         llIftttConfigPanel = (LinearLayout) findViewById(R.id.llIftttConfigPanel);
         //llAppliancePanel = (LinearLayout) findViewById(R.id.llAppliancePanel);
@@ -207,6 +218,7 @@ public class DeviceDashboardActivity extends AppCompatActivity implements View.O
         llContactUsPanel = (LinearLayout) findViewById(R.id.llContactUsPanel);
 
         llHomePanel.setOnClickListener(this);
+        llWidgetSettingsPanel.setOnClickListener(this);
         llInsightsPanel.setOnClickListener(this);
         llIftttConfigPanel.setOnClickListener(this);
         //llAppliancePanel.setOnClickListener(this);
@@ -216,6 +228,7 @@ public class DeviceDashboardActivity extends AppCompatActivity implements View.O
         llUserManualPanel.setOnClickListener(this);
 
         tvHome = (TextView) findViewById(R.id.tvHome);
+        tvWidgetSetting = (TextView) findViewById(R.id.tvAppWidgetSetting);
         tvMyDevices = (TextView) findViewById(R.id.tvMyDevices);
         tvInsights = (TextView) findViewById(R.id.tvInsights);
         tvIftttConfig = (TextView) findViewById(R.id.tvIftttConfig);
@@ -223,7 +236,7 @@ public class DeviceDashboardActivity extends AppCompatActivity implements View.O
         tvContactUs = (TextView) findViewById(R.id.tvContactUs);
         tvLogout = (TextView) findViewById(R.id.tvLogout);
 
-        tvHome.setTypeface(SNApplication.APP_FONT_TYPEFACE);
+        tvWidgetSetting.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         tvMyDevices.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         tvInsights.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         tvIftttConfig.setTypeface(SNApplication.APP_FONT_TYPEFACE);
@@ -242,8 +255,10 @@ public class DeviceDashboardActivity extends AppCompatActivity implements View.O
 
         tvUserName.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         tvUserRole.setTypeface(SNApplication.APP_FONT_TYPEFACE);
-
+        tvUserRole.setText(AppSPrefs.getString(Commons.EMAIL));
         tvUserName.setText(AppSPrefs.getString(Commons.NAME));
+
+        ivProfilePicture.setImageBitmap(Utils.getBitmapFromBase64(AppSPrefs.getString(Commons.PHOTO)));
     }
 
     /**

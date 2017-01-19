@@ -10,6 +10,7 @@
     //Left Panel Strings
     <string name="LeftPanelHome">Home</string>
     <string name="LeftPanelSettings">Settings</string>
+    <string name="LeftPanelWidgetSettings">AppWidget Settings</string>
     <string name="LeftPanelAccountSettings">Account Settings</string>
     <string name="LeftPanelInsights">Insights</string>
     <string name="LeftPanelIftttConfig">IFTTT Config</string>
@@ -82,6 +83,7 @@
     <string name="TimerList">Timer List</string>
     <string name="TimerAddNew">Add New</string>
     <string name="TimerAddNewTask">Add New Task</string>
+    <string name="AddWidget">Add Widget</string>
 
     //Crop Screen
     <string name="Done">Done</string>
@@ -110,6 +112,7 @@
     <string name="untrusted_cert_dialog_action_cancel">Cancel</string>
 
     <string name="AddTaskTaskName">Task Name</string>
+    <string name="SelectDevice">Select Hardware Device</string>
     <string name="SelectAppliance">Select Appliance</string>
     <string name="SelectApplianceLabel">Select appliance do you want to schedule:</string>
     <string name="ApplianceOperation">Select operation for selected appliance:</string>

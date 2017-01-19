@@ -37,7 +37,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class TimerListActivity extends AppCompatActivity implements APIRequestCallbacak, View.OnClickListener, AdapterView.OnItemLongClickListener {
+public class TimerListActivity extends AppCompatActivity implements APIRequestCallbacak, View.OnClickListener {
     private String TAG = getClass().getSimpleName();
     private Context mContext;
     private Toolbar mToolbar;
@@ -63,7 +63,7 @@ public class TimerListActivity extends AppCompatActivity implements APIRequestCa
         containerAddNew = (LinearLayout) findViewById(R.id.containerAddNew);
         containerAddNew.setOnClickListener(this);
         timerList = (ListView) findViewById(R.id.lvTimerList);
-        timerList.setOnItemLongClickListener(this);
+        //timerList.setOnItemLongClickListener(this);
 
         adapter = new TimerTaskAdapter(mContext, taskList);
         timerList.setAdapter(adapter);
@@ -149,11 +149,11 @@ public class TimerListActivity extends AppCompatActivity implements APIRequestCa
         alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTypeface(SNApplication.APP_FONT_TYPEFACE);
     }
 
-    @Override
+   /* @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
         confirmationAlertDialog(getResources().getString(R.string.DeleteScheduleTitle),getResources().getString(R.string.DeleteScheduleMessage),position);
         return false;
-    }
+    }*/
 
     private void getTimerList(){
         if (CheckNetwork.isInternetAvailable(mContext)) {
@@ -164,7 +164,12 @@ public class TimerListActivity extends AppCompatActivity implements APIRequestCa
         } else {
             finish();
             Logger.i(TAG, "Not connected to Internet.");
-            Toast.makeText(mContext, mContext.getString(R.string.MessageNoInternetConnection), Toast.LENGTH_LONG).show();
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(mContext, mContext.getString(R.string.MessageNoInternetConnection), Toast.LENGTH_LONG).show();
+                }
+            });
         }
     }
 

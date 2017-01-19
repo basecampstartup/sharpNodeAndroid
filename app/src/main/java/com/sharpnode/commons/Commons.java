@@ -19,6 +19,7 @@ public class Commons {
     public static final String EMAIL = "email";
     public static final String PHONE = "phone";
     public static final String NAME = "name";
+    public static final String IMAGE = "image";
     public static final String DEVICE_NEW_NAME = "device_name";
     public static final String CONFIGURED_DEVICE_ID = "device_id";
     public static final String CONFIGURED_DEVICE_NAME="device_name";

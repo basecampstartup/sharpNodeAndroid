@@ -144,7 +144,12 @@ public class DeviceSetupActivity extends BaseActivity implements View.OnClickLis
                     onReadyButtonClicked();
                 } else {
                     Logger.i(TAG, "Not connected to Internet.");
-                    Toast.makeText(mContext, mContext.getString(R.string.MessageNoInternetConnection), Toast.LENGTH_LONG).show();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(mContext, mContext.getString(R.string.MessageNoInternetConnection), Toast.LENGTH_LONG).show();
+                        }
+                    });
                 }
                 break;
         }
@@ -314,7 +319,12 @@ public class DeviceSetupActivity extends BaseActivity implements View.OnClickLis
         } else {
             finish();
             Logger.i(TAG, "Not connected to Internet.");
-            Toast.makeText(mContext, mContext.getString(R.string.MessageNoInternetConnection), Toast.LENGTH_LONG).show();
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(mContext, mContext.getString(R.string.MessageNoInternetConnection), Toast.LENGTH_LONG).show();
+                }
+            });
         }
     }
 

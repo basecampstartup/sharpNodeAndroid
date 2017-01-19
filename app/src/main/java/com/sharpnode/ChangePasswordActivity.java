@@ -94,7 +94,12 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
                     new Communicator(mContext, null, APIUtils.CMD_UPDATE_PASSWORD,
                             getSetPasswordRequestMap(APIUtils.CMD_UPDATE_PASSWORD,oldPassword, newPassword));
                 } else {
-                    Toast.makeText(mContext, mContext.getString(R.string.MessageNoInternetConnection), Toast.LENGTH_LONG).show();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(mContext, mContext.getString(R.string.MessageNoInternetConnection), Toast.LENGTH_LONG).show();
+                        }
+                    });
                 }
 
                 break;

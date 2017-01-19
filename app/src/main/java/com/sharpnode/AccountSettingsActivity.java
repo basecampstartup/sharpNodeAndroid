@@ -96,9 +96,16 @@ public class AccountSettingsActivity extends AppCompatActivity implements View.O
 
         ivProfilePicture = (ImageView) findViewById(R.id.ivProfilePicture);
         ivProfilePicture.setOnClickListener(this);
+        Bitmap bitmap = Utils.getBitmapFromBase64(AppSPrefs.getString(Commons.PHOTO));
+        if(bitmap!=null){
+            ivProfilePicture.setImageBitmap(bitmap);
+        }else{
+            ivProfilePicture.setImageResource(R.drawable.default_profile);
+        }
         pictureOption = new ArrayList<>();
         initializeComponents();
     }
+
 
     /**
      * Initialize the UI Components.
@@ -170,7 +177,12 @@ public class AccountSettingsActivity extends AppCompatActivity implements View.O
                             getUpdateAccountRequestMap(APIUtils.CMD_UPDATE_ACCOUNT,email, strPhone, strName));
                 } else {
                     Logger.i(TAG, "Not connected to Internet.");
-                    Toast.makeText(mContext, mContext.getString(R.string.MessageNoInternetConnection), Toast.LENGTH_LONG).show();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(mContext, mContext.getString(R.string.MessageNoInternetConnection), Toast.LENGTH_LONG).show();
+                        }
+                    });
                 }
 
 
@@ -189,6 +201,7 @@ public class AccountSettingsActivity extends AppCompatActivity implements View.O
         map.put(Commons.EMAIL, email);
         map.put(Commons.PHONE, phone);
         map.put(Commons.NAME, name);
+        map.put(Commons.IMAGE, pictureByteArray);
         map.put(Commons.ACCESS_TOKEN, AppSPrefs.getString(Commons.ACCESS_TOKEN));
         return map;
     }
@@ -384,16 +397,16 @@ public class AccountSettingsActivity extends AppCompatActivity implements View.O
         try {
             Logger.i(TAG, "Response: " + object);
             if (APIUtils.CMD_UPDATE_ACCOUNT.equalsIgnoreCase(name)) {
-                if (ResponseParser.parseUpdateAccountResponse(object).getResponseCode().equalsIgnoreCase(Commons.CODE_200)) {
-
-
+                AccountModel model = ResponseParser.parseUpdateAccountResponse(object);
+                if (model.getResponseCode().equalsIgnoreCase(Commons.CODE_200)) {
+                    AppSPrefs.setString(Commons.PHOTO, pictureByteArray);
                     AppSPrefs.setString(Commons.NAME, strName);
                     AppSPrefs.setString(Commons.PHONE,strPhone);
-                    String message=ResponseParser.parseUpdateAccountResponse(object).getResponseMsg();
+                    String message=model.getResponseMsg();
                     Toast.makeText(mContext,message,Toast.LENGTH_LONG).show();
                     finish();
                 } else {
-                    Toast.makeText(mContext, ResponseParser.parseLoginResponse(object).getResponseMsg(),
+                    Toast.makeText(mContext, model.getResponseMsg(),
                             Toast.LENGTH_LONG).show();
                 }
             } else {

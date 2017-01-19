@@ -14,6 +14,8 @@ public class APIUtils {
     public static final String CMD_SIGN_IN = "user-signin";
     public static final String CMD_GET_DATA = "user-getdata";
     public static final String CMD_SIGN_UP = "user-signup";
+    public static final String CMD_ADD_TO_FAV_DEVICE = "add-to-fav";
+    public static final String CMD_FAV_DEVICE = "fav-device";
     public static final String CMD_GET_DEVICES = "user-devices";
     public static final String CMD_ADD_DEVICE = "device-add";
     public static final String CMD_REMOVE_DEVICE = "device-remove";
