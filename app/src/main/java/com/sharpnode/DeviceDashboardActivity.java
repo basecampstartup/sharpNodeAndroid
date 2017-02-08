@@ -257,7 +257,7 @@ public class DeviceDashboardActivity extends AppCompatActivity implements View.O
         tvUserRole.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         tvUserRole.setText(AppSPrefs.getString(Commons.EMAIL));
         tvUserName.setText(AppSPrefs.getString(Commons.NAME));
-
+        tvUserRole.setSelected(true);
         ivProfilePicture.setImageBitmap(Utils.getBitmapFromBase64(AppSPrefs.getString(Commons.PHOTO)));
     }
 

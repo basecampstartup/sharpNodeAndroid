@@ -234,7 +234,7 @@ public class MyDevicesActivity extends AppCompatActivity implements View.OnClick
                 if(mAdapter!=null){
                     mAdapter.notifyDataSetChanged();
                 }
-                initTimer(Utils.delay45Seconds);
+                initTimer(Utils.delay05Seconds);
             }
 
             if (mAdapter != null && mAdapter.getItemCount() == 0) {
@@ -260,7 +260,7 @@ public class MyDevicesActivity extends AppCompatActivity implements View.OnClick
 //            if(mAdapter!=null){
 //                mAdapter.notifyDataSetChanged();
 //            }
-            initTimer(Utils.delay45Seconds);
+            initTimer(Utils.delay05Seconds);
         }
     }
 

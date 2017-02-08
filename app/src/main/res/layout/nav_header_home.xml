@@ -42,7 +42,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dim_padding_5dp"
             android:textSize="@dimen/dim_font_size_16"
-            android:text="User Role" />
+            android:text="User Role"
+            android:paddingRight="@dimen/dim_padding_10dp"
+            android:ellipsize="marquee"
+            android:fadingEdge="horizontal"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"/>
     </LinearLayout>
 
 </RelativeLayout>

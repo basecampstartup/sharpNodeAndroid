@@ -233,7 +233,7 @@ public class HomeDashboardActivity extends AppCompatActivity implements View.OnC
             drawer.closeDrawer(GravityCompat.START);
         } else {
             //super.onBackPressed();
-            Utils.exitFromApp(HomeDashboardActivity.this);
+            //Utils.exitFromApp(HomeDashboardActivity.this);
         }
     }
 
@@ -295,7 +295,7 @@ public class HomeDashboardActivity extends AppCompatActivity implements View.OnC
 
         tvUserRole.setText(AppSPrefs.getString(Commons.EMAIL));
         tvUserName.setText(AppSPrefs.getString(Commons.NAME));
-
+        tvUserRole.setSelected(true);
         ivProfilePicture.setImageBitmap(Utils.getBitmapFromBase64(AppSPrefs.getString(Commons.PHOTO)));
     }
 

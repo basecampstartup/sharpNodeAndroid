@@ -37,8 +37,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/off_btn"
+            android:src="@drawable/toggle_btn"
             android:visibility="visible"></ImageView>
+
     </RelativeLayout>
 
     <View
