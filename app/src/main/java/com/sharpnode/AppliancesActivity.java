@@ -22,9 +22,12 @@ import com.sharpnode.cloudcommunication.CloudUtils;
 import com.sharpnode.commons.Commons;
 import com.sharpnode.context.ContextHelper;
 import com.sharpnode.model.ApplianceModel;
+import com.sharpnode.model.BaseModel;
+import com.sharpnode.model.DeviceInfoModel;
 import com.sharpnode.network.CheckNetwork;
 import com.sharpnode.servercommunication.APIUtils;
 import com.sharpnode.servercommunication.Communicator;
+import com.sharpnode.servercommunication.ResponseParser;
 import com.sharpnode.sprefs.AppSPrefs;
 import com.sharpnode.utils.Logger;
 import com.sharpnode.utils.Utils;
@@ -127,7 +130,8 @@ public class AppliancesActivity extends AppCompatActivity implements APIRequestC
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        return super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.menu_appliance_refresh, menu);
+        return true;
     }
 
     @Override
@@ -135,6 +139,9 @@ public class AppliancesActivity extends AppCompatActivity implements APIRequestC
         switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
+                return true;
+            case R.id.item_refresh:
+                getDeviceInfo(AppSPrefs.getDeviceId());
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -149,6 +156,32 @@ public class AppliancesActivity extends AppCompatActivity implements APIRequestC
         }catch (Exception e){}
 
         this.finish();
+    }
+
+    private void getDeviceInfo(String clickedDeviceId) {
+        if (CheckNetwork.isInternetAvailable(mContext)) {
+            Utils.showLoader(mContext, loader);
+            //Call Cloud API Request after check internet connection
+            new Communicator(mContext, null, APIUtils.CMD_DEVICE_INFO,
+                    loadDeviceInfoRequestMap(APIUtils.CMD_DEVICE_INFO,
+                            clickedDeviceId, AppSPrefs.getString(Commons.ACCESS_TOKEN)));
+        } else {
+            Toast.makeText(mContext, mContext.getString(R.string.check_for_internet_connectivity),
+                    Toast.LENGTH_LONG).show();
+        }
+    }
+
+    /**
+     * @param method
+     * @param accessToken
+     * @return
+     */
+    public HashMap<String, String> loadDeviceInfoRequestMap(String method, String deviceId, String accessToken) {
+        HashMap<String, String> map = new HashMap<>();
+        map.put(Commons.COMMAND, method);
+        map.put(Commons.CONFIGURED_DEVICE_ID, deviceId);
+        map.put(Commons.ACCESS_TOKEN, accessToken);
+        return map;
     }
 
     private void getApplianceStatus(){
@@ -201,6 +234,15 @@ public class AppliancesActivity extends AppCompatActivity implements APIRequestC
                 updateIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
                 updateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
                 mContext.sendBroadcast(updateIntent);
+            } else if (APIUtils.CMD_DEVICE_INFO.equalsIgnoreCase(name)) {
+                Logger.i(TAG, "onSuccess"+" Name: "+name+" Response: " + object);
+                //Parsed only for check status is 200.
+                DeviceInfoModel model = ResponseParser.parseDeviceInfoResponse(object);
+                switches = model.getSwitches();
+                appliancesName = model.getApplianceList();
+                Utils.arrAppliances = (String[]) appliancesName.toArray(new String[appliancesName.size()]);
+                //applianceList = getApplianceList(appliancesName);
+                prepareApplianceList(getApplianceList(appliancesName));
             }
         } catch (Exception e) {
             e.printStackTrace();

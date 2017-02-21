@@ -127,6 +127,7 @@
 
     <string name="CommonDescription">Description</string>
     <string name="ContactUsLabel">Contact Us</string>
+    <string name="Refresh">Refresh</string>
     <string name="Remove">Remove</string>
     <string name="Rename">Rename</string>
     <string name="ChangePassword">Change Password</string>
