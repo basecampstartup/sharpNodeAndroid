@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -35,6 +36,7 @@ import com.sharpnode.setupdevice.DeviceSetupActivity;
 import com.sharpnode.sprefs.AppSPrefs;
 import com.sharpnode.utils.Logger;
 import com.sharpnode.utils.Utils;
+import com.sharpnode.widget.WidgetUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -85,6 +87,9 @@ public class AppWidgetSettings extends AppCompatActivity implements View.OnClick
         tvOperationLabel.setTypeface(SNApplication.APP_FONT_TYPEFACE);
 
         tvSelectDevice = (TextView) findViewById(R.id.tvSelectDevice);
+        if(!TextUtils.isEmpty(AppSPrefs.getWidgetDevice())){
+            tvSelectDevice.setText(AppSPrefs.getWidgetDevice());
+        }
         tvSelectDevice.setTypeface(SNApplication.APP_FONT_TYPEFACE);
         tvSelectDevice.setOnClickListener(this);
     }
@@ -233,6 +238,8 @@ public class AppWidgetSettings extends AppCompatActivity implements View.OnClick
                 Logger.i(TAG, "onSuccess"+" Name: "+name+" Response: " + object);
                 BaseModel model = ResponseParser.parseResponse(object);
                 if (model.getResponseCode().equalsIgnoreCase(Commons.CODE_200)) {
+                    AppSPrefs.setWidgetDeviceId(selectedDevice.getDeviceId());
+                    AppSPrefs.setWidgetDevice(selectedDevice.getDeviceName());
                     finish();
                 }
                 Toast.makeText(mContext, model.getResponseMsg(), Toast.LENGTH_LONG).show();

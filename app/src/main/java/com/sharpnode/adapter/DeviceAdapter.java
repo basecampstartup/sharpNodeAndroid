@@ -31,6 +31,7 @@ import com.sharpnode.setupdevice.MyDevicesActivity;
 import com.sharpnode.sprefs.AppSPrefs;
 import com.sharpnode.utils.Logger;
 import com.sharpnode.utils.Utils;
+import com.sharpnode.widget.WidgetUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -125,7 +126,14 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder
                 && CloudUtils.deviceStatus.get(model.getDeviceId().toLowerCase())){
             holder.tvPresence.setText(mContext.getString(R.string.PresenceOnline));
             holder.ivPresence.setImageResource(android.R.drawable.presence_online);
+
+            if(AppSPrefs.getWidgetDeviceId().equalsIgnoreCase(model.getDeviceId())){
+                WidgetUtils.isWidgetDeviceConnected = true;
+            }
         } else {
+            if(AppSPrefs.getWidgetDeviceId().equalsIgnoreCase(model.getDeviceId())){
+                WidgetUtils.isWidgetDeviceConnected = false;
+            }
             holder.tvPresence.setText(mContext.getString(R.string.PresenceOffline));
             holder.ivPresence.setImageResource(android.R.drawable.presence_invisible);
         }

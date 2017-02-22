@@ -28,6 +28,7 @@ import com.sharpnode.network.CheckNetwork;
 import com.sharpnode.servercommunication.APIUtils;
 import com.sharpnode.servercommunication.Communicator;
 import com.sharpnode.servercommunication.ResponseParser;
+import com.sharpnode.setupdevice.MyDevicesActivity;
 import com.sharpnode.sprefs.AppSPrefs;
 import com.sharpnode.utils.Logger;
 import com.sharpnode.utils.Utils;
@@ -39,6 +40,8 @@ import org.json.JSONObject;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by admin on 11/8/2016.
@@ -55,6 +58,8 @@ public class AppliancesActivity extends AppCompatActivity implements APIRequestC
     private ApplianceListAdapter mAdapter;
     private LinearLayoutManager mLayoutManager;
     private ProgressDialog loader;
+    private Timer timer;
+//    private MyTimerTask myTimerTask;
 
     private void prepareApplianceList(ArrayList<ApplianceModel> applianceList){
 //        WidgetUtils.setWidgetAppliances(applianceList);
@@ -107,6 +112,7 @@ public class AppliancesActivity extends AppCompatActivity implements APIRequestC
         //applianceList = getApplianceList(appliancesName);
         prepareApplianceList(getApplianceList(appliancesName));
         getApplianceStatus();
+//        initTimer(1*1000);
     }
 
     private ArrayList<ApplianceModel> getApplianceList(ArrayList<String> appliances){
@@ -131,6 +137,7 @@ public class AppliancesActivity extends AppCompatActivity implements APIRequestC
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_appliance_refresh, menu);
+        menu.getItem(0).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
         return true;
     }
 
@@ -141,7 +148,8 @@ public class AppliancesActivity extends AppCompatActivity implements APIRequestC
                 onBackPressed();
                 return true;
             case R.id.item_refresh:
-                getDeviceInfo(AppSPrefs.getDeviceId());
+                //getDeviceInfo(AppSPrefs.getDeviceId());
+                getApplianceStatus();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -225,8 +233,9 @@ public class AppliancesActivity extends AppCompatActivity implements APIRequestC
                 switches = jsonObject.optString("result");
                 coreInfo = jsonObject.optJSONObject("coreInfo");
                 String deviceId= coreInfo.optString("DeviceID");
-                //prepareApplianceList(getApplianceList(appliancesName));
-            } else if(CloudUtils.CLOUD_FUNCTION_LED.equalsIgnoreCase(name)){
+                prepareApplianceList(getApplianceList(appliancesName));
+                //initTimer(Utils.delay30Seconds);
+            } else if(CloudUtils.CLOUD_FUNCTION_LED.equalsIgnoreCase(name)){ // Switch ON / OFF
                 int[] ids = AppWidgetManager.getInstance(mContext).getAppWidgetIds(new ComponentName(mContext,
                         SharpNodeAppWidget.class));
                 //onUpdate(context, AppWidgetManager.getInstance(context), ids);
@@ -234,6 +243,12 @@ public class AppliancesActivity extends AppCompatActivity implements APIRequestC
                 updateIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
                 updateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
                 mContext.sendBroadcast(updateIntent);
+
+                if (CheckNetwork.isInternetAvailable(mContext)) {
+                    //Call API Request after check internet connection
+                    new CloudCommunicator(mContext, null, CloudUtils.GET_APPLIANCE_STATUS,
+                            getRequestMap(CloudUtils.GET_APPLIANCE_STATUS));
+                }
             } else if (APIUtils.CMD_DEVICE_INFO.equalsIgnoreCase(name)) {
                 Logger.i(TAG, "onSuccess"+" Name: "+name+" Response: " + object);
                 //Parsed only for check status is 200.
@@ -254,4 +269,41 @@ public class AppliancesActivity extends AppCompatActivity implements APIRequestC
         Utils.dismissLoader();
         Logger.i(TAG, name+", onFailure, Response: " + object);
     }
+
+//    private void initTimer(int delayTime) {
+//        timer = new Timer();
+//        myTimerTask = new MyTimerTask();
+//        timer.schedule(myTimerTask, delayTime);
+//    }
+//
+//    class MyTimerTask extends TimerTask {
+//
+//        @Override
+//        public void run() {
+//            runOnUiThread(new Runnable() {
+//
+//                @Override
+//                public void run() {
+//                    Logger.i(TAG, "Timer Running! ");
+//                    getApplianceStatus();
+//                }
+//            });
+//        }
+//    }
+//
+//    private void cancelTimer(){
+//        if(timer!=null){
+//            timer.cancel();
+//        }
+//
+//        if(myTimerTask!=null){
+//            myTimerTask.cancel();
+//        }
+//    }
+//
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        cancelTimer();
+//    }
 }

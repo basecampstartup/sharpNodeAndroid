@@ -22,6 +22,8 @@ import com.sharpnode.cloudcommunication.CloudUtils;
 import com.sharpnode.commons.Commons;
 import com.sharpnode.model.ApplianceModel;
 import com.sharpnode.network.CheckNetwork;
+import com.sharpnode.servercommunication.APIUtils;
+import com.sharpnode.servercommunication.Communicator;
 import com.sharpnode.sprefs.AppSPrefs;
 import com.sharpnode.utils.Logger;
 import com.sharpnode.utils.Utils;
@@ -118,18 +120,18 @@ public class ApplianceListAdapter extends RecyclerView.Adapter<ApplianceListAdap
                     if(CheckNetwork.isInternetAvailable(mContext)){
                         String value = "";
                         if (appliances.get(position).isStatus()) {
-                            holder.ivApplianceIcon.setImageResource(applianceIcons[position]);
-                            holder.ivSwitchBtn.setImageResource(R.drawable.off_btn);
+                            //holder.ivApplianceIcon.setImageResource(applianceIcons[position]);
+                            //holder.ivSwitchBtn.setImageResource(R.drawable.off_btn);
                             appliances.get(position).setStatus(false);
-                            value = "l" + (position + 1) + ",HIGH";
+                            value = appliances.get(position).getSwitchId();//"l" + (position + 1) + ",HIGH";
                         } else {
-                            holder.ivApplianceIcon.setImageResource(applianceIconsTeal[position]);
-                            holder.ivSwitchBtn.setImageResource(R.drawable.on_btn);
+                            //holder.ivApplianceIcon.setImageResource(applianceIconsTeal[position]);
+                            //holder.ivSwitchBtn.setImageResource(R.drawable.on_btn);
                             appliances.get(position).setStatus(true);
-                            value = "l" + (position + 1) + ",LOW";
+                            value = appliances.get(position).getSwitchId();// "l" + (position + 1) + ",LOW";
                         }
                         Logger.i(TAG, "Switch: value=" + value);
-                        notifyDataSetChanged();
+                        //notifyDataSetChanged();
                         makeSwitchOnOff(value);
                     } else {
                         Toast.makeText(mContext, mContext.getString(R.string.check_for_internet_connectivity),
@@ -162,10 +164,12 @@ public class ApplianceListAdapter extends RecyclerView.Adapter<ApplianceListAdap
     private void makeSwitchOnOff(String value){
         if(DeviceDashboardActivity.isConnected){
             if(CheckNetwork.isInternetAvailable(mContext)){
-                //Utils.showLoader(mContext, loader);
+                Utils.showLoader(mContext, loader);
                 //Call Cloud API Request after check internet connection
-                new CloudCommunicator(mContext, null, CloudUtils.CLOUD_FUNCTION_LED,
-                        getParams(AppSPrefs.getDeviceId(), value));
+//                new CloudCommunicator(mContext, null, CloudUtils.CLOUD_FUNCTION_LED,
+//                        getParams(AppSPrefs.getDeviceId(), value));
+                new Communicator(mContext, null, CloudUtils.CLOUD_FUNCTION_LED,
+                        getParams(value));
             } else {
                 Toast.makeText(mContext, mContext.getString(R.string.check_for_internet_connectivity),
                         Toast.LENGTH_LONG).show();
@@ -176,10 +180,26 @@ public class ApplianceListAdapter extends RecyclerView.Adapter<ApplianceListAdap
         }
     }
 
-    private HashMap<String, String> getParams(String deviceId, String switchOnOff){
+    /*private void getDeviceInfo(String clickedDeviceId) {
+        if (CheckNetwork.isInternetAvailable(mContext)) {
+            Utils.showLoader(mContext, loader);
+            //Call Cloud API Request after check internet connection
+            new Communicator(mContext, null, APIUtils.CMD_DEVICE_INFO,
+                    loadDeviceInfoRequestMap(APIUtils.CMD_DEVICE_INFO,
+                            clickedDeviceId, AppSPrefs.getString(Commons.ACCESS_TOKEN)));
+        } else {
+            Toast.makeText(mContext, mContext.getString(R.string.check_for_internet_connectivity),
+                    Toast.LENGTH_LONG).show();
+        }
+    }*/
+
+    private HashMap<String, String> getParams(String switchOnOff){
         HashMap<String, String> params = new HashMap<>();
-        params.put(Commons.CONFIGURED_DEVICE_ID, deviceId);
-        params.put(CloudUtils.SWITCH_OPERATION_FOR_LED, switchOnOff);
+        params.put(Commons.COMMAND, "appliances");
+        params.put(Commons.SWITCH_ID, switchOnOff);
+        params.put(Commons.CONFIGURED_DEVICE_ID, AppSPrefs.getDeviceId());
+        //params.put(CloudUtils.SWITCH_OPERATION_FOR_LED, switchOnOff);
+        params.put(Commons.ACCESS_TOKEN, AppSPrefs.getString(Commons.ACCESS_TOKEN));
         return params;
     }
 }

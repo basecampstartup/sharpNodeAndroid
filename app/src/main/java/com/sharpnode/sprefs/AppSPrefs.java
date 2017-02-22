@@ -5,6 +5,7 @@ import android.preference.PreferenceManager;
 
 import com.sharpnode.commons.Commons;
 import com.sharpnode.context.ContextHelper;
+import com.sharpnode.widget.WidgetUtils;
 
 /**
  * Created by admin on 11/15/2016.
@@ -89,6 +90,16 @@ public class AppSPrefs {
     public static void setWidgetDevice(String value){
         editor = getSPrefsInstance().edit();
         editor.putString(Commons.CONFIGURED_DEVICE_NAME, value);
+        editor.commit();
+    }
+
+    public static String getWidgetDeviceId(){
+        return getSPrefsInstance().getString(WidgetUtils.WIDGET_DEVICE_ID, "None");
+    }
+
+    public static void setWidgetDeviceId(String value){
+        editor = getSPrefsInstance().edit();
+        editor.putString(WidgetUtils.WIDGET_DEVICE_ID, value);
         editor.commit();
     }
 }

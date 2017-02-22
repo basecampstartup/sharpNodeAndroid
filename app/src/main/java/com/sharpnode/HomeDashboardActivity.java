@@ -372,7 +372,7 @@ public class HomeDashboardActivity extends AppCompatActivity implements View.OnC
 
     @Override
     public void onFailure(String name, Object object) {
-        Logger.i(TAG, "onFailure"+" Name: "+name+"Response: " + object);
+        Logger.i(TAG, "onFailure"+" Name: "+name+" Response: " + object);
 
         if(APIUtils.CMD_FAV_DEVICE.equalsIgnoreCase(name)){
             initTimer(Utils.delay30Seconds);

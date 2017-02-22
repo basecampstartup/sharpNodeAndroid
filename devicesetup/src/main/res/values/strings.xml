@@ -54,6 +54,7 @@
     <string name="select_your_wifi_network">Select your Wi-Fi network</string>
     <string name="no_wifi_networks_found">(No Wi-Fi networks found)</string>
     <string name="check_for_internet_connectivity">Checking for internet connectivity</string>
+    <string name="set_device_on_widget">Please setup device for widget, from application\'s widget settings</string>
     <string name="device_is_offline">Selected device is Offline</string>
     <string name="connect_to_wifi_network">Connecting to Wi-Fi network</string>
     <string name="configure_device_wifi_credentials">Configuring device Wi-Fi credentials</string>

@@ -60,7 +60,9 @@ public class CloudCommunicator {
             callDeviceStatusCloudAPI();
         } else if (CloudUtils.GET_APPLIANCE_STATUS.equalsIgnoreCase(methodName)) {
             callApplianceStatusCloudAPI();
-        } else {
+        } /*else if(){
+            refreshApplianceStatus();
+        }*/ else {
             callCloudAPI();
         }
     }

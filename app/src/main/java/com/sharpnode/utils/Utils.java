@@ -82,7 +82,7 @@ public class Utils {
 
     public static String[] arrAppliances = {"CFL", "Fan", "Lamp", "TV", "Music", "Washing Machine", "Security"};
     public static String[] arrAppliancesKey = {"switch-one", "switch-two", "switch-three", "switch-four", "switch-five", "switch-six", "switch-seven"};
-    public static String[] arrOptions = {"Everyday", "Weekly", "Monthly", "Yearly", "Never"};
+
     public static String[] arrRepeat = {"Everyday", "Weekly", "Monthly", "Yearly", "Never"};
 
     public static void showLoader(Context mContext, ProgressDialog loader1) {

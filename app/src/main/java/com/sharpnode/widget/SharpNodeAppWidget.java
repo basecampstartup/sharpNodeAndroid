@@ -23,6 +23,7 @@ import com.sharpnode.utils.Logger;
 import com.sharpnode.utils.Utils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Implementation of App Widget functionality.
@@ -147,11 +148,23 @@ public class SharpNodeAppWidget extends AppWidgetProvider {
         super.onReceive(context, intent);
         Logger.i(TAG, "ACTION: "+intent.getAction());
 
-        if (Commons.ACTION_CFL_SWITCH_CLICK.equalsIgnoreCase(intent.getAction())) {
-            WidgetActionControl.switchClick("switch-one", WidgetUtils.getWidgetAppliances().get(0));
-            //Toast.makeText(context, "CFL Button Clicked !", Toast.LENGTH_SHORT).show();
-        } else {
-            //Toast.makeText(context, "Other Button Clicked !", Toast.LENGTH_SHORT).show();
+        try{
+            WidgetActionControl.switchClick(intent.getAction(), WidgetUtils.getWidgetAppliances().get(getIndex(intent.getAction())));
+
+            if (Utils.arrAppliances[0].equalsIgnoreCase(intent.getAction())
+                    || Utils.arrAppliances[1].equalsIgnoreCase(intent.getAction())
+                    || Utils.arrAppliances[2].equalsIgnoreCase(intent.getAction())
+                    || Utils.arrAppliances[3].equalsIgnoreCase(intent.getAction())
+                    || Utils.arrAppliances[4].equalsIgnoreCase(intent.getAction())
+                    || Utils.arrAppliances[5].equalsIgnoreCase(intent.getAction())) {
+
+                WidgetActionControl.switchClick(intent.getAction(),
+                        WidgetUtils.getWidgetAppliances().get(getIndex(intent.getAction())));
+            } else {
+                //Toast.makeText(context, "Other Button Clicked !", Toast.LENGTH_SHORT).show();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
     //wedget item click
@@ -159,6 +172,14 @@ public class SharpNodeAppWidget extends AppWidgetProvider {
         Intent intent = new Intent(context, getClass());
         intent.setAction(action);
         return PendingIntent.getBroadcast(context, 0, intent, 0);
+    }
+
+    private int getIndex(String value){
+        for (int i = 0; i < Utils.arrAppliancesKey.length; i++) {
+            if(value.equalsIgnoreCase(Utils.arrAppliancesKey[i]))
+                return i;
+        }
+        return 0;
     }
 }
 

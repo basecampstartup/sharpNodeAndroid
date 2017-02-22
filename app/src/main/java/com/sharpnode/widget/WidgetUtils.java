@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class WidgetUtils {
 
+    public static boolean isWidgetDeviceConnected = false;
     private static ArrayList<ApplianceModel> widgetAppliances = new ArrayList<>();
 
     public static ArrayList<ApplianceModel> getWidgetAppliances() {
@@ -20,4 +21,5 @@ public class WidgetUtils {
         widgetAppliances = list;
     }
 
+    public static String WIDGET_DEVICE_ID = "widget_device_id";
 }

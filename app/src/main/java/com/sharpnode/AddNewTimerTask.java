@@ -267,10 +267,11 @@ public class AddNewTimerTask extends AppCompatActivity implements View.OnClickLi
     public void showApplianceDialog() {
 
         final Dialog dialog = new Dialog(this);
-        dialog.setTitle("Select one");
+        dialog.setTitle("Select any option");
         View view = getLayoutInflater().inflate(R.layout.list_dialog_layout, null);
         ListView lv = (ListView) view.findViewById(R.id.lstAppliance);
         final ArrayList<String> list = new ArrayList<String>(Arrays.asList(Utils.arrAppliances));
+        list.add("Security Feature");
         // Change MyActivity.this and myListOfItems to your own values
         ApplianceListDialogAdapter applianceListDialogAdapter = new ApplianceListDialogAdapter(mContext, list);
         lv.setAdapter(applianceListDialogAdapter);

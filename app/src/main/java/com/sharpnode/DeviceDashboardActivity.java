@@ -35,6 +35,7 @@ import com.sharpnode.setupdevice.MyDevicesActivity;
 import com.sharpnode.sprefs.AppSPrefs;
 import com.sharpnode.utils.Logger;
 import com.sharpnode.utils.Utils;
+import com.sharpnode.widget.WidgetUtils;
 
 import java.util.HashMap;
 import java.util.Timer;
@@ -103,6 +104,11 @@ public class DeviceDashboardActivity extends AppCompatActivity implements View.O
             String deviceInfoData = getIntent().getStringExtra("DEVICE_INFO");
             deviceInfoModel = ResponseParser.parseDeviceInfoResponse(deviceInfoData);
             isConnected = CloudUtils.deviceStatus.get(deviceInfoModel.getDeviceId().toLowerCase());
+            if(AppSPrefs.getWidgetDeviceId().equalsIgnoreCase(deviceInfoModel.getDeviceId())){
+                WidgetUtils.isWidgetDeviceConnected = true;
+            } else {
+                WidgetUtils.isWidgetDeviceConnected = false;
+            }
             AppSPrefs.setWidgetDevice(deviceInfoModel.getDeviceName());
             // Instantiate a ViewPager and a PagerAdapter.
             mPager = (ViewPager) findViewById(R.id.pager);

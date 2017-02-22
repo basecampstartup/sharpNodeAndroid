@@ -192,10 +192,11 @@ public class AddScheduleTaskActivity extends AppCompatActivity implements APIReq
     public void showApplianceDialog() {
 
         final Dialog dialog = new Dialog(this);
-        dialog.setTitle("Choose Appliance");
+        dialog.setTitle("Select any option");
         View view = getLayoutInflater().inflate(R.layout.list_dialog_layout, null);
         ListView lv = (ListView) view.findViewById(R.id.lstAppliance);
         appliancesList = new ArrayList<String>(Arrays.asList(Utils.arrAppliances));
+        appliancesList.add("Security Feature");
         // Change MyActivity.this and myListOfItems to your own values
         ApplianceListDialogAdapter applianceListDialogAdapter = new ApplianceListDialogAdapter(AddScheduleTaskActivity.this, appliancesList);
         lv.setAdapter(applianceListDialogAdapter);
@@ -290,7 +291,13 @@ public class AddScheduleTaskActivity extends AppCompatActivity implements APIReq
         Calendar nowLocal = Calendar.getInstance();
         int h = nowLocal.get( Calendar.HOUR_OF_DAY );
         int m = nowLocal.get( Calendar.MINUTE );
-        if (hourOfDay > h && minute > m) {
+
+        if (hourOfDay >= h && (minute+1) >= m) {
+            nowLocal.add(Calendar.HOUR_OF_DAY, ((hourOfDay-h)>0)?(hourOfDay-h):0);
+            nowLocal.add(Calendar.MINUTE, ((minute-m)>0)?(minute-m):0);
+            /*h = nowLocal.get( Calendar.HOUR_OF_DAY );
+            m = nowLocal.get( Calendar.MINUTE );*/
+
             StringBuffer sb = new StringBuffer();
             sb.append(hourOfDay);
             sb.append(":");
@@ -302,6 +309,7 @@ public class AddScheduleTaskActivity extends AppCompatActivity implements APIReq
                 tvSelectedTime.setTag(nowLocal.getTime());
                 tvSelectedTime.setText(Utils.formatTime(this, dateObj, TimeStyleEnum.StyleType.SHORT));
             } catch (final ParseException e) {
+                e.printStackTrace();
             }
         } else {
             Utils.okAlertDialog(mContext, "Scheduler Date / Time must be greater than current time.");
@@ -333,6 +341,7 @@ public class AddScheduleTaskActivity extends AppCompatActivity implements APIReq
 
         Calendar nowLocal = Calendar.getInstance();
         nowLocal.setTimeZone(TimeZone.getDefault());
+
         h = nowLocal.get(Calendar.HOUR_OF_DAY);
         m = nowLocal.get(Calendar.MINUTE);
         Date dateTime = getDateByTime(y, mon, d, h, m);
@@ -340,7 +349,7 @@ public class AddScheduleTaskActivity extends AppCompatActivity implements APIReq
 
         //By default selected date/time will be 1+.
         Calendar cal = Calendar.getInstance();
-        //cal.add(Calendar.DATE, 1);
+        cal.add(Calendar.MINUTE, 5);
         Date plusOne = cal.getTime();
         tvSelectedTime.setTag(plusOne);
 
