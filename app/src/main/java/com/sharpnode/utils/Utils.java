@@ -80,22 +80,29 @@ public class Utils {
             "45-Min", "46-Min", "47-Min", "48-Min", "49-Min", "50-Min", "51-Min",
             "52-Min", "53-Min", "54-Min", "55-Min", "56-Min", "57-Min", "58-Min", "59-Min", "60-Min"};
 
-    public static String[] arrAppliances = {"CFL", "Fan", "Lamp", "TV", "Music", "Washing Machine", "Security"};
+    public static String[] arrAppliances = new String[7];
     public static String[] arrAppliancesKey = {"switch-one", "switch-two", "switch-three", "switch-four", "switch-five", "switch-six", "switch-seven"};
 
     public static String[] arrRepeat = {"Everyday", "Weekly", "Monthly", "Yearly", "Never"};
 
-    public static void showLoader(Context mContext, ProgressDialog loader1) {
-        loader = loader1;
-        loader.setMessage(mContext.getString(R.string.MessagePleaseWait));
-        if (!loader.isShowing())
-            loader.show();
+    public static void showLoader(final Context mContext, final ProgressDialog loader1) {
+        ((Activity)mContext).runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                loader = loader1;
+                loader.setMessage(mContext.getString(R.string.MessagePleaseWait));
+                if (!loader.isShowing())
+                    loader.show();
+            }
+        });
     }
 
     public static void dismissLoader() {
-        if (loader != null) {
-            loader.dismiss();
-        }
+        try {
+            if (loader != null) {
+                loader.dismiss();
+            }
+        }catch (Exception e){e.printStackTrace();}
     }
 
     public static boolean multipleTapDelayLONG(){
@@ -484,7 +491,7 @@ public class Utils {
 
     public static void offlineDeviceAlertDialog(final Context mContext, String title, String message, final String lastIP) {
         android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(mContext);
-        builder.setMessage(message);
+        builder.setMessage(message+" IP: "+lastIP);
         builder.setTitle(title);
         builder.setPositiveButton("OK",
                 new DialogInterface.OnClickListener() {

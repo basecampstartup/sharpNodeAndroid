@@ -120,7 +120,7 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder
         ConfiguredDevices model = devices.get(position);
         holder.tvDeviceId.setText(model.getDeviceId());
         holder.tvDeviceName.setText(model.getDeviceName());
-        holder.tvDeviceType.setText("Photon"); //Electrify-GQN2
+        holder.tvDeviceType.setText("Device"); //Electrify-GQN2
         if(CloudUtils.deviceStatus.size() > 0 && model.getDeviceId()!=null
                 && (CloudUtils.deviceStatus.get(model.getDeviceId().toLowerCase()))
                 && CloudUtils.deviceStatus.get(model.getDeviceId().toLowerCase())){

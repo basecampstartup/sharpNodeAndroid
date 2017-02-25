@@ -97,6 +97,9 @@ public class AddScheduleTaskActivity extends AppCompatActivity implements APIReq
         } else {
             ((LinearLayout)findViewById(R.id.llApplianceType)).setVisibility(View.VISIBLE);
         }
+
+        Utils.arrAppliances = (String[]) DeviceDashboardActivity.deviceInfoModel.getApplianceList().toArray(new String[DeviceDashboardActivity.deviceInfoModel.getApplianceList().size()]);
+        Log.i("DEVICE", "Add Scheduler: "+Utils.arrAppliances[0]);
     }
 
     private void setValues(Intent intent){
@@ -141,6 +144,7 @@ public class AddScheduleTaskActivity extends AppCompatActivity implements APIReq
             txtSelectAppliance.setText(Utils.arrAppliances[0]);
         }
         getSupportActionBar().setTitle(getString(R.string.SchedulerUpdateTask));
+
     }
 
     /**
@@ -195,6 +199,7 @@ public class AddScheduleTaskActivity extends AppCompatActivity implements APIReq
         dialog.setTitle("Select any option");
         View view = getLayoutInflater().inflate(R.layout.list_dialog_layout, null);
         ListView lv = (ListView) view.findViewById(R.id.lstAppliance);
+        Utils.arrAppliances = (String[]) DeviceDashboardActivity.deviceInfoModel.getApplianceList().toArray(new String[DeviceDashboardActivity.deviceInfoModel.getApplianceList().size()]);
         appliancesList = new ArrayList<String>(Arrays.asList(Utils.arrAppliances));
         appliancesList.add("Security Feature");
         // Change MyActivity.this and myListOfItems to your own values

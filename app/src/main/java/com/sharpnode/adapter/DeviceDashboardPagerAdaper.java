@@ -24,9 +24,9 @@ public class DeviceDashboardPagerAdaper extends FragmentPagerAdapter {
             case 0:
                 f = new DeviceDashboardFragment();
                 break;
-            case 1:
+            /*case 1:
                 f = new DeviceDashboardFragment();
-                break;
+                break;*/
         }
         return f;
     }

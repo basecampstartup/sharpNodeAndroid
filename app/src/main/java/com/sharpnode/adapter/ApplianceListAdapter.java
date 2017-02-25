@@ -131,7 +131,6 @@ public class ApplianceListAdapter extends RecyclerView.Adapter<ApplianceListAdap
                             value = appliances.get(position).getSwitchId();// "l" + (position + 1) + ",LOW";
                         }
                         Logger.i(TAG, "Switch: value=" + value);
-                        //notifyDataSetChanged();
                         makeSwitchOnOff(value);
                     } else {
                         Toast.makeText(mContext, mContext.getString(R.string.check_for_internet_connectivity),

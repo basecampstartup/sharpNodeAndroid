@@ -36,6 +36,7 @@ public class APIUtils {
     public static final String CMD_USER_CONTACT = "user-contact";
     public static final String CMD_RENAME_APPLIANCE = "switch-rename";
     public static final String CMD_SECURITY_ON_OFF = "switch-pir";
+    public static final String CMD_UPDATE_IP = "update-dip";
 
     public static final String CMD_DEVICE_INFO= "device-info";
     public static final String CONTACT_US_URL ="http://sharpnode.com/contact";

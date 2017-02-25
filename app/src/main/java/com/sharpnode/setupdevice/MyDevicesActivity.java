@@ -73,8 +73,8 @@ public class MyDevicesActivity extends AppCompatActivity implements View.OnClick
     private ImageButton btnAddDevice;
     private TextView tvNoDeviceFound;
     private ProgressDialog loader;
-    private Timer timer;
-    private MyTimerTask myTimerTask;
+    private static Timer timer;
+    private static MyTimerTask myTimerTask;
 
     private void prepareDeviceList(){
         // use this setting to improve performance if you know that changes
@@ -265,6 +265,7 @@ public class MyDevicesActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void initTimer(int delayTime) {
+        cancelTimer();
         timer = new Timer();
         myTimerTask = new MyTimerTask();
         timer.schedule(myTimerTask, delayTime);

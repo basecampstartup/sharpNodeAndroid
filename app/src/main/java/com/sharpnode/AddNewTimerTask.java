@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -82,6 +83,9 @@ public class AddNewTimerTask extends AppCompatActivity implements View.OnClickLi
         loader = new ProgressDialog(this);
         initializeComponents();
         //setCurrentDataTimeFields();
+
+        Utils.arrAppliances = (String[]) DeviceDashboardActivity.deviceInfoModel.getApplianceList().toArray(new String[DeviceDashboardActivity.deviceInfoModel.getApplianceList().size()]);
+        Log.i("DEVICE", "Add Timer: "+Utils.arrAppliances[0]);
     }
 
     /**
@@ -270,6 +274,7 @@ public class AddNewTimerTask extends AppCompatActivity implements View.OnClickLi
         dialog.setTitle("Select any option");
         View view = getLayoutInflater().inflate(R.layout.list_dialog_layout, null);
         ListView lv = (ListView) view.findViewById(R.id.lstAppliance);
+        Utils.arrAppliances = (String[]) DeviceDashboardActivity.deviceInfoModel.getApplianceList().toArray(new String[DeviceDashboardActivity.deviceInfoModel.getApplianceList().size()]);
         final ArrayList<String> list = new ArrayList<String>(Arrays.asList(Utils.arrAppliances));
         list.add("Security Feature");
         // Change MyActivity.this and myListOfItems to your own values

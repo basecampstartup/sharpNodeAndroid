@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -58,8 +59,8 @@ public class AppliancesActivity extends AppCompatActivity implements APIRequestC
     private ApplianceListAdapter mAdapter;
     private LinearLayoutManager mLayoutManager;
     private ProgressDialog loader;
-    private Timer timer;
-//    private MyTimerTask myTimerTask;
+    private static Timer timer;
+    private static MyTimerTask myTimerTask;
 
     private void prepareApplianceList(ArrayList<ApplianceModel> applianceList){
 //        WidgetUtils.setWidgetAppliances(applianceList);
@@ -109,9 +110,10 @@ public class AppliancesActivity extends AppCompatActivity implements APIRequestC
         switches = getIntent().getStringExtra("SWITCH");
         appliancesName = getIntent().getStringArrayListExtra("APPLIANCE");
         Utils.arrAppliances = (String[]) appliancesName.toArray(new String[appliancesName.size()]);
+        Log.i("DEVICE", "ApplianceActivity: "+appliancesName.get(0));
         //applianceList = getApplianceList(appliancesName);
         prepareApplianceList(getApplianceList(appliancesName));
-        getApplianceStatus();
+        getApplianceStatus(true);
 //        initTimer(1*1000);
     }
 
@@ -148,8 +150,7 @@ public class AppliancesActivity extends AppCompatActivity implements APIRequestC
                 onBackPressed();
                 return true;
             case R.id.item_refresh:
-                //getDeviceInfo(AppSPrefs.getDeviceId());
-                getApplianceStatus();
+                getApplianceStatus(true);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -166,40 +167,14 @@ public class AppliancesActivity extends AppCompatActivity implements APIRequestC
         this.finish();
     }
 
-    private void getDeviceInfo(String clickedDeviceId) {
+    private void getApplianceStatus(boolean shouldShowProgress){
         if (CheckNetwork.isInternetAvailable(mContext)) {
-            Utils.showLoader(mContext, loader);
-            //Call Cloud API Request after check internet connection
-            new Communicator(mContext, null, APIUtils.CMD_DEVICE_INFO,
-                    loadDeviceInfoRequestMap(APIUtils.CMD_DEVICE_INFO,
-                            clickedDeviceId, AppSPrefs.getString(Commons.ACCESS_TOKEN)));
-        } else {
-            Toast.makeText(mContext, mContext.getString(R.string.check_for_internet_connectivity),
-                    Toast.LENGTH_LONG).show();
-        }
-    }
-
-    /**
-     * @param method
-     * @param accessToken
-     * @return
-     */
-    public HashMap<String, String> loadDeviceInfoRequestMap(String method, String deviceId, String accessToken) {
-        HashMap<String, String> map = new HashMap<>();
-        map.put(Commons.COMMAND, method);
-        map.put(Commons.CONFIGURED_DEVICE_ID, deviceId);
-        map.put(Commons.ACCESS_TOKEN, accessToken);
-        return map;
-    }
-
-    private void getApplianceStatus(){
-        if (CheckNetwork.isInternetAvailable(mContext)) {
-            Utils.showLoader(mContext, loader);
+            if (shouldShowProgress)
+                Utils.showLoader(mContext, loader);
             //Call API Request after check internet connection
             new CloudCommunicator(mContext, null, CloudUtils.GET_APPLIANCE_STATUS,
                     getRequestMap(CloudUtils.GET_APPLIANCE_STATUS));
         } else {
-            finish();
             Logger.i(TAG, "Not connected to Internet.");
             runOnUiThread(new Runnable() {
                 @Override
@@ -231,11 +206,10 @@ public class AppliancesActivity extends AppCompatActivity implements APIRequestC
             if(CloudUtils.GET_APPLIANCE_STATUS.equalsIgnoreCase(name)){
                 jsonObject = new JSONObject(object.toString());
                 switches = jsonObject.optString("result");
-                coreInfo = jsonObject.optJSONObject("coreInfo");
-                String deviceId= coreInfo.optString("DeviceID");
                 prepareApplianceList(getApplianceList(appliancesName));
-                //initTimer(Utils.delay30Seconds);
+                initTimer(Utils.delay30Seconds);
             } else if(CloudUtils.CLOUD_FUNCTION_LED.equalsIgnoreCase(name)){ // Switch ON / OFF
+                //{"id":200,"txt":"Operation success!","switches":212222}
                 int[] ids = AppWidgetManager.getInstance(mContext).getAppWidgetIds(new ComponentName(mContext,
                         SharpNodeAppWidget.class));
                 //onUpdate(context, AppWidgetManager.getInstance(context), ids);
@@ -243,21 +217,12 @@ public class AppliancesActivity extends AppCompatActivity implements APIRequestC
                 updateIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
                 updateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
                 mContext.sendBroadcast(updateIntent);
-
-                if (CheckNetwork.isInternetAvailable(mContext)) {
-                    //Call API Request after check internet connection
-                    new CloudCommunicator(mContext, null, CloudUtils.GET_APPLIANCE_STATUS,
-                            getRequestMap(CloudUtils.GET_APPLIANCE_STATUS));
+                jsonObject = new JSONObject(object.toString());
+                if("200".equalsIgnoreCase(jsonObject.optString("id"))){
+                    switches = jsonObject.optString("switches");
+                    prepareApplianceList(getApplianceList(appliancesName));
                 }
-            } else if (APIUtils.CMD_DEVICE_INFO.equalsIgnoreCase(name)) {
-                Logger.i(TAG, "onSuccess"+" Name: "+name+" Response: " + object);
-                //Parsed only for check status is 200.
-                DeviceInfoModel model = ResponseParser.parseDeviceInfoResponse(object);
-                switches = model.getSwitches();
-                appliancesName = model.getApplianceList();
-                Utils.arrAppliances = (String[]) appliancesName.toArray(new String[appliancesName.size()]);
-                //applianceList = getApplianceList(appliancesName);
-                prepareApplianceList(getApplianceList(appliancesName));
+                //getApplianceStatus(false);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -268,42 +233,46 @@ public class AppliancesActivity extends AppCompatActivity implements APIRequestC
     public void onFailure(String name, Object object) {
         Utils.dismissLoader();
         Logger.i(TAG, name+", onFailure, Response: " + object);
+        if(name.equalsIgnoreCase(CloudUtils.GET_APPLIANCE_STATUS)){
+            initTimer(Utils.delay30Seconds);
+        }
     }
 
-//    private void initTimer(int delayTime) {
-//        timer = new Timer();
-//        myTimerTask = new MyTimerTask();
-//        timer.schedule(myTimerTask, delayTime);
-//    }
-//
-//    class MyTimerTask extends TimerTask {
-//
-//        @Override
-//        public void run() {
-//            runOnUiThread(new Runnable() {
-//
-//                @Override
-//                public void run() {
-//                    Logger.i(TAG, "Timer Running! ");
-//                    getApplianceStatus();
-//                }
-//            });
-//        }
-//    }
-//
-//    private void cancelTimer(){
-//        if(timer!=null){
-//            timer.cancel();
-//        }
-//
-//        if(myTimerTask!=null){
-//            myTimerTask.cancel();
-//        }
-//    }
-//
-//    @Override
-//    protected void onDestroy() {
-//        super.onDestroy();
-//        cancelTimer();
-//    }
+    private void initTimer(int delayTime) {
+        cancelTimer();
+        timer = new Timer();
+        myTimerTask = new MyTimerTask();
+        timer.schedule(myTimerTask, delayTime);
+    }
+
+    class MyTimerTask extends TimerTask {
+
+        @Override
+        public void run() {
+            runOnUiThread(new Runnable() {
+
+                @Override
+                public void run() {
+                    Logger.i(TAG, "Timer Running! ");
+                    getApplianceStatus(false);
+                }
+            });
+        }
+    }
+
+    private void cancelTimer(){
+        if(timer!=null){
+            timer.cancel();
+        }
+
+        if(myTimerTask!=null){
+            myTimerTask.cancel();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        cancelTimer();
+    }
 }

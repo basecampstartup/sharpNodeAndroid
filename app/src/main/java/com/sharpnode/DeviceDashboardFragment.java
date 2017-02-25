@@ -9,6 +9,7 @@ import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,6 +66,10 @@ public class DeviceDashboardFragment extends Fragment implements View.OnClickLis
         loader = new ProgressDialog(mContext);
         initializeComponents(view);
         initTimer(Utils.delay05Seconds);
+
+        ArrayList<String> appliancesName = DeviceDashboardActivity.deviceInfoModel.getApplianceList();
+        Utils.arrAppliances = (String[]) appliancesName.toArray(new String[appliancesName.size()]);
+        Log.i("DEVICE", ""+appliancesName.get(0));
         return view;
     }
 
@@ -242,6 +247,36 @@ public class DeviceDashboardFragment extends Fragment implements View.OnClickLis
         public void onAnimationStart(Animation animation) {}
     };
 
+    private void sendIPAddress(String lastIP){
+        try{
+            Logger.i("TAG", "sendIPAddress called, LAST IP: "+lastIP);
+            if (CheckNetwork.isInternetAvailable(mContext)) {
+                //Utils.showLoader(mContext, loader);
+                //Call API Request after check internet connection
+                new Communicator(mContext, null, APIUtils.CMD_UPDATE_IP,
+                        getRequestMap(APIUtils.CMD_UPDATE_IP, lastIP));
+            } else {
+                Logger.i(TAG, "Not connected to Internet.");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * @param method
+     *
+     * @return
+     */
+    public HashMap<String, String> getRequestMap(String method, String lastIP) {
+        HashMap<String, String> map = new HashMap<>();
+        map.put(Commons.COMMAND, method);
+        map.put(Commons.CONFIGURED_DEVICE_ID, AppSPrefs.getDeviceId());
+        map.put(Commons.LAST_IP, lastIP);
+        map.put(Commons.ACCESS_TOKEN, AppSPrefs.getString(Commons.ACCESS_TOKEN));
+        return map;
+    }
+
     @Override
     public void onSuccess(String name, Object object) {
         Logger.i(TAG, "onSuccess"+" Name: "+name+"Response: " + object);
@@ -252,7 +287,7 @@ public class DeviceDashboardFragment extends Fragment implements View.OnClickLis
                 final String temperature = data.optString("temperature");
                 final String humidity = data.optString("humidity");
                 String ip = data.optString("ip");
-
+                sendIPAddress(ip);
                 if(mContext!=null){
                     ((Activity)mContext).runOnUiThread(new Runnable() {
                         @Override

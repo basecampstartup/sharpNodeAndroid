@@ -14,6 +14,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -37,6 +38,7 @@ import com.sharpnode.utils.Logger;
 import com.sharpnode.utils.Utils;
 import com.sharpnode.widget.WidgetUtils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -103,6 +105,10 @@ public class DeviceDashboardActivity extends AppCompatActivity implements View.O
             loader = new ProgressDialog(mContext);
             String deviceInfoData = getIntent().getStringExtra("DEVICE_INFO");
             deviceInfoModel = ResponseParser.parseDeviceInfoResponse(deviceInfoData);
+            ArrayList<String> appliancesName = deviceInfoModel.getApplianceList();
+            Utils.arrAppliances = (String[]) appliancesName.toArray(new String[appliancesName.size()]);
+
+            Log.i("DEVICE", "deviceInfoModel="+deviceInfoModel.getDeviceName());
             isConnected = CloudUtils.deviceStatus.get(deviceInfoModel.getDeviceId().toLowerCase());
             if(AppSPrefs.getWidgetDeviceId().equalsIgnoreCase(deviceInfoModel.getDeviceId())){
                 WidgetUtils.isWidgetDeviceConnected = true;
@@ -121,29 +127,7 @@ public class DeviceDashboardActivity extends AppCompatActivity implements View.O
             e.printStackTrace();
             finish();
         }
-
     }
-
-
-//        @Override
-//    protected void onResume() {
-//        super.onResume();
-//        try{
-//            registerReceiver(deviceStatusChangedReceiver, new IntentFilter(CloudUtils.REFRESH_DEVICE_DASHBOARD));
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    @Override
-//    protected void onStop() {
-//        super.onStop();
-//        try{
-//            unregisterReceiver(deviceStatusChangedReceiver);
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//    }
 
     @Override
     public void onClick(View view) {
@@ -288,7 +272,6 @@ public class DeviceDashboardActivity extends AppCompatActivity implements View.O
                     sendBroadcast(new Intent());
                 }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
